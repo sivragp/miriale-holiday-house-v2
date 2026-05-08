@@ -1,26 +1,249 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Surfaces */
+  --color-ivory: #f7f2e6;
+  --color-ivory-2: #f1ead9;
+  --color-cream: #ece4cc;
+  --color-cream-2: #e8debe;
+  --color-stone: #ddd2b3;
+  --color-paper: #ffffff;
+  --color-bone: #faf6ec;
+
+  /* Greens */
+  --color-olive: #6e7a4a;
+  --color-olive-2: #5a6440;
+  --color-olive-dark: #3b4524;
+  --color-olive-deep: #2a3219;
+  --color-olive-section: #424f2c;
+  --color-olive-section-2: #3a4628;
+  --color-footer: #161a0c;
+
+  /* Accents */
+  --color-gold: #b89968;
+  --color-gold-soft: #cdb285;
+  --color-gold-deep: #9a7f50;
+  --color-terracotta: #b96f4a;
+  --color-wa: #25d366;
+  --color-wa-dark: #1fb858;
+
+  /* Text */
+  --color-deep-brown: #1f1d15;
+  --color-warm-gray: #6e6857;
+  --color-line: #e2d9c0;
+  --color-line-soft: #ede4ce;
+
+  --font-serif:
+    var(--font-cormorant), "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+
+  --shadow-soft:
+    0 1px 2px rgba(31, 29, 21, 0.04), 0 8px 22px rgba(31, 29, 21, 0.05);
+  --shadow-card:
+    0 1px 3px rgba(31, 29, 21, 0.05), 0 18px 40px rgba(31, 29, 21, 0.08);
+  --shadow-pill:
+    0 1px 2px rgba(31, 29, 21, 0.06), 0 14px 36px rgba(31, 29, 21, 0.12);
+  --shadow-hero:
+    0 20px 60px rgba(31, 29, 21, 0.18), 0 4px 16px rgba(31, 29, 21, 0.08);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-deep-brown);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+.shadow-pill {
+  box-shadow: var(--shadow-pill);
+}
+.shadow-hero {
+  box-shadow: var(--shadow-hero);
+}
+
+/* Eyebrow tag (small uppercase letterspaced) */
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Header logo frame */
+.logo-frame {
+  background:
+    linear-gradient(180deg, #faf6ec 0%, #f1ead9 100%);
+  border: 1px solid var(--color-line);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+/* Olive ornamental divider line */
+.ornament-line {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--color-line) 20%,
+    var(--color-line) 80%,
+    transparent 100%
+  );
+}
+
+/* Map background — soft topographic */
+.map-bg {
+  background:
+    radial-gradient(circle at 30% 35%, rgba(110, 122, 74, 0.14), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(184, 153, 104, 0.16), transparent 55%),
+    linear-gradient(180deg, #f4ecd6 0%, #e6dcbf 100%);
+}
+
+/* Olive section subtle texture */
+.olive-tex {
+  background-color: var(--color-olive-section);
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(205, 178, 133, 0.07), transparent 38%),
+    radial-gradient(circle at 82% 78%, rgba(205, 178, 133, 0.05), transparent 42%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.012) 0px,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+}
+
+/* CSS-only mobile nav */
+#nav-toggle:checked ~ .mobile-nav {
+  display: flex;
+}
+#nav-toggle:checked ~ label .icon-menu {
+  display: none;
+}
+#nav-toggle:checked ~ label .icon-close {
+  display: block;
+}
+.icon-close {
+  display: none;
+}
+
+/* Floating WhatsApp button */
+.fab-whatsapp {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 50;
+  display: inline-flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow:
+    0 8px 18px rgba(37, 211, 102, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+.fab-whatsapp:hover {
+  transform: translateY(-2px);
+}
+
+/* Star rating (filled gold) */
+.star {
+  color: var(--color-gold);
+}
+
+/* Form input look */
+.input-base {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-deep-brown);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-base::placeholder {
+  color: rgba(110, 104, 87, 0.7);
+}
+.input-base:focus {
+  outline: none;
+  border-color: var(--color-olive);
+  box-shadow: 0 0 0 3px rgba(110, 122, 74, 0.12);
+}
+
+/* WhatsApp banner texture */
+.wa-panel {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 45%),
+    radial-gradient(circle at 88% 82%, rgba(0, 0, 0, 0.12), transparent 50%),
+    linear-gradient(135deg, #25d366 0%, #1ba94e 100%);
+}
+
+/* Hero overlay */
+.hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(15, 14, 10, 0.65) 0%, rgba(15, 14, 10, 0.25) 45%, rgba(15, 14, 10, 0.05) 75%),
+    linear-gradient(180deg, rgba(15, 14, 10, 0.25) 0%, rgba(15, 14, 10, 0) 35%, rgba(15, 14, 10, 0.45) 100%);
+}
+
+/* Dark CTA overlay */
+.cta-overlay {
+  background:
+    linear-gradient(180deg, rgba(26, 31, 16, 0.55) 0%, rgba(26, 31, 16, 0.85) 100%);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Subtle paper grain */
+.paper-grain {
+  background-image:
+    radial-gradient(circle at 10% 12%, rgba(184, 153, 104, 0.05), transparent 38%),
+    radial-gradient(circle at 90% 88%, rgba(110, 122, 74, 0.04), transparent 42%);
+}
+
+/* Number ring */
+.num-ring {
+  background: linear-gradient(180deg, #faf6ec 0%, #ece4cc 100%);
+  border: 1px solid var(--color-line);
+}
+
+/* Decorative corner curl on olive branch container */
+.branch-bg {
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(110, 122, 74, 0.06), transparent 60%);
+}
+
+/* Scrolling marquee for highlight bar (optional) */
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
