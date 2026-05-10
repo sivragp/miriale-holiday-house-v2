@@ -1,4 +1,23 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Armchair,
+  Bath,
+  BedDouble,
+  CigaretteOff,
+  Clock,
+  LogOut,
+  MoonStar,
+  PartyPopper,
+  PawPrint,
+  ShieldCheck,
+  Tag,
+  UtensilsCrossed,
+} from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
 /*  Constants                                                                 */
@@ -15,81 +34,59 @@ const waLink = (msg = "Ciao! Vorrei avere informazioni su Antica Loggia.") =>
 
 const mailto = `mailto:${EMAIL}`;
 
-const IMG = {
-  hero: "https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&w=2400&q=85",
-  living:
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1800&q=85",
-  bedroom:
-    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1800&q=85",
-  exterior:
-    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=85",
-  loggia:
-    "https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=1800&q=85",
-  gallery: [
-    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1525113990976-399835c43838?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1100&q=80",
-    "https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=1100&q=80",
-  ],
-  parking:
-    "https://images.unsplash.com/photo-1518733057094-95b53143d2a7?auto=format&fit=crop&w=1200&q=80",
-  greenSide:
-    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1100&q=85",
-  ctaBanner:
-    "https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=2400&q=85",
-  nearby: [
-    {
-      name: "Spoleto",
-      km: "20 km",
-      img: "https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      name: "Assisi",
-      km: "30 km",
-      img: "https://images.unsplash.com/photo-1543429776-2782fc8e1acd?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      name: "Cascate Marmore",
-      km: "35 km",
-      img: "https://images.unsplash.com/photo-1559588227-b06c9bce5ce0?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      name: "Montefalco",
-      km: "18 km",
-      img: "https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=400&q=80",
-    },
-  ],
-  reviews: [
-    {
-      name: "Sofia M.",
-      city: "Milano",
-      avatar: "https://i.pravatar.cc/200?img=47",
-      stars: 5,
-      text:
-        "Casa meravigliosa, curata in ogni dettaglio. La vista dalla loggia al tramonto è qualcosa che non dimenticheremo. Ospiti gentilissimi e disponibili.",
-    },
-    {
-      name: "Andrea & Giulia",
-      city: "Roma",
-      avatar: "https://i.pravatar.cc/200?img=12",
-      stars: 5,
-      text:
-        "Posizione perfetta nel cuore di Trevi, ideale per esplorare l'Umbria. Casa accogliente, calda, con tutti i comfort. Torneremo sicuramente.",
-    },
-    {
-      name: "Lukas H.",
-      city: "Monaco di Baviera",
-      avatar: "https://i.pravatar.cc/200?img=33",
-      stars: 5,
-      text:
-        "Una dimora autentica, con travi a vista e pavimenti in cotto. Tutto è impeccabile. La proprietaria ci ha consigliato luoghi fantastici da visitare.",
-    },
-  ],
-};
+const NAV = [
+  { label: "La casa", href: "#la-casa" },
+  { label: "Servizi", href: "#servizi" },
+  { label: "Galleria", href: "#galleria" },
+  { label: "Dove siamo", href: "#dove-siamo" },
+  { label: "Cosa fare", href: "#dintorni" },
+  { label: "Recensioni", href: "#recensioni" },
+  { label: "Contatti", href: "#prenota" },
+];
+
+// Curva di easing comune per le animazioni viewport-triggered
+const ease: [number, number, number, number] = [0.22, 0.61, 0.36, 1];
+
+// Foto della galleria (orizzontale)
+const GALLERY = [
+  { src: "/images/salone-verso-camino.webp", alt: "Salone con camino acceso" },
+  { src: "/images/salone-verso-finestre-2.webp", alt: "Salone con finestre sulla Valle Umbra" },
+  { src: "/images/salone-verso-finestre.webp", alt: "Salone, prospettiva verso le finestre" },
+  { src: "/images/camera-matrimoniale.webp", alt: "Camera matrimoniale" },
+  { src: "/images/camera-padronale.webp", alt: "Camera padronale" },
+  { src: "/images/finestra-verso-fuori.webp", alt: "Finestra con vista sulla Valle Umbra" },
+  { src: "/images/finestra-verso-fuori2.webp", alt: "Vista panoramica dalla finestra" },
+  { src: "/images/finestra-verso-fuori3.webp", alt: "Finestra sui tetti del borgo" },
+  { src: "/images/foto-finestre-verso-salottino-fuori.webp", alt: "La Loggia con i sette finestroni" },
+  { src: "/images/trevi-dall-alto-verso-casa.webp", alt: "Vista aerea di Trevi e della Valle Umbra" },
+  { src: "/images/bagno-padronale.webp", alt: "Bagno padronale" },
+  { src: "/images/trevi-panorama.webp", alt: "Panorama di Trevi al tramonto" },
+];
+
+// Recensioni
+const REVIEWS = [
+  {
+    avatar: "/images/avatar-chiara.webp",
+    name: "Chiara M.",
+    city: "Milano",
+    stars: 5,
+    text: "Un posto meraviglioso. La loggia al tramonto è indimenticabile. Casa curatissima, ogni dettaglio racconta la storia del luogo. Torneremo sicuramente.",
+  },
+  {
+    avatar: "/images/avatar-marco.webp",
+    name: "Marco e Laura",
+    city: "Roma",
+    stars: 5,
+    text: "Abbiamo festeggiato il nostro anniversario ad Antica Loggia. Il silenzio, la vista, l'autenticità umbra. Un'esperienza fuori dal tempo.",
+  },
+  {
+    avatar: "/images/avatar-famiglia.webp",
+    name: "Familie Becker",
+    city: "Monaco",
+    stars: 5,
+    text: "Wunderschönes Haus in einer magischen Lage. Perfekte Ausstattung, ruhige Atmosphäre, traumhafte Aussicht auf Trevi. Empfehlenswert!",
+  },
+];
 
 /* -------------------------------------------------------------------------- */
 /*  Inline icons                                                              */
@@ -105,138 +102,6 @@ const stroke = {
 };
 
 const I = {
-  wifi: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 12.55a11 11 0 0 1 14 0" />
-      <path d="M2 8.82a16 16 0 0 1 20 0" />
-      <path d="M8.5 16.43a6 6 0 0 1 7 0" />
-      <circle cx="12" cy="20" r="1" fill="currentColor" />
-    </svg>
-  ),
-  ac: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" />
-    </svg>
-  ),
-  kitchen: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M4 11h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8Z" />
-      <path d="M7 11V6a5 5 0 0 1 10 0v5" />
-      <path d="M9 15h6" />
-    </svg>
-  ),
-  tv: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="6" width="18" height="12" rx="2" />
-      <path d="M8 21h8M12 18v3" />
-    </svg>
-  ),
-  parking: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="3" width="18" height="18" rx="3" />
-      <path d="M10 17V8h3.5a2.5 2.5 0 0 1 0 5H10" />
-    </svg>
-  ),
-  key: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="8" cy="14" r="4" />
-      <path d="m11 11 9-9M16 6l3 3" />
-    </svg>
-  ),
-  bed: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M3 18V8M3 12h18v6M21 18V11a3 3 0 0 0-3-3h-7v4" />
-      <circle cx="7" cy="11" r="2" />
-    </svg>
-  ),
-  washer: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="4" y="3" width="16" height="18" rx="2" />
-      <circle cx="12" cy="14" r="4" />
-      <circle cx="8" cy="6.5" r="0.5" fill="currentColor" />
-      <circle cx="11" cy="6.5" r="0.5" fill="currentColor" />
-    </svg>
-  ),
-  heat: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="12" r="3.5" />
-      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
-    </svg>
-  ),
-  pin: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 22s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12Z" />
-      <circle cx="12" cy="10" r="2.5" />
-    </svg>
-  ),
-  mountain: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="m3 19 6-9 4 5 3-3 5 7Z" />
-      <circle cx="17" cy="6" r="2" />
-    </svg>
-  ),
-  sparkle: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 3v6M12 15v6M3 12h6M15 12h6M6 6l4 4M14 14l4 4M18 6l-4 4M10 14l-4 4" />
-    </svg>
-  ),
-  heart: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z" />
-    </svg>
-  ),
-  column: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 4h14v3H5zM5 17h14v3H5zM8 7v10M16 7v10M12 7v10" />
-    </svg>
-  ),
-  clock: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  ),
-  paw: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="6" cy="10" r="2" />
-      <circle cx="10" cy="6" r="2" />
-      <circle cx="14" cy="6" r="2" />
-      <circle cx="18" cy="10" r="2" />
-      <path d="M8 17a4 4 0 0 1 8 0c0 2.2-1.8 3-4 3s-4-.8-4-3Z" />
-    </svg>
-  ),
-  smoke: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="m6 6 12 12" />
-    </svg>
-  ),
-  card: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="6" width="18" height="13" rx="2" />
-      <path d="M3 11h18M7 16h3" />
-    </svg>
-  ),
-  check: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="m4 12 5 5L20 6" />
-    </svg>
-  ),
-  music: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M9 18V5l12-2v13" />
-      <circle cx="6" cy="18" r="3" />
-      <circle cx="18" cy="16" r="3" />
-    </svg>
-  ),
-  users: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="9" cy="8" r="3.2" />
-      <path d="M3 20a6 6 0 0 1 12 0" />
-      <circle cx="17" cy="9" r="2.6" />
-      <path d="M15 20a5 5 0 0 1 7-4.6" />
-    </svg>
-  ),
   whatsapp: ({ className }: IconProps) => (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
       <path d="M20.5 3.5A10.4 10.4 0 0 0 12 0C6 0 1.2 4.8 1.2 10.7c0 1.9.5 3.7 1.4 5.3L1 22l6.2-1.6a10.7 10.7 0 0 0 4.8 1.2h.1c5.9 0 10.7-4.8 10.7-10.7 0-2.9-1.1-5.5-3.3-7.4Zm-8.4 16.4a8.8 8.8 0 0 1-4.5-1.2l-.3-.2-3.7 1 1-3.6-.2-.3a8.8 8.8 0 1 1 16.3-4.7c0 4.9-4 8.9-8.6 9Zm4.9-6.7c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1.1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.5h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.7.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.7.1.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3Z" />
@@ -253,24 +118,10 @@ const I = {
       <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
     </svg>
   ),
-  arrow: ({ className }: IconProps) => (
+  pin: ({ className }: IconProps) => (
     <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  ),
-  arrowDown: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  ),
-  menu: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M4 7h16M4 12h16M4 17h16" />
-    </svg>
-  ),
-  close: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M6 6l12 12M18 6 6 18" />
+      <path d="M12 22s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12Z" />
+      <circle cx="12" cy="10" r="2.5" />
     </svg>
   ),
   instagram: ({ className }: IconProps) => (
@@ -290,10 +141,97 @@ const I = {
       <path d="m12 2 3 7 7 .6-5.4 4.7 1.7 7L12 17.3 5.7 21.3l1.7-7L2 9.6 9 9Z" />
     </svg>
   ),
-  search: ({ className }: IconProps) => (
+  wifi: ({ className }: IconProps) => (
     <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-3.5-3.5" />
+      <path d="M5 12.55a11 11 0 0 1 14 0" />
+      <path d="M2 8.82a16 16 0 0 1 20 0" />
+      <path d="M8.5 16.43a6 6 0 0 1 7 0" />
+      <circle cx="12" cy="20" r="1" fill="currentColor" />
+    </svg>
+  ),
+  parking: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M10 17V8h3.5a2.5 2.5 0 0 1 0 5H10" />
+    </svg>
+  ),
+  kitchen: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M4 11h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8Z" />
+      <path d="M7 11V6a5 5 0 0 1 10 0v5" />
+      <path d="M9 15h6" />
+    </svg>
+  ),
+  ac: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" />
+    </svg>
+  ),
+  heat: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
+    </svg>
+  ),
+  washer: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <circle cx="12" cy="14" r="4" />
+      <circle cx="8" cy="6.5" r="0.5" fill="currentColor" />
+      <circle cx="11" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
+  ),
+  bed: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M3 18V8M3 12h18v6M21 18V11a3 3 0 0 0-3-3h-7v4" />
+      <circle cx="7" cy="11" r="2" />
+    </svg>
+  ),
+  users: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3 20a6 6 0 0 1 12 0" />
+      <circle cx="17" cy="9" r="2.6" />
+      <path d="M15 20a5 5 0 0 1 7-4.6" />
+    </svg>
+  ),
+  clock: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  ),
+  key: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="8" cy="14" r="4" />
+      <path d="m11 11 9-9M16 6l3 3" />
+    </svg>
+  ),
+  smoke: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m6 6 12 12" />
+    </svg>
+  ),
+  music: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </svg>
+  ),
+  paw: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="6" cy="10" r="2" />
+      <circle cx="10" cy="6" r="2" />
+      <circle cx="14" cy="6" r="2" />
+      <circle cx="18" cy="10" r="2" />
+      <path d="M8 17a4 4 0 0 1 8 0c0 2.2-1.8 3-4 3s-4-.8-4-3Z" />
+    </svg>
+  ),
+  heart: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z" />
     </svg>
   ),
   calendar: ({ className }: IconProps) => (
@@ -302,16 +240,63 @@ const I = {
       <path d="M3 9h18M8 3v4M16 3v4" />
     </svg>
   ),
-  guests: ({ className }: IconProps) => (
+  arrow: ({ className }: IconProps) => (
     <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="8" r="3.5" />
-      <path d="M5 20a7 7 0 0 1 14 0" />
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  ),
+  arch: ({ className }: IconProps) => (
+    <svg viewBox="0 0 32 32" className={className} {...stroke}>
+      <path d="M4 28V14a12 12 0 0 1 24 0v14" />
+      <path d="M2 28h28" />
+    </svg>
+  ),
+  eye: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ),
+  column: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M5 4h14v3H5zM5 17h14v3H5zM8 7v10M16 7v10M12 7v10" />
+    </svg>
+  ),
+  snowflake: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" />
+      <path d="M12 6l-2 2M12 6l2 2M12 18l-2-2M12 18l2-2" />
+      <path d="M6 12l2-2M6 12l2 2M18 12l-2-2M18 12l-2 2" />
+    </svg>
+  ),
+  tv: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <rect x="3" y="6" width="18" height="12" rx="2" />
+      <path d="M8 21h8M12 18v3" />
+    </svg>
+  ),
+  family: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="7" cy="7" r="2.5" />
+      <circle cx="17" cy="7" r="2.5" />
+      <circle cx="12" cy="14" r="2" />
+      <path d="M3 17a4 4 0 0 1 8 0v3M13 17a4 4 0 0 1 8 0v3M9 21v-2a3 3 0 0 1 6 0v2" />
+    </svg>
+  ),
+  play: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M8 5v14l11-7Z" />
+    </svg>
+  ),
+  sparkle: ({ className }: IconProps) => (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M12 3v6M12 15v6M3 12h6M15 12h6M6 6l4 4M14 14l4 4M18 6l-4 4M10 14l-4 4" />
     </svg>
   ),
 };
 
 /* -------------------------------------------------------------------------- */
-/*  Olive branch decorative SVG                                               */
+/*  Olive branch decorative SVG (used in Footer)                              */
 /* -------------------------------------------------------------------------- */
 
 function OliveBranch({
@@ -337,7 +322,6 @@ function OliveBranch({
         <path d="M82 280 C 65 280, 52 285, 45 295" opacity="0.5" />
         <path d="M140 60 C 158 55, 170 45, 175 30" opacity="0.5" />
       </g>
-      {/* leaves */}
       <g fill="#6e7a4a" opacity="0.78">
         <ellipse cx="155" cy="14" rx="14" ry="5.5" transform="rotate(-32 155 14)" />
         <ellipse cx="170" cy="32" rx="13" ry="5" transform="rotate(20 170 32)" />
@@ -357,7 +341,6 @@ function OliveBranch({
         <ellipse cx="58" cy="300" rx="13" ry="5" transform="rotate(-30 58 300)" />
         <ellipse cx="80" cy="318" rx="14" ry="5" transform="rotate(40 80 318)" />
       </g>
-      {/* olives */}
       <g fill="#3b4524">
         <circle cx="148" cy="22" r="3" />
         <circle cx="120" cy="100" r="3" />
@@ -370,134 +353,7 @@ function OliveBranch({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Logo                                                                      */
-/* -------------------------------------------------------------------------- */
-
-function LogoMark({
-  light = false,
-  className = "h-12 w-12",
-}: {
-  light?: boolean;
-  className?: string;
-}) {
-  return (
-    <span
-      className={`grid place-items-center rounded-md ${
-        light
-          ? "border border-cream/30 text-cream"
-          : "logo-frame text-olive-dark"
-      } ${className}`}
-    >
-      <svg viewBox="0 0 32 32" className="h-7 w-7" {...stroke}>
-        {/* arched loggia silhouette */}
-        <path d="M5 26V14a11 11 0 0 1 22 0v12" />
-        <path d="M3 26h26" />
-        <path d="M11 26v-7a3 3 0 0 1 6 0v7" />
-        <path d="M19 26v-7a3 3 0 0 1 6 0v7" opacity="0.55" />
-        <path d="M16 6v3" />
-      </svg>
-    </span>
-  );
-}
-
-function Logo({
-  light = false,
-  className = "",
-  compact = false,
-}: {
-  light?: boolean;
-  className?: string;
-  compact?: boolean;
-}) {
-  return (
-    <a
-      href="#top"
-      className={`flex items-center gap-3 ${className}`}
-      aria-label="Antica Loggia — Home"
-    >
-      <LogoMark light={light} className={compact ? "h-10 w-10" : "h-12 w-12"} />
-      <span className="leading-tight">
-        <span
-          className={`block font-serif text-[15px] font-semibold tracking-[0.22em] ${
-            light ? "text-cream" : "text-olive-dark"
-          }`}
-        >
-          ANTICA LOGGIA
-        </span>
-        <span
-          className={`block text-[9px] uppercase tracking-[0.36em] ${
-            light ? "text-cream/65" : "text-warm-gray"
-          }`}
-        >
-          Casa Vacanze
-        </span>
-        <span
-          className={`block text-[8px] uppercase tracking-[0.4em] ${
-            light ? "text-cream/45" : "text-warm-gray/80"
-          }`}
-        >
-          Trevi · Umbria
-        </span>
-      </span>
-    </a>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Buttons                                                                   */
-/* -------------------------------------------------------------------------- */
-
-function BtnContact({
-  href = mailto,
-  children,
-  className = "",
-  variant = "dark",
-}: {
-  href?: string;
-  children: ReactNode;
-  className?: string;
-  variant?: "dark" | "outline" | "olive";
-}) {
-  const styles =
-    variant === "outline"
-      ? "border border-olive-dark text-olive-dark hover:bg-olive-dark hover:text-cream"
-      : variant === "olive"
-        ? "bg-olive text-cream hover:bg-olive-2"
-        : "bg-olive-dark text-cream hover:bg-olive-deep";
-  return (
-    <a
-      href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition ${styles} ${className}`}
-    >
-      {children}
-    </a>
-  );
-}
-
-function BtnWhatsApp({
-  message,
-  children,
-  className = "",
-}: {
-  message?: string;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <a
-      href={waLink(message)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium tracking-wide text-white shadow-[0_8px_18px_rgba(37,211,102,0.3)] transition hover:bg-[#1fb858] ${className}`}
-    >
-      <I.whatsapp className="h-4 w-4" />
-      {children}
-    </a>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Eyebrow                                                                   */
+/*  Eyebrow primitive                                                         */
 /* -------------------------------------------------------------------------- */
 
 function Eyebrow({
@@ -513,221 +369,1351 @@ function Eyebrow({
 }) {
   return (
     <span
-      className={`eyebrow inline-flex items-center gap-3 ${
-        light ? "text-gold-soft" : "text-gold"
+      className={`inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] ${
+        light ? "text-gold-soft" : "text-olive"
       } ${className}`}
     >
       {centered ? (
-        <span
-          className={`h-px w-8 ${light ? "bg-gold-soft/50" : "bg-gold/50"}`}
-        />
+        <span className={`h-px w-8 ${light ? "bg-gold-soft/40" : "bg-olive/30"}`} />
       ) : null}
       {children}
       {centered ? (
-        <span
-          className={`h-px w-8 ${light ? "bg-gold-soft/50" : "bg-gold/50"}`}
-        />
+        <span className={`h-px w-8 ${light ? "bg-gold-soft/40" : "bg-olive/30"}`} />
       ) : null}
     </span>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Header                                                                    */
+/*  Reusable motion variants                                                  */
 /* -------------------------------------------------------------------------- */
 
-const NAV = [
-  { label: "Home", href: "#top" },
-  { label: "La Casa", href: "#la-casa" },
-  { label: "Servizi", href: "#servizi" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Dove siamo", href: "#dove-siamo" },
-  { label: "Recensioni", href: "#recensioni" },
-  { label: "Contatti", href: "#contatti" },
-];
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease },
+  viewport: { once: true, amount: 0.05 },
+};
 
-function Header() {
+const fadeIn = {
+  initial: { opacity: 0, scale: 1.02 },
+  whileInView: { opacity: 1, scale: 1 },
+  transition: { duration: 0.7, ease },
+  viewport: { once: true, amount: 0.05 },
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Navbar                                                                    */
+/* -------------------------------------------------------------------------- */
+
+function Navbar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line/60 bg-ivory/92 backdrop-blur">
-      <input type="checkbox" id="nav-toggle" className="peer hidden" />
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 md:px-8">
-        <Logo compact />
+    <header className="sticky top-0 z-40 border-b border-line/60 bg-ivory/95 shadow-sm backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-8">
+        <a
+          href="#top"
+          className="flex items-center gap-3"
+          aria-label="Antica Loggia — Home"
+        >
+          <I.arch className="h-9 w-9 text-deep-brown" />
+          <span className="leading-tight">
+            <span className="block font-serif text-base font-bold tracking-[0.18em] text-deep-brown md:text-lg">
+              ANTICA LOGGIA
+            </span>
+            <span className="block text-[10px] uppercase tracking-[0.32em] text-warm-gray">
+              Casa Vacanze
+            </span>
+          </span>
+        </a>
 
-        <nav className="hidden flex-1 items-center justify-center gap-7 text-[13px] text-deep-brown lg:flex">
+        <nav className="hidden items-center gap-6 text-sm text-deep-brown xl:flex">
           {NAV.map((n) => (
             <a
               key={n.label}
               href={n.href}
-              className="transition hover:text-olive"
+              className="transition hover:text-terracotta"
             >
               {n.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={waLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-medium text-white shadow-[0_6px_14px_rgba(37,211,102,0.25)] transition hover:bg-[#1fb858]"
-          >
-            <I.whatsapp className="h-4 w-4" />
-            WhatsApp
-          </a>
-          <label
-            htmlFor="nav-toggle"
-            className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line text-olive-dark lg:hidden"
-            aria-label="Apri menu"
-          >
-            <I.menu className="icon-menu h-5 w-5" />
-            <I.close className="icon-close h-5 w-5" />
-          </label>
-        </div>
+        <a
+          href="#prenota"
+          className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
+          style={{ backgroundColor: "#2D4A2D" }}
+        >
+          <I.calendar className="h-4 w-4" />
+          Prenota ora
+        </a>
       </div>
-
-      <nav className="mobile-nav hidden flex-col gap-1 border-t border-line/60 bg-ivory px-5 py-4 lg:hidden">
-        {NAV.map((n) => (
-          <a
-            key={n.label}
-            href={n.href}
-            className="rounded-lg px-3 py-2 text-sm text-deep-brown transition hover:bg-cream"
-          >
-            {n.label}
-          </a>
-        ))}
-        <BtnContact className="mt-2 self-start">Contattaci</BtnContact>
-      </nav>
     </header>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Hero — availability picker + dual CTA                                     */
+/*  HeroImage — immagine fullscreen + testo + booking widget + chips          */
 /* -------------------------------------------------------------------------- */
 
-function Hero() {
+function HeroImage() {
+  const chips = [
+    { Icon: I.wifi, label: "Wi-Fi veloce" },
+    { Icon: I.key, label: "Self Check-in" },
+    { Icon: I.parking, label: "Parcheggio vicino" },
+    { Icon: I.ac, label: "Aria condizionata" },
+  ];
+
   return (
-    <section id="top" className="relative isolate overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={IMG.hero}
-        alt="Vista panoramica del borgo medievale di Trevi al tramonto"
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+    <section
+      id="top"
+      className="relative isolate min-h-[90vh] overflow-hidden bg-deep-brown"
+    >
+      <video
+        src="/media/trevi-hero.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 -z-10 hero-overlay" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)",
+        }}
+      />
 
-      <div className="mx-auto flex min-h-[82vh] max-w-7xl flex-col justify-end px-5 pb-12 pt-24 sm:pb-16 md:px-8 md:pt-32">
-        <div className="max-w-2xl">
-          <Eyebrow light>Casa Vacanze di Charme</Eyebrow>
-          <h1 className="mt-5 font-serif text-[3.6rem] leading-[0.98] text-cream sm:text-7xl md:text-[5.8rem]">
+      <div className="relative z-10 flex min-h-[90vh] items-center px-[8%] md:px-[10%]">
+        <div className="max-w-xl py-24">
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3, ease }}
+            className="font-serif text-7xl font-light leading-none text-white md:text-8xl"
+            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
+          >
             Antica Loggia
-          </h1>
-          <p className="mt-5 max-w-xl font-serif text-2xl leading-snug text-cream/95 sm:text-[1.7rem]">
-            Il tuo rifugio nel cuore di Trevi, Umbria
-          </p>
-          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80">
-            Atmosfera autentica, comfort moderni e panorami che resteranno
-            con te.
-          </p>
-        </div>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.5, ease }}
+            className="mt-2 font-serif text-4xl font-light text-white/90 md:text-5xl"
+            style={{ textShadow: "0 2px 16px rgba(0,0,0,0.3)" }}
+          >
+            Trevi, Umbria
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.7, ease }}
+            className="mt-4 max-w-md text-lg leading-relaxed text-white/80"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
+          >
+            Un rifugio autentico nel cuore dell&apos;Umbria.
+            <br />
+            Storia, comfort e panorami indimenticabili.
+          </motion.p>
 
-        {/* Availability picker bar */}
-        <div className="mt-10 max-w-3xl">
-          <div className="grid grid-cols-1 gap-2 rounded-2xl bg-paper/95 p-2 shadow-pill backdrop-blur sm:grid-cols-[1fr_1fr_1fr_auto] sm:items-center">
-            <PickerField icon={<I.calendar className="h-4 w-4 text-olive" />} label="Arrivo" value="24 maggio 2026" />
-            <PickerField icon={<I.calendar className="h-4 w-4 text-olive" />} label="Partenza" value="31 maggio 2026" />
-            <PickerField icon={<I.guests className="h-4 w-4 text-olive" />} label="Ospiti" value="2 adulti" />
-            <a
-              href={waLink("Ciao! Vorrei verificare la disponibilità di Antica Loggia per un soggiorno.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-olive-dark px-5 py-3.5 text-sm font-medium text-cream transition hover:bg-olive-deep sm:min-w-[200px]"
-            >
-              <I.search className="h-4 w-4" />
-              Verifica disponibilità
-            </a>
-          </div>
-        </div>
+          {/* CTA: rimanda al CtaBanner finale */}
+          <motion.a
+            href="#prenota"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.9, ease }}
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-deep-brown shadow-xl transition hover:bg-[#f5f5f4]"
+          >
+            <I.mail className="h-4 w-4" />
+            Contattaci
+          </motion.a>
 
-        {/* Secondary action row */}
-        <div className="mt-5 flex flex-wrap items-center gap-3 text-cream/80 text-[13px]">
-          <span className="inline-flex items-center gap-2">
-            <span className="flex">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <I.star key={i} className="h-3.5 w-3.5 text-gold-soft" />
-              ))}
-            </span>
-            <span>4.9 / 5 — oltre 120 recensioni</span>
-          </span>
-          <span className="opacity-50">·</span>
-          <a href="#recensioni" className="underline-offset-4 hover:underline">
-            Leggi le recensioni
-          </a>
+          {/* Chips */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 1.1, ease }}
+            className="mt-5 flex flex-wrap gap-2"
+          >
+            {chips.map((c) => (
+              <span
+                key={c.label}
+                className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-sm text-white/85 backdrop-blur"
+              >
+                <c.Icon className="h-3.5 w-3.5" />
+                {c.label}
+              </span>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
-function PickerField({
-  icon,
-  label,
-  value,
-}: {
-  icon: ReactNode;
-  label: string;
-  value: string;
-}) {
+/* -------------------------------------------------------------------------- */
+/*  GalleryStrip (orizzontale)                                                */
+/* -------------------------------------------------------------------------- */
+
+function GalleryStrip() {
+  const stripRef = useRef<HTMLDivElement>(null);
+  const photos = [
+    { src: "/images/trevi-dall-alto-verso-casa.webp", alt: "Vista esterna di Trevi e di Antica Loggia" },
+    { src: "/images/camera-padronale.webp", alt: "Camera padronale" },
+    { src: "/images/salone-verso-camino.webp", alt: "Salone con camino" },
+    { src: "/images/salone-verso-finestre.webp", alt: "Salone, prospettiva verso le finestre" },
+    { src: "/images/foto-finestre-verso-salottino-fuori.webp", alt: "La Loggia con i sette finestroni" },
+    { src: "/images/bagno-padronale.webp", alt: "Bagno padronale" },
+    { src: "/images/finestra-verso-fuori.webp", alt: "Finestra con vista sulla Valle Umbra" },
+  ];
+
+  const scrollRight = () => {
+    stripRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
   return (
-    <div className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-cream/40">
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-cream">
-        {icon}
-      </span>
-      <div className="leading-tight">
-        <div className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-          {label}
-        </div>
-        <div className="flex items-center gap-1 text-[13px] text-deep-brown">
-          {value}
-          <I.arrowDown className="h-3 w-3 opacity-60" />
+    <section id="galleria" className="relative bg-paper py-6">
+      <div ref={stripRef} className="scrollbar-hide overflow-x-auto">
+        <div className="flex gap-3">
+          {photos.map((p, i) => (
+            <div
+              key={p.src}
+              className={`flex-shrink-0 ${i === 0 ? "ml-4" : ""} ${
+                i === photos.length - 1 ? "mr-4" : ""
+              }`}
+            >
+              <Image
+                src={p.src}
+                alt={p.alt}
+                width={400}
+                height={300}
+                sizes="(max-width: 768px) 280px, 340px"
+                className="aspect-[4/3] h-52 w-auto rounded-xl object-cover md:h-64"
+                priority={i < 2}
+              />
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+      <button
+        type="button"
+        onClick={scrollRight}
+        aria-label="Scorri immagini a destra"
+        className="absolute right-4 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white text-2xl leading-none text-deep-brown shadow-md transition hover:bg-cream"
+      >
+        ›
+      </button>
+    </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Highlight strip                                                           */
+/*  Benvenuti (id="la-casa")                                                  */
 /* -------------------------------------------------------------------------- */
 
-function HighlightStrip() {
+function Benvenuti() {
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  const badges = [
+    { Icon: I.eye, label: "Vista panoramica" },
+    { Icon: I.column, label: "Centro storico 200 m" },
+    { Icon: I.users, label: "Ospitalità locale" },
+  ];
+
+  return (
+    <>
+      <section
+        id="la-casa"
+        className="border-b border-line-soft bg-ivory py-20 md:py-24"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[60fr_40fr] md:gap-12 md:px-8">
+          {/* Colonna sinistra */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="flex flex-col justify-center"
+          >
+            <div className="mb-3 text-xs font-medium uppercase tracking-widest text-terracotta">
+              La tua casa in Umbria
+            </div>
+            <h2 className="mb-5 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
+              Benvenuti ad Antica Loggia
+            </h2>
+            <p className="mb-8 max-w-md text-base leading-relaxed text-warm-gray md:text-lg">
+              Una dimora storica ristrutturata con cura, affacciata sulle
+              colline umbre e a pochi passi dal centro di Trevi. Ambienti
+              accoglienti, finiture di pregio e tutti i comfort per un soggiorno
+              rilassante, in ogni stagione.
+            </p>
+            <div className="flex flex-wrap gap-3 md:gap-4">
+              {badges.map((b) => (
+                <span
+                  key={b.label}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#f5f5f4] px-4 py-2 text-sm text-[#44403c]"
+                >
+                  <b.Icon className="h-4 w-4 text-warm-gray" />
+                  {b.label}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Colonna destra: video card */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <button
+              type="button"
+              onClick={() => setVideoOpen(true)}
+              aria-label="Riproduci video di Antica Loggia"
+              className="group relative h-72 w-full overflow-hidden rounded-2xl shadow-lg md:h-80"
+            >
+              <Image
+                src="/images/trevi-panorama.webp"
+                alt="Vista panoramica di Trevi al tramonto"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover transition duration-700 group-hover:scale-[1.02]"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ backgroundColor: "rgba(0,0,0,0.25)" }}
+              />
+              <span className="absolute inset-0 grid place-items-center">
+                <span className="grid h-16 w-16 place-items-center rounded-full bg-white/90 text-deep-brown shadow-md transition group-hover:scale-110">
+                  <I.play className="ml-0.5 h-6 w-6" />
+                </span>
+              </span>
+              <div className="absolute bottom-4 left-4 text-left">
+                <div className="font-serif text-lg font-semibold text-white">
+                  Scopri Antica Loggia
+                </div>
+                <div className="mt-0.5 text-sm text-white/70">
+                  Guarda il video della casa
+                </div>
+              </div>
+              <span className="absolute bottom-4 right-4 rounded bg-black/50 px-2 py-0.5 text-xs text-white">
+                1:20
+              </span>
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Video modal */}
+      {videoOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+          onClick={() => setVideoOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video di Antica Loggia"
+        >
+          <video
+            src="/media/trevi-drone.mp4"
+            controls
+            autoPlay
+            playsInline
+            className="max-h-full max-w-full rounded-xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            type="button"
+            onClick={() => setVideoOpen(false)}
+            aria-label="Chiudi video"
+            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white text-2xl leading-none text-deep-brown shadow-md transition hover:bg-cream"
+          >
+            ×
+          </button>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  ServiziChips (chip orizzontali)                                           */
+/* -------------------------------------------------------------------------- */
+
+function ServiziInclusi() {
   const items = [
-    { Icon: I.wifi, label: "Wi-Fi gratuito", sub: "fino a 100 Mb/s" },
-    { Icon: I.ac, label: "Aria condizionata" },
-    { Icon: I.kitchen, label: "Cucina attrezzata" },
-    { Icon: I.parking, label: "Parcheggio gratuito" },
-    { Icon: I.tv, label: "Smart TV" },
-    { Icon: I.key, label: "Self check-in" },
+    { Icon: I.wifi, label: "Wi-Fi", subtitle: "Fibra gratuita" },
+    {
+      Icon: I.snowflake,
+      label: "Aria condizionata",
+      subtitle: "In tutta la casa",
+    },
+    {
+      Icon: I.kitchen,
+      label: "Cucina attrezzata",
+      subtitle: "Forno, lavastoviglie e macchina caffè",
+    },
+    { Icon: I.tv, label: "Smart TV", subtitle: "Netflix incluso" },
+    { Icon: I.washer, label: "Lavatrice", subtitle: "A disposizione" },
+    { Icon: I.bed, label: "Biancheria", subtitle: "Letti e bagno" },
+    { Icon: I.key, label: "Self Check-in", subtitle: "Accesso autonomo" },
+    {
+      Icon: I.family,
+      label: "Adatto a famiglie",
+      subtitle: "Culla su richiesta",
+    },
+  ];
+
+  return (
+    <section
+      id="servizi"
+      className="border-b border-line-soft bg-paper py-16"
+    >
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          viewport={{ once: true, amount: 0.05 }}
+          className="flex flex-wrap items-end gap-x-4 gap-y-1"
+        >
+          <h2 className="font-serif text-3xl font-light text-deep-brown">
+            Servizi inclusi
+          </h2>
+          <span className="mb-1 text-base text-warm-gray/70">
+            — Tutto ciò che ti serve per sentirti a casa.
+          </span>
+        </motion.div>
+
+        <div className="scrollbar-hide mt-8 overflow-x-auto">
+          <div className="flex gap-3">
+            {items.map((it, i) => (
+              <motion.div
+                key={it.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.04, ease }}
+                viewport={{ once: true, amount: 0.05 }}
+                className="flex w-[140px] flex-shrink-0 flex-col rounded-xl border border-[#E5E0D8] bg-paper p-4 transition hover:shadow-md"
+              >
+                <it.Icon className="mb-3 h-8 w-8 text-warm-gray" />
+                <div className="text-sm font-semibold leading-tight text-deep-brown">
+                  {it.label}
+                </div>
+                <div className="mt-0.5 text-xs leading-tight text-warm-gray/70">
+                  {it.subtitle}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  InfoCards (4 card visive con immagine + rating Google)                    */
+/* -------------------------------------------------------------------------- */
+
+function GoogleWordmark({ className = "" }: { className?: string }) {
+  return (
+    <span className={`font-medium ${className}`} aria-label="Google">
+      <span style={{ color: "#4285F4" }}>G</span>
+      <span style={{ color: "#EA4335" }}>o</span>
+      <span style={{ color: "#FBBC05" }}>o</span>
+      <span style={{ color: "#4285F4" }}>g</span>
+      <span style={{ color: "#34A853" }}>l</span>
+      <span style={{ color: "#EA4335" }}>e</span>
+    </span>
+  );
+}
+
+function InfoCards() {
+  // Animazione a cascata: delay 0, 0.1, 0.2, 0.3
+  const cardAnim = (delay: number) => ({
+    initial: { opacity: 0, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay, ease },
+    viewport: { once: true, amount: 0.05 },
+  });
+
+  return (
+    <section className="border-b border-line-soft bg-ivory py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
+          {/* Card 1 — Parcheggio comodo (verde scuro) */}
+          <motion.article
+            {...cardAnim(0)}
+            className="flex h-[420px] flex-col overflow-hidden rounded-2xl text-white"
+            style={{ backgroundColor: "#2D4A2D" }}
+          >
+            <div className="relative flex flex-1 flex-col p-5">
+              <span
+                className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-white/40 text-sm font-semibold"
+                aria-hidden="true"
+              >
+                P
+              </span>
+              <h3 className="pr-12 font-serif text-lg md:text-xl">
+                Parcheggio comodo
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/85">
+                Parcheggio pubblico gratuito a pagamento nelle vicinanze
+                (200–400 m). Info e mappe incluse.
+              </p>
+              <a
+                href="#dove-siamo"
+                className="mt-auto pt-4 text-sm font-medium text-white/90 transition hover:text-white"
+              >
+                Leggi di più →
+              </a>
+            </div>
+            <div className="relative h-[200px] flex-shrink-0">
+              <Image
+                src="/images/auto-parcheggio.webp"
+                alt="Parcheggio nelle vicinanze di Antica Loggia"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover"
+              />
+            </div>
+          </motion.article>
+
+          {/* Card 2 — Arrivo in autonomia (cream) */}
+          <motion.article
+            {...cardAnim(0.1)}
+            className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-cream-2"
+          >
+            <div className="flex flex-1 flex-col p-5">
+              <h3 className="font-serif text-lg text-deep-brown md:text-xl">
+                Arrivo in autonomia
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-deep-brown/75">
+                Self Check-in con key box. Istruzioni chiare inviate prima del
+                tuo arrivo.
+              </p>
+            </div>
+            <div className="relative h-[200px] flex-shrink-0">
+              <Image
+                src="/images/keybox-checkin.webp"
+                alt="Key box per il self check-in"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover"
+              />
+            </div>
+          </motion.article>
+
+          {/* Card 3 — Posizione centrale (cream) */}
+          <motion.article
+            {...cardAnim(0.2)}
+            className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-cream-2"
+          >
+            <div className="flex flex-1 flex-col p-5">
+              <h3 className="font-serif text-lg text-deep-brown md:text-xl">
+                Posizione centrale
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-deep-brown/75">
+                Nel cuore di Trevi, a piedi raggiungi ristoranti, negozi e i
+                principali punti di interesse.
+              </p>
+            </div>
+            <div className="relative h-[200px] flex-shrink-0">
+              <Image
+                src="/images/vicolo-medievale.webp"
+                alt="Vicolo medievale di Trevi"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover"
+              />
+            </div>
+          </motion.article>
+
+          {/* Card 4 — Dicono di noi (rating Google) */}
+          <motion.article
+            {...cardAnim(0.3)}
+            className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-paper p-6"
+          >
+            <h3 className="font-serif text-lg text-deep-brown md:text-xl">
+              Dicono di noi
+            </h3>
+            <div className="mt-auto">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-serif text-5xl font-medium leading-none text-deep-brown">
+                  4,9
+                </span>
+                <I.star className="h-5 w-5 text-[#FBBC05]" />
+                <span className="ml-1 rounded-full bg-olive/15 px-2.5 py-1 text-xs font-medium text-olive-dark">
+                  Eccellente
+                </span>
+              </div>
+              <div className="mt-3 flex gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <I.star key={i} className="h-4 w-4 text-[#FBBC05]" />
+                ))}
+              </div>
+              <p className="mt-4 text-xs leading-relaxed text-warm-gray">
+                Basato su 87 recensioni su <GoogleWordmark />
+              </p>
+            </div>
+          </motion.article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  GliSpazi (id="spazi") — 4 card dettagliate (sostituisce LaLoggia)         */
+/* -------------------------------------------------------------------------- */
+
+type Bullet = string | { strong: string; rest: string };
+
+function Bullet({ children }: { children: ReactNode }) {
+  return (
+    <li className="flex gap-3">
+      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracotta" />
+      <span className="text-sm leading-relaxed text-warm-gray">
+        {children}
+      </span>
+    </li>
+  );
+}
+
+function GliSpazi() {
+  const cards: {
+    Icon: typeof BedDouble;
+    label: string;
+    img: string;
+    alt: string;
+    intro: ReactNode;
+    items: ReactNode[];
+    outro?: ReactNode;
+  }[] = [
+    {
+      Icon: BedDouble,
+      label: "Dove dormirai",
+      img: "/images/camera-padronale.webp",
+      alt: "Camera padronale di Antica Loggia",
+      intro: (
+        <>
+          Antica Loggia può accogliere fino a{" "}
+          <span className="font-semibold text-deep-brown">8 ospiti</span> in 3
+          camere da letto.
+        </>
+      ),
+      items: [
+        <>
+          <span className="font-semibold text-deep-brown">Camera 1</span> —
+          Camera padronale: 1 letto matrimoniale king size, vista sulle
+          colline
+        </>,
+        <>
+          <span className="font-semibold text-deep-brown">Camera 2</span> —
+          Camera matrimoniale: 1 letto matrimoniale, finestre con persiane
+          in legno
+        </>,
+        <>
+          <span className="font-semibold text-deep-brown">Camera 3</span> —
+          Camera singola/multipla: 2 letti singoli (unibili su richiesta)
+        </>,
+      ],
+      outro:
+        "Ambienti curati, aria condizionata in ogni camera e atmosfera accogliente.",
+    },
+    {
+      Icon: Bath,
+      label: "Bagni e dotazioni",
+      img: "/images/bagno-padronale.webp",
+      alt: "Bagno padronale di Antica Loggia",
+      intro: (
+        <>
+          <span className="font-semibold text-deep-brown">2 bagni</span>{" "}
+          funzionali e ben organizzati, dotati di tutto il necessario per il
+          tuo soggiorno.
+        </>
+      ),
+      items: [
+        "Bagno padronale con doccia e vasca",
+        "Secondo bagno con doccia",
+        "Inclusi: asciugamani, biancheria da bagno, asciugacapelli e prodotti essenziali",
+        "Ricambio biancheria disponibile su richiesta",
+      ],
+    },
+    {
+      Icon: UtensilsCrossed,
+      label: "La cucina",
+      img: "/images/salone-verso-camino.webp",
+      alt: "La cucina di Antica Loggia, salone verso camino",
+      intro:
+        "Una cucina completamente attrezzata per cucinare con gusto e comodità.",
+      items: [
+        "Piano cottura a gas + forno elettrico",
+        "Lavastoviglie e lavatrice",
+        "Macchina del caffè e bollitore",
+        "Frigorifero, freezer e microonde",
+        "Stoviglie, pentole e tutto l'occorrente",
+        <>
+          <span className="font-semibold text-deep-brown">
+            Tavolo da pranzo
+          </span>{" "}
+          interno per 8 persone
+        </>,
+      ],
+    },
+    {
+      Icon: Armchair,
+      label: "La Loggia e i saloni",
+      img: "/images/foto-finestre-verso-salottino-fuori.webp",
+      alt: "La Loggia con i sette finestroni sulla Valle Umbra",
+      intro: (
+        <>
+          Il cuore della casa: la{" "}
+          <span className="font-semibold text-deep-brown">
+            loggia panoramica
+          </span>{" "}
+          affacciata sul verde umbro, perfetta in ogni stagione.
+        </>
+      ),
+      items: [
+        "Loggia esterna con tavolo e sedie per 8 — vista sulle colline",
+        "Salone principale con camino e divani",
+        "Smart TV con Netflix e connessione Wi-Fi fibra",
+        "Zona lettura e relax",
+        "Giardino privato con area barbecue",
+        "Parcheggio privato nelle vicinanze",
+      ],
+    },
+  ];
+
+  return (
+    <section
+      id="spazi"
+      className="border-b border-line-soft bg-ivory py-20"
+    >
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+          La tua casa
+        </div>
+        <h2 className="mt-2 font-serif text-4xl font-light text-deep-brown">
+          Ogni spazio, una storia
+        </h2>
+        <p className="mt-3 max-w-xl text-base leading-relaxed text-warm-gray">
+          Antica Loggia accoglie fino a 8 ospiti in un ambiente curato e
+          autentico.
+        </p>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {cards.map((c, i) => (
+            <motion.article
+              key={c.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease }}
+              viewport={{ once: true, amount: 0.05 }}
+              className="overflow-hidden rounded-2xl border border-[#E5E0D8] bg-paper shadow-sm"
+            >
+              {/* Header card */}
+              <div className="flex items-center gap-3 px-6 pb-4 pt-6">
+                <c.Icon
+                  className="h-5 w-5 text-warm-gray/65"
+                  strokeWidth={1.5}
+                />
+                <span className="text-xs font-semibold uppercase tracking-widest text-warm-gray">
+                  {c.label}
+                </span>
+              </div>
+
+              {/* Foto */}
+              <div className="relative h-52 w-full">
+                <Image
+                  src={c.img}
+                  alt={c.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Corpo testo */}
+              <div className="px-6 py-5">
+                <p className="text-sm leading-relaxed text-warm-gray">
+                  {c.intro}
+                </p>
+                <ul className="mt-3 space-y-1.5">
+                  {c.items.map((item, j) => (
+                    <Bullet key={j}>{item}</Bullet>
+                  ))}
+                </ul>
+                {c.outro ? (
+                  <p className="mt-4 text-sm leading-relaxed text-warm-gray">
+                    {c.outro}
+                  </p>
+                ) : null}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  DoveSiamo (id="dove-siamo") — 3 col: mappa + parcheggi + foto vicolo      */
+/* -------------------------------------------------------------------------- */
+
+function DoveSiamo() {
+  const parcheggi = [
+    {
+      name: "Parcheggio Porta Nuova",
+      address: "Via della Rocca",
+      distance: "200 m · 3 min a piedi",
+      type: "free" as const,
+    },
+    {
+      name: "Parcheggio San Francesco",
+      address: "Via Sant'Agostino",
+      distance: "350 m · 5 min a piedi",
+      type: "free" as const,
+    },
+    {
+      name: "Parcheggio Piazza Garibaldi",
+      address: "Piazza Garibaldi",
+      distance: "450 m · 6 min a piedi",
+      type: "paid" as const,
+    },
+  ];
+
+  return (
+    <section
+      id="dove-siamo"
+      className="border-b border-line-soft bg-cream py-20"
+    >
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.1fr_220px] md:items-start md:gap-6">
+          {/* Colonna 1 — Card mappa */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="overflow-hidden rounded-2xl bg-paper shadow-sm"
+          >
+            <div className="px-4 pt-4">
+              <h3 className="font-serif text-xl font-semibold text-deep-brown">
+                Dove siamo
+              </h3>
+              <p className="mt-0.5 text-sm text-warm-gray/80">
+                Trevi (PG), Umbria
+              </p>
+            </div>
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=12.7286%2C42.8545%2C12.7486%2C42.8645&layer=mapnik&marker=42.8588%2C12.7386"
+              className="mt-3 block h-48 w-full border-0"
+              style={{ border: 0 }}
+              loading="lazy"
+              title="Mappa di Trevi"
+            />
+            <div className="flex flex-wrap gap-3 p-4">
+              <a
+                href="https://maps.google.com/?q=Antica+Loggia,+Trevi,+PG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                style={{ backgroundColor: "#2D4A2D" }}
+              >
+                <I.pin className="h-4 w-4" />
+                Indicazioni stradali
+              </a>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5f5f4] px-4 py-2 text-sm text-warm-gray">
+                <I.clock className="h-4 w-4" />
+                Centro storico — 200 m
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Colonna 2 — Parcheggi */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="md:pl-6 lg:pl-8"
+          >
+            <h3 className="mb-6 font-serif text-2xl font-light text-deep-brown">
+              Parcheggi nelle vicinanze
+            </h3>
+            <ul>
+              {parcheggi.map((p, i) => (
+                <li
+                  key={p.name}
+                  className={`flex items-start gap-3 py-4 ${
+                    i < parcheggi.length - 1
+                      ? "border-b border-[#E5E0D8]"
+                      : ""
+                  }`}
+                >
+                  <span
+                    className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-full border-2 text-sm font-bold"
+                    style={{
+                      borderColor: "#a8a29e",
+                      color: "#78716c",
+                    }}
+                    aria-hidden="true"
+                  >
+                    P
+                  </span>
+                  <div className="flex-1 leading-tight">
+                    <div className="text-sm font-semibold text-deep-brown">
+                      {p.name}
+                    </div>
+                    <div className="mt-0.5 text-xs text-warm-gray/65">
+                      {p.address}
+                    </div>
+                    <div className="mt-0.5 text-xs text-warm-gray/65">
+                      {p.distance}
+                    </div>
+                  </div>
+                  <span
+                    className="mt-1 self-start rounded-full px-3 py-0.5 text-xs font-medium"
+                    style={
+                      p.type === "free"
+                        ? { backgroundColor: "#D1EDDA", color: "#2D6A4F" }
+                        : { backgroundColor: "#FDE8C8", color: "#92580A" }
+                    }
+                  >
+                    {p.type === "free" ? "Gratuito" : "A pagamento"}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Colonna 3 — Immagine vicolo */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="relative mx-auto aspect-[11/16] w-48 overflow-hidden rounded-2xl shadow-md md:mx-0 md:w-full"
+          >
+            <Image
+              src="/images/vicolo-medievale.webp"
+              alt="Vicolo medievale di Trevi"
+              fill
+              sizes="(max-width: 768px) 192px, 220px"
+              className="object-cover"
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Dintorni (id="dintorni") — Scopri l'Umbria: 5 borghi + accordion          */
+/* -------------------------------------------------------------------------- */
+
+function Dintorni() {
+  // PLACEHOLDER: img punta a foto della casa esistenti.
+  // Sostituire con foto reali dei borghi in /public/images/borghi/{id}.webp
+  const borghi = [
+    {
+      id: "spoleto",
+      nome: "Spoleto",
+      km: "20 km · 25 min",
+      img: "/images/trevi-dall-alto-verso-casa.webp",
+      cosa_vedere: [
+        "Duomo di Spoleto",
+        "Rocca Albornoziana",
+        "Ponte delle Torri",
+        "Teatro Romano",
+      ],
+      attivita: [
+        "Festival dei Due Mondi (giugno-luglio)",
+        "Trekking sulla Via di Francesco",
+        "Degustazione vini Sagrantino",
+        "Mercato settimanale del venerdì",
+      ],
+      desc: "Città d'arte e cultura, famosa per il Festival dei Due Mondi. Centro medievale intatto con monumenti romani e romanici.",
+    },
+    {
+      id: "assisi",
+      nome: "Assisi",
+      km: "34 km · 40 min",
+      img: "/images/vicolo-medievale.webp",
+      cosa_vedere: [
+        "Basilica di San Francesco",
+        "Rocca Maggiore",
+        "Tempio di Minerva",
+        "Eremo delle Carceri",
+      ],
+      attivita: [
+        "Pellegrinaggio e spiritualità",
+        "Calendimaggio (maggio)",
+        "Trekking sul Monte Subasio",
+        "Olio extravergine umbro",
+      ],
+      desc: "Patrimonio UNESCO, città natale di San Francesco. Uno dei borghi più visitati d'Italia, tra fede, arte e panorami mozzafiato.",
+    },
+    {
+      id: "montefalco",
+      nome: "Montefalco",
+      km: "12 km · 15 min",
+      img: "/images/trevi-panorama.webp",
+      cosa_vedere: [
+        "Museo di San Francesco",
+        "Torre Comunale",
+        "Mura medievali",
+        "Belvedere panoramico",
+      ],
+      attivita: [
+        "Degustazione Sagrantino DOCG",
+        "Vendemmia (settembre)",
+        "Passeggio sul Corso Mameli",
+        "Cantine e wine tour",
+      ],
+      desc: "La «Ringhiera dell'Umbria» per il panorama a 360°. Capitale del Sagrantino, uno dei vini rossi più potenti d'Italia.",
+    },
+    {
+      id: "spello",
+      nome: "Spello",
+      km: "18 km · 20 min",
+      img: "/images/trevi-dall-alto-verso-casa2.webp",
+      cosa_vedere: [
+        "Infiorate (Corpus Domini)",
+        "Cappella Baglioni",
+        "Porta Venere romana",
+        "Pinacoteca civica",
+      ],
+      attivita: [
+        "Infiorata di Spello (giugno)",
+        "Trekking verso Collepino",
+        "Degustazione olio DOP",
+        "Ceramiche artigianali",
+      ],
+      desc: "Uno dei borghi più belli d'Italia. Famoso per le Infiorate di Corpus Domini e le sue strade fiorite tutto l'anno.",
+    },
+    {
+      id: "foligno",
+      nome: "Foligno",
+      km: "12 km · 15 min",
+      img: "/images/foto-finestre-verso-salottino-fuori.webp",
+      cosa_vedere: [
+        "Duomo di Foligno",
+        "Palazzo Trinci",
+        "Museo Diocesano",
+        "Centro storico",
+      ],
+      attivita: [
+        "Giostra della Quintana (giugno e settembre)",
+        "Mercato dell'antiquariato",
+        "Ristorazione tipica umbra",
+        "Ciclovia del Clitunno",
+      ],
+      desc: "Vivace città di pianura, cuore commerciale dell'Umbria. La Giostra della Quintana è tra le rievocazioni medievali più spettacolari d'Italia.",
+    },
+  ];
+
+  const [aperta, setAperta] = useState<string | null>(null);
+  const toggleCitta = (id: string) =>
+    setAperta((prev) => (prev === id ? null : id));
+  const borgoAperto = borghi.find((b) => b.id === aperta);
+
+  return (
+    <section id="dintorni" className="bg-paper py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <h2 className="font-serif text-3xl font-light text-deep-brown">
+          Scopri l&apos;Umbria
+        </h2>
+        <p className="mt-1 text-sm text-warm-gray/65">
+          Borghi, arte e natura a pochi minuti da Trevi.
+        </p>
+
+        <div className="scrollbar-hide mt-8 overflow-x-auto">
+          <div className="flex gap-4">
+            {borghi.map((b, i) => (
+              <motion.div
+                key={b.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.05, ease }}
+                viewport={{ once: true, amount: 0.05 }}
+                className="relative h-72 w-56 flex-shrink-0 cursor-pointer overflow-hidden rounded-2xl md:w-64"
+              >
+                {/* Fallback gradiente sotto l'Image (mostrato durante load o se l'img fallisce) */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--color-cream-2) 0%, var(--color-stone) 100%)",
+                  }}
+                />
+                <Image
+                  src={b.img}
+                  alt={b.nome}
+                  fill
+                  sizes="(max-width: 768px) 224px, 256px"
+                  className="object-cover"
+                />
+
+                {/* Overlay scuro dal basso */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%)",
+                  }}
+                />
+
+                {/* Contenuto in basso */}
+                <div className="absolute bottom-0 left-0 p-4">
+                  <div className="font-serif text-lg font-semibold text-white">
+                    {b.nome}
+                  </div>
+                  <div className="text-sm text-white/70">{b.km}</div>
+                  <button
+                    type="button"
+                    onClick={() => toggleCitta(b.id)}
+                    className="mt-1 cursor-pointer text-xs text-white/90 underline transition hover:text-white"
+                  >
+                    Scopri di più →
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pannello espandibile */}
+        <AnimatePresence>
+          {borgoAperto && (
+            <motion.div
+              key={borgoAperto.id}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease }}
+              className="overflow-hidden"
+            >
+              <div className="mt-4 rounded-2xl bg-[#fafaf9] p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="font-serif text-2xl text-deep-brown">
+                      {borgoAperto.nome}
+                    </h3>
+                    <p className="mt-1 max-w-2xl text-sm leading-relaxed text-warm-gray">
+                      {borgoAperto.desc}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setAperta(null)}
+                    aria-label="Chiudi pannello"
+                    className="grid h-8 w-8 flex-shrink-0 place-items-center rounded-full text-2xl leading-none text-deep-brown transition hover:bg-cream"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="mt-6 grid gap-8 md:grid-cols-2">
+                  <div>
+                    <h4 className="mb-3 text-xs font-medium uppercase tracking-widest text-warm-gray">
+                      Cosa vedere
+                    </h4>
+                    <ul className="space-y-2">
+                      {borgoAperto.cosa_vedere.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-sm text-deep-brown"
+                        >
+                          <I.eye className="mt-0.5 h-4 w-4 flex-shrink-0 text-olive" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="mb-3 text-xs font-medium uppercase tracking-widest text-warm-gray">
+                      Cosa fare
+                    </h4>
+                    <ul className="space-y-2">
+                      {borgoAperto.attivita.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-sm text-deep-brown"
+                        >
+                          <I.sparkle className="mt-0.5 h-4 w-4 flex-shrink-0 text-terracotta" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Recensioni — 3 card con avatar AI                                         */
+/* -------------------------------------------------------------------------- */
+
+function Recensioni() {
+  // NOTE: avatar-coppia.webp non esiste in /public/images/.
+  // Fallback su avatar-marco.webp finché non viene aggiunto.
+  const recensioni = [
+    {
+      nome: "Giulia & Marco",
+      luogo: "Milano, Italia",
+      avatar: "/images/avatar-famiglia.webp",
+      stelle: 5,
+      testo:
+        "Casa meravigliosa, vista spettacolare e posizione perfetta. Torneremo!",
+    },
+    {
+      nome: "Thomas & Anna",
+      luogo: "Berlino, Germania",
+      avatar: "/images/avatar-marco.webp",
+      stelle: 5,
+      testo:
+        "Tutto perfetto: pulizia, comfort e attenzione ai dettagli. Consigliatissima!",
+    },
+    {
+      nome: "Laura",
+      luogo: "Roma, Italia",
+      avatar: "/images/avatar-chiara.webp",
+      stelle: 5,
+      testo:
+        "Atmosfera autentica e host gentilissimo. Ci siamo sentiti a casa.",
+    },
+  ];
+
+  const [current, setCurrent] = useState(0);
+  const len = recensioni.length;
+  const visible = Array.from(
+    { length: 3 },
+    (_, i) => recensioni[(current + i) % len],
+  );
+  const prev = () => setCurrent((c) => (c - 1 + len) % len);
+  const next = () => setCurrent((c) => (c + 1) % len);
+
+  return (
+    <section id="recensioni" className="bg-ivory py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <h2 className="mb-12 text-center font-serif text-3xl font-light text-deep-brown">
+          Cosa dicono i nostri ospiti
+        </h2>
+
+        <div className="flex items-center gap-3 md:gap-6">
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Recensione precedente"
+            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#E5E0D8] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
+          >
+            <span className="-mt-0.5 text-2xl leading-none">‹</span>
+          </button>
+
+          <div className="flex flex-1 gap-4 md:gap-6">
+            {visible.map((r, i) => (
+              <motion.article
+                key={`${r.nome}-${current}-${i}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.05, ease }}
+                viewport={{ once: true, amount: 0.05 }}
+                className={`flex-1 rounded-2xl border border-[#E5E0D8] bg-paper p-6 shadow-sm ${
+                  i === 1 ? "hidden md:block" : ""
+                } ${i === 2 ? "hidden lg:block" : ""}`}
+              >
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={r.avatar}
+                    alt={r.nome}
+                    width={80}
+                    height={80}
+                    sizes="48px"
+                    className="h-12 w-12 rounded-full object-cover"
+                  />
+                  <div className="leading-tight">
+                    <div className="text-sm font-semibold text-deep-brown">
+                      {r.nome}
+                    </div>
+                    <div className="text-xs text-warm-gray/65">{r.luogo}</div>
+                  </div>
+                </div>
+                <div className="mt-3 flex gap-0.5 text-lg text-yellow-400">
+                  {Array.from({ length: r.stelle }).map((_, j) => (
+                    <span key={j}>★</span>
+                  ))}
+                </div>
+                <p className="mt-3 text-sm italic leading-relaxed text-warm-gray">
+                  {r.testo}
+                </p>
+              </motion.article>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Recensione successiva"
+            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#E5E0D8] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
+          >
+            <span className="-mt-0.5 text-2xl leading-none">›</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Regole — strip orizzontale chiara con icone Lucide                        */
+/* -------------------------------------------------------------------------- */
+
+function Regole() {
+  const rules = [
+    { Icon: Clock, label: "Check-in", sub: "dalle 15:00" },
+    { Icon: LogOut, label: "Check-out", sub: "entro 11:00" },
+    { Icon: CigaretteOff, label: "Non fumare", sub: "all'interno" },
+    { Icon: PawPrint, label: "Animali", sub: "non ammessi" },
+    { Icon: PartyPopper, label: "Feste o eventi", sub: "non consentiti" },
+    { Icon: MoonStar, label: "Rispetta il riposo", sub: "22:00 — 08:00" },
+    { Icon: Tag, label: "Tassa di soggiorno", sub: "1,00€ a persona/notte" },
   ];
   return (
-    <section className="border-y border-line/70 bg-cream/55">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-5 px-5 py-5 md:px-8">
-        {items.map(({ Icon, label, sub }) => (
+    <section className="bg-cream py-8">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-6 px-6">
+        <div className="flex-shrink-0 border-r border-[#E5E0D8] pr-6 leading-tight">
+          <div className="font-serif text-lg font-semibold text-deep-brown">
+            Regole
+          </div>
+          <div className="font-serif text-lg font-semibold text-deep-brown">
+            della casa
+          </div>
+        </div>
+
+        {rules.map((r) => (
           <div
-            key={label}
-            className="flex items-center gap-3 text-olive-dark"
+            key={r.label}
+            className="flex flex-col items-center text-center"
           >
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-paper text-olive shadow-soft">
-              <Icon className="h-4.5 w-4.5" />
-            </span>
-            <div className="leading-tight">
-              <div className="text-[13px] font-medium text-deep-brown">
-                {label}
-              </div>
-              {sub ? (
-                <div className="text-[11px] text-warm-gray">{sub}</div>
-              ) : null}
+            <r.Icon className="h-5 w-5 text-warm-gray/70" strokeWidth={1.5} />
+            <div className="mt-1.5 text-sm leading-tight text-deep-brown">
+              {r.label}
+            </div>
+            <div className="text-xs leading-tight text-warm-gray/65">
+              {r.sub}
             </div>
           </div>
         ))}
@@ -737,761 +1723,154 @@ function HighlightStrip() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Dove la storia incontra il comfort                                        */
-/* -------------------------------------------------------------------------- */
-
-function DoveLaStoria() {
-  return (
-    <section id="la-casa" className="bg-ivory py-20 md:py-24">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-12 md:gap-12 md:px-8 lg:gap-16">
-        <div className="flex flex-col justify-center md:col-span-5">
-          <Eyebrow>La Casa</Eyebrow>
-          <h2 className="mt-4 font-serif text-4xl leading-[1.05] text-olive-dark sm:text-5xl md:text-[3.4rem]">
-            Dove la storia
-            <br />
-            incontra il comfort
-          </h2>
-          <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-warm-gray">
-            <p>
-              Antica Loggia è una dimora dei primi del Novecento restaurata con
-              cura nel cuore del borgo medievale di Trevi. Travi a vista,
-              pavimenti in cotto e una loggia affacciata sulla valle disegnano
-              spazi luminosi e raccolti.
-            </p>
-            <p>
-              Tre camere da letto, due bagni, soggiorno con camino e cucina
-              completa: una casa intera, accogliente e privata, perfetta per
-              famiglie, coppie e piccoli gruppi che cercano l&apos;autenticità
-              dell&apos;Umbria con i comfort di un soggiorno di pregio.
-            </p>
-          </div>
-
-          <div className="mt-7 grid grid-cols-3 gap-3 max-w-md">
-            <Stat number="3" label="Camere" />
-            <Stat number="2" label="Bagni" />
-            <Stat number="6" label="Ospiti" />
-          </div>
-
-          <a
-            href="#gallery"
-            className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-medium text-olive-dark transition hover:gap-3 hover:text-olive"
-          >
-            Scopri di più
-            <I.arrow className="h-4 w-4" />
-          </a>
-        </div>
-
-        <div className="relative md:col-span-7">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={IMG.living}
-            alt="Soggiorno di Antica Loggia con camino e travi a vista"
-            className="aspect-[5/4] w-full rounded-3xl object-cover shadow-card"
-          />
-          <div className="absolute -bottom-6 -left-6 hidden h-32 w-32 rotate-[-6deg] rounded-2xl border border-line bg-paper p-3 shadow-card md:block">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={IMG.bedroom}
-              alt="Camera con vista"
-              className="h-full w-full rounded-xl object-cover"
-            />
-          </div>
-          <div className="absolute -right-4 top-8 hidden flex-col items-center gap-1 rounded-2xl border border-line bg-paper px-4 py-3 text-center shadow-card md:flex">
-            <span className="font-serif text-2xl text-olive-dark">1907</span>
-            <span className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-              anno di costruzione
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Stat({ number, label }: { number: string; label: string }) {
-  return (
-    <div className="rounded-2xl border border-line bg-paper px-4 py-3 text-center">
-      <div className="font-serif text-2xl text-olive-dark">{number}</div>
-      <div className="text-[11px] uppercase tracking-[0.22em] text-warm-gray">
-        {label}
-      </div>
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Gallery — mosaic                                                          */
-/* -------------------------------------------------------------------------- */
-
-function Gallery() {
-  return (
-    <section id="gallery" className="bg-ivory pb-16 md:pb-20">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="flex items-end justify-between gap-6 mb-7">
-          <div>
-            <Eyebrow>Gallery</Eyebrow>
-            <h2 className="mt-3 font-serif text-3xl leading-tight text-olive-dark sm:text-4xl">
-              Spazi che raccontano l&apos;Umbria
-            </h2>
-          </div>
-          <a
-            href={waLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-olive-dark hover:text-olive"
-          >
-            Tutte le foto <I.arrow className="h-4 w-4" />
-          </a>
-        </div>
-
-        <div className="grid grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[180px] md:auto-rows-[200px]">
-          <GalleryTile src={IMG.gallery[0]} alt="Camera matrimoniale" className="col-span-2 row-span-2" />
-          <GalleryTile src={IMG.gallery[1]} alt="Cucina" className="col-span-1 row-span-1" />
-          <GalleryTile src={IMG.gallery[2]} alt="Bagno" className="col-span-1 row-span-1" />
-          <GalleryTile src={IMG.gallery[3]} alt="Loggia" className="col-span-2 row-span-1" />
-          <GalleryTile src={IMG.gallery[4]} alt="Soggiorno" className="col-span-2 row-span-2" />
-          <GalleryTile src={IMG.gallery[5]} alt="Vista valle" className="col-span-2 row-span-1" />
-          <GalleryTile src={IMG.gallery[6]} alt="Borgo di Trevi" className="col-span-1 row-span-1" />
-          <GalleryTile src={IMG.gallery[7]} alt="Dettaglio in pietra" className="col-span-1 row-span-1" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function GalleryTile({
-  src,
-  alt,
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <div className={`overflow-hidden rounded-2xl shadow-soft ${className}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt={alt}
-        className="h-full w-full object-cover transition duration-700 hover:scale-[1.04]"
-      />
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Perché scegliere Antica Loggia (olive section)                            */
-/* -------------------------------------------------------------------------- */
-
-function PercheScegliere() {
-  const features = [
-    {
-      Icon: I.pin,
-      title: "Posizione unica",
-      text: "Nel cuore del borgo medievale, a due passi dalla piazza.",
-    },
-    {
-      Icon: I.column,
-      title: "Architettura autentica",
-      text: "Pietra antica, travi a vista, pavimenti in cotto.",
-    },
-    {
-      Icon: I.mountain,
-      title: "Vista panoramica",
-      text: "Dalla loggia, l'intera valle umbra al tramonto.",
-    },
-    {
-      Icon: I.sparkle,
-      title: "Comfort di pregio",
-      text: "Materiali nobili e dotazioni di alta qualità.",
-    },
-  ];
-
-  return (
-    <section id="servizi" className="olive-tex py-20 text-cream md:py-24">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="text-center">
-          <Eyebrow light centered>
-            Perché scegliere Antica Loggia
-          </Eyebrow>
-          <h2 className="mt-4 font-serif text-3xl leading-tight text-cream sm:text-4xl md:text-[2.6rem]">
-            Una dimora che custodisce il tempo
-          </h2>
-        </div>
-
-        <div className="mt-14 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-7 grid grid-cols-2 gap-x-8 gap-y-10">
-            {features.map(({ Icon, title, text }) => (
-              <div key={title} className="flex flex-col items-start">
-                <span className="grid h-12 w-12 place-items-center rounded-full border border-cream/25 bg-cream/[0.04]">
-                  <Icon className="h-5 w-5 text-gold-soft" />
-                </span>
-                <h3 className="mt-5 font-serif text-xl text-cream">{title}</h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-cream/70">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="md:col-span-5 relative">
-            <div className="overflow-hidden rounded-3xl">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={IMG.greenSide}
-                alt="Dettaglio architettonico in pietra antica di Antica Loggia"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-5 -left-5 hidden md:flex flex-col items-start gap-1 rounded-2xl border border-cream/15 bg-olive-deep/95 px-5 py-4 backdrop-blur shadow-card">
-              <span className="font-serif text-3xl text-gold-soft">100%</span>
-              <span className="text-[10px] uppercase tracking-[0.22em] text-cream/65">
-                Casa intera, riservata
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Servizi inclusi — 8 pill cards                                            */
-/* -------------------------------------------------------------------------- */
-
-function ServiziInclusi() {
-  const items = [
-    { Icon: I.wifi, label: "Wi-Fi", sub: "100 Mb/s" },
-    { Icon: I.kitchen, label: "Cucina", sub: "completa" },
-    { Icon: I.bed, label: "Biancheria", sub: "di pregio" },
-    { Icon: I.tv, label: "Smart TV", sub: "Netflix · Prime" },
-    { Icon: I.washer, label: "Lavatrice", sub: "" },
-    { Icon: I.heat, label: "Riscaldamento", sub: "autonomo" },
-    { Icon: I.ac, label: "Aria condizionata", sub: "in tutte le stanze" },
-    { Icon: I.sparkle, label: "Kit cortesia", sub: "bio" },
-  ];
-
-  return (
-    <section className="bg-ivory pb-16 md:pb-20">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <Eyebrow>Servizi inclusi</Eyebrow>
-            <h2 className="mt-3 font-serif text-3xl leading-tight text-olive-dark sm:text-4xl">
-              Tutto ciò che serve, già qui
-            </h2>
-          </div>
-          <p className="max-w-md text-[14px] leading-relaxed text-warm-gray">
-            Ogni dotazione è stata scelta con cura per offrirti un soggiorno
-            senza pensieri.
-          </p>
-        </div>
-
-        <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4">
-          {items.map(({ Icon, label, sub }) => (
-            <div
-              key={label}
-              className="card-hover flex items-center gap-3 rounded-2xl border border-line bg-paper px-5 py-4 shadow-soft"
-            >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-cream text-olive">
-                <Icon className="h-5 w-5" />
-              </span>
-              <div className="leading-tight">
-                <div className="text-[13px] font-medium text-deep-brown">
-                  {label}
-                </div>
-                {sub ? (
-                  <div className="text-[11px] text-warm-gray">{sub}</div>
-                ) : null}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Three cards: Parcheggio / Nei dintorni / Dove siamo                       */
-/* -------------------------------------------------------------------------- */
-
-function StylizedMap() {
-  return (
-    <div className="map-bg relative aspect-[5/4] w-full overflow-hidden rounded-2xl border border-line">
-      <svg
-        viewBox="0 0 500 400"
-        className="absolute inset-0 h-full w-full"
-        aria-hidden="true"
-      >
-        <defs>
-          <pattern
-            id="dots-2"
-            x="0"
-            y="0"
-            width="14"
-            height="14"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="2" cy="2" r="0.7" fill="#b89968" opacity="0.28" />
-          </pattern>
-        </defs>
-        <rect width="500" height="400" fill="url(#dots-2)" />
-        <path
-          d="M-20 280 C 80 220, 180 320, 260 250 S 420 200, 540 270 L 540 420 L -20 420 Z"
-          fill="#6e7a4a"
-          opacity="0.18"
-        />
-        <path
-          d="M40 60 C 140 120, 220 100, 280 180 S 400 280, 480 300"
-          stroke="#b89968"
-          strokeWidth="3"
-          fill="none"
-          strokeDasharray="6 6"
-          opacity="0.7"
-        />
-        <path
-          d="M70 320 C 160 280, 250 230, 320 220 S 420 210, 470 140"
-          stroke="#b89968"
-          strokeWidth="2"
-          fill="none"
-          strokeDasharray="4 6"
-          opacity="0.5"
-        />
-        <g
-          fontFamily="Cormorant Garamond, serif"
-          fill="#5a6440"
-          fontSize="13"
-        >
-          <text x="60" y="80">Foligno</text>
-          <text x="380" y="100">Spoleto</text>
-          <text x="40" y="370">Montefalco</text>
-          <text x="380" y="370">Valnerina</text>
-        </g>
-      </svg>
-
-      {/* Pin */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full">
-        <div className="relative flex flex-col items-center">
-          <div className="rounded-full bg-paper px-3 py-1 text-[11px] font-medium text-olive-dark shadow-soft">
-            Antica Loggia
-          </div>
-          <span className="-mt-1 h-2 w-2 rotate-45 bg-paper shadow-soft" />
-          <span className="mt-1.5 grid h-8 w-8 place-items-center rounded-full bg-terracotta text-cream shadow-card">
-            <I.pin className="h-4 w-4" />
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ThreeCards() {
-  return (
-    <section id="dove-siamo" className="bg-ivory py-16 md:py-20">
-      <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-3 md:gap-6 md:px-8">
-        {/* Parcheggio */}
-        <article className="rounded-3xl border border-line bg-paper p-6 shadow-soft">
-          <Eyebrow>Parcheggio</Eyebrow>
-          <h3 className="mt-3 font-serif text-2xl text-olive-dark">
-            Parcheggio pubblico gratuito
-            <br />a 5 minuti a piedi (200&nbsp;m)
-          </h3>
-          <div className="mt-5 overflow-hidden rounded-2xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={IMG.parking}
-              alt="Parcheggio gratuito a Trevi"
-              className="aspect-[16/9] w-full object-cover"
-            />
-          </div>
-          <p className="mt-4 text-[13px] leading-relaxed text-warm-gray">
-            Carico e scarico bagagli consentito davanti alla casa. Ti
-            accompagniamo personalmente al parcheggio.
-          </p>
-          <a
-            href="#contatti"
-            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-olive-dark hover:text-olive"
-          >
-            Maggiori dettagli <I.arrow className="h-4 w-4" />
-          </a>
-        </article>
-
-        {/* Nei dintorni */}
-        <article className="rounded-3xl border border-line bg-paper p-6 shadow-soft">
-          <Eyebrow>Nei dintorni</Eyebrow>
-          <h3 className="mt-3 font-serif text-2xl text-olive-dark">
-            Da non perdere
-          </h3>
-          <ul className="mt-5 space-y-4">
-            {IMG.nearby.map((n) => (
-              <li key={n.name} className="flex items-center gap-4">
-                <div className="h-14 w-16 shrink-0 overflow-hidden rounded-xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={n.img}
-                    alt={n.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="font-serif text-base text-olive-dark">
-                    {n.name}
-                  </div>
-                  <div className="text-[11px] uppercase tracking-[0.18em] text-gold">
-                    {n.km}
-                  </div>
-                </div>
-                <I.arrow className="h-4 w-4 text-warm-gray" />
-              </li>
-            ))}
-          </ul>
-          <a
-            href="#contatti"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-olive-dark hover:text-olive"
-          >
-            Vedi tutti i suggerimenti <I.arrow className="h-4 w-4" />
-          </a>
-        </article>
-
-        {/* Dove siamo */}
-        <article className="rounded-3xl border border-line bg-paper p-6 shadow-soft">
-          <Eyebrow>Dove siamo</Eyebrow>
-          <h3 className="mt-3 font-serif text-2xl text-olive-dark">
-            Trevi (PG), Umbria
-          </h3>
-          <div className="mt-5">
-            <StylizedMap />
-          </div>
-          <p className="mt-4 text-[13px] leading-relaxed text-warm-gray">
-            {ADDRESS_LINE_1}, {ADDRESS_LINE_2}.
-            <br />A 1h da Perugia, 2h da Roma.
-          </p>
-          <a
-            href="#contatti"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-olive-dark hover:text-olive"
-          >
-            Indicazioni stradali <I.arrow className="h-4 w-4" />
-          </a>
-        </article>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Three info cards                                                          */
-/* -------------------------------------------------------------------------- */
-
-function InfoCards() {
-  const importanti = [
-    { Icon: I.clock, label: "Check-in", text: "dalle 15:00 alle 19:00" },
-    { Icon: I.key, label: "Check-out", text: "entro le 10:30" },
-    { Icon: I.users, label: "Capienza", text: "fino a 6 ospiti" },
-    { Icon: I.card, label: "Pagamenti", text: "carta · bonifico · contanti" },
-  ];
-  const regole = [
-    { Icon: I.smoke, label: "Vietato fumare all'interno" },
-    { Icon: I.music, label: "Silenzio dalle 22:00" },
-    { Icon: I.paw, label: "Animali su richiesta" },
-    { Icon: I.users, label: "Niente feste o eventi" },
-  ];
-  const incluso = [
-    { Icon: I.wifi, label: "Wi-Fi gratuito" },
-    { Icon: I.bed, label: "Biancheria di pregio" },
-    { Icon: I.sparkle, label: "Kit cortesia" },
-    { Icon: I.heat, label: "Riscaldamento" },
-    { Icon: I.washer, label: "Lavatrice" },
-    { Icon: I.kitchen, label: "Cucina completa" },
-  ];
-
-  function Card({
-    eyebrow,
-    title,
-    items,
-  }: {
-    eyebrow: string;
-    title: string;
-    items: { Icon: (p: IconProps) => ReactNode; label: string; text?: string }[];
-  }) {
-    return (
-      <article className="rounded-3xl border border-line bg-paper p-6 shadow-soft md:p-7">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h3 className="mt-3 font-serif text-xl text-olive-dark">{title}</h3>
-        <ul className="mt-5 space-y-3">
-          {items.map(({ Icon, label, text }) => (
-            <li
-              key={label}
-              className="flex items-start gap-3 text-[13px] text-deep-brown"
-            >
-              <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-cream text-olive">
-                <Icon className="h-4 w-4" />
-              </span>
-              <div className="leading-snug">
-                <div>{label}</div>
-                {text ? (
-                  <div className="text-warm-gray text-[12px]">{text}</div>
-                ) : null}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </article>
-    );
-  }
-
-  return (
-    <section className="bg-ivory pb-16 md:pb-20">
-      <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-3 md:gap-6 md:px-8">
-        <Card
-          eyebrow="Cose importanti"
-          title="Da sapere prima del soggiorno"
-          items={importanti}
-        />
-        <Card
-          eyebrow="Regole della casa"
-          title="Per il piacere di tutti"
-          items={regole}
-        />
-        <Card
-          eyebrow="Tutto incluso"
-          title="Servizi e dotazioni"
-          items={incluso}
-        />
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Recensioni                                                                */
-/* -------------------------------------------------------------------------- */
-
-function Recensioni() {
-  return (
-    <section id="recensioni" className="bg-ivory-2 py-20 md:py-24">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="text-center">
-          <Eyebrow centered>Recensioni dei nostri ospiti</Eyebrow>
-          <h2 className="mt-4 font-serif text-3xl leading-tight text-olive-dark sm:text-4xl md:text-[2.6rem]">
-            Le voci di chi è già stato qui
-          </h2>
-          <div className="mt-5 inline-flex items-center gap-2 text-sm text-warm-gray">
-            <span className="flex">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <I.star key={i} className="h-4 w-4 text-gold" />
-              ))}
-            </span>
-            <span className="font-medium text-deep-brown">4.9 / 5</span>
-            <span>·</span>
-            <span>oltre 120 recensioni verificate</span>
-          </div>
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-3 md:gap-6">
-          {IMG.reviews.map((r) => (
-            <article
-              key={r.name}
-              className="rounded-3xl border border-line bg-paper p-6 shadow-soft md:p-7"
-            >
-              <div className="flex items-center gap-3">
-                <div className="h-12 w-12 overflow-hidden rounded-full">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={r.avatar}
-                    alt={r.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="leading-tight">
-                  <div className="font-serif text-base text-olive-dark">
-                    {r.name}
-                  </div>
-                  <div className="text-[11px] uppercase tracking-[0.2em] text-warm-gray">
-                    {r.city}
-                  </div>
-                </div>
-                <span className="ml-auto flex">
-                  {Array.from({ length: r.stars }).map((_, i) => (
-                    <I.star key={i} className="h-3.5 w-3.5 text-gold" />
-                  ))}
-                </span>
-              </div>
-              <p className="mt-5 text-[14px] leading-relaxed text-deep-brown/80">
-                «{r.text}»
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Contattaci form + WhatsApp panel                                          */
+/*  ContactForm (id="prenota") — modulo per lasciare i contatti               */
 /* -------------------------------------------------------------------------- */
 
 function ContactForm() {
   return (
-    <section id="contatti" className="bg-ivory py-20 md:py-24 relative overflow-hidden">
-      <OliveBranch className="pointer-events-none absolute -right-10 top-10 h-[420px] w-auto opacity-40 hidden md:block" />
-      <OliveBranch className="pointer-events-none absolute -left-12 bottom-0 h-[300px] w-auto opacity-25 hidden lg:block" flip />
-
-      <div className="mx-auto max-w-7xl px-5 md:px-8 relative">
-        <div className="text-center">
-          <Eyebrow centered>Contatti</Eyebrow>
-          <h2 className="mt-4 font-serif text-3xl leading-tight text-olive-dark sm:text-4xl md:text-[2.6rem]">
-            Pronti a darti il benvenuto
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[14px] leading-relaxed text-warm-gray">
-            Scrivici per disponibilità, preventivi o suggerimenti su misura.
-            Risposta entro poche ore.
-          </p>
+    <section
+      id="prenota"
+      className="border-b border-line-soft bg-ivory py-20 md:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-12 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="font-serif text-3xl font-light text-deep-brown md:text-4xl"
+          >
+            Lasciaci i tuoi contatti
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-warm-gray"
+          >
+            Scrivici per disponibilità, preventivi o consigli sul soggiorno.
+            Ti rispondiamo entro poche ore.
+          </motion.p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-12 md:gap-7">
+        <div className="grid gap-6 md:grid-cols-[1.3fr_1fr] md:gap-8">
           {/* Form */}
-          <form className="rounded-3xl border border-line bg-paper p-6 shadow-soft md:col-span-7 md:p-9">
-            <div className="grid gap-4 sm:grid-cols-2">
+          <motion.form
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="rounded-2xl border border-[#E5E0D8] bg-paper p-6 shadow-sm md:p-8"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label className="mb-1.5 block text-[11px] uppercase tracking-[0.22em] text-warm-gray">
+                <label className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
                   Nome
                 </label>
                 <input
                   type="text"
                   placeholder="Il tuo nome"
-                  className="input-base"
+                  className="mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-[11px] uppercase tracking-[0.22em] text-warm-gray">
+                <label className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
                   Email
                 </label>
                 <input
                   type="email"
                   placeholder="email@esempio.it"
-                  className="input-base"
+                  className="mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
                 />
               </div>
-              <div>
-                <label className="mb-1.5 block text-[11px] uppercase tracking-[0.22em] text-warm-gray">
-                  Arrivo
-                </label>
-                <input type="date" className="input-base" />
-              </div>
-              <div>
-                <label className="mb-1.5 block text-[11px] uppercase tracking-[0.22em] text-warm-gray">
-                  Partenza
-                </label>
-                <input type="date" className="input-base" />
-              </div>
               <div className="sm:col-span-2">
-                <label className="mb-1.5 block text-[11px] uppercase tracking-[0.22em] text-warm-gray">
+                <label className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
                   Messaggio
                 </label>
                 <textarea
                   rows={4}
                   placeholder="Raccontaci del tuo soggiorno…"
-                  className="input-base resize-none"
+                  className="mt-1 w-full resize-none border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
                 />
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-              <p className="text-[12px] text-warm-gray max-w-xs">
-                Inviando il form accetti la nostra privacy policy. Nessuno spam.
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-xs text-[12px] text-warm-gray/70">
+                Inviando il form accetti la nostra privacy policy. Nessuno
+                spam.
               </p>
-              <BtnContact
+              <a
                 href={mailto}
-                className="!px-7"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                style={{ backgroundColor: "#2D4A2D" }}
               >
                 <I.mail className="h-4 w-4" />
                 Invia richiesta
-              </BtnContact>
-            </div>
-          </form>
-
-          {/* WhatsApp panel */}
-          <aside className="relative md:col-span-5">
-            <div className="wa-panel rounded-3xl p-7 text-white shadow-card md:p-8">
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-white/15 backdrop-blur">
-                <I.whatsapp className="h-6 w-6 text-white" />
-              </span>
-              <h3 className="mt-5 font-serif text-2xl leading-tight md:text-[1.7rem]">
-                Scrivici su WhatsApp
-              </h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-white/85">
-                Per la risposta più veloce, scrivici un messaggio.
-                Saremo felici di aiutarti a pianificare il tuo soggiorno.
-              </p>
-
-              <ul className="mt-6 space-y-3 text-[13px] text-white/90">
-                <li className="flex items-center gap-2">
-                  <I.check className="h-4 w-4 text-white" />
-                  Risposta entro poche ore
-                </li>
-                <li className="flex items-center gap-2">
-                  <I.check className="h-4 w-4 text-white" />
-                  Disponibilità in tempo reale
-                </li>
-                <li className="flex items-center gap-2">
-                  <I.check className="h-4 w-4 text-white" />
-                  Consigli su misura per il soggiorno
-                </li>
-              </ul>
-
-              <a
-                href={waLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#1ba94e] transition hover:bg-white/95"
-              >
-                <I.whatsapp className="h-4 w-4" />
-                Scrivici su WhatsApp
               </a>
-
-              <div className="mt-5 flex items-center gap-3 text-[12px] text-white/80">
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-white/15">
-                  <I.phone className="h-4 w-4" />
-                </span>
-                <span>{WHATSAPP_DISPLAY}</span>
-              </div>
             </div>
+          </motion.form>
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <div className="flex items-start gap-3 rounded-2xl border border-line bg-paper px-5 py-4 shadow-soft">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
-                  <I.mail className="h-4 w-4" />
-                </span>
-                <div className="leading-tight">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-                    Email
-                  </div>
-                  <div className="text-[13px] text-deep-brown break-all">
-                    {EMAIL}
-                  </div>
+          {/* Info contatti */}
+          <motion.aside
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="flex flex-col gap-3"
+          >
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+            >
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
+                <I.whatsapp className="h-5 w-5" />
+              </span>
+              <div className="flex-1 leading-tight">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
+                  WhatsApp
+                </div>
+                <div className="text-sm font-medium text-deep-brown">
+                  {WHATSAPP_DISPLAY}
                 </div>
               </div>
-              <div className="flex items-start gap-3 rounded-2xl border border-line bg-paper px-5 py-4 shadow-soft">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
-                  <I.pin className="h-4 w-4" />
-                </span>
-                <div className="leading-tight">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-                    Indirizzo
-                  </div>
-                  <div className="text-[13px] text-deep-brown">
-                    {ADDRESS_LINE_1}
-                    <br />
-                    {ADDRESS_LINE_2}
-                  </div>
+            </a>
+            <a
+              href={mailto}
+              className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+            >
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
+                <I.mail className="h-5 w-5" />
+              </span>
+              <div className="flex-1 leading-tight">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
+                  Email
+                </div>
+                <div className="break-all text-sm font-medium text-deep-brown">
+                  {EMAIL}
+                </div>
+              </div>
+            </a>
+            <div className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
+                <I.pin className="h-5 w-5" />
+              </span>
+              <div className="flex-1 leading-tight">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
+                  Indirizzo
+                </div>
+                <div className="text-sm text-deep-brown">
+                  {ADDRESS_LINE_1}
+                  <br />
+                  {ADDRESS_LINE_2}
                 </div>
               </div>
             </div>
-          </aside>
+          </motion.aside>
         </div>
       </div>
     </section>
@@ -1499,39 +1878,70 @@ function ContactForm() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  CTA banner — Pronto a vivere l'Umbria?                                    */
+/*  CtaBanner — full-width banner con immagine umbra                          */
 /* -------------------------------------------------------------------------- */
 
 function CtaBanner() {
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={IMG.ctaBanner}
-        alt="Paesaggio dell'Umbria al crepuscolo"
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+    <section
+      className="relative min-h-[420px] overflow-hidden md:min-h-[500px]"
+    >
+      <Image
+        src="/images/umbria-cta-bg.webp"
+        alt="Paesaggio dell'Umbria al tramonto"
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
       />
-      <div className="absolute inset-0 -z-10 cta-overlay" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%)",
+        }}
+      />
 
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-5 py-24 text-center text-cream md:px-8 md:py-28">
-        <Eyebrow light centered>
-          Antica Loggia · Trevi · Umbria
-        </Eyebrow>
-        <h2 className="font-serif text-4xl leading-[1.05] sm:text-5xl md:text-[4rem]">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          viewport={{ once: true, amount: 0.1 }}
+          className="mb-4 font-serif text-4xl font-light text-white md:text-5xl"
+          style={{ textShadow: "0 2px 18px rgba(0,0,0,0.35)" }}
+        >
           Pronto a vivere l&apos;Umbria?
-        </h2>
-        <p className="max-w-xl text-[15px] leading-relaxed text-cream/80">
-          Scrivici per disponibilità, preventivi o suggerimenti su misura.
-          Saremo felici di accoglierti nella nostra dimora.
-        </p>
-        <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-          <BtnContact className="!bg-cream !text-olive-deep hover:!bg-paper !px-7 !py-3.5">
-            Contattaci
-          </BtnContact>
-          <BtnWhatsApp className="!px-7 !py-3.5">
-            Scrivici su WhatsApp
-          </BtnWhatsApp>
-        </div>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease }}
+          viewport={{ once: true, amount: 0.1 }}
+          className="mb-8 max-w-xl text-lg text-white/80"
+          style={{ textShadow: "0 2px 14px rgba(0,0,0,0.3)" }}
+        >
+          Regalati un soggiorno autentico tra arte, natura e relax.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease }}
+          viewport={{ once: true, amount: 0.1 }}
+          className="flex flex-wrap items-center justify-center gap-4"
+        >
+          <a
+            href={waLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-deep-brown transition hover:bg-[#f5f5f4]"
+          >
+            Prenota ora
+          </a>
+          <span className="inline-flex cursor-default items-center gap-2 text-sm text-white/80 underline underline-offset-4 transition hover:text-white">
+            <ShieldCheck className="h-4 w-4" strokeWidth={1.5} />
+            Miglior prezzo garantito
+          </span>
+        </motion.div>
       </div>
     </section>
   );
@@ -1543,15 +1953,22 @@ function CtaBanner() {
 
 function Footer() {
   return (
-    <footer className="bg-footer text-cream relative overflow-hidden">
-      <OliveBranch className="pointer-events-none absolute -right-8 top-6 h-[300px] w-auto opacity-15 hidden md:block" />
+    <footer className="relative overflow-hidden bg-footer text-cream">
+      <OliveBranch className="pointer-events-none absolute -right-8 top-6 hidden h-[300px] w-auto opacity-15 md:block" />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4 md:px-8">
         <div className="md:col-span-2">
-          <Logo light />
+          <a
+            href="#top"
+            className="font-serif text-2xl font-medium text-cream"
+            aria-label="Antica Loggia — Home"
+          >
+            Antica Loggia
+          </a>
           <p className="mt-5 max-w-sm text-[13px] leading-relaxed text-cream/65">
-            Antica Loggia, casa vacanze di charme nel cuore di Trevi, Umbria.
-            Un soggiorno autentico tra pietra antica, ulivi e silenzio.
+            Antica Loggia, ampio appartamento in caseggiato del XVII secolo, nel
+            borgo medievale di Trevi. Sette finestroni affacciati sulla Valle
+            Umbra, fino a 8 ospiti.
           </p>
           <div className="mt-6 flex items-center gap-3">
             <a
@@ -1618,14 +2035,19 @@ function Footer() {
           <h4 className="text-[12px] font-medium uppercase tracking-[0.22em] text-cream/55">
             Esplora
           </h4>
-          <ul className="mt-4 grid grid-cols-2 gap-y-2 text-[13px] text-cream/75">
-            {NAV.slice(1).map((n) => (
+          <ul className="mt-4 grid grid-cols-1 gap-y-2 text-[13px] text-cream/75">
+            {NAV.map((n) => (
               <li key={n.label}>
                 <a href={n.href} className="transition hover:text-cream">
                   {n.label}
                 </a>
               </li>
             ))}
+            <li>
+              <a href="#prenota" className="transition hover:text-cream">
+                Prenota
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -1633,10 +2055,11 @@ function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-5 py-5 text-[11px] text-cream/55 sm:flex-row sm:items-center md:px-8">
           <span>
-            © {new Date().getFullYear()} Antica Loggia · Casa Vacanze · Trevi (PG), Umbria
+            © {new Date().getFullYear()} Antica Loggia · Casa Vacanze · Trevi
+            (PG), Umbria
           </span>
           <span className="font-serif italic text-gold-soft">
-            «Dove la pietra antica racconta nuove storie.»
+            «Sospesi nel cielo, sopra la Valle Umbra.»
           </span>
         </div>
       </div>
@@ -1669,17 +2092,18 @@ function WhatsAppFab() {
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <HighlightStrip />
-        <DoveLaStoria />
-        <Gallery />
-        <PercheScegliere />
+      <Navbar />
+      <main id="top" className="flex-1">
+        <HeroImage />
+        <GalleryStrip />
+        <Benvenuti />
         <ServiziInclusi />
-        <ThreeCards />
         <InfoCards />
+        <GliSpazi />
+        <DoveSiamo />
+        <Dintorni />
         <Recensioni />
+        <Regole />
         <ContactForm />
         <CtaBanner />
       </main>

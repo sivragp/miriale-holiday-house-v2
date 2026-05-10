@@ -1,23 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Cormorant_Garamond } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  display: "swap",
+  axes: ["opsz", "SOFT"],
 });
 
 export const metadata: Metadata = {
-  title: "Antica Loggia · Casa Vacanze di Charme a Trevi, Umbria",
+  title: "Antica Loggia · Casa Vacanze a Trevi, Umbria",
   description:
-    "Antica Loggia, casa vacanze di lusso nel cuore di Trevi, Umbria. Vista panoramica sulla valle, atmosfera autentica e comfort moderni a pochi passi dalle colline dell'Umbria.",
+    "Antica Loggia, ampio appartamento in caseggiato del XVII secolo nel borgo medievale di Trevi (PG). Vista panoramica sulla Valle Umbra dalla Loggia con sette finestroni, fino a 8 ospiti, 3 camere da letto, 2 bagni.",
 };
 
 export default function RootLayout({
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${geistSans.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ivory text-deep-brown font-sans">
         {children}

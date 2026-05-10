@@ -20,6 +20,54 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Media Processing
+
+L'hero del sito usa un effetto scroll basato su frame JPG estratti dal video drone (`trevi-drone.mp4`). I frame vivono in `public/frames/desktop/` (1920px) e `public/frames/mobile/` (1080px) e vengono generati offline — non a runtime.
+
+### Prerequisiti
+
+FFmpeg deve essere installato a livello di sistema (non passa da npm):
+
+```bash
+brew install ffmpeg
+```
+
+Verifica con `ffmpeg -version` e `ffprobe -version`.
+
+### Estrazione frame
+
+Posiziona `trevi-drone.mp4` in `public/media/` e lancia:
+
+```bash
+./scripts/extract-frames.sh
+```
+
+In alternativa, indica un percorso esplicito:
+
+```bash
+VIDEO=/path/al/video.mp4 ./scripts/extract-frames.sh
+```
+
+Lo script esegue due passaggi `ffmpeg` con questi parametri:
+
+| Variante | Comando |
+|---|---|
+| Desktop | `ffmpeg -i trevi-drone.mp4 -vf "fps=24,scale=1920:-2" -q:v 3 public/frames/desktop/frame-%04d.jpg` |
+| Mobile  | `ffmpeg -i trevi-drone.mp4 -vf "fps=24,scale=1080:-2" -q:v 4 public/frames/mobile/frame-%04d.jpg` |
+
+- `fps=24` → un frame ogni ~42ms, abbastanza fluido per lo scroll.
+- `scale=1920:-2` / `scale=1080:-2` → ridimensiona mantenendo l'aspect ratio (`-2` arrotonda l'altezza al pari più vicino, requisito di alcuni encoder).
+- `-q:v 3` (desktop) → qualità JPEG ~75-80%, sweet spot per il web.
+- `-q:v 4` (mobile) → qualità leggermente inferiore per ridurre il peso sulla rete mobile.
+
+A fine run lo script stampa: numero frame estratti per variante, peso totale delle cartelle e stima dei frame attesi (durata video × 24).
+
+### Quando ri-eseguire
+
+Lancia lo script **solo** se cambia il video sorgente (nuovo montaggio, taglio diverso, color grading rivisto). I frame generati sono deterministici: a parità di sorgente e parametri, l'output è identico, quindi non serve rigenerarli a ogni build.
+
+I frame esistenti vengono cancellati a inizio run per evitare residui di estrazioni precedenti con conteggio diverso.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
