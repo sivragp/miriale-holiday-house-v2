@@ -2,7 +2,7 @@
 #
 # extract-frames.sh
 # Estrae i frame del video drone in due varianti (desktop 1920px, mobile 1080px)
-# per l'effetto scroll dell'hero di Antica Loggia.
+# per l'eventuale effetto scroll dell'hero di MiriAle Holiday House.
 #
 # Uso:
 #   ./scripts/extract-frames.sh                    # cerca trevi-drone.mp4 nella root

@@ -2,7 +2,7 @@
 //
 // optimize-images.mjs
 // Genera due varianti WebP (full 2000px / small 900px) per ogni foto sorgente
-// di Antica Loggia. Skippa i file già processati e ignora i RAW/video.
+// di MiriAle Holiday House. Skippa i file già processati e ignora i RAW/video.
 //
 // Uso: node scripts/optimize-images.mjs
 

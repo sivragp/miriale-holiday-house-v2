@@ -23,23 +23,25 @@ import {
 /*  Constants                                                                 */
 /* -------------------------------------------------------------------------- */
 
-const WHATSAPP_NUMBER = "393453224567";
-const WHATSAPP_DISPLAY = "+39 345 322 4567";
-const EMAIL = "info@anticaloggia.it";
-const ADDRESS_LINE_1 = "Vicolo del Tempio 4";
-const ADDRESS_LINE_2 = "06039 Trevi (PG), Umbria";
+const WHATSAPP_NUMBER = "393284898704";
+const WHATSAPP_DISPLAY = "+39 328 489 8704";
+const EMAIL = "info@mirialeholidayhouse.it";
+const ADDRESS_LINE_1 = "Via Castagnevizza, 76";
+const ADDRESS_LINE_2 = "00054 Fiumicino RM";
+const MAPS_SHORT = "https://maps.app.goo.gl/2KgSGxzFX5MnWGMR8";
 
-const waLink = (msg = "Ciao! Vorrei avere informazioni su Antica Loggia.") =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+const waLink = (
+  msg = "Ciao! Vorrei avere informazioni su MiriAle Holiday House.",
+) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
 const mailto = `mailto:${EMAIL}`;
 
 const NAV = [
   { label: "La casa", href: "#la-casa" },
+  { label: "Perché MiriAle", href: "#spazi" },
   { label: "Servizi", href: "#servizi" },
-  { label: "Galleria", href: "#galleria" },
-  { label: "Dove siamo", href: "#dove-siamo" },
-  { label: "Cosa fare", href: "#dintorni" },
+  { label: "Gallery", href: "#galleria" },
+  { label: "Posizione", href: "#dove-siamo" },
   { label: "Recensioni", href: "#recensioni" },
   { label: "Contatti", href: "#prenota" },
 ];
@@ -49,18 +51,18 @@ const ease: [number, number, number, number] = [0.22, 0.61, 0.36, 1];
 
 // Foto della galleria (orizzontale)
 const GALLERY = [
-  { src: "/images/salone-verso-camino.webp", alt: "Salone con camino acceso" },
-  { src: "/images/salone-verso-finestre-2.webp", alt: "Salone con finestre sulla Valle Umbra" },
-  { src: "/images/salone-verso-finestre.webp", alt: "Salone, prospettiva verso le finestre" },
-  { src: "/images/camera-matrimoniale.webp", alt: "Camera matrimoniale" },
-  { src: "/images/camera-padronale.webp", alt: "Camera padronale" },
-  { src: "/images/finestra-verso-fuori.webp", alt: "Finestra con vista sulla Valle Umbra" },
-  { src: "/images/finestra-verso-fuori2.webp", alt: "Vista panoramica dalla finestra" },
-  { src: "/images/finestra-verso-fuori3.webp", alt: "Finestra sui tetti del borgo" },
-  { src: "/images/foto-finestre-verso-salottino-fuori.webp", alt: "La Loggia con i sette finestroni" },
-  { src: "/images/trevi-dall-alto-verso-casa.webp", alt: "Vista aerea di Trevi e della Valle Umbra" },
-  { src: "/images/bagno-padronale.webp", alt: "Bagno padronale" },
-  { src: "/images/trevi-panorama.webp", alt: "Panorama di Trevi al tramonto" },
+  { src: "/images/house/house-02.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-04.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-05.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-06.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-07.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-09.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-12.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-11.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-13.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-14.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-17.jpg", alt: "MiriAle Holiday House — ambiente" },
+  { src: "/images/house/house-19.jpg", alt: "MiriAle Holiday House — ambiente" },
 ];
 
 // Recensioni
@@ -70,21 +72,21 @@ const REVIEWS = [
     name: "Chiara M.",
     city: "Milano",
     stars: 5,
-    text: "Un posto meraviglioso. La loggia al tramonto è indimenticabile. Casa curatissima, ogni dettaglio racconta la storia del luogo. Torneremo sicuramente.",
+    text: "Un posto meraviglioso. Casa curatissima, ogni dettaglio pensato per chi viaggia. Torneremo sicuramente.",
   },
   {
     avatar: "/images/avatar-marco.webp",
     name: "Marco e Laura",
     city: "Roma",
     stars: 5,
-    text: "Abbiamo festeggiato il nostro anniversario ad Antica Loggia. Il silenzio, la vista, l'autenticità umbra. Un'esperienza fuori dal tempo.",
+    text: "Abbiamo soggiornato a MiriAle Holiday House prima di un volo. Comoda, silenziosa e a pochi minuti dall'aeroporto. Esperienza ottima.",
   },
   {
     avatar: "/images/avatar-famiglia.webp",
     name: "Familie Becker",
     city: "Monaco",
     stars: 5,
-    text: "Wunderschönes Haus in einer magischen Lage. Perfekte Ausstattung, ruhige Atmosphäre, traumhafte Aussicht auf Trevi. Empfehlenswert!",
+    text: "Wunderschönes Haus in ruhiger Lage, nur wenige Minuten vom Flughafen Fiumicino. Perfekte Ausstattung, sehr empfehlenswert!",
   },
 ];
 
@@ -413,12 +415,12 @@ function Navbar() {
         <a
           href="#top"
           className="flex items-center gap-3"
-          aria-label="Antica Loggia — Home"
+          aria-label="MiriAle Holiday House — Home"
         >
           <I.arch className="h-9 w-9 text-deep-brown" />
           <span className="leading-tight">
-            <span className="block font-serif text-base font-bold tracking-[0.18em] text-deep-brown md:text-lg">
-              ANTICA LOGGIA
+            <span className="block font-serif text-base font-bold tracking-[0.14em] text-deep-brown md:text-lg">
+              MiriAle Holiday House
             </span>
             <span className="block text-[10px] uppercase tracking-[0.32em] text-warm-gray">
               Casa Vacanze
@@ -444,7 +446,7 @@ function Navbar() {
           style={{ backgroundColor: "#2D4A2D" }}
         >
           <I.calendar className="h-4 w-4" />
-          Prenota ora
+          Richiedi disponibilità
         </a>
       </div>
     </header>
@@ -457,10 +459,10 @@ function Navbar() {
 
 function HeroImage() {
   const chips = [
-    { Icon: I.wifi, label: "Wi-Fi veloce" },
-    { Icon: I.key, label: "Self Check-in" },
-    { Icon: I.parking, label: "Parcheggio vicino" },
-    { Icon: I.ac, label: "Aria condizionata" },
+    { Icon: I.pin, label: "Vicina a Fiumicino" },
+    { Icon: I.key, label: "Casa intera" },
+    { Icon: I.wifi, label: "Wi-Fi e parcheggio" },
+    { Icon: I.whatsapp, label: "Contatto diretto" },
   ];
 
   return (
@@ -468,14 +470,12 @@ function HeroImage() {
       id="top"
       className="relative isolate min-h-[90vh] overflow-hidden bg-deep-brown"
     >
-      <video
-        src="/media/trevi-hero.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
+      <Image
+        src="/images/house/hero-23-enhanced.jpg"
+        alt="MiriAle Holiday House — vista d'insieme"
+        fill
+        priority
+        sizes="100vw"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div
@@ -495,7 +495,7 @@ function HeroImage() {
             className="font-serif text-7xl font-light leading-none text-white md:text-8xl"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
           >
-            Antica Loggia
+            Atterra. Respira.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -504,7 +504,7 @@ function HeroImage() {
             className="mt-2 font-serif text-4xl font-light text-white/90 md:text-5xl"
             style={{ textShadow: "0 2px 16px rgba(0,0,0,0.3)" }}
           >
-            Trevi, Umbria
+            Sei già a casa.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -513,21 +513,23 @@ function HeroImage() {
             className="mt-4 max-w-md text-lg leading-relaxed text-white/80"
             style={{ textShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
           >
-            Un rifugio autentico nel cuore dell&apos;Umbria.
-            <br />
-            Storia, comfort e panorami indimenticabili.
+            A pochi minuti dall&apos;aeroporto di Fiumicino, MiriAle Holiday
+            House è una casa accogliente per chi viaggia, riparte o vuole
+            vivere Roma e il litorale con più libertà.
           </motion.p>
 
-          {/* CTA: rimanda al CtaBanner finale */}
+          {/* CTA: WhatsApp diretto */}
           <motion.a
-            href="#prenota"
+            href={waLink()}
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.9, ease }}
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-deep-brown shadow-xl transition hover:bg-[#f5f5f4]"
           >
-            <I.mail className="h-4 w-4" />
-            Contattaci
+            <I.whatsapp className="h-4 w-4" />
+            Scrivici su WhatsApp
           </motion.a>
 
           {/* Chips */}
@@ -560,13 +562,13 @@ function HeroImage() {
 function GalleryStrip() {
   const stripRef = useRef<HTMLDivElement>(null);
   const photos = [
-    { src: "/images/trevi-dall-alto-verso-casa.webp", alt: "Vista esterna di Trevi e di Antica Loggia" },
-    { src: "/images/camera-padronale.webp", alt: "Camera padronale" },
-    { src: "/images/salone-verso-camino.webp", alt: "Salone con camino" },
-    { src: "/images/salone-verso-finestre.webp", alt: "Salone, prospettiva verso le finestre" },
-    { src: "/images/foto-finestre-verso-salottino-fuori.webp", alt: "La Loggia con i sette finestroni" },
-    { src: "/images/bagno-padronale.webp", alt: "Bagno padronale" },
-    { src: "/images/finestra-verso-fuori.webp", alt: "Finestra con vista sulla Valle Umbra" },
+    { src: "/images/house/house-02.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-04.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-05.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-06.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-07.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-09.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-11.jpg", alt: "MiriAle Holiday House — ambiente" },
   ];
 
   const scrollRight = () => {
@@ -617,9 +619,9 @@ function Benvenuti() {
   const [videoOpen, setVideoOpen] = useState(false);
 
   const badges = [
-    { Icon: I.eye, label: "Vista panoramica" },
-    { Icon: I.column, label: "Centro storico 200 m" },
-    { Icon: I.users, label: "Ospitalità locale" },
+    { Icon: I.pin, label: "Aeroporto a circa 6 km" },
+    { Icon: I.key, label: "Casa intera" },
+    { Icon: I.users, label: "Contatto diretto" },
   ];
 
   return (
@@ -638,16 +640,16 @@ function Benvenuti() {
             className="flex flex-col justify-center"
           >
             <div className="mb-3 text-xs font-medium uppercase tracking-widest text-terracotta">
-              La tua casa in Umbria
+              Vicino a Fiumicino
             </div>
             <h2 className="mb-5 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-              Benvenuti ad Antica Loggia
+              Uno spazio pensato per chi viaggia.
             </h2>
             <p className="mb-8 max-w-md text-base leading-relaxed text-warm-gray md:text-lg">
-              Una dimora storica ristrutturata con cura, affacciata sulle
-              colline umbre e a pochi passi dal centro di Trevi. Ambienti
-              accoglienti, finiture di pregio e tutti i comfort per un soggiorno
-              rilassante, in ogni stagione.
+              Quattro ambienti, raccontati senza fretta. A pochi minuti
+              dall&apos;aeroporto di Fiumicino: privacy, spazio e tutti i
+              comfort per chi viaggia, riparte o vuole vivere Roma e il
+              litorale con più libertà.
             </p>
             <div className="flex flex-wrap gap-3 md:gap-4">
               {badges.map((b) => (
@@ -672,12 +674,13 @@ function Benvenuti() {
             <button
               type="button"
               onClick={() => setVideoOpen(true)}
-              aria-label="Riproduci video di Antica Loggia"
+              aria-label="Riproduci video di MiriAle Holiday House"
               className="group relative h-72 w-full overflow-hidden rounded-2xl shadow-lg md:h-80"
             >
+              {/* TODO MiriAle: video casa da fornire — poster su immagine reale, modal punta ancora al video del template */}
               <Image
-                src="/images/trevi-panorama.webp"
-                alt="Vista panoramica di Trevi al tramonto"
+                src="/images/house/house-26.jpg"
+                alt="MiriAle Holiday House — ambiente"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover transition duration-700 group-hover:scale-[1.02]"
@@ -693,7 +696,7 @@ function Benvenuti() {
               </span>
               <div className="absolute bottom-4 left-4 text-left">
                 <div className="font-serif text-lg font-semibold text-white">
-                  Scopri Antica Loggia
+                  Scopri MiriAle Holiday House
                 </div>
                 <div className="mt-0.5 text-sm text-white/70">
                   Guarda il video della casa
@@ -714,8 +717,9 @@ function Benvenuti() {
           onClick={() => setVideoOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label="Video di Antica Loggia"
+          aria-label="Video di MiriAle Holiday House"
         >
+          {/* TODO MiriAle: sostituire con video reale della casa */}
           <video
             src="/media/trevi-drone.mp4"
             controls
@@ -744,26 +748,22 @@ function Benvenuti() {
 
 function ServiziInclusi() {
   const items = [
-    { Icon: I.wifi, label: "Wi-Fi", subtitle: "Fibra gratuita" },
+    { Icon: I.wifi, label: "Wi-Fi", subtitle: "Gratuito in tutta la casa" },
+    { Icon: I.parking, label: "Parcheggio", subtitle: "Gratuito in loco" },
     {
       Icon: I.snowflake,
       label: "Aria condizionata",
-      subtitle: "In tutta la casa",
+      subtitle: "In casa",
     },
-    {
-      Icon: I.kitchen,
-      label: "Cucina attrezzata",
-      subtitle: "Forno, lavastoviglie e macchina caffè",
-    },
-    { Icon: I.tv, label: "Smart TV", subtitle: "Netflix incluso" },
+    { Icon: I.heat, label: "Riscaldamento", subtitle: "In casa" },
+    { Icon: I.tv, label: "TV schermo piatto", subtitle: "In soggiorno" },
     { Icon: I.washer, label: "Lavatrice", subtitle: "A disposizione" },
-    { Icon: I.bed, label: "Biancheria", subtitle: "Letti e bagno" },
-    { Icon: I.key, label: "Self Check-in", subtitle: "Accesso autonomo" },
     {
       Icon: I.family,
-      label: "Adatto a famiglie",
-      subtitle: "Culla su richiesta",
+      label: "Camere familiari",
+      subtitle: "Adatto a famiglie",
     },
+    { Icon: I.key, label: "Casa intera", subtitle: "Privacy e spazio" },
   ];
 
   return (
@@ -780,10 +780,10 @@ function ServiziInclusi() {
           className="flex flex-wrap items-end gap-x-4 gap-y-1"
         >
           <h2 className="font-serif text-3xl font-light text-deep-brown">
-            Servizi inclusi
+            Servizi e comfort
           </h2>
           <span className="mb-1 text-base text-warm-gray/70">
-            — Tutto ciò che ti serve per sentirti a casa.
+            — Tutto quello che serve, già incluso.
           </span>
         </motion.div>
 
@@ -855,26 +855,26 @@ function InfoCards() {
                 className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-white/40 text-sm font-semibold"
                 aria-hidden="true"
               >
-                P
+                01
               </span>
               <h3 className="pr-12 font-serif text-lg md:text-xl">
-                Parcheggio comodo
+                Vicina all&apos;aeroporto
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-white/85">
-                Parcheggio pubblico gratuito a pagamento nelle vicinanze
-                (200–400 m). Info e mappe incluse.
+                Perfetta per arrivi serali, partenze all&apos;alba o scali
+                lunghi. Senza lo stress dell&apos;hotel.
               </p>
               <a
                 href="#dove-siamo"
                 className="mt-auto pt-4 text-sm font-medium text-white/90 transition hover:text-white"
               >
-                Leggi di più →
+                Scopri la posizione →
               </a>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
               <Image
-                src="/images/auto-parcheggio.webp"
-                alt="Parcheggio nelle vicinanze di Antica Loggia"
+                src="/images/house/house-12.jpg"
+                alt="MiriAle Holiday House — ambiente"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover"
@@ -889,17 +889,17 @@ function InfoCards() {
           >
             <div className="flex flex-1 flex-col p-5">
               <h3 className="font-serif text-lg text-deep-brown md:text-xl">
-                Arrivo in autonomia
+                Più comoda di una stanza d&apos;hotel
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-deep-brown/75">
-                Self Check-in con key box. Istruzioni chiare inviate prima del
-                tuo arrivo.
+                Più spazio, privacy e libertà rispetto a una camera
+                tradizionale. Una casa intera, solo per te.
               </p>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
               <Image
-                src="/images/keybox-checkin.webp"
-                alt="Key box per il self check-in"
+                src="/images/house/house-13.jpg"
+                alt="MiriAle Holiday House — ambiente"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover"
@@ -914,17 +914,17 @@ function InfoCards() {
           >
             <div className="flex flex-1 flex-col p-5">
               <h3 className="font-serif text-lg text-deep-brown md:text-xl">
-                Posizione centrale
+                Base tra Roma e mare
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-deep-brown/75">
-                Nel cuore di Trevi, a piedi raggiungi ristoranti, negozi e i
-                principali punti di interesse.
+                Una posizione pratica per muoversi tra Fiumicino, Roma e il
+                litorale, con i tuoi tempi.
               </p>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
               <Image
-                src="/images/vicolo-medievale.webp"
-                alt="Vicolo medievale di Trevi"
+                src="/images/house/house-14.jpg"
+                alt="MiriAle Holiday House — ambiente"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover"
@@ -994,97 +994,59 @@ function GliSpazi() {
     outro?: ReactNode;
   }[] = [
     {
-      Icon: BedDouble,
-      label: "Dove dormirai",
-      img: "/images/camera-padronale.webp",
-      alt: "Camera padronale di Antica Loggia",
-      intro: (
-        <>
-          Antica Loggia può accogliere fino a{" "}
-          <span className="font-semibold text-deep-brown">8 ospiti</span> in 3
-          camere da letto.
-        </>
-      ),
+      Icon: Armchair,
+      label: "Ingresso",
+      img: "/images/house/house-16.jpg",
+      alt: "Ingresso e zona living",
+      intro: "Entra senza fretta. Lasci la valigia, ti siedi, respiri. Il viaggio è finito.",
       items: [
-        <>
-          <span className="font-semibold text-deep-brown">Camera 1</span> —
-          Camera padronale: 1 letto matrimoniale king size, vista sulle
-          colline
-        </>,
-        <>
-          <span className="font-semibold text-deep-brown">Camera 2</span> —
-          Camera matrimoniale: 1 letto matrimoniale, finestre con persiane
-          in legno
-        </>,
-        <>
-          <span className="font-semibold text-deep-brown">Camera 3</span> —
-          Camera singola/multipla: 2 letti singoli (unibili su richiesta)
-        </>,
-      ],
-      outro:
-        "Ambienti curati, aria condizionata in ogni camera e atmosfera accogliente.",
-    },
-    {
-      Icon: Bath,
-      label: "Bagni e dotazioni",
-      img: "/images/bagno-padronale.webp",
-      alt: "Bagno padronale di Antica Loggia",
-      intro: (
-        <>
-          <span className="font-semibold text-deep-brown">2 bagni</span>{" "}
-          funzionali e ben organizzati, dotati di tutto il necessario per il
-          tuo soggiorno.
-        </>
-      ),
-      items: [
-        "Bagno padronale con doccia e vasca",
-        "Secondo bagno con doccia",
-        "Inclusi: asciugamani, biancheria da bagno, asciugacapelli e prodotti essenziali",
-        "Ricambio biancheria disponibile su richiesta",
+        "Wi-Fi gratuito in tutta la casa",
+        "Parcheggio gratuito in loco",
+        "Aria condizionata e riscaldamento",
+        "Casa intera, solo per te",
       ],
     },
     {
       Icon: UtensilsCrossed,
-      label: "La cucina",
-      img: "/images/salone-verso-camino.webp",
-      alt: "La cucina di Antica Loggia, salone verso camino",
+      label: "Cucina",
+      img: "/images/house/house-10.jpg",
+      alt: "Cucina",
       intro:
-        "Una cucina completamente attrezzata per cucinare con gusto e comodità.",
+        "Tutto quello che serve, a portata di mano. Una cucina vera, per chi vuole sentirsi a casa anche solo per una notte.",
       items: [
-        "Piano cottura a gas + forno elettrico",
-        "Lavastoviglie e lavatrice",
-        "Macchina del caffè e bollitore",
-        "Frigorifero, freezer e microonde",
-        "Stoviglie, pentole e tutto l'occorrente",
-        <>
-          <span className="font-semibold text-deep-brown">
-            Tavolo da pranzo
-          </span>{" "}
-          interno per 8 persone
-        </>,
+        "Zona cottura attrezzata",
+        "Lavatrice a disposizione",
+        "TV schermo piatto",
+        "Casa non fumatori",
       ],
     },
     {
-      Icon: Armchair,
-      label: "La Loggia e i saloni",
-      img: "/images/foto-finestre-verso-salottino-fuori.webp",
-      alt: "La Loggia con i sette finestroni sulla Valle Umbra",
-      intro: (
-        <>
-          Il cuore della casa: la{" "}
-          <span className="font-semibold text-deep-brown">
-            loggia panoramica
-          </span>{" "}
-          affacciata sul verde umbro, perfetta in ogni stagione.
-        </>
-      ),
+      Icon: BedDouble,
+      label: "Camera",
+      img: "/images/house/house-26.jpg",
+      alt: "Camera da letto",
+      intro:
+        "Uno spazio pensato per riposare. Letti curati, luce morbida, silenzio: quello che serve dopo un volo.",
       items: [
-        "Loggia esterna con tavolo e sedie per 8 — vista sulle colline",
-        "Salone principale con camino e divani",
-        "Smart TV con Netflix e connessione Wi-Fi fibra",
-        "Zona lettura e relax",
-        "Giardino privato con area barbecue",
-        "Parcheggio privato nelle vicinanze",
+        "2 camere da letto",
+        "Camere familiari",
+        "Bagno privato",
+        "Asciugacapelli in camera",
+      ],
+      outro: "Fino a 4–6 persone, in base alla disponibilità.",
+    },
+    {
+      Icon: Bath,
+      label: "Comfort",
+      img: "/images/house/house-20.jpg",
+      alt: "Bagno o zona esterna",
+      intro:
+        "Prima di ripartire, sentiti a casa. Dettagli pensati per rendere semplice ogni momento del soggiorno.",
+      items: [
+        "Balcone",
+        "Giardino accessibile agli ospiti",
+        "Bagno privato",
+        "Vista",
       ],
     },
   ];
@@ -1096,14 +1058,14 @@ function GliSpazi() {
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
-          La tua casa
+          Entra nella casa
         </div>
         <h2 className="mt-2 font-serif text-4xl font-light text-deep-brown">
-          Ogni spazio, una storia
+          Uno spazio pensato per chi viaggia.
         </h2>
         <p className="mt-3 max-w-xl text-base leading-relaxed text-warm-gray">
-          Antica Loggia accoglie fino a 8 ospiti in un ambiente curato e
-          autentico.
+          Quattro ambienti, raccontati senza fretta. Fino a 4–6 persone, 2
+          camere da letto.
         </p>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -1169,21 +1131,21 @@ function GliSpazi() {
 function DoveSiamo() {
   const parcheggi = [
     {
-      name: "Parcheggio Porta Nuova",
-      address: "Via della Rocca",
-      distance: "200 m · 3 min a piedi",
+      name: "Aeroporto di Fiumicino",
+      address: "Roma Fiumicino (FCO)",
+      distance: "circa 6 km · pochi minuti d'auto",
       type: "free" as const,
     },
     {
-      name: "Parcheggio San Francesco",
-      address: "Via Sant'Agostino",
-      distance: "350 m · 5 min a piedi",
+      name: "Centro di Fiumicino",
+      address: "Servizi, bar e ristoranti",
+      distance: "circa 3 km",
       type: "free" as const,
     },
     {
-      name: "Parcheggio Piazza Garibaldi",
-      address: "Piazza Garibaldi",
-      distance: "450 m · 6 min a piedi",
+      name: "Spiagge del litorale",
+      address: "Focene, Ostia Lido",
+      distance: "da 3,9 km",
       type: "paid" as const,
     },
   ];
@@ -1208,30 +1170,30 @@ function DoveSiamo() {
                 Dove siamo
               </h3>
               <p className="mt-0.5 text-sm text-warm-gray/80">
-                Trevi (PG), Umbria
+                Via Castagnevizza, 76 · Fiumicino (RM)
               </p>
             </div>
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=12.7286%2C42.8545%2C12.7486%2C42.8645&layer=mapnik&marker=42.8588%2C12.7386"
+              src="https://www.google.com/maps?q=Via%20Castagnevizza%2C%2076%2C%2000054%20Fiumicino%20RM&output=embed"
               className="mt-3 block h-48 w-full border-0"
               style={{ border: 0 }}
               loading="lazy"
-              title="Mappa di Trevi"
+              title="Mappa MiriAle Holiday House"
             />
             <div className="flex flex-wrap gap-3 p-4">
               <a
-                href="https://maps.google.com/?q=Antica+Loggia,+Trevi,+PG"
+                href={MAPS_SHORT}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
                 style={{ backgroundColor: "#2D4A2D" }}
               >
                 <I.pin className="h-4 w-4" />
-                Indicazioni stradali
+                Apri su Google Maps
               </a>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5f5f4] px-4 py-2 text-sm text-warm-gray">
                 <I.clock className="h-4 w-4" />
-                Centro storico — 200 m
+                Aeroporto — circa 6 km
               </span>
             </div>
           </motion.div>
@@ -1245,7 +1207,7 @@ function DoveSiamo() {
             className="md:pl-6 lg:pl-8"
           >
             <h3 className="mb-6 font-serif text-2xl font-light text-deep-brown">
-              Parcheggi nelle vicinanze
+              A pochi minuti da te
             </h3>
             <ul>
               {parcheggi.map((p, i) => (
@@ -1286,7 +1248,7 @@ function DoveSiamo() {
                         : { backgroundColor: "#FDE8C8", color: "#92580A" }
                     }
                   >
-                    {p.type === "free" ? "Gratuito" : "A pagamento"}
+                    {p.type === "free" ? "Vicino" : "In zona"}
                   </span>
                 </li>
               ))}
@@ -1302,8 +1264,8 @@ function DoveSiamo() {
             className="relative mx-auto aspect-[11/16] w-48 overflow-hidden rounded-2xl shadow-md md:mx-0 md:w-full"
           >
             <Image
-              src="/images/vicolo-medievale.webp"
-              alt="Vicolo medievale di Trevi"
+              src="/images/house/house-17.jpg"
+              alt="MiriAle Holiday House — ambiente"
               fill
               sizes="(max-width: 768px) 192px, 220px"
               className="object-cover"
@@ -1427,6 +1389,7 @@ function Dintorni() {
 
   return (
     <section id="dintorni" className="bg-paper py-16">
+      {/* TODO MiriAle: sezione "Scopri l'Umbria" lasciata invariata su richiesta del cliente — contenuti (borghi, immagini, accordion) da sostituire in un secondo momento */}
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="font-serif text-3xl font-light text-deep-brown">
           Scopri l&apos;Umbria
@@ -1683,23 +1646,23 @@ function Recensioni() {
 
 function Regole() {
   const rules = [
-    { Icon: Clock, label: "Check-in", sub: "dalle 15:00" },
-    { Icon: LogOut, label: "Check-out", sub: "entro 11:00" },
-    { Icon: CigaretteOff, label: "Non fumare", sub: "all'interno" },
+    { Icon: Clock, label: "Check-in", sub: "15:00 — 00:00" },
+    { Icon: LogOut, label: "Check-out", sub: "01:00 — 11:00" },
+    { Icon: CigaretteOff, label: "Non fumare", sub: "in tutta la struttura" },
     { Icon: PawPrint, label: "Animali", sub: "non ammessi" },
     { Icon: PartyPopper, label: "Feste o eventi", sub: "non consentiti" },
-    { Icon: MoonStar, label: "Rispetta il riposo", sub: "22:00 — 08:00" },
-    { Icon: Tag, label: "Tassa di soggiorno", sub: "1,00€ a persona/notte" },
+    { Icon: MoonStar, label: "Bambini", sub: "tutte le età" },
+    { Icon: Tag, label: "Culla 0–1 anno", sub: "€10/soggiorno · su richiesta" },
   ];
   return (
     <section className="bg-cream py-8">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-6 px-6">
         <div className="flex-shrink-0 border-r border-[#E5E0D8] pr-6 leading-tight">
           <div className="font-serif text-lg font-semibold text-deep-brown">
-            Regole
+            Informazioni
           </div>
           <div className="font-serif text-lg font-semibold text-deep-brown">
-            della casa
+            utili
           </div>
         </div>
 
@@ -1741,7 +1704,7 @@ function ContactForm() {
             viewport={{ once: true, amount: 0.05 }}
             className="font-serif text-3xl font-light text-deep-brown md:text-4xl"
           >
-            Lasciaci i tuoi contatti
+            Vuoi sapere se la casa è libera nelle tue date?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -1750,8 +1713,8 @@ function ContactForm() {
             viewport={{ once: true, amount: 0.05 }}
             className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-warm-gray"
           >
-            Scrivici per disponibilità, preventivi o consigli sul soggiorno.
-            Ti rispondiamo entro poche ore.
+            Scrivici su WhatsApp o invia una richiesta: il proprietario ti
+            risponderà direttamente.
           </motion.p>
         </div>
 
@@ -1791,7 +1754,7 @@ function ContactForm() {
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="Raccontaci del tuo soggiorno…"
+                  placeholder="Date, numero di ospiti, domande…"
                   className="mt-1 w-full resize-none border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
                 />
               </div>
@@ -1799,8 +1762,8 @@ function ContactForm() {
 
             <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p className="max-w-xs text-[12px] text-warm-gray/70">
-                Inviando il form accetti la nostra privacy policy. Nessuno
-                spam.
+                Modulo dimostrativo. Per una risposta immediata, scrivici su
+                WhatsApp.
               </p>
               <a
                 href={mailto}
@@ -1878,7 +1841,7 @@ function ContactForm() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  CtaBanner — full-width banner con immagine umbra                          */
+/*  CtaBanner — full-width banner con immagine della casa                     */
 /* -------------------------------------------------------------------------- */
 
 function CtaBanner() {
@@ -1887,8 +1850,8 @@ function CtaBanner() {
       className="relative min-h-[420px] overflow-hidden md:min-h-[500px]"
     >
       <Image
-        src="/images/umbria-cta-bg.webp"
-        alt="Paesaggio dell'Umbria al tramonto"
+        src="/images/house/hero-23-enhanced.jpg"
+        alt="MiriAle Holiday House — vista d'insieme"
         fill
         sizes="100vw"
         className="object-cover object-center"
@@ -1910,7 +1873,7 @@ function CtaBanner() {
           className="mb-4 font-serif text-4xl font-light text-white md:text-5xl"
           style={{ textShadow: "0 2px 18px rgba(0,0,0,0.35)" }}
         >
-          Pronto a vivere l&apos;Umbria?
+          Vuoi sapere se la casa è libera nelle tue date?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -1920,7 +1883,8 @@ function CtaBanner() {
           className="mb-8 max-w-xl text-lg text-white/80"
           style={{ textShadow: "0 2px 14px rgba(0,0,0,0.3)" }}
         >
-          Regalati un soggiorno autentico tra arte, natura e relax.
+          Scrivici su WhatsApp o invia una richiesta: il proprietario ti
+          risponderà direttamente.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -1935,11 +1899,11 @@ function CtaBanner() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-deep-brown transition hover:bg-[#f5f5f4]"
           >
-            Prenota ora
+            Scrivici su WhatsApp
           </a>
           <span className="inline-flex cursor-default items-center gap-2 text-sm text-white/80 underline underline-offset-4 transition hover:text-white">
             <ShieldCheck className="h-4 w-4" strokeWidth={1.5} />
-            Miglior prezzo garantito
+            Contatto diretto col proprietario
           </span>
         </motion.div>
       </div>
@@ -1961,14 +1925,14 @@ function Footer() {
           <a
             href="#top"
             className="font-serif text-2xl font-medium text-cream"
-            aria-label="Antica Loggia — Home"
+            aria-label="MiriAle Holiday House — Home"
           >
-            Antica Loggia
+            MiriAle Holiday House
           </a>
           <p className="mt-5 max-w-sm text-[13px] leading-relaxed text-cream/65">
-            Antica Loggia, ampio appartamento in caseggiato del XVII secolo, nel
-            borgo medievale di Trevi. Sette finestroni affacciati sulla Valle
-            Umbra, fino a 8 ospiti.
+            Casa vacanze vicino a Fiumicino — contatto diretto con il
+            proprietario. A pochi minuti dall&apos;aeroporto di Roma
+            Fiumicino.
           </p>
           <div className="mt-6 flex items-center gap-3">
             <a
@@ -2012,7 +1976,7 @@ function Footer() {
             </li>
             <li>
               <a
-                href={`tel:${WHATSAPP_NUMBER}`}
+                href={`tel:+${WHATSAPP_NUMBER}`}
                 className="flex items-center gap-2 transition hover:text-cream"
               >
                 <I.phone className="h-4 w-4 text-gold-soft" />
@@ -2045,7 +2009,7 @@ function Footer() {
             ))}
             <li>
               <a href="#prenota" className="transition hover:text-cream">
-                Prenota
+                Richiedi disponibilità
               </a>
             </li>
           </ul>
@@ -2055,11 +2019,11 @@ function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-5 py-5 text-[11px] text-cream/55 sm:flex-row sm:items-center md:px-8">
           <span>
-            © {new Date().getFullYear()} Antica Loggia · Casa Vacanze · Trevi
-            (PG), Umbria
+            © {new Date().getFullYear()} MiriAle Holiday House · Casa Vacanze
+            · Fiumicino (RM)
           </span>
           <span className="font-serif italic text-gold-soft">
-            «Sospesi nel cielo, sopra la Valle Umbra.»
+            «Atterra. Respira. Sei già a casa.»
           </span>
         </div>
       </div>
