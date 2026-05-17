@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "@/components/site/SiteHeader";
+import SiteFooter from "@/components/site/SiteFooter";
+import WhatsAppFab from "@/components/site/WhatsAppFab";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,7 +20,10 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mirialeholidayhouse.it"),
-  title: "MiriAle Holiday House",
+  title: {
+    default: "MiriAle Holiday House",
+    template: "%s — MiriAle Holiday House",
+  },
   description:
     "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
   alternates: {
@@ -55,7 +61,10 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ivory text-deep-brown font-sans">
+        <SiteHeader />
         {children}
+        <SiteFooter />
+        <WhatsAppFab />
       </body>
     </html>
   );

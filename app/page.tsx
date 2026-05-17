@@ -18,443 +18,21 @@ import {
   Tag,
   UtensilsCrossed,
 } from "lucide-react";
+import {
+  ADDRESS_LINE_1,
+  ADDRESS_LINE_2,
+  ApprofondisciLink,
+  EMAIL,
+  I,
+  MAPS_SHORT,
+  WHATSAPP_DISPLAY,
+  ease,
+  mailto,
+  waLink,
+} from "@/lib/site";
 
 /* -------------------------------------------------------------------------- */
-/*  Constants                                                                 */
-/* -------------------------------------------------------------------------- */
-
-const WHATSAPP_NUMBER = "393284898704";
-const WHATSAPP_DISPLAY = "+39 328 489 8704";
-const EMAIL = "info@mirialeholidayhouse.it";
-const ADDRESS_LINE_1 = "Via Castagnevizza, 76";
-const ADDRESS_LINE_2 = "00054 Fiumicino RM";
-const MAPS_SHORT = "https://maps.app.goo.gl/2KgSGxzFX5MnWGMR8";
-
-const waLink = (
-  msg = "Ciao! Vorrei avere informazioni su MiriAle Holiday House.",
-) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-
-const mailto = `mailto:${EMAIL}`;
-
-const NAV = [
-  { label: "La casa", href: "#la-casa" },
-  { label: "Perché MiriAle", href: "#spazi" },
-  { label: "Servizi", href: "#servizi" },
-  { label: "Gallery", href: "#galleria" },
-  { label: "Posizione", href: "#dove-siamo" },
-  { label: "Recensioni", href: "#recensioni" },
-  { label: "Contatti", href: "#prenota" },
-];
-
-// Curva di easing comune per le animazioni viewport-triggered
-const ease: [number, number, number, number] = [0.22, 0.61, 0.36, 1];
-
-// Foto della galleria (orizzontale)
-const GALLERY = [
-  { src: "/images/house/house-02.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-04.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-05.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-06.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-07.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-09.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-12.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-11.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-13.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-14.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-17.jpg", alt: "MiriAle Holiday House — ambiente" },
-  { src: "/images/house/house-19.jpg", alt: "MiriAle Holiday House — ambiente" },
-];
-
-// Recensioni
-const REVIEWS = [
-  {
-    avatar: "/images/avatar-chiara.webp",
-    name: "Chiara M.",
-    city: "Milano",
-    stars: 5,
-    text: "Un posto meraviglioso. Casa curatissima, ogni dettaglio pensato per chi viaggia. Torneremo sicuramente.",
-  },
-  {
-    avatar: "/images/avatar-marco.webp",
-    name: "Marco e Laura",
-    city: "Roma",
-    stars: 5,
-    text: "Abbiamo soggiornato a MiriAle Holiday House prima di un volo. Comoda, silenziosa e a pochi minuti dall'aeroporto. Esperienza ottima.",
-  },
-  {
-    avatar: "/images/avatar-famiglia.webp",
-    name: "Familie Becker",
-    city: "Monaco",
-    stars: 5,
-    text: "Wunderschönes Haus in ruhiger Lage, nur wenige Minuten vom Flughafen Fiumicino. Perfekte Ausstattung, sehr empfehlenswert!",
-  },
-];
-
-/* -------------------------------------------------------------------------- */
-/*  Inline icons                                                              */
-/* -------------------------------------------------------------------------- */
-
-type IconProps = { className?: string };
-const stroke = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.5,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-
-const I = {
-  whatsapp: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-      <path d="M20.5 3.5A10.4 10.4 0 0 0 12 0C6 0 1.2 4.8 1.2 10.7c0 1.9.5 3.7 1.4 5.3L1 22l6.2-1.6a10.7 10.7 0 0 0 4.8 1.2h.1c5.9 0 10.7-4.8 10.7-10.7 0-2.9-1.1-5.5-3.3-7.4Zm-8.4 16.4a8.8 8.8 0 0 1-4.5-1.2l-.3-.2-3.7 1 1-3.6-.2-.3a8.8 8.8 0 1 1 16.3-4.7c0 4.9-4 8.9-8.6 9Zm4.9-6.7c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1.1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.5h-.5c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2 0 1.3 1 2.6 1.1 2.7.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.7.1.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3Z" />
-    </svg>
-  ),
-  mail: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m3 7 9 6 9-6" />
-    </svg>
-  ),
-  phone: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
-    </svg>
-  ),
-  pin: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 22s-7-7-7-12a7 7 0 0 1 14 0c0 5-7 12-7 12Z" />
-      <circle cx="12" cy="10" r="2.5" />
-    </svg>
-  ),
-  instagram: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
-    </svg>
-  ),
-  facebook: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-      <path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 1.9-1.9H17V2.1c-.3 0-1.5-.1-2.8-.1C11.3 2 10 3.7 10 6.8V10H7v4h3v8h3Z" />
-    </svg>
-  ),
-  star: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-      <path d="m12 2 3 7 7 .6-5.4 4.7 1.7 7L12 17.3 5.7 21.3l1.7-7L2 9.6 9 9Z" />
-    </svg>
-  ),
-  wifi: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 12.55a11 11 0 0 1 14 0" />
-      <path d="M2 8.82a16 16 0 0 1 20 0" />
-      <path d="M8.5 16.43a6 6 0 0 1 7 0" />
-      <circle cx="12" cy="20" r="1" fill="currentColor" />
-    </svg>
-  ),
-  parking: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="3" width="18" height="18" rx="3" />
-      <path d="M10 17V8h3.5a2.5 2.5 0 0 1 0 5H10" />
-    </svg>
-  ),
-  kitchen: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M4 11h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8Z" />
-      <path d="M7 11V6a5 5 0 0 1 10 0v5" />
-      <path d="M9 15h6" />
-    </svg>
-  ),
-  ac: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" />
-    </svg>
-  ),
-  heat: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="12" r="3.5" />
-      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
-    </svg>
-  ),
-  washer: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="4" y="3" width="16" height="18" rx="2" />
-      <circle cx="12" cy="14" r="4" />
-      <circle cx="8" cy="6.5" r="0.5" fill="currentColor" />
-      <circle cx="11" cy="6.5" r="0.5" fill="currentColor" />
-    </svg>
-  ),
-  bed: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M3 18V8M3 12h18v6M21 18V11a3 3 0 0 0-3-3h-7v4" />
-      <circle cx="7" cy="11" r="2" />
-    </svg>
-  ),
-  users: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="9" cy="8" r="3.2" />
-      <path d="M3 20a6 6 0 0 1 12 0" />
-      <circle cx="17" cy="9" r="2.6" />
-      <path d="M15 20a5 5 0 0 1 7-4.6" />
-    </svg>
-  ),
-  clock: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  ),
-  key: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="8" cy="14" r="4" />
-      <path d="m11 11 9-9M16 6l3 3" />
-    </svg>
-  ),
-  smoke: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="m6 6 12 12" />
-    </svg>
-  ),
-  music: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M9 18V5l12-2v13" />
-      <circle cx="6" cy="18" r="3" />
-      <circle cx="18" cy="16" r="3" />
-    </svg>
-  ),
-  paw: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="6" cy="10" r="2" />
-      <circle cx="10" cy="6" r="2" />
-      <circle cx="14" cy="6" r="2" />
-      <circle cx="18" cy="10" r="2" />
-      <path d="M8 17a4 4 0 0 1 8 0c0 2.2-1.8 3-4 3s-4-.8-4-3Z" />
-    </svg>
-  ),
-  heart: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z" />
-    </svg>
-  ),
-  calendar: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="5" width="18" height="16" rx="2" />
-      <path d="M3 9h18M8 3v4M16 3v4" />
-    </svg>
-  ),
-  arrow: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  ),
-  arch: ({ className }: IconProps) => (
-    <svg viewBox="0 0 32 32" className={className} {...stroke}>
-      <path d="M4 28V14a12 12 0 0 1 24 0v14" />
-      <path d="M2 28h28" />
-    </svg>
-  ),
-  eye: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  ),
-  column: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M5 4h14v3H5zM5 17h14v3H5zM8 7v10M16 7v10M12 7v10" />
-    </svg>
-  ),
-  snowflake: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" />
-      <path d="M12 6l-2 2M12 6l2 2M12 18l-2-2M12 18l2-2" />
-      <path d="M6 12l2-2M6 12l2 2M18 12l-2-2M18 12l-2 2" />
-    </svg>
-  ),
-  tv: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <rect x="3" y="6" width="18" height="12" rx="2" />
-      <path d="M8 21h8M12 18v3" />
-    </svg>
-  ),
-  family: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <circle cx="7" cy="7" r="2.5" />
-      <circle cx="17" cy="7" r="2.5" />
-      <circle cx="12" cy="14" r="2" />
-      <path d="M3 17a4 4 0 0 1 8 0v3M13 17a4 4 0 0 1 8 0v3M9 21v-2a3 3 0 0 1 6 0v2" />
-    </svg>
-  ),
-  play: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-      <path d="M8 5v14l11-7Z" />
-    </svg>
-  ),
-  sparkle: ({ className }: IconProps) => (
-    <svg viewBox="0 0 24 24" className={className} {...stroke}>
-      <path d="M12 3v6M12 15v6M3 12h6M15 12h6M6 6l4 4M14 14l4 4M18 6l-4 4M10 14l-4 4" />
-    </svg>
-  ),
-};
-
-/* -------------------------------------------------------------------------- */
-/*  Olive branch decorative SVG (used in Footer)                              */
-/* -------------------------------------------------------------------------- */
-
-function OliveBranch({
-  className = "",
-  flip = false,
-}: {
-  className?: string;
-  flip?: boolean;
-}) {
-  return (
-    <svg
-      viewBox="0 0 220 360"
-      className={className}
-      style={flip ? { transform: "scaleX(-1)" } : undefined}
-      aria-hidden="true"
-    >
-      <g fill="none" stroke="#6e7a4a" strokeWidth="1.4" strokeLinecap="round">
-        <path d="M40 350 C 80 280, 100 200, 120 130 S 150 40, 170 10" opacity="0.85" />
-        <path d="M120 130 C 100 110, 80 100, 60 110" opacity="0.5" />
-        <path d="M130 90 C 145 75, 155 60, 158 40" opacity="0.5" />
-        <path d="M110 180 C 90 175, 75 168, 65 158" opacity="0.5" />
-        <path d="M95 230 C 75 220, 60 215, 48 220" opacity="0.5" />
-        <path d="M82 280 C 65 280, 52 285, 45 295" opacity="0.5" />
-        <path d="M140 60 C 158 55, 170 45, 175 30" opacity="0.5" />
-      </g>
-      <g fill="#6e7a4a" opacity="0.78">
-        <ellipse cx="155" cy="14" rx="14" ry="5.5" transform="rotate(-32 155 14)" />
-        <ellipse cx="170" cy="32" rx="13" ry="5" transform="rotate(20 170 32)" />
-        <ellipse cx="142" cy="48" rx="14" ry="5.5" transform="rotate(-50 142 48)" />
-        <ellipse cx="158" cy="62" rx="13" ry="5" transform="rotate(28 158 62)" />
-        <ellipse cx="135" cy="86" rx="15" ry="5.5" transform="rotate(-40 135 86)" />
-        <ellipse cx="115" cy="108" rx="14" ry="5" transform="rotate(45 115 108)" />
-        <ellipse cx="95" cy="118" rx="14" ry="5.5" transform="rotate(-30 95 118)" />
-        <ellipse cx="120" cy="148" rx="14" ry="5" transform="rotate(40 120 148)" />
-        <ellipse cx="100" cy="172" rx="14" ry="5.5" transform="rotate(-32 100 172)" />
-        <ellipse cx="78" cy="180" rx="13" ry="5" transform="rotate(35 78 180)" />
-        <ellipse cx="105" cy="208" rx="14" ry="5" transform="rotate(-38 105 208)" />
-        <ellipse cx="86" cy="224" rx="14" ry="5.5" transform="rotate(38 86 224)" />
-        <ellipse cx="68" cy="236" rx="13" ry="5" transform="rotate(-42 68 236)" />
-        <ellipse cx="92" cy="262" rx="14" ry="5" transform="rotate(-30 92 262)" />
-        <ellipse cx="72" cy="278" rx="13" ry="5.5" transform="rotate(35 72 278)" />
-        <ellipse cx="58" cy="300" rx="13" ry="5" transform="rotate(-30 58 300)" />
-        <ellipse cx="80" cy="318" rx="14" ry="5" transform="rotate(40 80 318)" />
-      </g>
-      <g fill="#3b4524">
-        <circle cx="148" cy="22" r="3" />
-        <circle cx="120" cy="100" r="3" />
-        <circle cx="98" cy="190" r="3" />
-        <circle cx="78" cy="252" r="3" />
-        <circle cx="62" cy="310" r="3" />
-      </g>
-    </svg>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Eyebrow primitive                                                         */
-/* -------------------------------------------------------------------------- */
-
-function Eyebrow({
-  children,
-  light = false,
-  centered = false,
-  className = "",
-}: {
-  children: ReactNode;
-  light?: boolean;
-  centered?: boolean;
-  className?: string;
-}) {
-  return (
-    <span
-      className={`inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] ${
-        light ? "text-gold-soft" : "text-olive"
-      } ${className}`}
-    >
-      {centered ? (
-        <span className={`h-px w-8 ${light ? "bg-gold-soft/40" : "bg-olive/30"}`} />
-      ) : null}
-      {children}
-      {centered ? (
-        <span className={`h-px w-8 ${light ? "bg-gold-soft/40" : "bg-olive/30"}`} />
-      ) : null}
-    </span>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Reusable motion variants                                                  */
-/* -------------------------------------------------------------------------- */
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease },
-  viewport: { once: true, amount: 0.05 },
-};
-
-const fadeIn = {
-  initial: { opacity: 0, scale: 1.02 },
-  whileInView: { opacity: 1, scale: 1 },
-  transition: { duration: 0.7, ease },
-  viewport: { once: true, amount: 0.05 },
-};
-
-/* -------------------------------------------------------------------------- */
-/*  Navbar                                                                    */
-/* -------------------------------------------------------------------------- */
-
-function Navbar() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-line/60 bg-ivory/95 shadow-sm backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-8">
-        <a
-          href="#top"
-          className="flex items-center gap-3"
-          aria-label="MiriAle Holiday House — Home"
-        >
-          <I.arch className="h-9 w-9 text-deep-brown" />
-          <span className="leading-tight">
-            <span className="block font-serif text-base font-bold tracking-[0.14em] text-deep-brown md:text-lg">
-              MiriAle Holiday House
-            </span>
-            <span className="block text-[10px] uppercase tracking-[0.32em] text-warm-gray">
-              Casa Vacanze
-            </span>
-          </span>
-        </a>
-
-        <nav className="hidden items-center gap-6 text-sm text-deep-brown xl:flex">
-          {NAV.map((n) => (
-            <a
-              key={n.label}
-              href={n.href}
-              className="transition hover:text-terracotta"
-            >
-              {n.label}
-            </a>
-          ))}
-        </nav>
-
-        <a
-          href="#prenota"
-          className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
-          style={{ backgroundColor: "#2D4A2D" }}
-        >
-          <I.calendar className="h-4 w-4" />
-          Richiedi disponibilità
-        </a>
-      </div>
-    </header>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  HeroImage — immagine fullscreen + testo + booking widget + chips          */
+/*  HeroImage — immagine fullscreen + testo + chips                           */
 /* -------------------------------------------------------------------------- */
 
 function HeroImage() {
@@ -518,19 +96,30 @@ function HeroImage() {
             vivere Roma e il litorale con più libertà.
           </motion.p>
 
-          {/* CTA: WhatsApp diretto */}
-          <motion.a
-            href={waLink()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.9, ease }}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-deep-brown shadow-xl transition hover:bg-[#f5f5f4]"
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
-            <I.whatsapp className="h-4 w-4" />
-            Scrivici su WhatsApp
-          </motion.a>
+            {/* CTA: WhatsApp diretto */}
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-deep-brown shadow-xl transition hover:bg-[#f5f5f4]"
+            >
+              <I.whatsapp className="h-4 w-4" />
+              Scrivici su WhatsApp
+            </a>
+            {/* CTA secondaria: ancora in pagina */}
+            <a
+              href="#prenota"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 underline underline-offset-4 transition hover:text-white"
+            >
+              Richiedi disponibilità
+            </a>
+          </motion.div>
 
           {/* Chips */}
           <motion.div
@@ -743,7 +332,7 @@ function Benvenuti() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  ServiziChips (chip orizzontali)                                           */
+/*  ServiziInclusi (chip orizzontali)                                         */
 /* -------------------------------------------------------------------------- */
 
 function ServiziInclusi() {
@@ -767,10 +356,7 @@ function ServiziInclusi() {
   ];
 
   return (
-    <section
-      id="servizi"
-      className="border-b border-line-soft bg-paper py-16"
-    >
+    <section id="servizi" className="border-b border-line-soft bg-paper py-16">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -815,7 +401,7 @@ function ServiziInclusi() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  InfoCards (4 card visive con immagine + rating Google)                    */
+/*  InfoCards — 3 motivi "Perché MiriAle" + card rating                       */
 /* -------------------------------------------------------------------------- */
 
 function GoogleWordmark({ className = "" }: { className?: string }) {
@@ -832,7 +418,6 @@ function GoogleWordmark({ className = "" }: { className?: string }) {
 }
 
 function InfoCards() {
-  // Animazione a cascata: delay 0, 0.1, 0.2, 0.3
   const cardAnim = (delay: number) => ({
     initial: { opacity: 0, y: 16 },
     whileInView: { opacity: 1, y: 0 },
@@ -841,10 +426,10 @@ function InfoCards() {
   });
 
   return (
-    <section className="border-b border-line-soft bg-ivory py-16 md:py-20">
+    <section id="perche" className="border-b border-line-soft bg-ivory py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
-          {/* Card 1 — Parcheggio comodo (verde scuro) */}
+          {/* Card 1 — Vicina all'aeroporto */}
           <motion.article
             {...cardAnim(0)}
             className="flex h-[420px] flex-col overflow-hidden rounded-2xl text-white"
@@ -882,7 +467,7 @@ function InfoCards() {
             </div>
           </motion.article>
 
-          {/* Card 2 — Arrivo in autonomia (cream) */}
+          {/* Card 2 — Più comoda di una stanza d'hotel */}
           <motion.article
             {...cardAnim(0.1)}
             className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-cream-2"
@@ -907,7 +492,7 @@ function InfoCards() {
             </div>
           </motion.article>
 
-          {/* Card 3 — Posizione centrale (cream) */}
+          {/* Card 3 — Base tra Roma e mare */}
           <motion.article
             {...cardAnim(0.2)}
             className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-cream-2"
@@ -932,7 +517,7 @@ function InfoCards() {
             </div>
           </motion.article>
 
-          {/* Card 4 — Dicono di noi (rating Google) */}
+          {/* Card 4 — Dicono di noi (rating) */}
           <motion.article
             {...cardAnim(0.3)}
             className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-paper p-6"
@@ -961,16 +546,20 @@ function InfoCards() {
             </div>
           </motion.article>
         </div>
+
+        <div className="mt-10">
+          <ApprofondisciLink href="/la-famiglia">
+            Conosci la famiglia che ti accoglie
+          </ApprofondisciLink>
+        </div>
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  GliSpazi (id="spazi") — 4 card dettagliate (sostituisce LaLoggia)         */
+/*  Bullet                                                                    */
 /* -------------------------------------------------------------------------- */
-
-type Bullet = string | { strong: string; rest: string };
 
 function Bullet({ children }: { children: ReactNode }) {
   return (
@@ -982,6 +571,10 @@ function Bullet({ children }: { children: ReactNode }) {
     </li>
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*  GliSpazi (id="spazi") — 4 ambienti                                        */
+/* -------------------------------------------------------------------------- */
 
 function GliSpazi() {
   const cards: {
@@ -998,7 +591,8 @@ function GliSpazi() {
       label: "Ingresso",
       img: "/images/house/house-16.jpg",
       alt: "Ingresso e zona living",
-      intro: "Entra senza fretta. Lasci la valigia, ti siedi, respiri. Il viaggio è finito.",
+      intro:
+        "Entra senza fretta. Lasci la valigia, ti siedi, respiri. Il viaggio è finito.",
       items: [
         "Wi-Fi gratuito in tutta la casa",
         "Parcheggio gratuito in loco",
@@ -1052,10 +646,7 @@ function GliSpazi() {
   ];
 
   return (
-    <section
-      id="spazi"
-      className="border-b border-line-soft bg-ivory py-20"
-    >
+    <section id="spazi" className="border-b border-line-soft bg-ivory py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
           Entra nella casa
@@ -1119,13 +710,19 @@ function GliSpazi() {
             </motion.article>
           ))}
         </div>
+
+        <div className="mt-10">
+          <ApprofondisciLink href="/la-casa">
+            Scopri la casa nel dettaglio
+          </ApprofondisciLink>
+        </div>
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  DoveSiamo (id="dove-siamo") — 3 col: mappa + parcheggi + foto vicolo      */
+/*  DoveSiamo (id="dove-siamo")                                               */
 /* -------------------------------------------------------------------------- */
 
 function DoveSiamo() {
@@ -1198,7 +795,7 @@ function DoveSiamo() {
             </div>
           </motion.div>
 
-          {/* Colonna 2 — Parcheggi */}
+          {/* Colonna 2 — Distanze rapide */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1255,7 +852,7 @@ function DoveSiamo() {
             </ul>
           </motion.div>
 
-          {/* Colonna 3 — Immagine vicolo */}
+          {/* Colonna 3 — Immagine */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1272,18 +869,23 @@ function DoveSiamo() {
             />
           </motion.div>
         </div>
+
+        <div className="mt-10">
+          <ApprofondisciLink href="/cosa-fare-intorno">
+            Vedi cosa fare intorno a MiriAle
+          </ApprofondisciLink>
+        </div>
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Dintorni (id="dintorni") — Scopri l'Umbria: 5 borghi + accordion          */
+/*  Dintorni (id="dintorni")                                                  */
 /* -------------------------------------------------------------------------- */
 
 function Dintorni() {
   // PLACEHOLDER: img punta a foto della casa esistenti.
-  // Sostituire con foto reali dei borghi in /public/images/borghi/{id}.webp
   const borghi = [
     {
       id: "spoleto",
@@ -1409,7 +1011,7 @@ function Dintorni() {
                 viewport={{ once: true, amount: 0.05 }}
                 className="relative h-72 w-56 flex-shrink-0 cursor-pointer overflow-hidden rounded-2xl md:w-64"
               >
-                {/* Fallback gradiente sotto l'Image (mostrato durante load o se l'img fallisce) */}
+                {/* Fallback gradiente sotto l'Image */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -1527,12 +1129,10 @@ function Dintorni() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Recensioni — 3 card con avatar AI                                         */
+/*  Recensioni                                                                */
 /* -------------------------------------------------------------------------- */
 
 function Recensioni() {
-  // NOTE: avatar-coppia.webp non esiste in /public/images/.
-  // Fallback su avatar-marco.webp finché non viene aggiunto.
   const recensioni = [
     {
       nome: "Giulia & Marco",
@@ -1641,7 +1241,7 @@ function Recensioni() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Regole — strip orizzontale chiara con icone Lucide                        */
+/*  Regole — Informazioni utili                                               */
 /* -------------------------------------------------------------------------- */
 
 function Regole() {
@@ -1686,10 +1286,15 @@ function Regole() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  ContactForm (id="prenota") — modulo per lasciare i contatti               */
+/*  ContactForm (id="prenota") — modulo veloce 6 campi                        */
 /* -------------------------------------------------------------------------- */
 
 function ContactForm() {
+  const fieldClass =
+    "mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50";
+  const labelClass =
+    "text-[10px] uppercase tracking-[0.22em] text-warm-gray";
+
   return (
     <section
       id="prenota"
@@ -1729,33 +1334,45 @@ function ContactForm() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-                  Nome
-                </label>
+                <label className={labelClass}>Nome *</label>
                 <input
                   type="text"
+                  required
                   placeholder="Il tuo nome"
-                  className="mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
+                  className={fieldClass}
                 />
               </div>
               <div>
-                <label className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-                  Email
-                </label>
+                <label className={labelClass}>Email *</label>
                 <input
                   type="email"
+                  required
                   placeholder="email@esempio.it"
-                  className="mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
+                  className={fieldClass}
                 />
               </div>
+              <div>
+                <label className={labelClass}>Telefono</label>
+                <input
+                  type="tel"
+                  placeholder="+39 ..."
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>Check-in</label>
+                <input type="date" className={fieldClass} />
+              </div>
+              <div>
+                <label className={labelClass}>Check-out</label>
+                <input type="date" className={fieldClass} />
+              </div>
               <div className="sm:col-span-2">
-                <label className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
-                  Messaggio
-                </label>
+                <label className={labelClass}>Messaggio</label>
                 <textarea
                   rows={4}
                   placeholder="Date, numero di ospiti, domande…"
-                  className="mt-1 w-full resize-none border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50"
+                  className={`${fieldClass} resize-none`}
                 />
               </div>
             </div>
@@ -1835,20 +1452,24 @@ function ContactForm() {
             </div>
           </motion.aside>
         </div>
+
+        <div className="mt-8 text-center">
+          <ApprofondisciLink href="/contatti">
+            Vai alla pagina contatti completa
+          </ApprofondisciLink>
+        </div>
       </div>
     </section>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/*  CtaBanner — full-width banner con immagine della casa                     */
+/*  CtaBanner                                                                 */
 /* -------------------------------------------------------------------------- */
 
 function CtaBanner() {
   return (
-    <section
-      className="relative min-h-[420px] overflow-hidden md:min-h-[500px]"
-    >
+    <section className="relative min-h-[420px] overflow-hidden md:min-h-[500px]">
       <Image
         src="/images/house/hero-23-enhanced.jpg"
         alt="MiriAle Holiday House — vista d'insieme"
@@ -1912,167 +1533,24 @@ function CtaBanner() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Footer                                                                    */
-/* -------------------------------------------------------------------------- */
-
-function Footer() {
-  return (
-    <footer className="relative overflow-hidden bg-footer text-cream">
-      <OliveBranch className="pointer-events-none absolute -right-8 top-6 hidden h-[300px] w-auto opacity-15 md:block" />
-
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4 md:px-8">
-        <div className="md:col-span-2">
-          <a
-            href="#top"
-            className="font-serif text-2xl font-medium text-cream"
-            aria-label="MiriAle Holiday House — Home"
-          >
-            MiriAle Holiday House
-          </a>
-          <p className="mt-5 max-w-sm text-[13px] leading-relaxed text-cream/65">
-            Casa vacanze vicino a Fiumicino — contatto diretto con il
-            proprietario. A pochi minuti dall&apos;aeroporto di Roma
-            Fiumicino.
-          </p>
-          <div className="mt-6 flex items-center gap-3">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="grid h-9 w-9 place-items-center rounded-full border border-cream/20 transition hover:border-cream/60"
-            >
-              <I.instagram className="h-4 w-4" />
-            </a>
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="grid h-9 w-9 place-items-center rounded-full border border-cream/20 transition hover:border-cream/60"
-            >
-              <I.facebook className="h-4 w-4" />
-            </a>
-            <a
-              href={waLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="grid h-9 w-9 place-items-center rounded-full border border-cream/20 transition hover:border-cream/60"
-            >
-              <I.whatsapp className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-[12px] font-medium uppercase tracking-[0.22em] text-cream/55">
-            Contatti
-          </h4>
-          <ul className="mt-4 space-y-3 text-[13px] text-cream/75">
-            <li className="flex items-start gap-2">
-              <I.pin className="mt-0.5 h-4 w-4 text-gold-soft" />
-              <span>
-                {ADDRESS_LINE_1}
-                <br />
-                {ADDRESS_LINE_2}
-              </span>
-            </li>
-            <li>
-              <a
-                href={`tel:+${WHATSAPP_NUMBER}`}
-                className="flex items-center gap-2 transition hover:text-cream"
-              >
-                <I.phone className="h-4 w-4 text-gold-soft" />
-                {WHATSAPP_DISPLAY}
-              </a>
-            </li>
-            <li>
-              <a
-                href={mailto}
-                className="flex items-center gap-2 transition hover:text-cream"
-              >
-                <I.mail className="h-4 w-4 text-gold-soft" />
-                {EMAIL}
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-[12px] font-medium uppercase tracking-[0.22em] text-cream/55">
-            Esplora
-          </h4>
-          <ul className="mt-4 grid grid-cols-1 gap-y-2 text-[13px] text-cream/75">
-            {NAV.map((n) => (
-              <li key={n.label}>
-                <a href={n.href} className="transition hover:text-cream">
-                  {n.label}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a href="#prenota" className="transition hover:text-cream">
-                Richiedi disponibilità
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-cream/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-5 py-5 text-[11px] text-cream/55 sm:flex-row sm:items-center md:px-8">
-          <span>
-            © {new Date().getFullYear()} MiriAle Holiday House · Casa Vacanze
-            · Fiumicino (RM)
-          </span>
-          <span className="font-serif italic text-gold-soft">
-            «Atterra. Respira. Sei già a casa.»
-          </span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Floating WhatsApp                                                         */
-/* -------------------------------------------------------------------------- */
-
-function WhatsAppFab() {
-  return (
-    <a
-      href={waLink()}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Scrivici su WhatsApp"
-      className="fab-whatsapp"
-    >
-      <I.whatsapp className="h-7 w-7" />
-    </a>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Page                                                                      */
 /* -------------------------------------------------------------------------- */
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main id="top" className="flex-1">
-        <HeroImage />
-        <GalleryStrip />
-        <Benvenuti />
-        <ServiziInclusi />
-        <InfoCards />
-        <GliSpazi />
-        <DoveSiamo />
-        <Dintorni />
-        <Recensioni />
-        <Regole />
-        <ContactForm />
-        <CtaBanner />
-      </main>
-      <Footer />
-      <WhatsAppFab />
-    </>
+    <main className="flex-1">
+      <HeroImage />
+      <GalleryStrip />
+      <Benvenuti />
+      <ServiziInclusi />
+      <InfoCards />
+      <GliSpazi />
+      <DoveSiamo />
+      <Dintorni />
+      <Recensioni />
+      <Regole />
+      <ContactForm />
+      <CtaBanner />
+    </main>
   );
 }
