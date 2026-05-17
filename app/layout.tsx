@@ -16,9 +16,32 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Antica Loggia · Casa Vacanze a Trevi, Umbria",
+  metadataBase: new URL("https://mirialeholidayhouse.it"),
+  title: "MiriAle Holiday House",
   description:
-    "Antica Loggia, ampio appartamento in caseggiato del XVII secolo nel borgo medievale di Trevi (PG). Vista panoramica sulla Valle Umbra dalla Loggia con sette finestroni, fino a 8 ospiti, 3 camere da letto, 2 bagni.",
+    "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
+  alternates: {
+    canonical: "https://mirialeholidayhouse.it",
+  },
+  openGraph: {
+    title: "MiriAle Holiday House",
+    description:
+      "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
+    url: "https://mirialeholidayhouse.it",
+    siteName: "MiriAle Holiday House",
+    locale: "it_IT",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "MiriAle Holiday House",
+    description:
+      "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

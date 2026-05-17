@@ -1,5 +1,6 @@
 /**
- * Tema "Antica Loggia" — casa vacanze a Trevi (Umbria).
+ * Tema "MiriAle Holiday House" — casa vacanze vicino a Fiumicino.
+ * (Palette e tipografia ereditate dal template originale e mantenute.)
  *
  * La fonte di verità per il tema visivo è `app/globals.css` (`@theme {...}`
  * di Tailwind v4): le classi `bg-ivory`, `text-deep-brown`, `font-serif`

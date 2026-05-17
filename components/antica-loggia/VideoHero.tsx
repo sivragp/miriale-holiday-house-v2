@@ -70,7 +70,7 @@ export default function VideoHero({
             textShadow: "0 2px 20px rgba(0,0,0,0.4)",
           }}
         >
-          Antica Loggia
+          MiriAle Holiday House
         </motion.h1>
 
         <motion.p
@@ -83,7 +83,7 @@ export default function VideoHero({
             textShadow: "0 2px 20px rgba(0,0,0,0.4)",
           }}
         >
-          Trevi, Umbria — Una dimora storica nel cuore verde d&apos;Italia
+          Fiumicino (RM) — A pochi minuti dall&apos;aeroporto
         </motion.p>
 
         <motion.div
