@@ -35,8 +35,13 @@ export default function ContattiPage() {
   return (
     <main className="flex-1">
       <PageHero
+        eyebrow="Contatti"
         title="Parliamone."
-        subtitle="Scrivici come preferisci. A risponderti è sempre il proprietario."
+        lead="Scrivici come preferisci. A risponderti è sempre il proprietario."
+        image={{
+          src: "/images/house/hero-23-enhanced.jpg",
+          alt: "MiriAle Holiday House — vista d'insieme",
+        }}
       />
 
       {/* Canali diretti */}

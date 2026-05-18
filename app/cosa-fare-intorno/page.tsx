@@ -63,8 +63,14 @@ export default function CosaFareIntornoPage() {
   return (
     <main className="flex-1">
       <PageHero
-        title="Cosa fare intorno a MiriAle."
-        subtitle="Una posizione che ti dà Roma, il mare e il litorale. Te li raccontiamo come li viviamo noi."
+        eyebrow="Cosa fare intorno"
+        title="Roma, mare, borghi. A portata di soggiorno."
+        lead="Posizione strategica, raccontata da chi ci vive. Itinerari, spiagge e tavole da prendere appunti."
+        image={{
+          // TODO MiriAle: sostituire con foto ambientale litorale o Roma
+          src: "/images/house/house-20.jpg",
+          alt: "Spazio esterno di MiriAle Holiday House",
+        }}
       />
 
       {/* Itinerari raccontati */}

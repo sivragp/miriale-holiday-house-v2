@@ -20,8 +20,14 @@ export default function LaFamigliaPage() {
   return (
     <main className="flex-1">
       <PageHero
-        title="MiriAle è una casa. E una famiglia."
-        subtitle="Non un Airbnb anonimo. Una struttura a conduzione familiare, con chi ti accoglie sempre raggiungibile."
+        eyebrow="La famiglia"
+        title="Una casa. E una famiglia."
+        lead="Non un Airbnb anonimo. Una struttura a conduzione familiare, sempre raggiungibile."
+        image={{
+          // TODO MiriAle: sostituire con foto famiglia o casa abitata
+          src: "/images/house/house-26.jpg",
+          alt: "Atmosfera familiare di MiriAle Holiday House",
+        }}
       />
 
       {/* Hero — foto famiglia */}

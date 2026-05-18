@@ -52,8 +52,13 @@ export default function LaCasaPage() {
   return (
     <main className="flex-1">
       <PageHero
+        eyebrow="La casa"
         title="La casa, ambiente per ambiente."
-        subtitle="Tutto quello che trovi quando entri: spazi, dotazioni e dettagli pensati per chi viaggia."
+        lead="Tutto quello che trovi quando entri: spazi, dotazioni e dettagli pensati per chi viaggia."
+        image={{
+          src: "/images/house/house-16.jpg",
+          alt: "Ingresso e zona living di MiriAle Holiday House",
+        }}
       />
 
       {/* Layout della casa */}
