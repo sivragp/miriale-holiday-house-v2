@@ -588,8 +588,8 @@ function GliSpazi() {
             "Parcheggio gratuito in loco",
           ]}
           image={{
-            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
-            src: "/images/house/house-16.jpg",
+            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
+            src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
             alt: "Ingresso e zona living di MiriAle",
           }}
           priority
@@ -606,8 +606,8 @@ function GliSpazi() {
             "Tavolo da pranzo per la famiglia",
           ]}
           image={{
-            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
-            src: "/images/house/house-10.jpg",
+            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
+            src: "https://images.unsplash.com/photo-1565183997392-2f6f122e5912?auto=format&fit=crop&w=2000&q=80",
             alt: "Cucina di MiriAle",
           }}
         />
@@ -623,8 +623,8 @@ function GliSpazi() {
             "Camere familiari disponibili",
           ]}
           image={{
-            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
-            src: "/images/house/house-26.jpg",
+            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
+            src: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2000&q=80",
             alt: "Camera da letto di MiriAle",
           }}
         />
@@ -640,8 +640,8 @@ function GliSpazi() {
             "Casa non fumatori",
           ]}
           image={{
-            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
-            src: "/images/house/house-20.jpg",
+            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
+            src: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=2000&q=80",
             alt: "Bagno e zone comfort di MiriAle",
           }}
         />
