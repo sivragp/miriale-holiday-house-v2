@@ -4,6 +4,8 @@ Sito ufficiale del cliente **MiriAle Holiday House**, casa vacanze vicino
 all'aeroporto di Fiumicino. Scheletro tecnico ereditato 1:1 dal template
 originale; contenuti, brand, asset e metadata sostituiti con quelli di MiriAle.
 
+<!-- Deploy: ripristino progetto originario (nessun redesign). -->
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
