@@ -1,13 +1,9 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Armchair,
-  Bath,
-  BedDouble,
   CigaretteOff,
   Clock,
   LogOut,
@@ -16,8 +12,8 @@ import {
   PawPrint,
   ShieldCheck,
   Tag,
-  UtensilsCrossed,
 } from "lucide-react";
+import ImmersiveRoomSection from "@/components/site/ImmersiveRoomSection";
 import {
   ADDRESS_LINE_1,
   ADDRESS_LINE_2,
@@ -558,93 +554,10 @@ function InfoCards() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Bullet                                                                    */
-/* -------------------------------------------------------------------------- */
-
-function Bullet({ children }: { children: ReactNode }) {
-  return (
-    <li className="flex gap-3">
-      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracotta" />
-      <span className="text-sm leading-relaxed text-warm-gray">
-        {children}
-      </span>
-    </li>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  GliSpazi (id="spazi") — 4 ambienti                                        */
+/*  GliSpazi (id="spazi") — 4 ambienti immersivi full-bleed                   */
 /* -------------------------------------------------------------------------- */
 
 function GliSpazi() {
-  const cards: {
-    Icon: typeof BedDouble;
-    label: string;
-    img: string;
-    alt: string;
-    intro: ReactNode;
-    items: ReactNode[];
-    outro?: ReactNode;
-  }[] = [
-    {
-      Icon: Armchair,
-      label: "Ingresso",
-      img: "/images/house/house-16.jpg",
-      alt: "Ingresso e zona living",
-      intro:
-        "Entra senza fretta. Lasci la valigia, ti siedi, respiri. Il viaggio è finito.",
-      items: [
-        "Wi-Fi gratuito in tutta la casa",
-        "Parcheggio gratuito in loco",
-        "Aria condizionata e riscaldamento",
-        "Casa intera, solo per te",
-      ],
-    },
-    {
-      Icon: UtensilsCrossed,
-      label: "Cucina",
-      img: "/images/house/house-10.jpg",
-      alt: "Cucina",
-      intro:
-        "Tutto quello che serve, a portata di mano. Una cucina vera, per chi vuole sentirsi a casa anche solo per una notte.",
-      items: [
-        "Zona cottura attrezzata",
-        "Lavatrice a disposizione",
-        "TV schermo piatto",
-        "Casa non fumatori",
-      ],
-    },
-    {
-      Icon: BedDouble,
-      label: "Camera",
-      img: "/images/house/house-26.jpg",
-      alt: "Camera da letto",
-      intro:
-        "Uno spazio pensato per riposare. Letti curati, luce morbida, silenzio: quello che serve dopo un volo.",
-      items: [
-        "2 camere da letto",
-        "Camere familiari",
-        "Bagno privato",
-        "Asciugacapelli in camera",
-      ],
-      outro: "Fino a 4–6 persone, in base alla disponibilità.",
-    },
-    {
-      Icon: Bath,
-      label: "Comfort",
-      img: "/images/house/house-20.jpg",
-      alt: "Bagno o zona esterna",
-      intro:
-        "Prima di ripartire, sentiti a casa. Dettagli pensati per rendere semplice ogni momento del soggiorno.",
-      items: [
-        "Balcone",
-        "Giardino accessibile agli ospiti",
-        "Bagno privato",
-        "Vista",
-      ],
-    },
-  ];
-
   return (
     <section id="spazi" className="border-b border-line-soft bg-ivory py-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -658,59 +571,83 @@ function GliSpazi() {
           Quattro ambienti, raccontati senza fretta. Fino a 4–6 persone, 2
           camere da letto.
         </p>
+      </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {cards.map((c, i) => (
-            <motion.article
-              key={c.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease }}
-              viewport={{ once: true, amount: 0.05 }}
-              className="overflow-hidden rounded-2xl border border-[#E5E0D8] bg-paper shadow-sm"
-            >
-              {/* Header card */}
-              <div className="flex items-center gap-3 px-6 pb-4 pt-6">
-                <c.Icon
-                  className="h-5 w-5 text-warm-gray/65"
-                  strokeWidth={1.5}
-                />
-                <span className="text-xs font-semibold uppercase tracking-widest text-warm-gray">
-                  {c.label}
-                </span>
-              </div>
+      {/* 4 sezioni immersive full-bleed. Scroll-snap verticale su mobile,
+          scroll naturale su desktop (regole `.room-*` in globals.css). */}
+      <div className="room-snap mt-12">
+        <ImmersiveRoomSection
+          side="left"
+          eyebrow="Ingresso"
+          title="Entra senza fretta."
+          description="Lasci la valigia, ti siedi, respiri. Il viaggio è finito."
+          features={[
+            "Wi-Fi gratuito in tutta la casa",
+            "Aria condizionata e riscaldamento",
+            "Casa intera, solo per te",
+            "Parcheggio gratuito in loco",
+          ]}
+          image={{
+            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
+            src: "/images/house/house-16.jpg",
+            alt: "Ingresso e zona living di MiriAle",
+          }}
+          priority
+        />
+        <ImmersiveRoomSection
+          side="right"
+          eyebrow="Cucina"
+          title="A portata di mano."
+          description="Una cucina vera, per chi vuole sentirsi a casa anche solo per una notte."
+          features={[
+            "Zona cottura attrezzata",
+            "Lavatrice a disposizione",
+            "TV schermo piatto",
+            "Tavolo da pranzo per la famiglia",
+          ]}
+          image={{
+            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
+            src: "/images/house/house-10.jpg",
+            alt: "Cucina di MiriAle",
+          }}
+        />
+        <ImmersiveRoomSection
+          side="left"
+          eyebrow="Camera"
+          title="Uno spazio per riposare."
+          description="Letti curati, luce morbida, silenzio. Quello che serve dopo un volo."
+          features={[
+            "Letti comodi e curati",
+            "Aria condizionata in stanza",
+            "Asciugacapelli incluso",
+            "Camere familiari disponibili",
+          ]}
+          image={{
+            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
+            src: "/images/house/house-26.jpg",
+            alt: "Camera da letto di MiriAle",
+          }}
+        />
+        <ImmersiveRoomSection
+          side="right"
+          eyebrow="Comfort"
+          title="Prima di ripartire, sentiti a casa."
+          description="Dettagli pensati per rendere semplice ogni momento del soggiorno."
+          features={[
+            "Bagno privato",
+            "Balcone e giardino accessibili",
+            "Riscaldamento autonomo",
+            "Casa non fumatori",
+          ]}
+          image={{
+            // TODO MiriAle: sostituire con foto shooting orizzontale 16:9
+            src: "/images/house/house-20.jpg",
+            alt: "Bagno e zone comfort di MiriAle",
+          }}
+        />
+      </div>
 
-              {/* Foto */}
-              <div className="relative h-52 w-full">
-                <Image
-                  src={c.img}
-                  alt={c.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Corpo testo */}
-              <div className="px-6 py-5">
-                <p className="text-sm leading-relaxed text-warm-gray">
-                  {c.intro}
-                </p>
-                <ul className="mt-3 space-y-1.5">
-                  {c.items.map((item, j) => (
-                    <Bullet key={j}>{item}</Bullet>
-                  ))}
-                </ul>
-                {c.outro ? (
-                  <p className="mt-4 text-sm leading-relaxed text-warm-gray">
-                    {c.outro}
-                  </p>
-                ) : null}
-              </div>
-            </motion.article>
-          ))}
-        </div>
-
+      <div className="mx-auto max-w-7xl px-6">
         <div className="mt-10">
           <ApprofondisciLink href="/la-casa">
             Scopri la casa nel dettaglio

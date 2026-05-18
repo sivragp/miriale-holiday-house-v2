@@ -257,3 +257,78 @@ h4,
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Immersive room sections (home — "Entra nella casa")                       */
+/* -------------------------------------------------------------------------- */
+
+/* Wrapper delle 4 sezioni. Scroll-snap verticale tipo "stories" solo su
+   mobile; su desktop scorre naturale con la pagina (snap disattivato). */
+.room-snap > * {
+  scroll-snap-align: start;
+}
+@media (max-width: 767px) {
+  .room-snap {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media (min-width: 768px) {
+  .room-snap {
+    scroll-snap-type: none;
+  }
+}
+
+/* Contenitore di una sezione: full-bleed.
+   Mobile: min-height 70vh, card centrata.
+   Desktop: aspect-ratio 16/9 con cap min 60vh / max 90vh. */
+.room-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 70vh;
+  overflow: hidden;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .room-section {
+    aspect-ratio: 16 / 9;
+    min-height: 60vh;
+    max-height: 90vh;
+    padding-inline: clamp(2rem, 6vw, 5rem);
+  }
+  .room-section--left {
+    justify-content: flex-start;
+  }
+  .room-section--right {
+    justify-content: flex-end;
+  }
+}
+
+/* Glass card lattiginosa */
+.room-card {
+  width: min(40vw, 480px);
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+}
+@media (max-width: 767px) {
+  .room-card {
+    width: 100%;
+    margin-inline: 1.5rem;
+  }
+}
+/* Fallback browser senza backdrop-filter */
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .room-card {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
