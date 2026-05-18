@@ -201,8 +201,6 @@ function GalleryStrip() {
 /* -------------------------------------------------------------------------- */
 
 function Benvenuti() {
-  const [videoOpen, setVideoOpen] = useState(false);
-
   const badges = [
     { Icon: I.pin, label: "Aeroporto a circa 6 km" },
     { Icon: I.key, label: "Casa intera" },
@@ -210,120 +208,68 @@ function Benvenuti() {
   ];
 
   return (
-    <>
-      <section
-        id="la-casa"
-        className="border-b border-line-soft bg-ivory py-20 md:py-24"
-      >
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[60fr_40fr] md:gap-12 md:px-8">
-          {/* Colonna sinistra */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            viewport={{ once: true, amount: 0.05 }}
-            className="flex flex-col justify-center"
-          >
-            <div className="mb-3 text-xs font-medium uppercase tracking-widest text-terracotta">
-              Vicino a Fiumicino
-            </div>
-            <h2 className="mb-5 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-              Uno spazio pensato per chi viaggia.
-            </h2>
-            <p className="mb-8 max-w-md text-base leading-relaxed text-warm-gray md:text-lg">
-              Quattro ambienti, raccontati senza fretta. A pochi minuti
-              dall&apos;aeroporto di Fiumicino: privacy, spazio e tutti i
-              comfort per chi viaggia, riparte o vuole vivere Roma e il
-              litorale con più libertà.
-            </p>
-            <div className="flex flex-wrap gap-3 md:gap-4">
-              {badges.map((b) => (
-                <span
-                  key={b.label}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#f5f5f4] px-4 py-2 text-sm text-[#44403c]"
-                >
-                  <b.Icon className="h-4 w-4 text-warm-gray" />
-                  {b.label}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Colonna destra: video card */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease }}
-            viewport={{ once: true, amount: 0.05 }}
-          >
-            <button
-              type="button"
-              onClick={() => setVideoOpen(true)}
-              aria-label="Riproduci video di MiriAle Holiday House"
-              className="group relative h-72 w-full overflow-hidden rounded-2xl shadow-lg md:h-80"
-            >
-              {/* TODO MiriAle: video casa da fornire — poster su immagine reale, modal punta ancora al video del template */}
-              <Image
-                src="/images/house/house-26.jpg"
-                alt="MiriAle Holiday House — ambiente"
-                fill
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className="object-cover transition duration-700 group-hover:scale-[1.02]"
-              />
-              <div
-                className="absolute inset-0"
-                style={{ backgroundColor: "rgba(0,0,0,0.25)" }}
-              />
-              <span className="absolute inset-0 grid place-items-center">
-                <span className="grid h-16 w-16 place-items-center rounded-full bg-white/90 text-deep-brown shadow-md transition group-hover:scale-110">
-                  <I.play className="ml-0.5 h-6 w-6" />
-                </span>
-              </span>
-              <div className="absolute bottom-4 left-4 text-left">
-                <div className="font-serif text-lg font-semibold text-white">
-                  Scopri MiriAle Holiday House
-                </div>
-                <div className="mt-0.5 text-sm text-white/70">
-                  Guarda il video della casa
-                </div>
-              </div>
-              <span className="absolute bottom-4 right-4 rounded bg-black/50 px-2 py-0.5 text-xs text-white">
-                1:20
-              </span>
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Video modal */}
-      {videoOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
-          onClick={() => setVideoOpen(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Video di MiriAle Holiday House"
+    <section
+      id="la-casa"
+      className="border-b border-line-soft bg-ivory py-20 md:py-24"
+    >
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[60fr_40fr] md:gap-12 md:px-8">
+        {/* Colonna sinistra */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+          viewport={{ once: true, amount: 0.05 }}
+          className="flex flex-col justify-center"
         >
-          {/* TODO MiriAle: sostituire con video reale della casa */}
-          <video
-            src="/media/trevi-drone.mp4"
-            controls
-            autoPlay
-            playsInline
-            className="max-h-full max-w-full rounded-xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <button
-            type="button"
-            onClick={() => setVideoOpen(false)}
-            aria-label="Chiudi video"
-            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white text-2xl leading-none text-deep-brown shadow-md transition hover:bg-cream"
-          >
-            ×
-          </button>
-        </div>
-      )}
-    </>
+          <div className="mb-3 text-xs font-medium uppercase tracking-widest text-terracotta">
+            Vicino a Fiumicino
+          </div>
+          <h2 className="mb-5 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
+            Uno spazio pensato per chi viaggia.
+          </h2>
+          <p className="mb-8 max-w-md text-base leading-relaxed text-warm-gray md:text-lg">
+            Quattro ambienti, raccontati senza fretta. A pochi minuti
+            dall&apos;aeroporto di Fiumicino: privacy, spazio e tutti i
+            comfort per chi viaggia, riparte o vuole vivere Roma e il
+            litorale con più libertà.
+          </p>
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            {badges.map((b) => (
+              <span
+                key={b.label}
+                className="inline-flex items-center gap-2 rounded-full bg-[#f5f5f4] px-4 py-2 text-sm text-[#44403c]"
+              >
+                <b.Icon className="h-4 w-4 text-warm-gray" />
+                {b.label}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Colonna destra: video del mare in loop */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease }}
+          viewport={{ once: true, amount: 0.05 }}
+        >
+          <div className="relative h-72 w-full overflow-hidden rounded-2xl shadow-lg md:h-80">
+            {/* TODO MiriAle: sostituire con video del mare in loop (.mp4).
+                Placeholder temporaneo: poster + video del template. */}
+            <video
+              src="/media/trevi-drone.mp4"
+              poster="/images/house/house-26.jpg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-label="Video del mare — MiriAle Holiday House"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }
 
@@ -453,13 +399,10 @@ function InfoCards() {
               </a>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
-              <Image
-                src="/images/house/house-12.jpg"
-                alt="MiriAle Holiday House — ambiente"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
+              {/* TODO MiriAle: spazio immagine — inserire PNG fornita dal cliente */}
+              <div className="absolute inset-0 grid place-items-center bg-white/5 text-[11px] uppercase tracking-[0.22em] text-white/40">
+                Foto
+              </div>
             </div>
           </motion.article>
 
@@ -478,13 +421,10 @@ function InfoCards() {
               </p>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
-              <Image
-                src="/images/house/house-13.jpg"
-                alt="MiriAle Holiday House — ambiente"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
+              {/* TODO MiriAle: spazio immagine — inserire PNG fornita dal cliente */}
+              <div className="absolute inset-0 grid place-items-center bg-stone/40 text-[11px] uppercase tracking-[0.22em] text-warm-gray/50">
+                Foto
+              </div>
             </div>
           </motion.article>
 
@@ -503,13 +443,10 @@ function InfoCards() {
               </p>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
-              <Image
-                src="/images/house/house-14.jpg"
-                alt="MiriAle Holiday House — ambiente"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
+              {/* TODO MiriAle: spazio immagine — inserire PNG fornita dal cliente */}
+              <div className="absolute inset-0 grid place-items-center bg-stone/40 text-[11px] uppercase tracking-[0.22em] text-warm-gray/50">
+                Foto
+              </div>
             </div>
           </motion.article>
 
@@ -724,6 +661,7 @@ function GliSpazi() {
 /* -------------------------------------------------------------------------- */
 
 function DoveSiamo() {
+  // TODO MiriAle: distanze/tempi dei punti aggiuntivi da verificare col cliente.
   const parcheggi = [
     {
       name: "Aeroporto di Fiumicino",
@@ -743,6 +681,24 @@ function DoveSiamo() {
       distance: "da 3,9 km",
       type: "paid" as const,
     },
+    {
+      name: "Roma centro",
+      address: "Treno FL1 / Leonardo Express",
+      distance: "circa 30 min in treno",
+      type: "paid" as const,
+    },
+    {
+      name: "Ostia Antica",
+      address: "Parco archeologico",
+      distance: "breve tragitto in auto",
+      type: "paid" as const,
+    },
+    {
+      name: "Stazione Fiumicino Aeroporto",
+      address: "Treni regionali per Roma",
+      distance: "circa 6 km",
+      type: "free" as const,
+    },
   ];
 
   return (
@@ -751,7 +707,7 @@ function DoveSiamo() {
       className="border-b border-line-soft bg-cream py-20"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.1fr_220px] md:items-start md:gap-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.3fr] md:items-start md:gap-12">
           {/* Colonna 1 — Card mappa */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -804,15 +760,11 @@ function DoveSiamo() {
             <h3 className="mb-6 font-serif text-2xl font-light text-deep-brown">
               A pochi minuti da te
             </h3>
-            <ul>
-              {parcheggi.map((p, i) => (
+            <ul className="grid gap-x-10 sm:grid-cols-2">
+              {parcheggi.map((p) => (
                 <li
                   key={p.name}
-                  className={`flex items-start gap-3 py-4 ${
-                    i < parcheggi.length - 1
-                      ? "border-b border-[#E5E0D8]"
-                      : ""
-                  }`}
+                  className="flex items-start gap-3 border-b border-[#E5E0D8] py-4"
                 >
                   <span
                     className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-full border-2 text-sm font-bold"
@@ -848,23 +800,6 @@ function DoveSiamo() {
                 </li>
               ))}
             </ul>
-          </motion.div>
-
-          {/* Colonna 3 — Immagine */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease }}
-            viewport={{ once: true, amount: 0.05 }}
-            className="relative mx-auto aspect-[11/16] w-48 overflow-hidden rounded-2xl shadow-md md:mx-0 md:w-full"
-          >
-            <Image
-              src="/images/house/house-17.jpg"
-              alt="MiriAle Holiday House — ambiente"
-              fill
-              sizes="(max-width: 768px) 192px, 220px"
-              className="object-cover"
-            />
           </motion.div>
         </div>
 
@@ -1540,13 +1475,13 @@ export default function Home() {
       <HeroImage />
       <GalleryStrip />
       <Benvenuti />
+      <Regole />
       <ServiziInclusi />
       <InfoCards />
       <GliSpazi />
       <DoveSiamo />
       <Dintorni />
       <Recensioni />
-      <Regole />
       <ContactForm />
       <CtaBanner />
     </main>
