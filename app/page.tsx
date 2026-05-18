@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   CigaretteOff,
@@ -13,7 +14,6 @@ import {
   ShieldCheck,
   Tag,
 } from "lucide-react";
-import ImmersiveRoomSection from "@/components/site/ImmersiveRoomSection";
 import {
   ADDRESS_LINE_1,
   ADDRESS_LINE_2,
@@ -558,100 +558,161 @@ function InfoCards() {
 /* -------------------------------------------------------------------------- */
 
 function GliSpazi() {
+  const ambienti = [
+    {
+      nome: "Ingresso",
+      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
+      img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=80",
+      alt: "Ingresso e zona living di MiriAle",
+      features: [
+        "Wi-Fi gratuito in tutta la casa",
+        "Aria condizionata e riscaldamento",
+        "Casa intera, solo per te",
+        "Parcheggio gratuito in loco",
+      ],
+    },
+    {
+      nome: "Cucina",
+      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
+      img: "https://images.unsplash.com/photo-1565183997392-2f6f122e5912?auto=format&fit=crop&w=1400&q=80",
+      alt: "Cucina di MiriAle",
+      features: [
+        "Zona cottura attrezzata",
+        "Lavatrice a disposizione",
+        "TV schermo piatto",
+        "Tavolo da pranzo per la famiglia",
+      ],
+    },
+    {
+      nome: "Camera",
+      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
+      img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80",
+      alt: "Camera da letto di MiriAle",
+      features: [
+        "Letti comodi e curati",
+        "Aria condizionata in stanza",
+        "Asciugacapelli incluso",
+        "Camere familiari disponibili",
+      ],
+    },
+    {
+      nome: "Comfort",
+      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
+      img: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1400&q=80",
+      alt: "Bagno e zone comfort di MiriAle",
+      features: [
+        "Bagno privato",
+        "Balcone e giardino accessibili",
+        "Riscaldamento autonomo",
+        "Casa non fumatori",
+      ],
+    },
+  ];
+
   return (
-    <section id="spazi" className="border-b border-line-soft bg-ivory py-20">
+    <section
+      id="spazi"
+      className="border-b border-line-soft bg-ivory py-20 md:py-24"
+    >
       <div className="mx-auto max-w-7xl px-6">
-        <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
-          Entra nella casa
+        {/* Intro: testo a sinistra, immagine grande a destra */}
+        <div className="grid items-center gap-10 md:grid-cols-[0.82fr_1.18fr] md:gap-14">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+              Entra nella casa
+            </div>
+            <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
+              Uno spazio pensato per chi viaggia.
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-warm-gray">
+              Quattro ambienti, raccontati senza fretta. Fino a 4–6 persone, 2
+              camere da letto.
+            </p>
+            <ul className="mt-7 space-y-3">
+              {ambienti.map((a) => (
+                <li
+                  key={a.nome}
+                  className="flex items-center gap-3 text-sm text-deep-brown"
+                >
+                  <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracotta" />
+                  {a.nome}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease }}
+            viewport={{ once: true, amount: 0.05 }}
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm md:aspect-[16/11]"
+          >
+            <Image
+              src={ambienti[0].img}
+              alt={ambienti[0].alt}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 60vw"
+              className="object-cover"
+            />
+          </motion.div>
         </div>
-        <h2 className="mt-2 font-serif text-4xl font-light text-deep-brown">
-          Uno spazio pensato per chi viaggia.
-        </h2>
-        <p className="mt-3 max-w-xl text-base leading-relaxed text-warm-gray">
-          Quattro ambienti, raccontati senza fretta. Fino a 4–6 persone, 2
-          camere da letto.
-        </p>
-      </div>
 
-      {/* 4 sezioni immersive full-bleed. Scroll-snap verticale su mobile,
-          scroll naturale su desktop (regole `.room-*` in globals.css). */}
-      <div className="room-snap mt-12">
-        <ImmersiveRoomSection
-          side="left"
-          eyebrow="Ingresso"
-          title="Entra senza fretta."
-          description="Lasci la valigia, ti siedi, respiri. Il viaggio è finito."
-          features={[
-            "Wi-Fi gratuito in tutta la casa",
-            "Aria condizionata e riscaldamento",
-            "Casa intera, solo per te",
-            "Parcheggio gratuito in loco",
-          ]}
-          image={{
-            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
-            src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-            alt: "Ingresso e zona living di MiriAle",
-          }}
-          priority
-        />
-        <ImmersiveRoomSection
-          side="right"
-          eyebrow="Cucina"
-          title="A portata di mano."
-          description="Una cucina vera, per chi vuole sentirsi a casa anche solo per una notte."
-          features={[
-            "Zona cottura attrezzata",
-            "Lavatrice a disposizione",
-            "TV schermo piatto",
-            "Tavolo da pranzo per la famiglia",
-          ]}
-          image={{
-            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
-            src: "https://images.unsplash.com/photo-1565183997392-2f6f122e5912?auto=format&fit=crop&w=2000&q=80",
-            alt: "Cucina di MiriAle",
-          }}
-        />
-        <ImmersiveRoomSection
-          side="left"
-          eyebrow="Camera"
-          title="Uno spazio per riposare."
-          description="Letti curati, luce morbida, silenzio. Quello che serve dopo un volo."
-          features={[
-            "Letti comodi e curati",
-            "Aria condizionata in stanza",
-            "Asciugacapelli incluso",
-            "Camere familiari disponibili",
-          ]}
-          image={{
-            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
-            src: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2000&q=80",
-            alt: "Camera da letto di MiriAle",
-          }}
-        />
-        <ImmersiveRoomSection
-          side="right"
-          eyebrow="Comfort"
-          title="Prima di ripartire, sentiti a casa."
-          description="Dettagli pensati per rendere semplice ogni momento del soggiorno."
-          features={[
-            "Bagno privato",
-            "Balcone e giardino accessibili",
-            "Riscaldamento autonomo",
-            "Casa non fumatori",
-          ]}
-          image={{
-            // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto shooting orizzontale 16:9
-            src: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=2000&q=80",
-            alt: "Bagno e zone comfort di MiriAle",
-          }}
-        />
-      </div>
+        {/* Griglia ambienti */}
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {ambienti.map((a, i) => (
+            <motion.article
+              key={a.nome}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease }}
+              viewport={{ once: true, amount: 0.05 }}
+              className="overflow-hidden rounded-2xl border border-line-soft bg-paper shadow-sm transition hover:shadow-md"
+            >
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src={a.img}
+                  alt={a.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="font-serif text-xl text-deep-brown">
+                  {a.nome}
+                </h3>
+                <ul className="mt-3 space-y-1.5">
+                  {a.features.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-warm-gray"
+                    >
+                      <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-terracotta" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
+          ))}
+        </div>
 
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mt-10">
-          <ApprofondisciLink href="/la-casa">
+        {/* CTA centrato */}
+        <div className="mt-14 flex justify-center">
+          <Link
+            href="/la-casa"
+            className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-white transition hover:opacity-90"
+            style={{ backgroundColor: "#2D4A2D" }}
+          >
             Scopri la casa nel dettaglio
-          </ApprofondisciLink>
+          </Link>
         </div>
       </div>
     </section>
