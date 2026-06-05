@@ -13,6 +13,12 @@ const HOUSE_PHOTOS = [
   "house-14",
   "house-17",
   "house-19",
+  "house-21",
+  "house-22",
+  "house-23",
+  "house-24",
+  "house-25",
+  "house-27",
 ].map((n) => ({
   src: `/images/house/${n}.jpg`,
   alt: "MiriAle Holiday House — ambiente",
