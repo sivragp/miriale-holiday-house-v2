@@ -24,9 +24,9 @@ export default function LaFamigliaPage() {
         title="Una casa. E una famiglia."
         lead="Non un Airbnb anonimo. Una struttura a conduzione familiare, sempre raggiungibile."
         image={{
-          // TODO MiriAle: sostituire con foto famiglia o casa abitata
-          src: "/images/house/house-26.jpg",
-          alt: "Atmosfera familiare di MiriAle Holiday House",
+          // TODO MiriAle: in futuro foto della famiglia/casa "abitata". Per ora foto reale dello spazio comune.
+          src: "/images/house/house-17.jpg",
+          alt: "Spazio accogliente di MiriAle Holiday House",
         }}
       />
 

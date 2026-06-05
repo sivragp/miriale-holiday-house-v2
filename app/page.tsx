@@ -254,17 +254,14 @@ function Benvenuti() {
           viewport={{ once: true, amount: 0.05 }}
         >
           <div className="relative h-72 w-full overflow-hidden rounded-2xl shadow-lg md:h-80">
-            {/* TODO MiriAle: sostituire con video del mare in loop (.mp4).
-                Placeholder temporaneo: poster + video del template. */}
-            <video
-              src="/media/trevi-drone.mp4"
-              poster="/images/house/house-26.jpg"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-label="Video del mare — MiriAle Holiday House"
-              className="absolute inset-0 h-full w-full object-cover"
+            {/* TODO MiriAle: in futuro può diventare un video in loop (.mp4).
+                Per ora: foto reale della terrazza con vista. */}
+            <Image
+              src="/images/house/house-22.jpg"
+              alt="Terrazza con vista — MiriAle Holiday House"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
             />
           </div>
         </motion.div>
@@ -498,8 +495,7 @@ function GliSpazi() {
   const ambienti = [
     {
       nome: "Ingresso",
-      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
-      img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=80",
+      img: "/images/house/house-16.jpg",
       alt: "Ingresso e zona living di MiriAle",
       features: [
         "Wi-Fi gratuito in tutta la casa",
@@ -510,8 +506,7 @@ function GliSpazi() {
     },
     {
       nome: "Cucina",
-      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
-      img: "https://images.unsplash.com/photo-1565183997392-2f6f122e5912?auto=format&fit=crop&w=1400&q=80",
+      img: "/images/house/house-10.jpg",
       alt: "Cucina di MiriAle",
       features: [
         "Zona cottura attrezzata",
@@ -522,8 +517,7 @@ function GliSpazi() {
     },
     {
       nome: "Camera",
-      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
-      img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80",
+      img: "/images/house/house-26.jpg",
       alt: "Camera da letto di MiriAle",
       features: [
         "Letti comodi e curati",
@@ -534,8 +528,7 @@ function GliSpazi() {
     },
     {
       nome: "Comfort",
-      // TODO MiriAle: PLACEHOLDER Unsplash — sostituire con foto reale dell'ambiente
-      img: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1400&q=80",
+      img: "/images/house/house-20.jpg",
       alt: "Bagno e zone comfort di MiriAle",
       features: [
         "Bagno privato",

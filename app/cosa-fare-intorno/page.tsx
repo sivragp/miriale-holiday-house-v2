@@ -67,9 +67,9 @@ export default function CosaFareIntornoPage() {
         title="Roma, mare, borghi. A portata di soggiorno."
         lead="Posizione strategica, raccontata da chi ci vive. Itinerari, spiagge e tavole da prendere appunti."
         image={{
-          // TODO MiriAle: sostituire con foto ambientale litorale o Roma
-          src: "/images/house/house-20.jpg",
-          alt: "Spazio esterno di MiriAle Holiday House",
+          // TODO MiriAle: in futuro foto ambientale litorale/Roma. Per ora foto reale con vista sul territorio.
+          src: "/images/house/house-14.jpg",
+          alt: "Vista sul territorio da MiriAle Holiday House",
         }}
       />
 
