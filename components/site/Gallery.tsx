@@ -1,27 +1,35 @@
 import Image from "next/image";
 
-const HOUSE_PHOTOS = [
-  "house-02",
-  "house-04",
-  "house-05",
-  "house-06",
-  "house-07",
-  "house-09",
-  "house-11",
-  "house-12",
-  "house-13",
-  "house-14",
-  "house-17",
-  "house-19",
-  "house-21",
-  "house-22",
-  "house-23",
-  "house-24",
-  "house-25",
-  "house-27",
-].map((n) => ({
+// Galleria curata: zona giorno, cucine, 3 camere matrimoniali, 2 bagni,
+// terrazza, giardino, panorama e qualche dettaglio.
+const HOUSE_PHOTOS: { src: string; alt: string }[] = [
+  { n: "house-02", alt: "zona giorno" },
+  { n: "house-30", alt: "cucina" },
+  { n: "house-10", alt: "cucina" },
+  { n: "house-28", alt: "camera matrimoniale" },
+  { n: "house-09", alt: "camera matrimoniale" },
+  { n: "house-05", alt: "camera matrimoniale" },
+  { n: "house-26", alt: "camera matrimoniale" },
+  { n: "house-06", alt: "camera matrimoniale" },
+  { n: "house-07", alt: "camera mansardata" },
+  { n: "house-11", alt: "bagno" },
+  { n: "house-12", alt: "bagno" },
+  { n: "house-24", alt: "bagno" },
+  { n: "house-20", alt: "bagno" },
+  { n: "house-13", alt: "terrazza" },
+  { n: "house-22", alt: "terrazza con vista" },
+  { n: "house-14", alt: "panorama" },
+  { n: "house-29", alt: "giardino" },
+  { n: "house-31", alt: "giardino" },
+  { n: "house-17", alt: "giardino" },
+  { n: "house-23", alt: "ingresso" },
+  { n: "house-19", alt: "colazione" },
+  { n: "house-32", alt: "angolo cottura" },
+  { n: "house-33", alt: "area caffè" },
+  { n: "house-25", alt: "zona pranzo" },
+].map(({ n, alt }) => ({
   src: `/images/house/${n}.jpg`,
-  alt: "MiriAle Holiday House — ambiente",
+  alt: `MiriAle Holiday House — ${alt}`,
 }));
 
 /** Galleria a griglia responsiva. Riusata da home (spoke /la-casa). */

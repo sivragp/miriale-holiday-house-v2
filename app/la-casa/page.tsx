@@ -36,15 +36,15 @@ const ambienti = [
     label: "Camere",
     img: "/images/house/house-26.jpg",
     narrazione:
-      "Due camere da letto, pensate per riposare bene anche con orari da viaggio: luce morbida, silenzio e biancheria curata. La casa ospita fino a 4–6 persone in base alla disponibilità.",
-    todo: "Descrizione precisa delle 2 camere: tipologie letti (matrimoniale, singoli, letto aggiuntivo), armadio, comodini, eventuale balcone collegato, foto extra per ognuna.",
+      "Tre camere matrimoniali, pensate per riposare bene anche con orari da viaggio: luce morbida, silenzio e biancheria curata. La casa ospita fino a 6 ospiti in base alla disponibilità.",
+    todo: "Descrizione precisa delle 3 camere matrimoniali: tipologia letti, eventuale letto aggiuntivo, armadio, comodini, eventuale balcone collegato, foto extra per ognuna.",
   },
   {
-    label: "Bagno e zone comfort",
+    label: "Bagni e zone comfort",
     img: "/images/house/house-20.jpg",
     narrazione:
-      "Il bagno e gli spazi comuni completano il quadro: tutto quello che serve per sentirsi a casa anche per una sola notte, senza rinunce.",
-    todo: "Dettagli bagno (doccia/vasca, asciugacapelli, set cortesia), eventuale secondo bagno, balcone e giardino con foto.",
+      "I due bagni e gli spazi comuni completano il quadro: tutto quello che serve per sentirsi a casa anche per una sola notte, senza rinunce.",
+    todo: "Dettagli dei due bagni (doccia, asciugacapelli, set cortesia), balcone e giardino con foto.",
   },
 ];
 
@@ -66,12 +66,12 @@ export default function LaCasaPage() {
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow>Layout della casa</Eyebrow>
           <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
-            Due camere, fino a 4–6 ospiti.
+            Tre camere matrimoniali, due bagni.
           </h2>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-warm-gray">
             MiriAle è una casa intera a conduzione familiare: nessuno spazio
-            condiviso con altri ospiti. Due camere da letto e zone giorno
-            pensate per chi viaggia.
+            condiviso con altri ospiti. Tre camere matrimoniali, due bagni e
+            zone giorno pensate per chi viaggia, fino a 6 ospiti.
           </p>
           <div className="mt-8 max-w-2xl">
             {/* TODO MiriAle: metratura totale, planimetria (SVG/PNG), distribuzione precisa delle stanze — vedi brief SPOKE 1 §"Layout della casa" */}

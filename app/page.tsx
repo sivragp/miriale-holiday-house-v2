@@ -45,8 +45,8 @@ function HeroImage() {
       className="relative isolate min-h-[90vh] overflow-hidden bg-deep-brown"
     >
       <Image
-        src="/images/house/hero-23-enhanced.jpg"
-        alt="MiriAle Holiday House — vista d'insieme"
+        src="/images/house/hero-home.jpg"
+        alt="Camera matrimoniale di MiriAle Holiday House"
         fill
         priority
         sizes="100vw"
@@ -147,13 +147,19 @@ function HeroImage() {
 function GalleryStrip() {
   const stripRef = useRef<HTMLDivElement>(null);
   const photos = [
-    { src: "/images/house/house-02.jpg", alt: "MiriAle Holiday House — ambiente" },
-    { src: "/images/house/house-04.jpg", alt: "MiriAle Holiday House — ambiente" },
-    { src: "/images/house/house-05.jpg", alt: "MiriAle Holiday House — ambiente" },
-    { src: "/images/house/house-06.jpg", alt: "MiriAle Holiday House — ambiente" },
-    { src: "/images/house/house-07.jpg", alt: "MiriAle Holiday House — ambiente" },
-    { src: "/images/house/house-09.jpg", alt: "MiriAle Holiday House — ambiente" },
-    { src: "/images/house/house-11.jpg", alt: "MiriAle Holiday House — ambiente" },
+    { src: "/images/house/house-02.jpg", alt: "MiriAle Holiday House — zona giorno" },
+    { src: "/images/house/house-30.jpg", alt: "MiriAle Holiday House — cucina" },
+    { src: "/images/house/house-32.jpg", alt: "MiriAle Holiday House — forno a microonde" },
+    { src: "/images/house/house-33.jpg", alt: "MiriAle Holiday House — bollitore e caffè" },
+    { src: "/images/house/house-28.jpg", alt: "MiriAle Holiday House — camera matrimoniale" },
+    { src: "/images/house/house-09.jpg", alt: "MiriAle Holiday House — camera matrimoniale" },
+    { src: "/images/house/house-05.jpg", alt: "MiriAle Holiday House — camera matrimoniale" },
+    { src: "/images/house/house-11.jpg", alt: "MiriAle Holiday House — bagno" },
+    { src: "/images/house/house-12.jpg", alt: "MiriAle Holiday House — bagno" },
+    { src: "/images/house/house-13.jpg", alt: "MiriAle Holiday House — terrazza" },
+    { src: "/images/house/house-14.jpg", alt: "MiriAle Holiday House — panorama" },
+    { src: "/images/house/house-29.jpg", alt: "MiriAle Holiday House — giardino" },
+    { src: "/images/house/house-19.jpg", alt: "MiriAle Holiday House — colazione" },
   ];
 
   const scrollRight = () => {
@@ -228,9 +234,9 @@ function Benvenuti() {
             Uno spazio pensato per chi viaggia.
           </h2>
           <p className="mb-8 max-w-md text-base leading-relaxed text-warm-gray md:text-lg">
-            Quattro ambienti, raccontati senza fretta. A pochi minuti
-            dall&apos;aeroporto di Fiumicino: privacy, spazio e tutti i
-            comfort per chi viaggia, riparte o vuole vivere Roma e il
+            Tre camere matrimoniali e due bagni, raccontati senza fretta. A
+            pochi minuti dall&apos;aeroporto di Fiumicino: privacy, spazio e
+            tutti i comfort per chi viaggia, riparte o vuole vivere Roma e il
             litorale con più libertà.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4">
@@ -257,8 +263,8 @@ function Benvenuti() {
             {/* TODO MiriAle: in futuro può diventare un video in loop (.mp4).
                 Per ora: foto reale della terrazza con vista. */}
             <Image
-              src="/images/house/house-22.jpg"
-              alt="Terrazza con vista — MiriAle Holiday House"
+              src="/images/house/house-31.jpg"
+              alt="Giardino di MiriAle Holiday House"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
@@ -396,10 +402,13 @@ function InfoCards() {
               </a>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
-              {/* TODO MiriAle: spazio immagine — inserire PNG fornita dal cliente */}
-              <div className="absolute inset-0 grid place-items-center bg-white/5 text-[11px] uppercase tracking-[0.22em] text-white/40">
-                Foto
-              </div>
+              <Image
+                src="/images/aereo-aeroporto.jpg"
+                alt="Vicina all'aeroporto di Fiumicino"
+                fill
+                sizes="(max-width: 640px) 100vw, 25vw"
+                className="object-cover"
+              />
             </div>
           </motion.article>
 
@@ -418,10 +427,13 @@ function InfoCards() {
               </p>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
-              {/* TODO MiriAle: spazio immagine — inserire PNG fornita dal cliente */}
-              <div className="absolute inset-0 grid place-items-center bg-stone/40 text-[11px] uppercase tracking-[0.22em] text-warm-gray/50">
-                Foto
-              </div>
+              <Image
+                src="/images/house/house-19.jpg"
+                alt="Colazione di benvenuto a MiriAle"
+                fill
+                sizes="(max-width: 640px) 100vw, 25vw"
+                className="object-cover"
+              />
             </div>
           </motion.article>
 
@@ -440,10 +452,13 @@ function InfoCards() {
               </p>
             </div>
             <div className="relative h-[200px] flex-shrink-0">
-              {/* TODO MiriAle: spazio immagine — inserire PNG fornita dal cliente */}
-              <div className="absolute inset-0 grid place-items-center bg-stone/40 text-[11px] uppercase tracking-[0.22em] text-warm-gray/50">
-                Foto
-              </div>
+              <Image
+                src="/images/base-roma-mare.jpg"
+                alt="Spiaggia del litorale vicino a MiriAle"
+                fill
+                sizes="(max-width: 640px) 100vw, 25vw"
+                className="object-cover"
+              />
             </div>
           </motion.article>
 
@@ -495,8 +510,8 @@ function GliSpazi() {
   const ambienti = [
     {
       nome: "Ingresso",
-      img: "/images/house/house-16.jpg",
-      alt: "Ingresso e zona living di MiriAle",
+      img: "/images/house/house-29.jpg",
+      alt: "Ingresso e giardino di MiriAle",
       features: [
         "Wi-Fi gratuito in tutta la casa",
         "Aria condizionata e riscaldamento",
@@ -506,7 +521,7 @@ function GliSpazi() {
     },
     {
       nome: "Cucina",
-      img: "/images/house/house-10.jpg",
+      img: "/images/house/house-30.jpg",
       alt: "Cucina di MiriAle",
       features: [
         "Zona cottura attrezzata",
@@ -517,8 +532,8 @@ function GliSpazi() {
     },
     {
       nome: "Camera",
-      img: "/images/house/house-26.jpg",
-      alt: "Camera da letto di MiriAle",
+      img: "/images/house/house-09.jpg",
+      alt: "Camera matrimoniale di MiriAle",
       features: [
         "Letti comodi e curati",
         "Aria condizionata in stanza",
@@ -527,9 +542,9 @@ function GliSpazi() {
       ],
     },
     {
-      nome: "Comfort",
-      img: "/images/house/house-20.jpg",
-      alt: "Bagno e zone comfort di MiriAle",
+      nome: "Bagno",
+      img: "/images/house/house-11.jpg",
+      alt: "Bagno di MiriAle",
       features: [
         "Bagno privato",
         "Balcone e giardino accessibili",
@@ -560,8 +575,8 @@ function GliSpazi() {
               Uno spazio pensato per chi viaggia.
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-warm-gray">
-              Quattro ambienti, raccontati senza fretta. Fino a 4–6 persone, 2
-              camere da letto.
+              Raccontati senza fretta: 3 camere matrimoniali e 2 bagni, fino a
+              6 ospiti.
             </p>
             <ul className="mt-7 space-y-3">
               {ambienti.map((a) => (
@@ -584,8 +599,8 @@ function GliSpazi() {
             className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm md:aspect-[16/11]"
           >
             <Image
-              src={ambienti[0].img}
-              alt={ambienti[0].alt}
+              src="/images/house/house-28.jpg"
+              alt="Camera matrimoniale di MiriAle Holiday House"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 60vw"
@@ -1397,8 +1412,8 @@ function CtaBanner() {
   return (
     <section className="relative min-h-[420px] overflow-hidden md:min-h-[500px]">
       <Image
-        src="/images/house/hero-23-enhanced.jpg"
-        alt="MiriAle Holiday House — vista d'insieme"
+        src="/images/house/house-14.jpg"
+        alt="Panorama dalla terrazza di MiriAle Holiday House"
         fill
         sizes="100vw"
         className="object-cover object-center"
