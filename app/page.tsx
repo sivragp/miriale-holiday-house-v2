@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import ImageSlider from "@/components/site/ImageSlider";
 import {
   CigaretteOff,
   Clock,
@@ -145,7 +146,6 @@ function HeroImage() {
 /* -------------------------------------------------------------------------- */
 
 function GalleryStrip() {
-  const stripRef = useRef<HTMLDivElement>(null);
   const photos = [
     { src: "/images/house/house-02.jpg", alt: "MiriAle Holiday House — zona giorno" },
     { src: "/images/house/house-30.jpg", alt: "MiriAle Holiday House — cucina" },
@@ -162,42 +162,38 @@ function GalleryStrip() {
     { src: "/images/house/house-19.jpg", alt: "MiriAle Holiday House — colazione" },
   ];
 
-  const scrollRight = () => {
-    stripRef.current?.scrollBy({ left: 300, behavior: "smooth" });
-  };
+  // Duplico la lista per un loop infinito senza stacco.
+  const loop = [...photos, ...photos];
 
   return (
-    <section id="galleria" className="relative bg-paper py-6">
-      <div ref={stripRef} className="scrollbar-hide overflow-x-auto">
-        <div className="flex gap-3">
-          {photos.map((p, i) => (
-            <div
-              key={p.src}
-              className={`flex-shrink-0 ${i === 0 ? "ml-4" : ""} ${
-                i === photos.length - 1 ? "mr-4" : ""
-              }`}
-            >
-              <Image
-                src={p.src}
-                alt={p.alt}
-                width={400}
-                height={300}
-                sizes="(max-width: 768px) 280px, 340px"
-                className="aspect-[4/3] h-52 w-auto rounded-xl object-cover md:h-64"
-                priority={i < 2}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <button
-        type="button"
-        onClick={scrollRight}
-        aria-label="Scorri immagini a destra"
-        className="absolute right-4 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-white text-2xl leading-none text-deep-brown shadow-md transition hover:bg-cream"
+    <section
+      id="galleria"
+      className="relative overflow-hidden bg-paper py-6"
+      aria-label="Galleria fotografica di MiriAle Holiday House"
+    >
+      <motion.div
+        className="flex w-max gap-3"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          duration: photos.length * 4.5,
+          ease: "linear",
+          repeat: Infinity,
+        }}
       >
-        ›
-      </button>
+        {loop.map((p, i) => (
+          <div key={i} className="flex-shrink-0">
+            <Image
+              src={p.src}
+              alt={p.alt}
+              width={400}
+              height={300}
+              sizes="(max-width: 768px) 280px, 340px"
+              className="aspect-[4/3] h-52 w-auto rounded-xl object-cover md:h-64"
+              priority={i < 2}
+            />
+          </div>
+        ))}
+      </motion.div>
     </section>
   );
 }
@@ -509,47 +505,68 @@ function InfoCards() {
 function GliSpazi() {
   const ambienti = [
     {
-      nome: "Ingresso",
-      img: "/images/house/house-29.jpg",
-      alt: "Ingresso e giardino di MiriAle",
+      nome: "Ingresso & esterni",
+      sub: "Giardino e parcheggio",
+      imgs: [
+        { src: "/images/house/house-29.jpg", alt: "Giardino di MiriAle" },
+        { src: "/images/house/house-31.jpg", alt: "Giardino con sedute di MiriAle" },
+        { src: "/images/house/house-17.jpg", alt: "Area relax in giardino di MiriAle" },
+        { src: "/images/house/house-23.jpg", alt: "Ingresso di MiriAle" },
+      ],
       features: [
-        "Wi-Fi gratuito in tutta la casa",
-        "Aria condizionata e riscaldamento",
-        "Casa intera, solo per te",
+        "Giardino privato con sedute",
         "Parcheggio gratuito in loco",
+        "Casa intera, solo per te",
+        "Wi-Fi gratuito e aria condizionata",
       ],
     },
     {
       nome: "Cucina",
-      img: "/images/house/house-30.jpg",
-      alt: "Cucina di MiriAle",
+      sub: "Attrezzata",
+      imgs: [
+        { src: "/images/house/house-30.jpg", alt: "Cucina di MiriAle" },
+        { src: "/images/house/house-10.jpg", alt: "Angolo cottura di MiriAle" },
+        { src: "/images/house/house-32.jpg", alt: "Forno a microonde in cucina" },
+        { src: "/images/house/house-33.jpg", alt: "Bollitore e set caffè" },
+      ],
       features: [
-        "Zona cottura attrezzata",
+        "Forno, piano cottura e frigorifero",
+        "Microonde, bollitore e set caffè",
         "Lavatrice a disposizione",
-        "TV schermo piatto",
-        "Tavolo da pranzo per la famiglia",
+        "Tavolo da pranzo e TV",
       ],
     },
     {
-      nome: "Camera",
-      img: "/images/house/house-09.jpg",
-      alt: "Camera matrimoniale di MiriAle",
+      nome: "Camere",
+      sub: "3 matrimoniali",
+      imgs: [
+        { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale di MiriAle" },
+        { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale di MiriAle" },
+        { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale di MiriAle" },
+        { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale di MiriAle" },
+        { src: "/images/house/house-06.jpg", alt: "Camera matrimoniale di MiriAle" },
+      ],
       features: [
-        "Letti comodi e curati",
-        "Aria condizionata in stanza",
+        "3 camere matrimoniali",
+        "Biancheria curata e letti comodi",
+        "Aria condizionata in ogni camera",
+        "Armadio, comodini e alcune con balcone",
+      ],
+    },
+    {
+      nome: "Bagni",
+      sub: "2 bagni privati",
+      imgs: [
+        { src: "/images/house/house-11.jpg", alt: "Bagno di MiriAle" },
+        { src: "/images/house/house-12.jpg", alt: "Bagno di MiriAle" },
+        { src: "/images/house/house-24.jpg", alt: "Bagno di MiriAle" },
+        { src: "/images/house/house-20.jpg", alt: "Bagno di MiriAle" },
+      ],
+      features: [
+        "2 bagni privati con doccia",
         "Asciugacapelli incluso",
-        "Camere familiari disponibili",
-      ],
-    },
-    {
-      nome: "Bagno",
-      img: "/images/house/house-11.jpg",
-      alt: "Bagno di MiriAle",
-      features: [
-        "Bagno privato",
-        "Balcone e giardino accessibili",
+        "Set di cortesia",
         "Riscaldamento autonomo",
-        "Casa non fumatori",
       ],
     },
   ];
@@ -598,13 +615,16 @@ function GliSpazi() {
             viewport={{ once: true, amount: 0.05 }}
             className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm md:aspect-[16/11]"
           >
-            <Image
-              src="/images/house/house-28.jpg"
-              alt="Camera matrimoniale di MiriAle Holiday House"
-              fill
+            <ImageSlider
               priority
               sizes="(max-width: 768px) 100vw, 60vw"
-              className="object-cover"
+              images={[
+                { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale di MiriAle" },
+                { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale di MiriAle" },
+                { src: "/images/house/house-30.jpg", alt: "Cucina di MiriAle" },
+                { src: "/images/house/house-31.jpg", alt: "Giardino di MiriAle" },
+                { src: "/images/house/house-13.jpg", alt: "Terrazza di MiriAle" },
+              ]}
             />
           </motion.div>
         </div>
@@ -621,18 +641,20 @@ function GliSpazi() {
               className="overflow-hidden rounded-2xl border border-line-soft bg-paper shadow-sm transition hover:shadow-md"
             >
               <div className="relative aspect-[4/3]">
-                <Image
-                  src={a.img}
-                  alt={a.alt}
-                  fill
+                <ImageSlider
+                  images={a.imgs}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
                 />
               </div>
               <div className="p-5">
-                <h3 className="font-serif text-xl text-deep-brown">
-                  {a.nome}
-                </h3>
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="font-serif text-xl text-deep-brown">
+                    {a.nome}
+                  </h3>
+                  <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
+                    {a.sub}
+                  </span>
+                </div>
                 <ul className="mt-3 space-y-1.5">
                   {a.features.map((f) => (
                     <li
