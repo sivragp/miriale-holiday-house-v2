@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Surfaces */
-  --color-ivory: #f7f2e6;
-  --color-ivory-2: #f1ead9;
-  --color-cream: #ece4cc;
-  --color-cream-2: #e8debe;
-  --color-stone: #ddd2b3;
+  /* Surfaces — sabbia + cielo/mare (palette marittima) */
+  --color-ivory: #f4efe4;
+  --color-ivory-2: #ece4d3;
+  --color-cream: #e7eef1;
+  --color-cream-2: #d7e6eb;
+  --color-stone: #c3d6dc;
   --color-paper: #ffffff;
-  --color-bone: #faf6ec;
+  --color-bone: #f7f3ea;
 
-  /* Greens */
-  --color-olive: #6e7a4a;
-  --color-olive-2: #5a6440;
-  --color-olive-dark: #3b4524;
-  --color-olive-deep: #2a3219;
-  --color-olive-section: #424f2c;
-  --color-olive-section-2: #3a4628;
-  --color-footer: #161a0c;
+  /* "Greens" -> teal/navy del mare profondo */
+  --color-olive: #2f7388;
+  --color-olive-2: #285f72;
+  --color-olive-dark: #1d4a5a;
+  --color-olive-deep: #143a48;
+  --color-olive-section: #1f4f5e;
+  --color-olive-section-2: #19414e;
+  --color-footer: #0d2832;
 
-  /* Accents */
-  --color-gold: #b89968;
-  --color-gold-soft: #cdb285;
-  --color-gold-deep: #9a7f50;
-  --color-terracotta: #b96f4a;
+  /* Accents — azzurro mare + sabbia dorata */
+  --color-gold: #c2a069;
+  --color-gold-soft: #d4b888;
+  --color-gold-deep: #a6864f;
+  --color-terracotta: #2b7d9b;
   --color-wa: #25d366;
   --color-wa-dark: #1fb858;
 
-  /* Text */
-  --color-deep-brown: #1f1d15;
-  --color-warm-gray: #6e6857;
-  --color-line: #e2d9c0;
-  --color-line-soft: #ede4ce;
+  /* Text — navy/teal profondo + slate */
+  --color-deep-brown: #13313d;
+  --color-warm-gray: #586b72;
+  --color-line: #d8e2e5;
+  --color-line-soft: #e7eef0;
 
   --font-serif:
     var(--font-fraunces), "Fraunces", "Times New Roman", serif;

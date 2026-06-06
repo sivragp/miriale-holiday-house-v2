@@ -331,7 +331,7 @@ function ServiziInclusi() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.04, ease }}
                 viewport={{ once: true, amount: 0.05 }}
-                className="flex w-[140px] flex-shrink-0 flex-col rounded-xl border border-[#E5E0D8] bg-paper p-4 transition hover:shadow-md"
+                className="flex w-[140px] flex-shrink-0 flex-col rounded-xl border border-[#d8e2e5] bg-paper p-4 transition hover:shadow-md"
               >
                 <it.Icon className="mb-3 h-8 w-8 text-warm-gray" />
                 <div className="text-sm font-semibold leading-tight text-deep-brown">
@@ -382,7 +382,7 @@ function InfoCards() {
           <motion.article
             {...cardAnim(0)}
             className="flex h-[420px] flex-col overflow-hidden rounded-2xl text-white"
-            style={{ backgroundColor: "#2D4A2D" }}
+            style={{ backgroundColor: "#1d4a5a" }}
           >
             <div className="relative flex flex-1 flex-col p-5">
               <span
@@ -657,7 +657,7 @@ function GliSpazi() {
           <Link
             href="/la-casa"
             className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-white transition hover:opacity-90"
-            style={{ backgroundColor: "#2D4A2D" }}
+            style={{ backgroundColor: "#1d4a5a" }}
           >
             Vedi tutte le foto e i dettagli
           </Link>
@@ -748,7 +748,7 @@ function DoveSiamo() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#2D4A2D" }}
+                style={{ backgroundColor: "#1d4a5a" }}
               >
                 <I.pin className="h-4 w-4" />
                 Apri su Google Maps
@@ -775,7 +775,7 @@ function DoveSiamo() {
               {parcheggi.map((p) => (
                 <li
                   key={p.name}
-                  className="flex items-start gap-3 border-b border-[#E5E0D8] py-4"
+                  className="flex items-start gap-3 border-b border-[#d8e2e5] py-4"
                 >
                   <span
                     className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-full border-2 text-sm font-bold"
@@ -1125,7 +1125,7 @@ function Recensioni() {
             type="button"
             onClick={prev}
             aria-label="Recensione precedente"
-            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#E5E0D8] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
+            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#d8e2e5] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
           >
             <span className="-mt-0.5 text-2xl leading-none">‹</span>
           </button>
@@ -1138,7 +1138,7 @@ function Recensioni() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.05, ease }}
                 viewport={{ once: true, amount: 0.05 }}
-                className={`flex-1 rounded-2xl border border-[#E5E0D8] bg-paper p-6 shadow-sm ${
+                className={`flex-1 rounded-2xl border border-[#d8e2e5] bg-paper p-6 shadow-sm ${
                   i === 1 ? "hidden md:block" : ""
                 } ${i === 2 ? "hidden lg:block" : ""}`}
               >
@@ -1174,7 +1174,7 @@ function Recensioni() {
             type="button"
             onClick={next}
             aria-label="Recensione successiva"
-            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#E5E0D8] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
+            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#d8e2e5] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
           >
             <span className="-mt-0.5 text-2xl leading-none">›</span>
           </button>
@@ -1201,7 +1201,7 @@ function Regole() {
   return (
     <section className="bg-cream py-8">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-6 px-6">
-        <div className="flex-shrink-0 border-r border-[#E5E0D8] pr-6 leading-tight">
+        <div className="flex-shrink-0 border-r border-[#d8e2e5] pr-6 leading-tight">
           <div className="font-serif text-lg font-semibold text-deep-brown">
             Informazioni
           </div>
@@ -1235,7 +1235,7 @@ function Regole() {
 
 function ContactForm() {
   const fieldClass =
-    "mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50";
+    "mt-1 w-full border-b border-[#d8e2e5] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50";
   const labelClass =
     "text-[10px] uppercase tracking-[0.22em] text-warm-gray";
 
@@ -1274,7 +1274,7 @@ function ContactForm() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease }}
             viewport={{ once: true, amount: 0.05 }}
-            className="rounded-2xl border border-[#E5E0D8] bg-paper p-6 shadow-sm md:p-8"
+            className="rounded-2xl border border-[#d8e2e5] bg-paper p-6 shadow-sm md:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
@@ -1329,7 +1329,7 @@ function ContactForm() {
               <a
                 href={mailto}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#2D4A2D" }}
+                style={{ backgroundColor: "#1d4a5a" }}
               >
                 <I.mail className="h-4 w-4" />
                 Invia richiesta
@@ -1349,7 +1349,7 @@ function ContactForm() {
               href={waLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+              className="flex items-center gap-4 rounded-2xl border border-[#d8e2e5] bg-paper p-5 shadow-sm transition hover:shadow-md"
             >
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
                 <I.whatsapp className="h-5 w-5" />
@@ -1365,7 +1365,7 @@ function ContactForm() {
             </a>
             <a
               href={mailto}
-              className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+              className="flex items-center gap-4 rounded-2xl border border-[#d8e2e5] bg-paper p-5 shadow-sm transition hover:shadow-md"
             >
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
                 <I.mail className="h-5 w-5" />
@@ -1379,7 +1379,7 @@ function ContactForm() {
                 </div>
               </div>
             </a>
-            <div className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm">
+            <div className="flex items-center gap-4 rounded-2xl border border-[#d8e2e5] bg-paper p-5 shadow-sm">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
                 <I.pin className="h-5 w-5" />
               </span>

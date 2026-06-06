@@ -119,7 +119,7 @@ export default function LaFamigliaPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            style={{ backgroundColor: "#2D4A2D" }}
+            style={{ backgroundColor: "#1d4a5a" }}
           >
             <I.whatsapp className="h-4 w-4" />
             Scrivici su WhatsApp
@@ -172,7 +172,7 @@ export default function LaFamigliaPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            style={{ backgroundColor: "#2D4A2D" }}
+            style={{ backgroundColor: "#1d4a5a" }}
           >
             <I.whatsapp className="h-4 w-4" />
             Scrivici su WhatsApp

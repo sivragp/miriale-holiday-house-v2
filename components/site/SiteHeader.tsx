@@ -39,7 +39,7 @@ export default function SiteHeader() {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
-          style={{ backgroundColor: "#2D4A2D" }}
+          style={{ backgroundColor: "#1d4a5a" }}
         >
           <I.whatsapp className="h-4 w-4" />
           WhatsApp

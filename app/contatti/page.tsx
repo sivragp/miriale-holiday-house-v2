@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 const fieldClass =
-  "mt-1 w-full border-b border-[#E5E0D8] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50";
+  "mt-1 w-full border-b border-[#d8e2e5] bg-transparent py-2 text-sm text-deep-brown outline-none transition focus:border-deep-brown placeholder:text-warm-gray/50";
 const labelClass = "text-[10px] uppercase tracking-[0.22em] text-warm-gray";
 
 export default function ContattiPage() {
@@ -51,7 +51,7 @@ export default function ContattiPage() {
             href={waLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+            className="flex items-center gap-4 rounded-2xl border border-[#d8e2e5] bg-paper p-5 shadow-sm transition hover:shadow-md"
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
               <I.whatsapp className="h-5 w-5" />
@@ -65,7 +65,7 @@ export default function ContattiPage() {
           </a>
           <a
             href={telLink}
-            className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+            className="flex items-center gap-4 rounded-2xl border border-[#d8e2e5] bg-paper p-5 shadow-sm transition hover:shadow-md"
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
               <I.phone className="h-5 w-5" />
@@ -79,7 +79,7 @@ export default function ContattiPage() {
           </a>
           <a
             href={mailto}
-            className="flex items-center gap-4 rounded-2xl border border-[#E5E0D8] bg-paper p-5 shadow-sm transition hover:shadow-md"
+            className="flex items-center gap-4 rounded-2xl border border-[#d8e2e5] bg-paper p-5 shadow-sm transition hover:shadow-md"
           >
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-olive">
               <I.mail className="h-5 w-5" />
@@ -112,7 +112,7 @@ export default function ContattiPage() {
             Più dettagli ci dai, più precisa è la risposta del proprietario.
           </p>
 
-          <form className="mt-8 rounded-2xl border border-[#E5E0D8] bg-ivory p-6 shadow-sm md:p-8">
+          <form className="mt-8 rounded-2xl border border-[#d8e2e5] bg-ivory p-6 shadow-sm md:p-8">
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className={labelClass}>Nome *</label>
@@ -179,7 +179,7 @@ export default function ContattiPage() {
               <a
                 href={mailto}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#2D4A2D" }}
+                style={{ backgroundColor: "#1d4a5a" }}
               >
                 <I.mail className="h-4 w-4" />
                 Invia richiesta

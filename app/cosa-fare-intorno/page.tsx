@@ -112,7 +112,7 @@ export default function CosaFareIntornoPage() {
           <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
             Dove andiamo noi.
           </h2>
-          <ul className="mt-8 divide-y divide-[#E5E0D8]">
+          <ul className="mt-8 divide-y divide-[#d8e2e5]">
             {ristoranti.map((r) => (
               <li key={r.nome} className="flex gap-4 py-4">
                 <span className="mt-0.5 shrink-0 rounded-full bg-cream px-3 py-1 text-xs font-medium text-olive-dark">
@@ -219,7 +219,7 @@ export default function CosaFareIntornoPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            style={{ backgroundColor: "#2D4A2D" }}
+            style={{ backgroundColor: "#1d4a5a" }}
           >
             <I.whatsapp className="h-4 w-4" />
             Scrivici su WhatsApp
