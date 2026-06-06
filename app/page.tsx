@@ -6,14 +6,20 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageSlider from "@/components/site/ImageSlider";
 import {
+  Bath,
+  BedDouble,
   CigaretteOff,
   Clock,
   LogOut,
   MoonStar,
   PartyPopper,
   PawPrint,
+  Plane,
   ShieldCheck,
   Tag,
+  Train,
+  TreePine,
+  Users,
 } from "lucide-react";
 import {
   ADDRESS_LINE_1,
@@ -34,10 +40,12 @@ import {
 
 function HeroImage() {
   const chips = [
-    { Icon: I.pin, label: "Vicina a Fiumicino" },
-    { Icon: I.key, label: "Casa intera" },
-    { Icon: I.wifi, label: "Wi-Fi e parcheggio" },
-    { Icon: I.whatsapp, label: "Contatto diretto" },
+    { Icon: Users, label: "Fino a 6 ospiti" },
+    { Icon: BedDouble, label: "3 camere matrimoniali" },
+    { Icon: Bath, label: "2 bagni" },
+    { Icon: TreePine, label: "Giardino e parcheggio" },
+    { Icon: Plane, label: "Aeroporto 10 min" },
+    { Icon: Train, label: "Roma 32 min in treno" },
   ];
 
   return (
@@ -67,19 +75,19 @@ function HeroImage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease }}
-            className="font-serif text-7xl font-light leading-none text-white md:text-8xl"
+            className="font-serif text-6xl font-light leading-none text-white md:text-8xl"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
           >
-            Atterra. Respira.
+            Casa intera a Fiumicino.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5, ease }}
-            className="mt-2 font-serif text-4xl font-light text-white/90 md:text-5xl"
+            className="mt-2 font-serif text-3xl font-light text-white/90 md:text-5xl"
             style={{ textShadow: "0 2px 16px rgba(0,0,0,0.3)" }}
           >
-            Sei già a casa.
+            A 10 minuti dall&apos;aeroporto.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -88,9 +96,9 @@ function HeroImage() {
             className="mt-4 max-w-md text-lg leading-relaxed text-white/80"
             style={{ textShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
           >
-            A pochi minuti dall&apos;aeroporto di Fiumicino, MiriAle Holiday
-            House è una casa accogliente per chi viaggia, riparte o vuole
-            vivere Roma e il litorale con più libertà.
+            Tre camere matrimoniali, due bagni e fino a 6 ospiti. Giardino e
+            parcheggio gratuito, Roma a 32 minuti di treno e il mare a pochi
+            minuti.
           </motion.p>
 
           <motion.div
@@ -499,75 +507,85 @@ function InfoCards() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  GliSpazi (id="spazi") — 4 ambienti immersivi full-bleed                   */
+/*  GliSpazi (id="spazi") — tour stanza per stanza con slider per ambiente    */
 /* -------------------------------------------------------------------------- */
 
 function GliSpazi() {
-  const ambienti = [
+  const stanze = [
     {
-      nome: "Ingresso & esterni",
-      sub: "Giardino e parcheggio",
+      nome: "Soggiorno e cucina",
+      tag: "Zona giorno",
+      descr:
+        "La zona giorno con angolo cottura attrezzato: forno, piano cottura, frigorifero, microonde, bollitore e set caffè. Tavolo da pranzo, TV e lavatrice. Lo spazio dove ci si ritrova, si cucina e si fa colazione.",
       imgs: [
-        { src: "/images/house/house-29.jpg", alt: "Giardino di MiriAle" },
-        { src: "/images/house/house-31.jpg", alt: "Giardino con sedute di MiriAle" },
-        { src: "/images/house/house-17.jpg", alt: "Area relax in giardino di MiriAle" },
-        { src: "/images/house/house-23.jpg", alt: "Ingresso di MiriAle" },
-      ],
-      features: [
-        "Giardino privato con sedute",
-        "Parcheggio gratuito in loco",
-        "Casa intera, solo per te",
-        "Wi-Fi gratuito e aria condizionata",
-      ],
-    },
-    {
-      nome: "Cucina",
-      sub: "Attrezzata",
-      imgs: [
+        { src: "/images/house/house-02.jpg", alt: "Soggiorno di MiriAle" },
         { src: "/images/house/house-30.jpg", alt: "Cucina di MiriAle" },
         { src: "/images/house/house-10.jpg", alt: "Angolo cottura di MiriAle" },
-        { src: "/images/house/house-32.jpg", alt: "Forno a microonde in cucina" },
+        { src: "/images/house/house-32.jpg", alt: "Forno a microonde" },
         { src: "/images/house/house-33.jpg", alt: "Bollitore e set caffè" },
       ],
-      features: [
-        "Forno, piano cottura e frigorifero",
-        "Microonde, bollitore e set caffè",
-        "Lavatrice a disposizione",
-        "Tavolo da pranzo e TV",
-      ],
+      dotazioni: ["Cucina attrezzata", "Lavatrice", "TV", "Tavolo da pranzo"],
     },
     {
-      nome: "Camere",
-      sub: "3 matrimoniali",
+      nome: "Camera matrimoniale",
+      tag: "Parete decorativa",
+      descr:
+        "Letto matrimoniale, parete decorativa e affaccio sul balcone. Aria condizionata, armadio e comodini; biancheria curata e asciugamani inclusi.",
       imgs: [
-        { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale di MiriAle" },
-        { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale di MiriAle" },
-        { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale di MiriAle" },
-        { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale di MiriAle" },
-        { src: "/images/house/house-06.jpg", alt: "Camera matrimoniale di MiriAle" },
+        { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale con parete decorativa" },
+        { src: "/images/house/house-34.jpg", alt: "Camera matrimoniale con parete decorativa" },
       ],
-      features: [
-        "3 camere matrimoniali",
-        "Biancheria curata e letti comodi",
-        "Aria condizionata in ogni camera",
-        "Armadio, comodini e alcune con balcone",
-      ],
+      dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio", "Balcone"],
     },
     {
-      nome: "Bagni",
-      sub: "2 bagni privati",
+      nome: "Camera matrimoniale",
+      tag: "Toni caldi",
+      descr:
+        "Una seconda matrimoniale luminosa e tranquilla, dai toni caldi. Aria condizionata, armadio e comodini; biancheria e asciugamani inclusi.",
       imgs: [
-        { src: "/images/house/house-11.jpg", alt: "Bagno di MiriAle" },
-        { src: "/images/house/house-12.jpg", alt: "Bagno di MiriAle" },
-        { src: "/images/house/house-24.jpg", alt: "Bagno di MiriAle" },
-        { src: "/images/house/house-20.jpg", alt: "Bagno di MiriAle" },
+        { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale" },
+        { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale" },
       ],
-      features: [
-        "2 bagni privati con doccia",
-        "Asciugacapelli incluso",
-        "Set di cortesia",
-        "Riscaldamento autonomo",
+      dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio", "Luminosa"],
+    },
+    {
+      nome: "Camera matrimoniale",
+      tag: "Mansardata",
+      descr:
+        "La matrimoniale mansardata, raccolta e silenziosa sotto il tetto. Aria condizionata e affaccio: perfetta per chi cerca riposo vero.",
+      imgs: [
+        { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale mansardata" },
+        { src: "/images/house/house-37.jpg", alt: "Camera matrimoniale mansardata" },
       ],
+      dotazioni: ["Letto matrimoniale", "Aria condizionata", "Mansarda", "Affaccio"],
+    },
+    {
+      nome: "I due bagni",
+      tag: "2 bagni privati",
+      descr:
+        "Due bagni a disposizione: uno moderno rivestito in marmo e uno più classico. Entrambi con doccia, asciugacapelli e set di cortesia.",
+      imgs: [
+        { src: "/images/house/house-11.jpg", alt: "Bagno moderno in marmo" },
+        { src: "/images/house/house-12.jpg", alt: "Bagno moderno in marmo" },
+        { src: "/images/house/house-20.jpg", alt: "Bagno moderno in marmo" },
+        { src: "/images/house/house-35.jpg", alt: "Secondo bagno" },
+        { src: "/images/house/house-36.jpg", alt: "Secondo bagno" },
+      ],
+      dotazioni: ["2 bagni con doccia", "Asciugacapelli", "Set di cortesia", "Acqua calda"],
+    },
+    {
+      nome: "Giardino e spazi esterni",
+      tag: "Outdoor",
+      descr:
+        "Giardino privato con sedute, balcone e terrazza per la colazione all'aperto. Parcheggio gratuito in loco: arrivi, lasci l'auto e sei a casa.",
+      imgs: [
+        { src: "/images/house/house-29.jpg", alt: "Giardino di MiriAle" },
+        { src: "/images/house/house-31.jpg", alt: "Giardino con sedute" },
+        { src: "/images/house/house-17.jpg", alt: "Area relax in giardino" },
+        { src: "/images/house/house-13.jpg", alt: "Terrazza di MiriAle" },
+        { src: "/images/house/house-22.jpg", alt: "Terrazza con vista" },
+      ],
+      dotazioni: ["Giardino privato", "Terrazza e balcone", "Parcheggio gratuito", "Colazione all'aperto"],
     },
   ];
 
@@ -577,92 +595,56 @@ function GliSpazi() {
       className="border-b border-line-soft bg-ivory py-20 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
-        {/* Intro: testo a sinistra, immagine grande a destra */}
-        <div className="grid items-center gap-10 md:grid-cols-[0.82fr_1.18fr] md:gap-14">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            viewport={{ once: true, amount: 0.05 }}
-          >
-            <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
-              Entra nella casa
-            </div>
-            <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-              Uno spazio pensato per chi viaggia.
-            </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-warm-gray">
-              Raccontati senza fretta: 3 camere matrimoniali e 2 bagni, fino a
-              6 ospiti.
-            </p>
-            <ul className="mt-7 space-y-3">
-              {ambienti.map((a) => (
-                <li
-                  key={a.nome}
-                  className="flex items-center gap-3 text-sm text-deep-brown"
-                >
-                  <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracotta" />
-                  {a.nome}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease }}
-            viewport={{ once: true, amount: 0.05 }}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm md:aspect-[16/11]"
-          >
-            <ImageSlider
-              priority
-              sizes="(max-width: 768px) 100vw, 60vw"
-              images={[
-                { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale di MiriAle" },
-                { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale di MiriAle" },
-                { src: "/images/house/house-30.jpg", alt: "Cucina di MiriAle" },
-                { src: "/images/house/house-31.jpg", alt: "Giardino di MiriAle" },
-                { src: "/images/house/house-13.jpg", alt: "Terrazza di MiriAle" },
-              ]}
-            />
-          </motion.div>
+        <div className="max-w-2xl">
+          <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+            Entra nella casa
+          </div>
+          <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
+            La casa, stanza per stanza.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-warm-gray">
+            Tre camere matrimoniali, due bagni, soggiorno con cucina e giardino:
+            fino a 6 ospiti in una casa intera, tutta per te. Ogni ambiente, da
+            ogni angolo.
+          </p>
         </div>
 
-        {/* Griglia ambienti */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {ambienti.map((a, i) => (
+        <div className="mt-14 space-y-16 md:space-y-20">
+          {stanze.map((s, i) => (
             <motion.article
-              key={a.nome}
-              initial={{ opacity: 0, y: 16 }}
+              key={s.nome + s.tag}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              viewport={{ once: true, amount: 0.05 }}
-              className="overflow-hidden rounded-2xl border border-line-soft bg-paper shadow-sm transition hover:shadow-md"
+              transition={{ duration: 0.6, ease }}
+              viewport={{ once: true, amount: 0.15 }}
+              className={`grid items-center gap-8 md:grid-cols-2 md:gap-12 ${
+                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+              }`}
             >
-              <div className="relative aspect-[4/3]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
                 <ImageSlider
-                  images={a.imgs}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  images={s.imgs}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-              <div className="p-5">
-                <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="font-serif text-xl text-deep-brown">
-                    {a.nome}
-                  </h3>
-                  <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
-                    {a.sub}
-                  </span>
-                </div>
-                <ul className="mt-3 space-y-1.5">
-                  {a.features.map((f) => (
+              <div>
+                <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
+                  {s.tag}
+                </span>
+                <h3 className="mt-2 font-serif text-2xl font-light text-deep-brown md:text-3xl">
+                  {s.nome}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-warm-gray">
+                  {s.descr}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {s.dotazioni.map((d) => (
                     <li
-                      key={f}
-                      className="flex items-start gap-2 text-sm leading-relaxed text-warm-gray"
+                      key={d}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
                     >
-                      <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-terracotta" />
-                      {f}
+                      <span className="h-1 w-1 rounded-full bg-terracotta" />
+                      {d}
                     </li>
                   ))}
                 </ul>
@@ -671,14 +653,13 @@ function GliSpazi() {
           ))}
         </div>
 
-        {/* CTA centrato */}
-        <div className="mt-14 flex justify-center">
+        <div className="mt-16 flex justify-center">
           <Link
             href="/la-casa"
             className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-white transition hover:opacity-90"
             style={{ backgroundColor: "#2D4A2D" }}
           >
-            Scopri la casa nel dettaglio
+            Vedi tutte le foto e i dettagli
           </Link>
         </div>
       </div>
