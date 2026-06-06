@@ -848,102 +848,101 @@ function DoveSiamo() {
 /* -------------------------------------------------------------------------- */
 
 function Dintorni() {
-  // PLACEHOLDER: img punta a foto della casa esistenti.
   const borghi = [
     {
-      id: "spoleto",
-      nome: "Spoleto",
-      km: "20 km · 25 min",
-      img: "/images/trevi-dall-alto-verso-casa.webp",
+      id: "aeroporto",
+      nome: "Aeroporto di Fiumicino",
+      km: "~10 min · 4 km",
+      img: "/images/aereo-aeroporto.jpg",
       cosa_vedere: [
-        "Duomo di Spoleto",
-        "Rocca Albornoziana",
-        "Ponte delle Torri",
-        "Teatro Romano",
+        "Aeroporto Leonardo da Vinci (FCO)",
+        "A pochi minuti dalla casa",
+        "Stazione treni in aeroporto",
+        "Parcheggio gratuito alla casa",
       ],
       attivita: [
-        "Festival dei Due Mondi (giugno-luglio)",
-        "Trekking sulla Via di Francesco",
-        "Degustazione vini Sagrantino",
-        "Mercato settimanale del venerdì",
+        "Voli all'alba o arrivi serali senza stress",
+        "Transfer su richiesta con il proprietario",
+        "Navetta aeroporto a pagamento",
+        "Deposito bagagli prima/dopo il volo",
       ],
-      desc: "Città d'arte e cultura, famosa per il Festival dei Due Mondi. Centro medievale intatto con monumenti romani e romanici.",
+      desc: "L'aeroporto Leonardo da Vinci è a circa 10 minuti: ideale per voli presto la mattina o arrivi in tarda serata. Su richiesta, il proprietario organizza il transfer.",
     },
     {
-      id: "assisi",
-      nome: "Assisi",
-      km: "34 km · 40 min",
-      img: "/images/vicolo-medievale.webp",
+      id: "mare",
+      nome: "Mare e spiagge",
+      km: "da ~10 min",
+      img: "/images/base-roma-mare.jpg",
       cosa_vedere: [
-        "Basilica di San Francesco",
-        "Rocca Maggiore",
-        "Tempio di Minerva",
-        "Eremo delle Carceri",
+        "Spiaggia di Fregene",
+        "Focene e Maccarese",
+        "Lungomare della Salute",
+        "Tramonti sul Tirreno",
       ],
       attivita: [
-        "Pellegrinaggio e spiritualità",
-        "Calendimaggio (maggio)",
-        "Trekking sul Monte Subasio",
-        "Olio extravergine umbro",
+        "Giornata in spiaggia",
+        "Aperitivo al tramonto",
+        "Stabilimenti e chalet storici",
+        "Passeggiate sul lungomare",
       ],
-      desc: "Patrimonio UNESCO, città natale di San Francesco. Uno dei borghi più visitati d'Italia, tra fede, arte e panorami mozzafiato.",
+      desc: "Il litorale romano a pochi minuti: Focene e Fregene, con i loro chalet e i tramonti sul mare, sono tra le mete preferite dai romani.",
     },
     {
-      id: "montefalco",
-      nome: "Montefalco",
-      km: "12 km · 15 min",
-      img: "/images/trevi-panorama.webp",
+      id: "roma",
+      nome: "Roma",
+      km: "~30 km · treno 32 min",
+      img: "",
       cosa_vedere: [
-        "Museo di San Francesco",
-        "Torre Comunale",
-        "Mura medievali",
-        "Belvedere panoramico",
+        "Colosseo e Fori Imperiali",
+        "Pantheon e Fontana di Trevi",
+        "Basilica di San Pietro",
+        "Trastevere",
       ],
       attivita: [
-        "Degustazione Sagrantino DOCG",
-        "Vendemmia (settembre)",
-        "Passeggio sul Corso Mameli",
-        "Cantine e wine tour",
+        "Roma in giornata col Leonardo Express",
+        "Musei Vaticani",
+        "Cena nel centro storico",
+        "Shopping in via del Corso",
       ],
-      desc: "La «Ringhiera dell'Umbria» per il panorama a 360°. Capitale del Sagrantino, uno dei vini rossi più potenti d'Italia.",
+      desc: "La Città Eterna è a mezz'ora: il Leonardo Express collega l'aeroporto di Fiumicino a Roma Termini in circa 32 minuti, senza pensare all'auto.",
     },
     {
-      id: "spello",
-      nome: "Spello",
-      km: "18 km · 20 min",
-      img: "/images/trevi-dall-alto-verso-casa2.webp",
+      id: "ostia-antica",
+      nome: "Ostia Antica",
+      km: "~20 min in auto",
+      img: "",
       cosa_vedere: [
-        "Infiorate (Corpus Domini)",
-        "Cappella Baglioni",
-        "Porta Venere romana",
-        "Pinacoteca civica",
+        "Teatro romano",
+        "Terme di Nettuno",
+        "Domus e mosaici",
+        "Decumano Massimo",
       ],
       attivita: [
-        "Infiorata di Spello (giugno)",
-        "Trekking verso Collepino",
-        "Degustazione olio DOP",
-        "Ceramiche artigianali",
+        "Visita al parco archeologico",
+        "Gita culturale di mezza giornata",
+        "Trenino Roma–Lido",
+        "Picnic nel verde",
       ],
-      desc: "Uno dei borghi più belli d'Italia. Famoso per le Infiorate di Corpus Domini e le sue strade fiorite tutto l'anno.",
+      desc: "Uno dei siti archeologici meglio conservati d'Italia: l'antica città portuale di Roma, a due passi. Bastano 2–3 ore per il percorso principale.",
     },
     {
-      id: "foligno",
-      nome: "Foligno",
-      km: "12 km · 15 min",
-      img: "/images/foto-finestre-verso-salottino-fuori.webp",
+      id: "porto-fiumicino",
+      nome: "Porto di Fiumicino",
+      km: "~10 min",
+      img: "",
       cosa_vedere: [
-        "Duomo di Foligno",
-        "Palazzo Trinci",
-        "Museo Diocesano",
-        "Centro storico",
+        "Porto-canale",
+        "Lungomare e faro",
+        "Mercato del pesce",
+        "Necropoli di Porto",
       ],
       attivita: [
-        "Giostra della Quintana (giugno e settembre)",
-        "Mercato dell'antiquariato",
-        "Ristorazione tipica umbra",
-        "Ciclovia del Clitunno",
+        "Cena di pesce fresco",
+        "Passeggiata sul porto",
+        "Aperitivo vista mare",
+        "Gita in barca",
       ],
-      desc: "Vivace città di pianura, cuore commerciale dell'Umbria. La Giostra della Quintana è tra le rievocazioni medievali più spettacolari d'Italia.",
+      desc: "Fiumicino è famosa per il pesce: lungo il porto-canale trovi alcune delle migliori tavole di mare della zona.",
     },
   ];
 
@@ -954,13 +953,12 @@ function Dintorni() {
 
   return (
     <section id="dintorni" className="bg-paper py-16">
-      {/* TODO MiriAle: sezione "Scopri l'Umbria" lasciata invariata su richiesta del cliente — contenuti (borghi, immagini, accordion) da sostituire in un secondo momento */}
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="font-serif text-3xl font-light text-deep-brown">
-          Scopri l&apos;Umbria
+          Cosa c&apos;è intorno
         </h2>
         <p className="mt-1 text-sm text-warm-gray/65">
-          Borghi, arte e natura a pochi minuti da Trevi.
+          Aeroporto, mare e Roma: tutto a portata di soggiorno.
         </p>
 
         <div className="scrollbar-hide mt-8 overflow-x-auto">
@@ -982,13 +980,15 @@ function Dintorni() {
                       "linear-gradient(135deg, var(--color-cream-2) 0%, var(--color-stone) 100%)",
                   }}
                 />
-                <Image
-                  src={b.img}
-                  alt={b.nome}
-                  fill
-                  sizes="(max-width: 768px) 224px, 256px"
-                  className="object-cover"
-                />
+                {b.img && (
+                  <Image
+                    src={b.img}
+                    alt={b.nome}
+                    fill
+                    sizes="(max-width: 768px) 224px, 256px"
+                    className="object-cover"
+                  />
+                )}
 
                 {/* Overlay scuro dal basso */}
                 <div

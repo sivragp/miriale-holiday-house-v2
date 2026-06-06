@@ -64,7 +64,7 @@ export default function CosaFareIntornoPage() {
     <main className="flex-1">
       <PageHero
         eyebrow="Cosa fare intorno"
-        title="Roma, mare, borghi. A portata di soggiorno."
+        title="Roma, mare e buona tavola. A portata di soggiorno."
         lead="Posizione strategica, raccontata da chi ci vive. Itinerari, spiagge e tavole da prendere appunti."
         image={{
           // TODO MiriAle: in futuro foto ambientale litorale/Roma. Per ora foto reale con vista sul territorio.
