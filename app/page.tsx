@@ -10,6 +10,7 @@ import {
   BedDouble,
   CigaretteOff,
   Clock,
+  Home as HomeIcon,
   LogOut,
   MoonStar,
   PartyPopper,
@@ -18,7 +19,6 @@ import {
   ShieldCheck,
   Tag,
   Train,
-  TreePine,
   Users,
 } from "lucide-react";
 import {
@@ -40,10 +40,10 @@ import {
 
 function HeroImage() {
   const chips = [
-    { Icon: Users, label: "Fino a 6 ospiti" },
-    { Icon: BedDouble, label: "3 camere matrimoniali" },
+    { Icon: HomeIcon, label: "2 appartamenti" },
+    { Icon: Users, label: "Fino a 8 ospiti" },
+    { Icon: BedDouble, label: "4 camere" },
     { Icon: Bath, label: "2 bagni" },
-    { Icon: TreePine, label: "Giardino e parcheggio" },
     { Icon: Plane, label: "Aeroporto 10 min" },
     { Icon: Train, label: "Roma 32 min in treno" },
   ];
@@ -78,7 +78,7 @@ function HeroImage() {
             className="font-serif text-6xl font-light leading-none text-white md:text-8xl"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
           >
-            Casa intera a Fiumicino.
+            Due appartamenti a Fiumicino.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -96,9 +96,10 @@ function HeroImage() {
             className="mt-4 max-w-md text-lg leading-relaxed text-white/80"
             style={{ textShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
           >
-            Tre camere matrimoniali, due bagni e fino a 6 ospiti. Giardino e
-            parcheggio gratuito, Roma a 32 minuti di treno e il mare a pochi
-            minuti.
+            Due appartamenti indipendenti (75 e 55 m²), da prenotare
+            singolarmente o insieme come casa intera: fino a 4 camere, 2 bagni e
+            8 ospiti. Giardino e parcheggio gratuito, Roma a 32 minuti di treno
+            e il mare a pochi minuti.
           </motion.p>
 
           <motion.div

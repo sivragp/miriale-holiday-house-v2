@@ -19,11 +19,17 @@ export default function BookingWidget({
 }: {
   className?: string;
 }) {
+  const soluzioni = [
+    "Tutta la casa",
+    "Appartamento 1 (75 m²)",
+    "Appartamento 2 (55 m²)",
+  ];
+  const [tipo, setTipo] = useState(soluzioni[0]);
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [ospiti, setOspiti] = useState(2);
 
-  const frasi = ["Ciao! Vorrei prenotare MiriAle"];
+  const frasi = [`Ciao! Vorrei prenotare MiriAle — ${tipo}`];
   if (checkin && checkout) frasi.push(`dal ${fmtData(checkin)} al ${fmtData(checkout)}`);
   else if (checkin) frasi.push(`a partire dal ${fmtData(checkin)}`);
   frasi.push(`per ${ospiti} ${ospiti === 1 ? "ospite" : "ospiti"}.`);
@@ -46,7 +52,24 @@ export default function BookingWidget({
         </span>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-2.5">
+      <label className="mt-4 block">
+        <span className="text-xs font-medium uppercase tracking-wide text-warm-gray">
+          Soluzione
+        </span>
+        <select
+          value={tipo}
+          onChange={(e) => setTipo(e.target.value)}
+          className={campo}
+        >
+          {soluzioni.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <div className="mt-2.5 grid grid-cols-2 gap-2.5">
         <label className="block">
           <span className="text-xs font-medium uppercase tracking-wide text-warm-gray">
             Check-in
@@ -81,7 +104,7 @@ export default function BookingWidget({
           onChange={(e) => setOspiti(Number(e.target.value))}
           className={campo}
         >
-          {[1, 2, 3, 4, 5, 6].map((n) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
             <option key={n} value={n}>
               {n} {n === 1 ? "ospite" : "ospiti"}
             </option>
