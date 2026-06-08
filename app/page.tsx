@@ -512,83 +512,130 @@ function InfoCards() {
 /* -------------------------------------------------------------------------- */
 
 function GliSpazi() {
-  const stanze = [
+  const appartamenti = [
     {
-      nome: "Soggiorno e cucina",
-      tag: "Zona giorno",
-      descr:
-        "La zona giorno con angolo cottura attrezzato: forno, piano cottura, frigorifero, microonde, bollitore e set caffè. Tavolo da pranzo, TV e lavatrice. Lo spazio dove ci si ritrova, si cucina e si fa colazione.",
-      imgs: [
-        { src: "/images/house/house-02.jpg", alt: "Soggiorno di MiriAle" },
-        { src: "/images/house/house-30.jpg", alt: "Cucina di MiriAle" },
-        { src: "/images/house/house-10.jpg", alt: "Angolo cottura di MiriAle" },
-        { src: "/images/house/house-32.jpg", alt: "Forno a microonde" },
-        { src: "/images/house/house-33.jpg", alt: "Bollitore e set caffè" },
+      nome: "Appartamento 1",
+      mq: "75 m²",
+      sintesi:
+        "Il più ampio: soggiorno, cucina in legno, due camere matrimoniali e un bagno. Fino a 4 ospiti.",
+      stanze: [
+        {
+          nome: "Soggiorno e cucina",
+          tag: "Zona giorno",
+          descr:
+            "Salotto con divano e TV a schermo piatto, aperto sulla cucina in legno. Si cucina davvero: forno, piano cottura, frigorifero, microonde, bollitore e moka per il caffè. Tavolo da pranzo, stoviglie e pentole; lavatrice a disposizione.",
+          imgs: [
+            { src: "/images/house/house-02.jpg", alt: "Soggiorno dell'Appartamento 1" },
+            { src: "/images/house/house-10.jpg", alt: "Cucina in legno" },
+            { src: "/images/house/house-30.jpg", alt: "Cucina e zona pranzo" },
+          ],
+          dotazioni: ["Divano e TV", "Forno e piano cottura", "Frigorifero", "Microonde", "Bollitore e moka", "Lavatrice", "Stoviglie e pentole", "Tavolo da pranzo"],
+        },
+        {
+          nome: "Camera matrimoniale",
+          tag: "Parete decorativa",
+          descr:
+            "Letto matrimoniale con parete decorativa e affaccio sul balcone. Aria condizionata e riscaldamento, armadio e comodini; lenzuola e asciugamani inclusi.",
+          imgs: [
+            { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale con parete decorativa" },
+            { src: "/images/house/house-34.jpg", alt: "Camera matrimoniale con parete decorativa" },
+          ],
+          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio e comodini", "Balcone", "Biancheria inclusa"],
+        },
+        {
+          nome: "Camera matrimoniale",
+          tag: "Toni caldi",
+          descr:
+            "Seconda matrimoniale, luminosa e tranquilla, con pavimento in cotto. Aria condizionata e riscaldamento, armadio e comodini; lenzuola e asciugamani inclusi.",
+          imgs: [
+            { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale" },
+            { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale" },
+          ],
+          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio e comodini", "Biancheria inclusa"],
+        },
+        {
+          nome: "Bagno",
+          tag: "Classico",
+          descr:
+            "Bagno privato con doccia, rivestito in tono caldo. Phon, asciugamani e set di cortesia inclusi; acqua calda e riscaldamento.",
+          imgs: [
+            { src: "/images/house/house-35.jpg", alt: "Bagno classico" },
+            { src: "/images/house/house-36.jpg", alt: "Bagno classico, doccia" },
+          ],
+          dotazioni: ["Doccia", "Phon", "Asciugamani inclusi", "Set di cortesia", "Acqua calda"],
+        },
       ],
-      dotazioni: ["Cucina attrezzata", "Lavatrice", "TV", "Tavolo da pranzo"],
     },
     {
-      nome: "Camera matrimoniale",
-      tag: "Parete decorativa",
-      descr:
-        "Letto matrimoniale, parete decorativa e affaccio sul balcone. Aria condizionata, armadio e comodini; biancheria curata e asciugamani inclusi.",
-      imgs: [
-        { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale con parete decorativa" },
-        { src: "/images/house/house-34.jpg", alt: "Camera matrimoniale con parete decorativa" },
+      nome: "Appartamento 2",
+      mq: "55 m²",
+      sintesi:
+        "Mansardato e raccolto: cucina attrezzata, due camere matrimoniali sotto il tetto e un bagno moderno in marmo. Fino a 4 ospiti.",
+      stanze: [
+        {
+          nome: "Cucina e zona pranzo",
+          tag: "Attrezzata",
+          descr:
+            "Angolo cottura moderno con tutto il necessario: piano cottura, frigorifero, microonde, bollitore e moka. Stoviglie, pentole e tavolo da pranzo. Perfetta per una cena veloce o la colazione prima del volo.",
+          imgs: [
+            { src: "/images/house/house-38.jpg", alt: "Cucina dell'Appartamento 2" },
+            { src: "/images/house/house-32.jpg", alt: "Forno a microonde" },
+            { src: "/images/house/house-33.jpg", alt: "Bollitore e moka" },
+          ],
+          dotazioni: ["Piano cottura", "Frigorifero", "Microonde", "Bollitore e moka", "Stoviglie e pentole", "Tavolo da pranzo"],
+        },
+        {
+          nome: "Camera matrimoniale",
+          tag: "Mansardata · rosa",
+          descr:
+            "Matrimoniale mansardata dai toni caldi, con parete effetto pietra e soffitto spiovente. Aria condizionata e armadio; lenzuola e asciugamani inclusi. (Soffitto basso su un lato: tienine conto se sei molto alto.)",
+          imgs: [
+            { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale mansardata" },
+            { src: "/images/house/house-37.jpg", alt: "Camera matrimoniale mansardata" },
+          ],
+          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio", "Soffitto mansardato", "Biancheria inclusa"],
+        },
+        {
+          nome: "Camera matrimoniale",
+          tag: "Mansardata · lucernario",
+          descr:
+            "Seconda matrimoniale mansardata, luminosa grazie al lucernario. Aria condizionata e armadio; lenzuola e asciugamani inclusi.",
+          imgs: [
+            { src: "/images/house/house-06.jpg", alt: "Camera matrimoniale con lucernario" },
+            { src: "/images/house/house-21.jpg", alt: "Camera matrimoniale luminosa" },
+          ],
+          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Lucernario", "Armadio", "Biancheria inclusa"],
+        },
+        {
+          nome: "Bagno",
+          tag: "Moderno in marmo",
+          descr:
+            "Bagno privato rivestito in marmo, con doccia. Phon, asciugamani e set di cortesia inclusi; acqua calda e riscaldamento.",
+          imgs: [
+            { src: "/images/house/house-11.jpg", alt: "Bagno in marmo" },
+            { src: "/images/house/house-20.jpg", alt: "Lavabo del bagno in marmo" },
+            { src: "/images/house/house-12.jpg", alt: "Bagno in marmo" },
+          ],
+          dotazioni: ["Doccia", "Phon", "Asciugamani inclusi", "Set di cortesia", "Acqua calda"],
+        },
       ],
-      dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio", "Balcone"],
-    },
-    {
-      nome: "Camera matrimoniale",
-      tag: "Toni caldi",
-      descr:
-        "Una seconda matrimoniale luminosa e tranquilla, dai toni caldi. Aria condizionata, armadio e comodini; biancheria e asciugamani inclusi.",
-      imgs: [
-        { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale" },
-        { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale" },
-      ],
-      dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio", "Luminosa"],
-    },
-    {
-      nome: "Camera matrimoniale",
-      tag: "Mansardata",
-      descr:
-        "La matrimoniale mansardata, raccolta e silenziosa sotto il tetto. Aria condizionata e affaccio: perfetta per chi cerca riposo vero.",
-      imgs: [
-        { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale mansardata" },
-        { src: "/images/house/house-37.jpg", alt: "Camera matrimoniale mansardata" },
-      ],
-      dotazioni: ["Letto matrimoniale", "Aria condizionata", "Mansarda", "Affaccio"],
-    },
-    {
-      nome: "I due bagni",
-      tag: "2 bagni privati",
-      descr:
-        "Due bagni a disposizione: uno moderno rivestito in marmo e uno più classico. Entrambi con doccia, asciugacapelli e set di cortesia.",
-      imgs: [
-        { src: "/images/house/house-11.jpg", alt: "Bagno moderno in marmo" },
-        { src: "/images/house/house-12.jpg", alt: "Bagno moderno in marmo" },
-        { src: "/images/house/house-20.jpg", alt: "Bagno moderno in marmo" },
-        { src: "/images/house/house-35.jpg", alt: "Secondo bagno" },
-        { src: "/images/house/house-36.jpg", alt: "Secondo bagno" },
-      ],
-      dotazioni: ["2 bagni con doccia", "Asciugacapelli", "Set di cortesia", "Acqua calda"],
-    },
-    {
-      nome: "Giardino e spazi esterni",
-      tag: "Outdoor",
-      descr:
-        "Giardino privato con sedute, balcone e terrazza per la colazione all'aperto. Parcheggio gratuito in loco: arrivi, lasci l'auto e sei a casa.",
-      imgs: [
-        { src: "/images/house/house-29.jpg", alt: "Giardino di MiriAle" },
-        { src: "/images/house/house-31.jpg", alt: "Giardino con sedute" },
-        { src: "/images/house/house-17.jpg", alt: "Area relax in giardino" },
-        { src: "/images/house/house-13.jpg", alt: "Terrazza di MiriAle" },
-        { src: "/images/house/house-22.jpg", alt: "Terrazza con vista" },
-      ],
-      dotazioni: ["Giardino privato", "Terrazza e balcone", "Parcheggio gratuito", "Colazione all'aperto"],
     },
   ];
+
+  const esterni = {
+    nome: "Giardino e spazi esterni",
+    tag: "In comune",
+    descr:
+      "Giardino privato con sedute, balcone e terrazza per la colazione all'aperto, condivisi tra i due appartamenti. Parcheggio gratuito in loco: arrivi, lasci l'auto e sei a casa.",
+    imgs: [
+      { src: "/images/house/house-29.jpg", alt: "Giardino di MiriAle" },
+      { src: "/images/house/house-31.jpg", alt: "Giardino con sedute" },
+      { src: "/images/house/house-17.jpg", alt: "Area relax in giardino" },
+      { src: "/images/house/house-13.jpg", alt: "Terrazza di MiriAle" },
+      { src: "/images/house/house-22.jpg", alt: "Terrazza con vista" },
+    ],
+    dotazioni: ["Giardino privato", "Terrazza e balcone", "Parcheggio gratuito", "Colazione all'aperto"],
+  };
 
   return (
     <section
@@ -601,45 +648,105 @@ function GliSpazi() {
             Entra nella casa
           </div>
           <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-            La casa, stanza per stanza.
+            Due appartamenti, stanza per stanza.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-gray">
-            Tre camere matrimoniali, due bagni, soggiorno con cucina e giardino:
-            fino a 6 ospiti in una casa intera, tutta per te. Ogni ambiente, da
+            MiriAle sono due appartamenti indipendenti: puoi prenotarne uno
+            oppure tutta la casa. Qui sotto trovi ogni ambiente nel dettaglio, da
             ogni angolo.
           </p>
         </div>
 
-        <div className="mt-14 space-y-16 md:space-y-20">
-          {stanze.map((s, i) => (
+        {appartamenti.map((app) => (
+          <div key={app.nome} className="mt-16">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-line-soft pb-4">
+              <h3 className="font-serif text-2xl font-light text-deep-brown md:text-3xl">
+                {app.nome}
+              </h3>
+              <span className="rounded-full bg-cream-2 px-3 py-1 text-xs font-semibold text-deep-brown">
+                {app.mq}
+              </span>
+              <span className="text-sm text-warm-gray">{app.sintesi}</span>
+            </div>
+
+            <div className="mt-10 space-y-12 md:space-y-16">
+              {app.stanze.map((s, i) => (
+                <motion.article
+                  key={s.nome + s.tag}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  className={`grid items-center gap-8 md:grid-cols-2 md:gap-12 ${
+                    i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
+                    <ImageSlider
+                      images={s.imgs}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
+                      {s.tag}
+                    </span>
+                    <h4 className="mt-2 font-serif text-xl font-light text-deep-brown md:text-2xl">
+                      {s.nome}
+                    </h4>
+                    <p className="mt-3 text-base leading-relaxed text-warm-gray">
+                      {s.descr}
+                    </p>
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      {s.dotazioni.map((d) => (
+                        <li
+                          key={d}
+                          className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
+                        >
+                          <span className="h-1 w-1 rounded-full bg-terracotta" />
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <div className="mt-16">
+          <div className="border-b border-line-soft pb-4">
+            <h3 className="font-serif text-2xl font-light text-deep-brown md:text-3xl">
+              In comune
+            </h3>
+          </div>
+          <div className="mt-10">
             <motion.article
-              key={s.nome + s.tag}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
               viewport={{ once: true, amount: 0.15 }}
-              className={`grid items-center gap-8 md:grid-cols-2 md:gap-12 ${
-                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
+              className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
                 <ImageSlider
-                  images={s.imgs}
+                  images={esterni.imgs}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
               <div>
                 <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
-                  {s.tag}
+                  {esterni.tag}
                 </span>
-                <h3 className="mt-2 font-serif text-2xl font-light text-deep-brown md:text-3xl">
-                  {s.nome}
-                </h3>
+                <h4 className="mt-2 font-serif text-xl font-light text-deep-brown md:text-2xl">
+                  {esterni.nome}
+                </h4>
                 <p className="mt-3 text-base leading-relaxed text-warm-gray">
-                  {s.descr}
+                  {esterni.descr}
                 </p>
                 <ul className="mt-5 flex flex-wrap gap-2">
-                  {s.dotazioni.map((d) => (
+                  {esterni.dotazioni.map((d) => (
                     <li
                       key={d}
                       className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
@@ -651,7 +758,7 @@ function GliSpazi() {
                 </ul>
               </div>
             </motion.article>
-          ))}
+          </div>
         </div>
 
         <div className="mt-16 flex justify-center">
