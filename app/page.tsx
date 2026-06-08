@@ -637,6 +637,9 @@ function GliSpazi() {
     dotazioni: ["Giardino privato", "Terrazza e balcone", "Parcheggio gratuito", "Colazione all'aperto"],
   };
 
+  const [att, setAtt] = useState(0);
+  const app = appartamenti[att];
+
   return (
     <section
       id="spazi"
@@ -648,120 +651,113 @@ function GliSpazi() {
             Entra nella casa
           </div>
           <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-            Due appartamenti, stanza per stanza.
+            Due appartamenti, una casa.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-gray">
-            MiriAle sono due appartamenti indipendenti: puoi prenotarne uno
-            oppure tutta la casa. Qui sotto trovi ogni ambiente nel dettaglio, da
-            ogni angolo.
+            Prenoti un singolo appartamento o tutta la casa. Scegli quale vuoi
+            vedere: trovi ogni stanza con le sue foto e dotazioni.
           </p>
         </div>
 
-        {appartamenti.map((app) => (
-          <div key={app.nome} className="mt-16">
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-line-soft pb-4">
-              <h3 className="font-serif text-2xl font-light text-deep-brown md:text-3xl">
-                {app.nome}
-              </h3>
-              <span className="rounded-full bg-cream-2 px-3 py-1 text-xs font-semibold text-deep-brown">
-                {app.mq}
-              </span>
-              <span className="text-sm text-warm-gray">{app.sintesi}</span>
-            </div>
-
-            <div className="mt-10 space-y-12 md:space-y-16">
-              {app.stanze.map((s, i) => (
-                <motion.article
-                  key={s.nome + s.tag}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  className={`grid items-center gap-8 md:grid-cols-2 md:gap-12 ${
-                    i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-                  }`}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
-                    <ImageSlider
-                      images={s.imgs}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div>
-                    <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
-                      {s.tag}
-                    </span>
-                    <h4 className="mt-2 font-serif text-xl font-light text-deep-brown md:text-2xl">
-                      {s.nome}
-                    </h4>
-                    <p className="mt-3 text-base leading-relaxed text-warm-gray">
-                      {s.descr}
-                    </p>
-                    <ul className="mt-5 flex flex-wrap gap-2">
-                      {s.dotazioni.map((d) => (
-                        <li
-                          key={d}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
-                        >
-                          <span className="h-1 w-1 rounded-full bg-terracotta" />
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        ))}
-
-        <div className="mt-16">
-          <div className="border-b border-line-soft pb-4">
-            <h3 className="font-serif text-2xl font-light text-deep-brown md:text-3xl">
-              In comune
-            </h3>
-          </div>
-          <div className="mt-10">
-            <motion.article
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease }}
-              viewport={{ once: true, amount: 0.15 }}
-              className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
+        {/* Tab: scegli l'appartamento */}
+        <div className="mt-10 flex flex-wrap items-center gap-3">
+          {appartamenti.map((a, idx) => (
+            <button
+              key={a.nome}
+              type="button"
+              onClick={() => setAtt(idx)}
+              aria-pressed={att === idx}
+              className={`rounded-2xl border px-5 py-3 text-left transition ${
+                att === idx
+                  ? "border-terracotta bg-paper shadow-card"
+                  : "border-line bg-transparent hover:border-terracotta/50"
+              }`}
             >
+              <span className="block font-serif text-lg text-deep-brown">
+                {a.nome}
+              </span>
+              <span className="block text-xs text-warm-gray">
+                {a.mq} · {a.stanze.length} ambienti
+              </span>
+            </button>
+          ))}
+          <a
+            href="#prenota"
+            className="ml-auto hidden items-center text-sm font-medium text-terracotta underline-offset-4 hover:underline sm:inline-flex"
+          >
+            Oppure prenota tutta la casa →
+          </a>
+        </div>
+
+        {/* Caratteristiche dell'appartamento scelto */}
+        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-deep-brown">
+          <span className="inline-flex items-center gap-2">
+            <BedDouble className="h-4 w-4 text-warm-gray" /> 2 camere matrimoniali
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Bath className="h-4 w-4 text-warm-gray" /> 1 bagno
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Users className="h-4 w-4 text-warm-gray" /> fino a 4 ospiti
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <HomeIcon className="h-4 w-4 text-warm-gray" /> {app.mq}
+          </span>
+        </div>
+
+        {/* Griglia ambienti — stile "Where you'll sleep" */}
+        <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {app.stanze.map((s) => (
+            <article key={s.nome + s.tag}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
                 <ImageSlider
-                  images={esterni.imgs}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  images={s.imgs}
+                  autoplay={false}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
               </div>
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wider text-terracotta">
-                  {esterni.tag}
-                </span>
-                <h4 className="mt-2 font-serif text-xl font-light text-deep-brown md:text-2xl">
-                  {esterni.nome}
-                </h4>
-                <p className="mt-3 text-base leading-relaxed text-warm-gray">
-                  {esterni.descr}
-                </p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {esterni.dotazioni.map((d) => (
-                    <li
-                      key={d}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
-                    >
-                      <span className="h-1 w-1 rounded-full bg-terracotta" />
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.article>
+              <h3 className="mt-3 font-medium text-deep-brown">{s.nome}</h3>
+              <p className="text-sm text-terracotta">{s.tag}</p>
+              <p className="mt-1 text-xs leading-relaxed text-warm-gray">
+                {s.dotazioni.slice(0, 4).join(" · ")}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        {/* Spazi in comune */}
+        <div className="mt-14">
+          <h3 className="font-serif text-xl font-light text-deep-brown md:text-2xl">
+            In comune ai due appartamenti
+          </h3>
+          <div className="mt-6 grid items-center gap-8 md:grid-cols-2 md:gap-12">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
+              <ImageSlider
+                images={esterni.imgs}
+                autoplay={false}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div>
+              <p className="text-base leading-relaxed text-warm-gray">
+                {esterni.descr}
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {esterni.dotazioni.map((d) => (
+                  <li
+                    key={d}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
+                  >
+                    <span className="h-1 w-1 rounded-full bg-terracotta" />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-14 flex justify-center">
           <Link
             href="/la-casa"
             className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-white transition hover:opacity-90"

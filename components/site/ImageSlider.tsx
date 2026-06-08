@@ -16,12 +16,14 @@ export default function ImageSlider({
   priority = false,
   intervalMs = 4500,
   rounded = false,
+  autoplay = true,
 }: {
   images: Img[];
   sizes?: string;
   priority?: boolean;
   intervalMs?: number;
   rounded?: boolean;
+  autoplay?: boolean;
 }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -29,10 +31,10 @@ export default function ImageSlider({
   const go = useCallback((d: number) => setIndex((p) => (p + d + n) % n), [n]);
 
   useEffect(() => {
-    if (paused || n <= 1) return;
+    if (!autoplay || paused || n <= 1) return;
     const t = setInterval(() => setIndex((p) => (p + 1) % n), intervalMs);
     return () => clearInterval(t);
-  }, [paused, n, intervalMs]);
+  }, [autoplay, paused, n, intervalMs]);
 
   return (
     <div
