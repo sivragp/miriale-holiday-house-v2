@@ -36,7 +36,7 @@ const ambienti = [
     label: "Camere",
     img: "/images/house/house-26.jpg",
     narrazione:
-      "Tre camere matrimoniali, pensate per riposare bene anche con orari da viaggio: luce morbida, silenzio e biancheria curata. La casa ospita fino a 6 ospiti in base alla disponibilità.",
+      "Quattro camere matrimoniali distribuite nei due appartamenti, pensate per riposare bene anche con orari da viaggio: silenzio, biancheria curata e aria condizionata. In tutto fino a 8 ospiti, in base alla disponibilità.",
     todo: "Descrizione precisa delle 3 camere matrimoniali: tipologia letti, eventuale letto aggiuntivo, armadio, comodini, eventuale balcone collegato, foto extra per ognuna.",
   },
   {
@@ -66,18 +66,19 @@ export default function LaCasaPage() {
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow>Layout della casa</Eyebrow>
           <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
-            Tre camere matrimoniali, due bagni.
+            Due appartamenti, fino a 8 ospiti.
           </h2>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-warm-gray">
-            MiriAle è una casa intera a conduzione familiare: nessuno spazio
-            condiviso con altri ospiti. Tre camere matrimoniali, due bagni e
-            zone giorno pensate per chi viaggia, fino a 6 ospiti.
+            MiriAle è una struttura a conduzione familiare con due appartamenti
+            indipendenti (75 e 55 m²): li prenoti singolarmente o insieme come
+            casa intera. In tutto 4 camere matrimoniali, 2 bagni e zone giorno,
+            fino a 8 ospiti.
           </p>
           <div className="mt-8 max-w-2xl">
             {/* TODO MiriAle: metratura totale, planimetria (SVG/PNG), distribuzione precisa delle stanze — vedi brief SPOKE 1 §"Layout della casa" */}
             <TodoNote>
-              Metratura totale, planimetria della casa e distribuzione precisa
-              delle stanze (da fornire dal cliente).
+              Appartamenti da 75 m² e 55 m². Planimetria e distribuzione precisa
+              delle stanze: da confermare col cliente.
             </TodoNote>
           </div>
         </div>

@@ -67,10 +67,18 @@ export default function LaFamigliaPage() {
           </h2>
           <div className="mt-6">
             {/* TODO MiriAle: nome della famiglia/titolari, da quando gestiscono la casa, motivazione personale dietro l'apertura — vedi brief SPOKE 2 §"Chi siamo" */}
-            <TodoNote>
-              Nome della famiglia / dei titolari, da quando gestiscono la casa
-              e la motivazione personale dietro l’apertura di MiriAle.
-            </TodoNote>
+            <p className="text-base leading-relaxed text-warm-gray">
+              Dietro MiriAle c&apos;è Fabio con la sua famiglia. Fabio fa il
+              tassista a Fiumicino: conosce l&apos;aeroporto, la città e ogni
+              scorciatoia per Roma. Vi accoglie di persona, dà una mano con
+              bagagli e parcheggio e — se serve — viene a prendervi al volo.
+            </p>
+            <div className="mt-5">
+              <TodoNote>
+                Da quando gestite MiriAle e la motivazione dietro
+                l&apos;apertura: due righe vostre da aggiungere.
+              </TodoNote>
+            </div>
           </div>
         </div>
       </section>
@@ -153,10 +161,23 @@ export default function LaFamigliaPage() {
           </h2>
           <div className="mt-6">
             {/* TODO MiriAle: estratti reali di recensioni Booking/Airbnb con permesso di citarle + nome/iniziale ospite + città/nazionalità — vedi brief SPOKE 2 §"Voci degli ospiti" */}
-            <TodoNote>
-              Estratti reali di recensioni (Booking/Airbnb) con permesso di
-              pubblicarle, nome o iniziale dell’ospite e città/nazionalità.
-            </TodoNote>
+            <p className="text-base leading-relaxed text-warm-gray">
+              Su Booking MiriAle ha una valutazione di <strong>8.8</strong> su
+              122 recensioni verificate. Quello che torna più spesso:
+              l&apos;accoglienza di Fabio, la pulizia e la posizione comoda
+              all&apos;aeroporto.
+            </p>
+            <blockquote className="mt-5 border-l-2 border-terracotta pl-4 text-sm italic leading-relaxed text-warm-gray">
+              “Fabio e la sua famiglia sono host fantastici: ci ha accolti in
+              aeroporto e ci ha persino portati a scoprire angoli nascosti di
+              Roma.” — Ospite verificato · Booking
+            </blockquote>
+            <div className="mt-5">
+              <TodoNote>
+                Se volete, 2-3 recensioni testuali complete (nome + città) da
+                pubblicare integralmente.
+              </TodoNote>
+            </div>
           </div>
         </div>
       </section>
