@@ -16,7 +16,6 @@ import {
   Coffee,
   Flame,
   Home as HomeIcon,
-  KeyRound,
   LogOut,
   Microwave,
   MoonStar,
@@ -313,7 +312,7 @@ function ServiziInclusi() {
     { Icon: Tv, label: "TV schermo piatto" },
     { Icon: Bath, label: "Phon e set di cortesia" },
     { Icon: BedDouble, label: "Biancheria e asciugamani" },
-    { Icon: KeyRound, label: "Self check-in (keybox)" },
+    { Icon: Users, label: "Accoglienza dell'host" },
     { Icon: Car, label: "Parcheggio gratuito in loco" },
     { Icon: TreePine, label: "Giardino e terrazza" },
     { Icon: HomeIcon, label: "Casa intera, solo per te" },
@@ -517,119 +516,70 @@ function InfoCards() {
 function GliSpazi() {
   const appartamenti = [
     {
-      nome: "Appartamento 1",
+      nome: "Miri",
       mq: "75 m²",
-      sintesi:
-        "Il più ampio: soggiorno, cucina in legno, due camere matrimoniali e un bagno. Fino a 4 ospiti.",
-      stanze: [
-        {
-          nome: "Soggiorno e cucina",
-          tag: "Zona giorno",
-          descr:
-            "Salotto con divano e TV a schermo piatto, aperto sulla cucina in legno. Si cucina davvero: forno, piano cottura, frigorifero, microonde, bollitore e moka per il caffè. Tavolo da pranzo, stoviglie e pentole; lavatrice a disposizione.",
-          imgs: [
-            { src: "/images/house/house-02.jpg", alt: "Soggiorno dell'Appartamento 1" },
-            { src: "/images/house/house-10.jpg", alt: "Cucina in legno" },
-            { src: "/images/house/house-30.jpg", alt: "Cucina e zona pranzo" },
-          ],
-          dotazioni: ["Divano e TV", "Forno e piano cottura", "Frigorifero", "Microonde", "Bollitore e moka", "Lavatrice", "Stoviglie e pentole", "Tavolo da pranzo"],
-        },
-        {
-          nome: "Camera matrimoniale",
-          tag: "Parete decorativa",
-          descr:
-            "Letto matrimoniale con parete decorativa e affaccio sul balcone. Aria condizionata e riscaldamento, armadio e comodini; lenzuola e asciugamani inclusi.",
-          imgs: [
-            { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale con parete decorativa" },
-            { src: "/images/house/house-34.jpg", alt: "Camera matrimoniale con parete decorativa" },
-          ],
-          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio e comodini", "Balcone", "Biancheria inclusa"],
-        },
-        {
-          nome: "Camera matrimoniale",
-          tag: "Toni caldi",
-          descr:
-            "Seconda matrimoniale, luminosa e tranquilla, con pavimento in cotto. Aria condizionata e riscaldamento, armadio e comodini; lenzuola e asciugamani inclusi.",
-          imgs: [
-            { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale" },
-            { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale" },
-          ],
-          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio e comodini", "Biancheria inclusa"],
-        },
-        {
-          nome: "Bagno",
-          tag: "Classico",
-          descr:
-            "Bagno privato con doccia, rivestito in tono caldo. Phon, asciugamani e set di cortesia inclusi; acqua calda e riscaldamento.",
-          imgs: [
-            { src: "/images/house/house-35.jpg", alt: "Bagno classico" },
-            { src: "/images/house/house-36.jpg", alt: "Bagno classico, doccia" },
-          ],
-          dotazioni: ["Doccia", "Phon", "Asciugamani inclusi", "Set di cortesia", "Acqua calda"],
-        },
+      tagline:
+        "L'appartamento più ampio: soggiorno con cucina in legno e due camere matrimoniali. Indipendente, con ingresso e bagno propri.",
+      bigImgs: [
+        { src: "/images/house/house-02.jpg", alt: "Soggiorno di Miri" },
+        { src: "/images/house/house-10.jpg", alt: "Cucina in legno di Miri" },
+        { src: "/images/house/house-30.jpg", alt: "Cucina e zona pranzo di Miri" },
+        { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale di Miri" },
+        { src: "/images/house/house-34.jpg", alt: "Camera matrimoniale di Miri" },
+        { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale di Miri" },
+        { src: "/images/house/house-05.jpg", alt: "Camera matrimoniale di Miri" },
+        { src: "/images/house/house-35.jpg", alt: "Bagno di Miri" },
       ],
+      small: [
+        { src: "/images/house/house-28.jpg", alt: "Camera di Miri" },
+        { src: "/images/house/house-35.jpg", alt: "Bagno di Miri" },
+      ],
+      features: [
+        "75 m² · fino a 4 ospiti",
+        "2 camere matrimoniali",
+        "Cucina in legno attrezzata",
+        "Bagno privato con doccia",
+        "Aria condizionata e riscaldamento",
+        "Wi-Fi gratuito e balcone",
+      ],
+      waMsg:
+        "Ciao! Vorrei prenotare l'appartamento Miri (75 m²) a MiriAle. C'è disponibilità?",
     },
     {
-      nome: "Appartamento 2",
+      nome: "Ale",
       mq: "55 m²",
-      sintesi:
-        "Mansardato e raccolto: cucina attrezzata, due camere matrimoniali sotto il tetto e un bagno moderno in marmo. Fino a 4 ospiti.",
-      stanze: [
-        {
-          nome: "Cucina e zona pranzo",
-          tag: "Attrezzata",
-          descr:
-            "Angolo cottura moderno con tutto il necessario: piano cottura, frigorifero, microonde, bollitore e moka. Stoviglie, pentole e tavolo da pranzo. Perfetta per una cena veloce o la colazione prima del volo.",
-          imgs: [
-            { src: "/images/house/house-38.jpg", alt: "Cucina dell'Appartamento 2" },
-            { src: "/images/house/house-32.jpg", alt: "Forno a microonde" },
-            { src: "/images/house/house-33.jpg", alt: "Bollitore e moka" },
-          ],
-          dotazioni: ["Piano cottura", "Frigorifero", "Microonde", "Bollitore e moka", "Stoviglie e pentole", "Tavolo da pranzo"],
-        },
-        {
-          nome: "Camera matrimoniale",
-          tag: "Mansardata · rosa",
-          descr:
-            "Matrimoniale mansardata dai toni caldi, con parete effetto pietra e soffitto spiovente. Aria condizionata e armadio; lenzuola e asciugamani inclusi. (Soffitto basso su un lato: tienine conto se sei molto alto.)",
-          imgs: [
-            { src: "/images/house/house-09.jpg", alt: "Camera matrimoniale mansardata" },
-            { src: "/images/house/house-37.jpg", alt: "Camera matrimoniale mansardata" },
-          ],
-          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Armadio", "Soffitto mansardato", "Biancheria inclusa"],
-        },
-        {
-          nome: "Camera matrimoniale",
-          tag: "Mansardata · lucernario",
-          descr:
-            "Seconda matrimoniale mansardata, luminosa grazie al lucernario. Aria condizionata e armadio; lenzuola e asciugamani inclusi.",
-          imgs: [
-            { src: "/images/house/house-06.jpg", alt: "Camera matrimoniale con lucernario" },
-            { src: "/images/house/house-21.jpg", alt: "Camera matrimoniale luminosa" },
-          ],
-          dotazioni: ["Letto matrimoniale", "Aria condizionata", "Lucernario", "Armadio", "Biancheria inclusa"],
-        },
-        {
-          nome: "Bagno",
-          tag: "Moderno in marmo",
-          descr:
-            "Bagno privato rivestito in marmo, con doccia. Phon, asciugamani e set di cortesia inclusi; acqua calda e riscaldamento.",
-          imgs: [
-            { src: "/images/house/house-11.jpg", alt: "Bagno in marmo" },
-            { src: "/images/house/house-20.jpg", alt: "Lavabo del bagno in marmo" },
-            { src: "/images/house/house-12.jpg", alt: "Bagno in marmo" },
-          ],
-          dotazioni: ["Doccia", "Phon", "Asciugamani inclusi", "Set di cortesia", "Acqua calda"],
-        },
+      tagline:
+        "Mansardato e raccolto: bagno in marmo e due camere matrimoniali sotto il tetto. Indipendente, con cucina e bagno propri.",
+      bigImgs: [
+        { src: "/images/house/house-38.jpg", alt: "Cucina di Ale" },
+        { src: "/images/house/house-09.jpg", alt: "Camera mansardata di Ale" },
+        { src: "/images/house/house-37.jpg", alt: "Camera mansardata di Ale" },
+        { src: "/images/house/house-06.jpg", alt: "Camera con lucernario di Ale" },
+        { src: "/images/house/house-21.jpg", alt: "Camera luminosa di Ale" },
+        { src: "/images/house/house-11.jpg", alt: "Bagno in marmo di Ale" },
+        { src: "/images/house/house-12.jpg", alt: "Bagno in marmo di Ale" },
+        { src: "/images/house/house-20.jpg", alt: "Lavabo del bagno di Ale" },
       ],
+      small: [
+        { src: "/images/house/house-09.jpg", alt: "Camera di Ale" },
+        { src: "/images/house/house-11.jpg", alt: "Bagno in marmo di Ale" },
+      ],
+      features: [
+        "55 m² · fino a 4 ospiti",
+        "2 camere matrimoniali mansardate",
+        "Cucina attrezzata",
+        "Bagno privato in marmo",
+        "Aria condizionata e riscaldamento",
+        "Wi-Fi gratuito e lucernario",
+      ],
+      waMsg:
+        "Ciao! Vorrei prenotare l'appartamento Ale (55 m²) a MiriAle. C'è disponibilità?",
     },
   ];
 
   const esterni = {
-    nome: "Giardino e spazi esterni",
-    tag: "In comune",
     descr:
-      "Giardino privato con sedute, balcone e terrazza per la colazione all'aperto, condivisi tra i due appartamenti. Parcheggio gratuito in loco: arrivi, lasci l'auto e sei a casa.",
+      "L'unico spazio condiviso tra Miri e Ale: un giardino privato con sedute, balcone e terrazza per la colazione all'aperto. Parcheggio gratuito in loco.",
     imgs: [
       { src: "/images/house/house-29.jpg", alt: "Giardino di MiriAle" },
       { src: "/images/house/house-31.jpg", alt: "Giardino con sedute" },
@@ -640,9 +590,6 @@ function GliSpazi() {
     dotazioni: ["Giardino privato", "Terrazza e balcone", "Parcheggio gratuito", "Colazione all'aperto"],
   };
 
-  const [att, setAtt] = useState(0);
-  const app = appartamenti[att];
-
   return (
     <section
       id="spazi"
@@ -651,87 +598,90 @@ function GliSpazi() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
-            Entra nella casa
+            Gli appartamenti
           </div>
           <h2 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-            Due appartamenti, una casa.
+            Due appartamenti: Miri e Ale.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-warm-gray">
-            Prenoti un singolo appartamento o tutta la casa. Scegli quale vuoi
-            vedere: trovi ogni stanza con le sue foto e dotazioni.
+            Due case indipendenti, ognuna con cucina, camere e bagno propri. In
+            comune solo il giardino. Prenoti il singolo appartamento — oppure
+            entrambi insieme, per gruppi e famiglie numerose.
           </p>
         </div>
 
-        {/* Tab: scegli l'appartamento */}
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          {appartamenti.map((a, idx) => (
-            <button
-              key={a.nome}
-              type="button"
-              onClick={() => setAtt(idx)}
-              aria-pressed={att === idx}
-              className={`rounded-2xl border px-5 py-3 text-left transition ${
-                att === idx
-                  ? "border-terracotta bg-paper shadow-card"
-                  : "border-line bg-transparent hover:border-terracotta/50"
+        {appartamenti.map((a, i) => (
+          <article
+            key={a.nome}
+            className="mt-12 grid items-center gap-8 md:mt-16 md:grid-cols-2 md:gap-12"
+          >
+            <div
+              className={`grid aspect-[4/3] grid-cols-3 grid-rows-2 gap-2 ${
+                i % 2 === 1 ? "md:order-2" : ""
               }`}
             >
-              <span className="block font-serif text-lg text-deep-brown">
-                {a.nome}
-              </span>
-              <span className="block text-xs text-warm-gray">
-                {a.mq} · {a.stanze.length} ambienti
-              </span>
-            </button>
-          ))}
-          <a
-            href="#prenota"
-            className="ml-auto hidden items-center text-sm font-medium text-terracotta underline-offset-4 hover:underline sm:inline-flex"
-          >
-            Oppure prenota tutta la casa →
-          </a>
-        </div>
-
-        {/* Caratteristiche dell'appartamento scelto */}
-        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-deep-brown">
-          <span className="inline-flex items-center gap-2">
-            <BedDouble className="h-4 w-4 text-warm-gray" /> 2 camere matrimoniali
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Bath className="h-4 w-4 text-warm-gray" /> 1 bagno
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Users className="h-4 w-4 text-warm-gray" /> fino a 4 ospiti
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <HomeIcon className="h-4 w-4 text-warm-gray" /> {app.mq}
-          </span>
-        </div>
-
-        {/* Griglia ambienti — stile "Where you'll sleep" */}
-        <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {app.stanze.map((s) => (
-            <article key={s.nome + s.tag}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
+              <div className="relative col-span-2 row-span-2 overflow-hidden rounded-2xl shadow-sm">
                 <ImageSlider
-                  images={s.imgs}
-                  autoplay={false}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  images={a.bigImgs}
+                  sizes="(max-width: 768px) 100vw, 40vw"
                 />
               </div>
-              <h3 className="mt-3 font-medium text-deep-brown">{s.nome}</h3>
-              <p className="text-sm text-terracotta">{s.tag}</p>
-              <p className="mt-1 text-xs leading-relaxed text-warm-gray">
-                {s.dotazioni.slice(0, 4).join(" · ")}
-              </p>
-            </article>
-          ))}
-        </div>
+              {a.small.map((im) => (
+                <div
+                  key={im.src + im.alt}
+                  className="relative overflow-hidden rounded-xl"
+                >
+                  <Image
+                    src={im.src}
+                    alt={im.alt}
+                    fill
+                    sizes="(max-width: 768px) 33vw, 20vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
 
-        {/* Spazi in comune */}
-        <div className="mt-14">
+            <div>
+              <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+                Appartamento
+              </div>
+              <h3 className="mt-1 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+                {a.nome}{" "}
+                <span className="text-xl text-warm-gray">· {a.mq}</span>
+              </h3>
+              <p className="mt-3 text-base leading-relaxed text-warm-gray">
+                {a.tagline}
+              </p>
+              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                {a.features.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2 text-sm text-deep-brown"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracotta" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={waLink(a.waMsg)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                style={{ backgroundColor: "#1d4a5a" }}
+              >
+                <I.whatsapp className="h-4 w-4" />
+                Richiedi {a.nome}
+              </a>
+            </div>
+          </article>
+        ))}
+
+        {/* Giardino in comune */}
+        <div className="mt-16">
           <h3 className="font-serif text-xl font-light text-deep-brown md:text-2xl">
-            In comune ai due appartamenti
+            In comune: il giardino
           </h3>
           <div className="mt-6 grid items-center gap-8 md:grid-cols-2 md:gap-12">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm">
@@ -760,14 +710,26 @@ function GliSpazi() {
           </div>
         </div>
 
-        <div className="mt-14 flex justify-center">
-          <Link
-            href="/la-casa"
-            className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-white transition hover:opacity-90"
-            style={{ backgroundColor: "#1d4a5a" }}
+        {/* CTA casa intera */}
+        <div className="mt-16 rounded-3xl bg-deep-brown px-7 py-10 text-center text-white md:px-12">
+          <h3 className="font-serif text-2xl font-light md:text-3xl">
+            Viaggi in gruppo o in famiglia numerosa?
+          </h3>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-white/80">
+            Prenota Miri e Ale insieme e hai tutta la casa: 4 camere
+            matrimoniali, 2 bagni e il giardino, fino a 8 ospiti.
+          </p>
+          <a
+            href={waLink(
+              "Ciao! Vorrei prenotare tutta la casa MiriAle (Miri + Ale) per un gruppo. C'è disponibilità?",
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-deep-brown transition hover:opacity-90"
           >
-            Vedi tutte le foto e i dettagli
-          </Link>
+            <I.whatsapp className="h-4 w-4" />
+            Richiedi la casa intera
+          </a>
         </div>
       </div>
     </section>
@@ -1300,7 +1262,7 @@ function Regole() {
       righe: [
         { Icon: Clock, t: "Check-in", s: "dalle 15:00 alle 24:00" },
         { Icon: LogOut, t: "Check-out", s: "entro le 11:00" },
-        { Icon: KeyRound, t: "Self check-in", s: "con cassetta di sicurezza (keybox)" },
+        { Icon: Users, t: "Accoglienza dell'host", s: "vi accoglie all'arrivo (no check-in automatico)" },
       ],
     },
     {
@@ -1623,9 +1585,9 @@ function CtaBanner() {
 function Highlights() {
   const items = [
     {
-      Icon: KeyRound,
-      t: "Self check-in con keybox",
-      s: "Arrivi e parti quando vuoi: codice e cassetta di sicurezza, comodo anche per voli notturni.",
+      Icon: Users,
+      t: "Ti accoglie l'host",
+      s: "Niente check-in automatico: Fabio ti aspetta all'arrivo, ti dà una mano e ti spiega tutto.",
     },
     {
       Icon: Plane,
