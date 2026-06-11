@@ -25,7 +25,6 @@ import {
   ShieldCheck,
   Star,
   Tag,
-  Train,
   TreePine,
   Tv,
   Users,
@@ -52,19 +51,10 @@ import {
 /* -------------------------------------------------------------------------- */
 
 function HeroImage() {
-  const chips = [
-    { Icon: HomeIcon, label: "2 appartamenti" },
-    { Icon: Users, label: "Fino a 8 ospiti" },
-    { Icon: BedDouble, label: "4 camere" },
-    { Icon: Bath, label: "2 bagni" },
-    { Icon: Plane, label: "Aeroporto 10 min" },
-    { Icon: Train, label: "Roma 32 min in treno" },
-  ];
-
   return (
     <section
       id="top"
-      className="relative isolate h-[560px] max-h-[630px] overflow-hidden bg-deep-brown md:h-[630px]"
+      className="relative isolate h-[560px] max-h-[640px] overflow-hidden bg-deep-brown md:h-[640px]"
     >
       <Image
         src="/images/house/hero-23-enhanced.jpg"
@@ -78,86 +68,102 @@ function HeroImage() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.3) 100%)",
         }}
       />
 
-      <div className="relative z-10 flex h-full items-center px-[8%] md:px-[10%]">
-        <div className="max-w-xl py-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+      <div className="relative z-10 flex h-full items-end px-6 pb-12 md:px-[10%] md:pb-16">
+        <div className="max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease }}
-            className="font-serif text-4xl font-light leading-none text-white md:text-6xl"
-            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
+            transition={{ duration: 0.8, delay: 0.2, ease }}
+            className="text-xs font-medium uppercase tracking-[0.25em] text-white/80"
           >
-            Due appartamenti a Fiumicino.
+            Casa vacanze · Fiumicino
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.35, ease }}
+            className="mt-3 font-serif text-4xl font-light leading-tight text-white md:text-6xl"
+            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}
+          >
+            MiriAle Holiday House
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5, ease }}
-            className="mt-2 font-serif text-xl font-light text-white/90 md:text-3xl"
-            style={{ textShadow: "0 2px 16px rgba(0,0,0,0.3)" }}
+            className="mt-3 max-w-md text-base leading-relaxed text-white/85 md:text-lg"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}
           >
-            A 10 minuti dall&apos;aeroporto.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.7, ease }}
-            className="mt-4 max-w-md text-lg leading-relaxed text-white/80"
-            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
-          >
-            Due appartamenti indipendenti (75 e 55 m²), da prenotare
-            singolarmente o insieme come casa intera: fino a 4 camere, 2 bagni e
-            8 ospiti. Giardino e parcheggio gratuito, Roma a 32 minuti di treno
-            e il mare a pochi minuti.
+            Due appartamenti indipendenti a 10 minuti dall&apos;aeroporto. Roma a
+            32 minuti in treno, il mare a pochi minuti.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.9, ease }}
-            className="mt-8 flex flex-wrap items-center gap-4"
+            transition={{ duration: 0.9, delay: 0.65, ease }}
+            className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3"
           >
-            {/* CTA: WhatsApp diretto */}
+            <a
+              href="#spazi"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-deep-brown shadow-lg transition hover:bg-[#f5f5f4]"
+            >
+              Vedi gli appartamenti
+            </a>
             <a
               href={waLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-deep-brown shadow-xl transition hover:bg-[#f5f5f4]"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white underline underline-offset-4 transition hover:text-white/80"
             >
               <I.whatsapp className="h-4 w-4" />
               Scrivici su WhatsApp
             </a>
-            {/* CTA secondaria: ancora in pagina */}
-            <a
-              href="#prenota"
-              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 underline underline-offset-4 transition hover:text-white"
-            >
-              Richiedi disponibilità
-            </a>
-          </motion.div>
-
-          {/* Chips */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 1.1, ease }}
-            className="mt-5 flex flex-wrap gap-2"
-          >
-            {chips.map((c) => (
-              <span
-                key={c.label}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-sm text-white/85 backdrop-blur"
-              >
-                <c.Icon className="h-3.5 w-3.5" />
-                {c.label}
-              </span>
-            ))}
           </motion.div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  SummaryBar — riga riepilogo struttura (stile scheda Booking)              */
+/* -------------------------------------------------------------------------- */
+
+function SummaryBar() {
+  const facts = [
+    { Icon: HomeIcon, label: "2 appartamenti" },
+    { Icon: Users, label: "Fino a 8 ospiti" },
+    { Icon: BedDouble, label: "4 camere" },
+    { Icon: Bath, label: "2 bagni" },
+  ];
+  return (
+    <section className="border-b border-line bg-paper">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+          <span className="inline-flex items-center gap-1 font-semibold text-deep-brown">
+            <Star className="h-4 w-4 fill-current text-terracotta" /> 8.8
+          </span>
+          <span className="text-warm-gray">122 recensioni · Ottimo</span>
+          <span className="hidden text-line md:inline">·</span>
+          <span className="inline-flex items-center gap-1 text-warm-gray">
+            <I.pin className="h-4 w-4" /> Fiumicino (Roma), a 10 min dall&apos;aeroporto
+          </span>
+        </div>
+        <ul className="flex flex-wrap gap-2">
+          {facts.map((f) => (
+            <li
+              key={f.label}
+              className="inline-flex items-center gap-1.5 rounded-full bg-cream-2 px-3 py-1.5 text-sm text-deep-brown"
+            >
+              <f.Icon className="h-4 w-4 text-terracotta" /> {f.label}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -1781,6 +1787,7 @@ export default function Home() {
   return (
     <main className="flex-1">
       <HeroImage />
+      <SummaryBar />
       <GliSpazi />
       <GalleriaMosaico />
       <Highlights />
