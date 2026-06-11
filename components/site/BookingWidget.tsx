@@ -16,15 +16,20 @@ function fmtData(d: string) {
  */
 export default function BookingWidget({
   className = "",
+  appartamento,
 }: {
   className?: string;
+  /** Se impostato (es. "Miri"/"Ale"), fissa la soluzione e nasconde il menu. */
+  appartamento?: string;
 }) {
   const soluzioni = [
-    "Tutta la casa",
-    "Appartamento 1 (75 m²)",
-    "Appartamento 2 (55 m²)",
+    "Appartamento Miri (75 m²)",
+    "Appartamento Ale (55 m²)",
+    "Tutta la casa (Miri + Ale)",
   ];
-  const [tipo, setTipo] = useState(soluzioni[0]);
+  const [tipo, setTipo] = useState(
+    appartamento ? `Appartamento ${appartamento}` : soluzioni[0],
+  );
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [ospiti, setOspiti] = useState(2);
@@ -52,24 +57,26 @@ export default function BookingWidget({
         </span>
       </div>
 
-      <label className="mt-4 block">
-        <span className="text-xs font-medium uppercase tracking-wide text-warm-gray">
-          Soluzione
-        </span>
-        <select
-          value={tipo}
-          onChange={(e) => setTipo(e.target.value)}
-          className={campo}
-        >
-          {soluzioni.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-      </label>
+      {!appartamento && (
+        <label className="mt-4 block">
+          <span className="text-xs font-medium uppercase tracking-wide text-warm-gray">
+            Soluzione
+          </span>
+          <select
+            value={tipo}
+            onChange={(e) => setTipo(e.target.value)}
+            className={campo}
+          >
+            {soluzioni.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
 
-      <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+      <div className="mt-4 grid grid-cols-2 gap-2.5">
         <label className="block">
           <span className="text-xs font-medium uppercase tracking-wide text-warm-gray">
             Check-in

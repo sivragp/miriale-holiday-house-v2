@@ -676,7 +676,7 @@ function GliSpazi() {
                   Richiedi {a.nome}
                 </a>
                 <Link
-                  href="/la-casa"
+                  href={`/${a.nome.toLowerCase()}`}
                   className="text-sm font-medium text-terracotta underline-offset-4 hover:underline"
                 >
                   Scopri {a.nome} nel dettaglio →
