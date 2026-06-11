@@ -664,16 +664,24 @@ function GliSpazi() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={waLink(a.waMsg)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#1d4a5a" }}
-              >
-                <I.whatsapp className="h-4 w-4" />
-                Richiedi {a.nome}
-              </a>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <a
+                  href={waLink(a.waMsg)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
+                  style={{ backgroundColor: "#1d4a5a" }}
+                >
+                  <I.whatsapp className="h-4 w-4" />
+                  Richiedi {a.nome}
+                </a>
+                <Link
+                  href="/la-casa"
+                  className="text-sm font-medium text-terracotta underline-offset-4 hover:underline"
+                >
+                  Scopri {a.nome} nel dettaglio →
+                </Link>
+              </div>
             </div>
           </article>
         ))}
