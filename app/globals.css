@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Surfaces — sabbia + cielo/mare (palette marittima) */
-  --color-ivory: #f4efe4;
-  --color-ivory-2: #ece4d3;
-  --color-cream: #e7eef1;
-  --color-cream-2: #d7e6eb;
-  --color-stone: #c3d6dc;
+  /* Surfaces — bianco pulito + tinta mare tenue (palette "Mare clean") */
+  --color-ivory: #ffffff;
+  --color-ivory-2: #f2f7f8;
+  --color-cream: #f2f7f8;
+  --color-cream-2: #e8f1f3;
+  --color-stone: #dce8eb;
   --color-paper: #ffffff;
-  --color-bone: #f7f3ea;
+  --color-bone: #f6fafb;
 
-  /* "Greens" -> teal/navy del mare profondo */
-  --color-olive: #2f7388;
-  --color-olive-2: #285f72;
-  --color-olive-dark: #1d4a5a;
-  --color-olive-deep: #143a48;
-  --color-olive-section: #1f4f5e;
-  --color-olive-section-2: #19414e;
-  --color-footer: #0d2832;
+  /* "Greens" -> teal del mare (sezioni scure, footer) */
+  --color-olive: #2c8aa6;
+  --color-olive-2: #237a93;
+  --color-olive-dark: #1a5f73;
+  --color-olive-deep: #123a43;
+  --color-olive-section: #123a43;
+  --color-olive-section-2: #0e2f37;
+  --color-footer: #0c2a31;
 
-  /* Accents — azzurro mare + sabbia dorata */
-  --color-gold: #c2a069;
-  --color-gold-soft: #d4b888;
-  --color-gold-deep: #a6864f;
-  --color-terracotta: #2b7d9b;
+  /* Accents — azzurro mare + sabbia tenue */
+  --color-gold: #cba67e;
+  --color-gold-soft: #e6c9a0;
+  --color-gold-deep: #b8945e;
+  --color-terracotta: #1e91b6;
   --color-wa: #25d366;
   --color-wa-dark: #1fb858;
 
-  /* Text — navy/teal profondo + slate */
-  --color-deep-brown: #13313d;
-  --color-warm-gray: #586b72;
-  --color-line: #d8e2e5;
-  --color-line-soft: #e7eef0;
+  /* Text — teal profondo + slate */
+  --color-deep-brown: #123a43;
+  --color-warm-gray: #5f7780;
+  --color-line: #e4edef;
+  --color-line-soft: #eff5f6;
 
   --font-serif:
     var(--font-fraunces), "Fraunces", "Times New Roman", serif;
@@ -93,7 +93,7 @@ h4,
 /* Header logo frame */
 .logo-frame {
   background:
-    linear-gradient(180deg, #faf6ec 0%, #f1ead9 100%);
+    linear-gradient(180deg, #ffffff 0%, #f2f7f8 100%);
   border: 1px solid var(--color-line);
   box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.6);
 }
@@ -114,7 +114,7 @@ h4,
   background:
     radial-gradient(circle at 30% 35%, rgba(110, 122, 74, 0.14), transparent 55%),
     radial-gradient(circle at 75% 70%, rgba(184, 153, 104, 0.16), transparent 55%),
-    linear-gradient(180deg, #f4ecd6 0%, #e6dcbf 100%);
+    linear-gradient(180deg, #eef5f6 0%, #dce8eb 100%);
 }
 
 /* Olive section subtle texture */
@@ -233,7 +233,7 @@ h4,
 
 /* Number ring */
 .num-ring {
-  background: linear-gradient(180deg, #faf6ec 0%, #ece4cc 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f2f7f8 100%);
   border: 1px solid var(--color-line);
 }
 
