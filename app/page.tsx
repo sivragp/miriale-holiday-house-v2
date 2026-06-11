@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -192,36 +192,89 @@ function GalleryStrip() {
 
   // Duplico la lista per un loop infinito senza stacco.
   const loop = [...photos, ...photos];
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let paused = false;
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+    let raf = 0;
+
+    const half = () => el.scrollWidth / 2;
+    const wrap = () => {
+      const h = half();
+      if (h <= 0) return;
+      if (el.scrollLeft >= h) el.scrollLeft -= h;
+      else if (el.scrollLeft <= 0) el.scrollLeft += h;
+    };
+
+    el.scrollLeft = half() / 2; // posizione iniziale: si può scorrere in entrambi i versi
+
+    const tick = () => {
+      if (!paused && !dragging) el.scrollLeft += 0.5;
+      wrap();
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    const enter = () => (paused = true);
+    const leave = () => (paused = false);
+    const down = (e: PointerEvent) => {
+      dragging = true;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+    };
+    const move = (e: PointerEvent) => {
+      if (!dragging) return;
+      el.scrollLeft = startScroll - (e.clientX - startX);
+    };
+    const up = () => (dragging = false);
+
+    el.addEventListener("pointerenter", enter);
+    el.addEventListener("pointerleave", leave);
+    el.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("pointerenter", enter);
+      el.removeEventListener("pointerleave", leave);
+      el.removeEventListener("pointerdown", down);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+  }, []);
 
   return (
     <section
       id="galleria"
-      className="relative overflow-hidden bg-paper py-6"
+      className="bg-bone py-4"
       aria-label="Galleria fotografica di MiriAle Holiday House"
     >
-      <motion.div
-        className="flex w-max gap-3"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: photos.length * 4.5,
-          ease: "linear",
-          repeat: Infinity,
-        }}
+      <div
+        ref={ref}
+        className="scrollbar-hide flex cursor-grab gap-3 overflow-x-auto overscroll-x-contain px-4 active:cursor-grabbing"
       >
         {loop.map((p, i) => (
-          <div key={i} className="flex-shrink-0">
+          <div key={i} className="flex-shrink-0 select-none">
             <Image
               src={p.src}
               alt={p.alt}
               width={400}
               height={300}
-              sizes="(max-width: 768px) 280px, 340px"
-              className="aspect-[4/3] h-52 w-auto rounded-xl object-cover md:h-64"
+              draggable={false}
+              sizes="(max-width: 768px) 260px, 320px"
+              className="pointer-events-none aspect-[4/3] h-44 w-auto rounded-xl object-cover md:h-56"
               priority={i < 2}
             />
           </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -1788,8 +1841,8 @@ export default function Home() {
     <main className="flex-1">
       <HeroImage />
       <SummaryBar />
+      <GalleryStrip />
       <GliSpazi />
-      <GalleriaMosaico />
       <Highlights />
       <Recensioni />
       <HostStrip />
@@ -1797,6 +1850,7 @@ export default function Home() {
       <DoveSiamo />
       <Dintorni />
       <ServiziInclusi />
+      <GalleriaMosaico />
       <Regole />
       <FAQ />
       <ContactForm />
