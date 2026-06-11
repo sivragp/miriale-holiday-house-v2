@@ -32,10 +32,10 @@ export const telLink = `tel:+${WHATSAPP_NUMBER}`;
 /* -------------------------------------------------------------------------- */
 
 export const NAV = [
-  { label: "Miri", href: "/miri" },
-  { label: "Ale", href: "/ale" },
-  { label: "Host", href: "/la-famiglia" },
-  { label: "Dintorni", href: "/cosa-fare-intorno" },
+  { label: "Appartamenti", href: "/#spazi" },
+  { label: "Galleria", href: "/#galleria-foto" },
+  { label: "Recensioni", href: "/#recensioni" },
+  { label: "Posizione", href: "/#dove-siamo" },
   { label: "Contatti", href: "/contatti" },
 ];
 

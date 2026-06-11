@@ -6,7 +6,6 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageSlider from "@/components/site/ImageSlider";
 import BookingWidget from "@/components/site/BookingWidget";
-import SubNav from "@/components/site/SubNav";
 import {
   Bath,
   BedDouble,
@@ -68,8 +67,8 @@ function HeroImage() {
       className="relative isolate h-[560px] max-h-[630px] overflow-hidden bg-deep-brown md:h-[630px]"
     >
       <Image
-        src="/images/house/hero-home.jpg"
-        alt="Camera matrimoniale di MiriAle Holiday House"
+        src="/images/house/hero-23-enhanced.jpg"
+        alt="La casa di MiriAle Holiday House a Fiumicino"
         fill
         priority
         sizes="100vw"
@@ -593,7 +592,7 @@ function GliSpazi() {
   return (
     <section
       id="spazi"
-      className="border-b border-line-soft bg-ivory py-20 md:py-24"
+      className="scroll-mt-20 border-b border-line-soft bg-ivory py-20 md:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
@@ -780,7 +779,7 @@ function DoveSiamo() {
   return (
     <section
       id="dove-siamo"
-      className="border-b border-line-soft bg-cream py-20"
+      className="scroll-mt-20 border-b border-line-soft bg-cream py-20"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_1.3fr] md:items-start md:gap-12">
@@ -1173,7 +1172,7 @@ function Recensioni() {
   ];
 
   return (
-    <section id="recensioni" className="border-b border-line-soft bg-ivory py-20">
+    <section id="recensioni" className="scroll-mt-20 border-b border-line-soft bg-ivory py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
@@ -1594,7 +1593,7 @@ function GalleriaMosaico() {
   ];
 
   return (
-    <section className="bg-deep-brown py-16 md:py-20">
+    <section id="galleria-foto" className="scroll-mt-20 bg-deep-brown py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-xs font-medium uppercase tracking-widest text-white/60">
           Galleria
@@ -1782,12 +1781,9 @@ export default function Home() {
   return (
     <main className="flex-1">
       <HeroImage />
-      <SubNav />
-      <GalleryStrip />
-      <Highlights />
-      <Benvenuti />
       <GliSpazi />
       <GalleriaMosaico />
+      <Highlights />
       <Recensioni />
       <HostStrip />
       <InfoCards />
