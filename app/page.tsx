@@ -1187,106 +1187,104 @@ function Dintorni() {
 function Recensioni() {
   const recensioni = [
     {
-      nome: "Giulia & Marco",
-      luogo: "Milano, Italia",
-      avatar: "/images/avatar-famiglia.webp",
-      stelle: 5,
       testo:
-        "Casa meravigliosa, vista spettacolare e posizione perfetta. Torneremo!",
+        "Fabio e la sua famiglia sono host fantastici: ci ha accolti in aeroporto e ci ha persino portati a scoprire angoli nascosti di Roma.",
+      meta: "Ospite verificato · Booking",
     },
     {
-      nome: "Thomas & Anna",
-      luogo: "Berlino, Germania",
-      avatar: "/images/avatar-marco.webp",
-      stelle: 5,
       testo:
-        "Tutto perfetto: pulizia, comfort e attenzione ai dettagli. Consigliatissima!",
+        "Appartamento immacolato e cucina super attrezzata. Luminoso, spazioso e con una bella terrazza.",
+      meta: "Ospite verificato · Booking",
     },
     {
-      nome: "Laura",
-      luogo: "Roma, Italia",
-      avatar: "/images/avatar-chiara.webp",
-      stelle: 5,
       testo:
-        "Atmosfera autentica e host gentilissimo. Ci siamo sentiti a casa.",
+        "A 10 minuti dall'aeroporto ma in una zona tranquilla e silenziosa: perfetto prima di un volo presto.",
+      meta: "Ospite verificato · Booking",
+    },
+    {
+      testo:
+        "Pulito, fornito e comodo, ideale per famiglie. Comunicazione ottima con il proprietario.",
+      meta: "Ospite verificato · Booking",
     },
   ];
-
-  const [current, setCurrent] = useState(0);
-  const len = recensioni.length;
-  const visible = Array.from(
-    { length: 3 },
-    (_, i) => recensioni[(current + i) % len],
-  );
-  const prev = () => setCurrent((c) => (c - 1 + len) % len);
-  const next = () => setCurrent((c) => (c + 1) % len);
+  const punti = [
+    "Accoglienza dell'host",
+    "Pulizia",
+    "Posizione",
+    "Tranquillità",
+    "Rapporto qualità-prezzo",
+  ];
 
   return (
-    <section id="recensioni" className="bg-ivory py-20">
+    <section id="recensioni" className="border-b border-line-soft bg-ivory py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="mb-12 text-center font-serif text-3xl font-light text-deep-brown">
-          Cosa dicono i nostri ospiti
-        </h2>
-
-        <div className="flex items-center gap-3 md:gap-6">
-          <button
-            type="button"
-            onClick={prev}
-            aria-label="Recensione precedente"
-            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#d8e2e5] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
-          >
-            <span className="-mt-0.5 text-2xl leading-none">‹</span>
-          </button>
-
-          <div className="flex flex-1 gap-4 md:gap-6">
-            {visible.map((r, i) => (
-              <motion.article
-                key={`${r.nome}-${current}-${i}`}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.05, ease }}
-                viewport={{ once: true, amount: 0.05 }}
-                className={`flex-1 rounded-2xl border border-[#d8e2e5] bg-paper p-6 shadow-sm ${
-                  i === 1 ? "hidden md:block" : ""
-                } ${i === 2 ? "hidden lg:block" : ""}`}
-              >
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={r.avatar}
-                    alt={r.nome}
-                    width={80}
-                    height={80}
-                    sizes="48px"
-                    className="h-12 w-12 rounded-full object-cover"
-                  />
-                  <div className="leading-tight">
-                    <div className="text-sm font-semibold text-deep-brown">
-                      {r.nome}
-                    </div>
-                    <div className="text-xs text-warm-gray/65">{r.luogo}</div>
-                  </div>
-                </div>
-                <div className="mt-3 flex gap-0.5 text-lg text-yellow-400">
-                  {Array.from({ length: r.stelle }).map((_, j) => (
-                    <span key={j}>★</span>
+        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+              Recensioni
+            </div>
+            <div className="mt-3 flex items-end gap-4">
+              <span className="font-serif text-6xl font-light leading-none text-deep-brown">
+                8.8
+              </span>
+              <div className="pb-1">
+                <div className="flex gap-0.5 text-terracotta">
+                  {Array.from({ length: 5 }).map((_, j) => (
+                    <Star key={j} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <p className="mt-3 text-sm italic leading-relaxed text-warm-gray">
-                  {r.testo}
-                </p>
-              </motion.article>
-            ))}
+                <div className="mt-1 text-sm text-warm-gray">
+                  Ottimo · 122 recensioni verificate
+                </div>
+              </div>
+            </div>
           </div>
-
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Recensione successiva"
-            className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-full border border-[#d8e2e5] bg-paper text-deep-brown shadow-md transition hover:bg-[#fafaf9]"
+          <a
+            href="https://www.booking.com/hotel/it/miriale-house.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-terracotta underline-offset-4 hover:underline"
           >
-            <span className="-mt-0.5 text-2xl leading-none">›</span>
-          </button>
+            Leggi tutte le recensioni su Booking →
+          </a>
         </div>
+
+        <ul className="mt-6 flex flex-wrap gap-2">
+          {punti.map((p) => (
+            <li
+              key={p}
+              className="rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
+            >
+              {p}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {recensioni.map((r) => (
+            <figure
+              key={r.testo}
+              className="rounded-2xl border border-line bg-paper p-6 shadow-sm"
+            >
+              <div className="flex gap-0.5 text-terracotta">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <Star key={j} className="h-3.5 w-3.5 fill-current" />
+                ))}
+              </div>
+              <blockquote className="mt-3 text-sm leading-relaxed text-deep-brown">
+                “{r.testo}”
+              </blockquote>
+              <figcaption className="mt-4 text-xs text-warm-gray">
+                {r.meta}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p className="mt-6 text-xs leading-relaxed text-warm-gray/70">
+          Estratti sintetizzati dalle recensioni reali su Booking (8.8 · 122
+          recensioni). Citazioni testuali complete disponibili su richiesta.
+        </p>
       </div>
     </section>
   );
@@ -1297,41 +1295,64 @@ function Recensioni() {
 /* -------------------------------------------------------------------------- */
 
 function Regole() {
-  const rules = [
-    { Icon: Clock, label: "Check-in", sub: "15:00 — 00:00" },
-    { Icon: LogOut, label: "Check-out", sub: "01:00 — 11:00" },
-    { Icon: CigaretteOff, label: "Non fumare", sub: "in tutta la struttura" },
-    { Icon: PawPrint, label: "Animali", sub: "non ammessi" },
-    { Icon: PartyPopper, label: "Feste o eventi", sub: "non consentiti" },
-    { Icon: MoonStar, label: "Bambini", sub: "tutte le età" },
-    { Icon: Tag, label: "Culla 0–1 anno", sub: "€10/soggiorno · su richiesta" },
+  const blocchi = [
+    {
+      titolo: "Check-in & check-out",
+      righe: [
+        { Icon: Clock, t: "Check-in", s: "dalle 15:00 alle 24:00" },
+        { Icon: LogOut, t: "Check-out", s: "entro le 11:00" },
+        { Icon: KeyRound, t: "Self check-in", s: "con cassetta di sicurezza (keybox)" },
+      ],
+    },
+    {
+      titolo: "Regole della casa",
+      righe: [
+        { Icon: CigaretteOff, t: "Non fumatori", s: "in tutta la struttura" },
+        { Icon: PawPrint, t: "Animali", s: "non ammessi" },
+        { Icon: PartyPopper, t: "Feste ed eventi", s: "non consentiti" },
+        { Icon: Users, t: "Età minima", s: "18 anni per il check-in" },
+      ],
+    },
+    {
+      titolo: "Buono a sapersi",
+      righe: [
+        { Icon: MoonStar, t: "Bambini", s: "benvenuti, tutte le età" },
+        { Icon: Tag, t: "Culla 0–1 anno", s: "€10/soggiorno, su richiesta" },
+        { Icon: Car, t: "Parcheggio", s: "gratuito in loco" },
+        { Icon: Plane, t: "Navetta aeroporto", s: "a pagamento, su richiesta" },
+      ],
+    },
   ];
   return (
-    <section className="bg-cream py-8">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-6 px-6">
-        <div className="flex-shrink-0 border-r border-[#d8e2e5] pr-6 leading-tight">
-          <div className="font-serif text-lg font-semibold text-deep-brown">
-            Informazioni
-          </div>
-          <div className="font-serif text-lg font-semibold text-deep-brown">
-            utili
-          </div>
+    <section className="border-b border-line-soft bg-paper py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+          Da sapere
         </div>
-
-        {rules.map((r) => (
-          <div
-            key={r.label}
-            className="flex flex-col items-center text-center"
-          >
-            <r.Icon className="h-5 w-5 text-warm-gray/70" strokeWidth={1.5} />
-            <div className="mt-1.5 text-sm leading-tight text-deep-brown">
-              {r.label}
+        <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+          Prima di prenotare
+        </h2>
+        <div className="mt-10 grid gap-10 md:grid-cols-3">
+          {blocchi.map((b) => (
+            <div key={b.titolo}>
+              <h3 className="font-medium text-deep-brown">{b.titolo}</h3>
+              <ul className="mt-4 space-y-3">
+                {b.righe.map((r) => (
+                  <li key={r.t} className="flex items-start gap-3">
+                    <r.Icon
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-warm-gray"
+                      strokeWidth={1.5}
+                    />
+                    <div>
+                      <div className="text-sm text-deep-brown">{r.t}</div>
+                      <div className="text-xs text-warm-gray">{r.s}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="text-xs leading-tight text-warm-gray/65">
-              {r.sub}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
