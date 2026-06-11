@@ -179,7 +179,7 @@ export default function ContattiPage() {
               <a
                 href={mailto}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#1d4a5a" }}
+                style={{ backgroundColor: "#0f2e45" }}
               >
                 <I.mail className="h-4 w-4" />
                 Invia richiesta

@@ -385,7 +385,7 @@ function InfoCards() {
           <motion.article
             {...cardAnim(0)}
             className="flex h-[420px] flex-col overflow-hidden rounded-2xl text-white"
-            style={{ backgroundColor: "#1d4a5a" }}
+            style={{ backgroundColor: "#0f2e45" }}
           >
             <div className="relative flex flex-1 flex-col p-5">
               <span
@@ -670,7 +670,7 @@ function GliSpazi() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                  style={{ backgroundColor: "#1d4a5a" }}
+                  style={{ backgroundColor: "#0f2e45" }}
                 >
                   <I.whatsapp className="h-4 w-4" />
                   Richiedi {a.nome}
@@ -825,7 +825,7 @@ function DoveSiamo() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#1d4a5a" }}
+                style={{ backgroundColor: "#0f2e45" }}
               >
                 <I.pin className="h-4 w-4" />
                 Apri su Google Maps
@@ -1435,7 +1435,7 @@ function ContactForm() {
               <a
                 href={mailto}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#1d4a5a" }}
+                style={{ backgroundColor: "#0f2e45" }}
               >
                 <I.mail className="h-4 w-4" />
                 Invia richiesta

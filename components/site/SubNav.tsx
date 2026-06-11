@@ -51,7 +51,7 @@ export default function SubNav() {
         <a
           href="#prenota"
           className="rounded-full px-5 py-2 text-sm font-medium text-white transition hover:opacity-90"
-          style={{ backgroundColor: "#1d4a5a" }}
+          style={{ backgroundColor: "#0f2e45" }}
         >
           Prenota
         </a>

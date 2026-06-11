@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Surfaces — bianco pulito + tinta mare tenue (palette "Mare clean") */
+  /* Surfaces — bianco + azzurrino (palette "Mare & Sole") */
   --color-ivory: #ffffff;
-  --color-ivory-2: #f2f7f8;
-  --color-cream: #f2f7f8;
-  --color-cream-2: #e8f1f3;
-  --color-stone: #dce8eb;
+  --color-ivory-2: #eef4f8;
+  --color-cream: #eef4f8;
+  --color-cream-2: #e1e9f0;
+  --color-stone: #cdd9e3;
   --color-paper: #ffffff;
-  --color-bone: #f6fafb;
+  --color-bone: #f6f9fb;
 
-  /* "Greens" -> teal del mare (sezioni scure, footer) */
-  --color-olive: #2c8aa6;
-  --color-olive-2: #237a93;
-  --color-olive-dark: #1a5f73;
-  --color-olive-deep: #123a43;
-  --color-olive-section: #123a43;
-  --color-olive-section-2: #0e2f37;
-  --color-footer: #0c2a31;
+  /* "Greens" -> blu navy del mare (sezioni scure, footer) */
+  --color-olive: #1f6f93;
+  --color-olive-2: #1a5f80;
+  --color-olive-dark: #134a66;
+  --color-olive-deep: #0f2e45;
+  --color-olive-section: #0f2e45;
+  --color-olive-section-2: #0a2336;
+  --color-footer: #08203a;
 
-  /* Accents — azzurro mare + sabbia tenue */
-  --color-gold: #cba67e;
-  --color-gold-soft: #e6c9a0;
-  --color-gold-deep: #b8945e;
-  --color-terracotta: #1e91b6;
+  /* Accents — blu mare + giallo sole */
+  --color-gold: #f4b740;
+  --color-gold-soft: #f8cd76;
+  --color-gold-deep: #d99e2a;
+  --color-terracotta: #1e88b5;
   --color-wa: #25d366;
   --color-wa-dark: #1fb858;
 
-  /* Text — teal profondo + slate */
-  --color-deep-brown: #123a43;
-  --color-warm-gray: #5f7780;
-  --color-line: #e4edef;
-  --color-line-soft: #eff5f6;
+  /* Text — navy profondo + slate */
+  --color-deep-brown: #0f2e45;
+  --color-warm-gray: #54697a;
+  --color-line: #e1e9f0;
+  --color-line-soft: #eef4f8;
 
   --font-serif:
     var(--font-fraunces), "Fraunces", "Times New Roman", serif;
