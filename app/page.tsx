@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageSlider from "@/components/site/ImageSlider";
+import BookingWidget from "@/components/site/BookingWidget";
 import {
   Bath,
   BedDouble,
@@ -1369,10 +1370,18 @@ function ContactForm() {
             viewport={{ once: true, amount: 0.05 }}
             className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-warm-gray"
           >
-            Scrivici su WhatsApp o invia una richiesta: il proprietario ti
-            risponderà direttamente.
+            Scegli le date e il numero di ospiti: ti rispondiamo su WhatsApp e
+            confermiamo tutto in chat. Nessun pagamento online.
           </motion.p>
         </div>
+
+        <div className="mx-auto mb-12 max-w-md">
+          <BookingWidget />
+        </div>
+
+        <p className="mb-8 text-center text-sm text-warm-gray">
+          Preferisci scriverci? Usa il modulo o i contatti diretti qui sotto.
+        </p>
 
         <div className="grid gap-6 md:grid-cols-[1.3fr_1fr] md:gap-8">
           {/* Form */}
