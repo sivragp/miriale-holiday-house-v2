@@ -1579,6 +1579,56 @@ function CtaBanner() {
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
+/*  GalleriaMosaico — griglia foto a tessere                                   */
+/* -------------------------------------------------------------------------- */
+
+function GalleriaMosaico() {
+  const tiles = [
+    { src: "/images/house/house-31.jpg", alt: "Giardino di MiriAle", span: "col-span-2 row-span-2" },
+    { src: "/images/house/house-28.jpg", alt: "Camera matrimoniale", span: "" },
+    { src: "/images/house/house-13.jpg", alt: "Terrazza", span: "" },
+    { src: "/images/house/house-14.jpg", alt: "Panorama dalla terrazza", span: "col-span-2" },
+    { src: "/images/house/house-09.jpg", alt: "Camera mansardata", span: "" },
+    { src: "/images/house/house-11.jpg", alt: "Bagno in marmo", span: "" },
+    { src: "/images/house/house-30.jpg", alt: "Cucina", span: "" },
+    { src: "/images/house/house-19.jpg", alt: "Colazione", span: "" },
+    { src: "/images/house/house-22.jpg", alt: "Terrazza con vista", span: "col-span-2" },
+    { src: "/images/house/house-26.jpg", alt: "Camera matrimoniale", span: "" },
+    { src: "/images/house/house-23.jpg", alt: "Ingresso di MiriAle", span: "" },
+  ];
+
+  return (
+    <section className="bg-deep-brown py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-xs font-medium uppercase tracking-widest text-white/60">
+          Galleria
+        </div>
+        <h2 className="mt-3 font-serif text-3xl font-light text-white md:text-4xl">
+          La casa in immagini.
+        </h2>
+
+        <div className="mt-8 grid auto-rows-[150px] grid-cols-2 gap-2 sm:auto-rows-[190px] md:grid-cols-4 md:gap-3 lg:auto-rows-[220px]">
+          {tiles.map((t) => (
+            <div
+              key={t.src + t.alt}
+              className={`group relative overflow-hidden rounded-xl ${t.span}`}
+            >
+              <Image
+                src={t.src}
+                alt={t.alt}
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Highlights (stile Airbnb)                                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -1677,6 +1727,7 @@ export default function Home() {
       <HostStrip />
       <Benvenuti />
       <GliSpazi />
+      <GalleriaMosaico />
       <ServiziInclusi />
       <InfoCards />
       <Recensioni />
