@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageSlider from "@/components/site/ImageSlider";
 import BookingWidget from "@/components/site/BookingWidget";
+import SubNav from "@/components/site/SubNav";
 import {
   Bath,
   BedDouble,
@@ -1708,6 +1709,7 @@ export default function Home() {
   return (
     <main className="flex-1">
       <HeroImage />
+      <SubNav />
       <GalleryStrip />
       <Highlights />
       <HostStrip />
