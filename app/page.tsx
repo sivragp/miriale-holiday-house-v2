@@ -8,15 +8,18 @@ import ImageSlider from "@/components/site/ImageSlider";
 import {
   Bath,
   BedDouble,
+  Car,
   CigaretteOff,
   Clock,
   Home as HomeIcon,
+  KeyRound,
   LogOut,
   MoonStar,
   PartyPopper,
   PawPrint,
   Plane,
   ShieldCheck,
+  Star,
   Tag,
   Train,
   Users,
@@ -1584,19 +1587,110 @@ function CtaBanner() {
 /*  Page                                                                      */
 /* -------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------- */
+/*  Highlights (stile Airbnb)                                                  */
+/* -------------------------------------------------------------------------- */
+
+function Highlights() {
+  const items = [
+    {
+      Icon: KeyRound,
+      t: "Self check-in con keybox",
+      s: "Arrivi e parti quando vuoi: codice e cassetta di sicurezza, comodo anche per voli notturni.",
+    },
+    {
+      Icon: Plane,
+      t: "A 10 minuti dall'aeroporto",
+      s: "Leonardo da Vinci a un passo. Su richiesta, transfer con l'host.",
+    },
+    {
+      Icon: Star,
+      t: "8.8 su Booking",
+      s: "122 recensioni verificate: pulizia e accoglienza al primo posto.",
+    },
+    {
+      Icon: Car,
+      t: "Parcheggio gratuito in loco",
+      s: "Lasci l'auto e sei a casa. Zona residenziale tranquilla e silenziosa.",
+    },
+  ];
+
+  return (
+    <section className="border-b border-line-soft bg-paper py-14 md:py-16">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((it) => (
+            <div key={it.t} className="bg-paper p-6">
+              <it.Icon className="h-6 w-6 text-terracotta" />
+              <h3 className="mt-4 font-medium text-deep-brown">{it.t}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-warm-gray">
+                {it.s}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  HostStrip — anteprima host (stile Airbnb "Meet your host")                */
+/* -------------------------------------------------------------------------- */
+
+function HostStrip() {
+  return (
+    <section className="border-b border-line-soft bg-ivory py-14 md:py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="flex flex-col items-start gap-6 rounded-2xl border border-line bg-paper p-7 shadow-sm sm:flex-row sm:items-center md:p-9">
+          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-deep-brown font-serif text-2xl text-white">
+            F
+          </div>
+          <div className="flex-1">
+            <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+              Conosci l&apos;host
+            </div>
+            <h2 className="mt-1 font-serif text-2xl font-light text-deep-brown">
+              Ti ospitano Fabio e la sua famiglia
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-warm-gray">
+              Host attento e sempre raggiungibile: ti accoglie all&apos;arrivo,
+              ti dà una mano col parcheggio e — se serve — viene a prenderti in
+              aeroporto. Conosce Fiumicino e Roma come le sue tasche.
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+              <span className="inline-flex items-center gap-1.5 text-deep-brown">
+                <Star className="h-4 w-4 text-terracotta" /> 8.8 · 122 recensioni
+              </span>
+              <Link
+                href="/la-famiglia"
+                className="font-medium text-terracotta underline-offset-4 hover:underline"
+              >
+                Scopri la famiglia →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main className="flex-1">
       <HeroImage />
       <GalleryStrip />
+      <Highlights />
+      <HostStrip />
       <Benvenuti />
-      <Regole />
+      <GliSpazi />
       <ServiziInclusi />
       <InfoCards />
-      <GliSpazi />
+      <Recensioni />
       <DoveSiamo />
       <Dintorni />
-      <Recensioni />
+      <Regole />
       <ContactForm />
       <CtaBanner />
     </main>
