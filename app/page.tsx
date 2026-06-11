@@ -610,81 +610,69 @@ function GliSpazi() {
           </p>
         </div>
 
-        {appartamenti.map((a, i) => (
-          <article
-            key={a.nome}
-            className="mt-12 grid items-center gap-8 md:mt-16 md:grid-cols-2 md:gap-12"
-          >
-            <div
-              className={`grid aspect-[4/3] grid-cols-3 grid-rows-2 gap-2 ${
-                i % 2 === 1 ? "md:order-2" : ""
-              }`}
-            >
-              <div className="relative col-span-2 row-span-2 overflow-hidden rounded-2xl shadow-sm">
-                <ImageSlider
-                  images={a.bigImgs}
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                />
-              </div>
-              {a.small.map((im) => (
-                <div
-                  key={im.src + im.alt}
-                  className="relative overflow-hidden rounded-xl"
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {appartamenti.map((a) => {
+            const slug = a.nome.toLowerCase();
+            return (
+              <article
+                key={a.nome}
+                className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition hover:shadow-md"
+              >
+                <Link
+                  href={`/${slug}`}
+                  className="relative block aspect-[16/10] overflow-hidden"
                 >
                   <Image
-                    src={im.src}
-                    alt={im.alt}
+                    src={a.bigImgs[0].src}
+                    alt={a.bigImgs[0].alt}
                     fill
-                    sizes="(max-width: 768px) 33vw, 20vw"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition duration-700 hover:scale-105"
                   />
-                </div>
-              ))}
-            </div>
-
-            <div>
-              <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
-                Appartamento
-              </div>
-              <h3 className="mt-1 font-serif text-3xl font-light text-deep-brown md:text-4xl">
-                {a.nome}{" "}
-                <span className="text-xl text-warm-gray">· {a.mq}</span>
-              </h3>
-              <p className="mt-3 text-base leading-relaxed text-warm-gray">
-                {a.tagline}
-              </p>
-              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-                {a.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2 text-sm text-deep-brown"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracotta" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <a
-                  href={waLink(a.waMsg)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                  style={{ backgroundColor: "#0f2e45" }}
-                >
-                  <I.whatsapp className="h-4 w-4" />
-                  Richiedi {a.nome}
-                </a>
-                <Link
-                  href={`/${a.nome.toLowerCase()}`}
-                  className="text-sm font-medium text-terracotta underline-offset-4 hover:underline"
-                >
-                  Scopri {a.nome} nel dettaglio →
+                  <span className="absolute right-3 top-3 rounded-full bg-paper/95 px-3 py-1 text-xs font-semibold text-deep-brown shadow-sm">
+                    {a.mq}
+                  </span>
                 </Link>
-              </div>
-            </div>
-          </article>
-        ))}
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-serif text-2xl font-light text-deep-brown">
+                    Appartamento {a.nome}
+                  </h3>
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-warm-gray">
+                    <span className="inline-flex items-center gap-1.5">
+                      <BedDouble className="h-4 w-4" /> 2 camere matrimoniali
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Bath className="h-4 w-4" /> 1 bagno
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Users className="h-4 w-4" /> fino a 4
+                    </span>
+                  </div>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-warm-gray">
+                    {a.tagline}
+                  </p>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+                    <Link
+                      href={`/${slug}`}
+                      className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
+                      style={{ backgroundColor: "#0f2e45" }}
+                    >
+                      Vedi disponibilità
+                    </Link>
+                    <a
+                      href={waLink(a.waMsg)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-terracotta hover:underline"
+                    >
+                      <I.whatsapp className="h-4 w-4" /> Richiedi
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
 
         {/* Giardino in comune */}
         <div className="mt-16">
@@ -1725,6 +1713,71 @@ function HostStrip() {
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/*  FAQ — domande frequenti (stile Booking)                                   */
+/* -------------------------------------------------------------------------- */
+
+function FAQ() {
+  const faqs = [
+    {
+      q: "Dove si trova MiriAle?",
+      a: "A Fiumicino, a circa 10 minuti dall'aeroporto Leonardo da Vinci. Roma è a ~30 km (32 minuti col treno Leonardo Express) e il mare a pochi minuti.",
+    },
+    {
+      q: "Come funziona il check-in?",
+      a: "Niente check-in automatico: vi accoglie Fabio di persona. Check-in dalle 15:00 alle 24:00, check-out entro le 11:00.",
+    },
+    {
+      q: "C'è il transfer dall'aeroporto?",
+      a: "Sì, su richiesta: Fabio è tassista e offre il transfer da e per l'aeroporto (a pagamento).",
+    },
+    {
+      q: "Posso prenotare tutta la casa?",
+      a: "Sì: Miri e Ale insieme fanno 4 camere matrimoniali, 2 bagni e il giardino, fino a 8 ospiti — ideale per gruppi e famiglie numerose.",
+    },
+    {
+      q: "C'è il parcheggio?",
+      a: "Sì, parcheggio privato gratuito in loco, in una zona residenziale tranquilla.",
+    },
+    {
+      q: "Sono ammessi animali? Si può fumare?",
+      a: "Gli animali non sono ammessi e la struttura è non fumatori. Età minima per il check-in: 18 anni.",
+    },
+    {
+      q: "Come si prenota?",
+      a: "Scegli le date e il numero di ospiti nel box: ti rispondiamo su WhatsApp e confermiamo tutto in chat. Nessun pagamento online.",
+    },
+  ];
+
+  return (
+    <section className="border-b border-line-soft bg-ivory py-16 md:py-20">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+          FAQ
+        </div>
+        <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+          Domande frequenti
+        </h2>
+        <div className="mt-8 border-y border-line-soft">
+          {faqs.map((f) => (
+            <details key={f.q} className="group border-b border-line-soft py-4 last:border-b-0">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium text-deep-brown marker:content-['']">
+                {f.q}
+                <span className="text-xl leading-none text-terracotta transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-sm leading-relaxed text-warm-gray">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main className="flex-1">
@@ -1732,16 +1785,17 @@ export default function Home() {
       <SubNav />
       <GalleryStrip />
       <Highlights />
-      <HostStrip />
       <Benvenuti />
       <GliSpazi />
       <GalleriaMosaico />
-      <ServiziInclusi />
-      <InfoCards />
       <Recensioni />
+      <HostStrip />
+      <InfoCards />
       <DoveSiamo />
       <Dintorni />
+      <ServiziInclusi />
       <Regole />
+      <FAQ />
       <ContactForm />
       <CtaBanner />
     </main>
