@@ -12,18 +12,28 @@ import {
   Car,
   CigaretteOff,
   Clock,
+  Coffee,
+  Flame,
   Home as HomeIcon,
   KeyRound,
   LogOut,
+  Microwave,
   MoonStar,
   PartyPopper,
   PawPrint,
   Plane,
+  Refrigerator,
   ShieldCheck,
   Star,
   Tag,
   Train,
+  TreePine,
+  Tv,
   Users,
+  Utensils,
+  WashingMachine,
+  Wifi,
+  Wind,
 } from "lucide-react";
 import {
   ADDRESS_LINE_1,
@@ -55,7 +65,7 @@ function HeroImage() {
   return (
     <section
       id="top"
-      className="relative isolate min-h-[90vh] overflow-hidden bg-deep-brown"
+      className="relative isolate h-[560px] max-h-[630px] overflow-hidden bg-deep-brown md:h-[630px]"
     >
       <Image
         src="/images/house/hero-home.jpg"
@@ -73,13 +83,13 @@ function HeroImage() {
         }}
       />
 
-      <div className="relative z-10 flex min-h-[90vh] items-center px-[8%] md:px-[10%]">
-        <div className="max-w-xl py-24">
+      <div className="relative z-10 flex h-full items-center px-[8%] md:px-[10%]">
+        <div className="max-w-xl py-10">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease }}
-            className="font-serif text-6xl font-light leading-none text-white md:text-8xl"
+            className="font-serif text-4xl font-light leading-none text-white md:text-6xl"
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.4)" }}
           >
             Due appartamenti a Fiumicino.
@@ -88,7 +98,7 @@ function HeroImage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5, ease }}
-            className="mt-2 font-serif text-3xl font-light text-white/90 md:text-5xl"
+            className="mt-2 font-serif text-xl font-light text-white/90 md:text-3xl"
             style={{ textShadow: "0 2px 16px rgba(0,0,0,0.3)" }}
           >
             A 10 minuti dall&apos;aeroporto.
@@ -291,63 +301,51 @@ function Benvenuti() {
 
 function ServiziInclusi() {
   const items = [
-    { Icon: I.wifi, label: "Wi-Fi", subtitle: "Gratuito in tutta la casa" },
-    { Icon: I.parking, label: "Parcheggio", subtitle: "Gratuito in loco" },
-    {
-      Icon: I.snowflake,
-      label: "Aria condizionata",
-      subtitle: "In casa",
-    },
-    { Icon: I.heat, label: "Riscaldamento", subtitle: "In casa" },
-    { Icon: I.tv, label: "TV schermo piatto", subtitle: "In soggiorno" },
-    { Icon: I.washer, label: "Lavatrice", subtitle: "A disposizione" },
-    {
-      Icon: I.family,
-      label: "Camere familiari",
-      subtitle: "Adatto a famiglie",
-    },
-    { Icon: I.key, label: "Casa intera", subtitle: "Privacy e spazio" },
+    { Icon: Wifi, label: "Wi-Fi gratuito" },
+    { Icon: Wind, label: "Aria condizionata" },
+    { Icon: Flame, label: "Riscaldamento" },
+    { Icon: Utensils, label: "Cucina attrezzata" },
+    { Icon: Microwave, label: "Forno e microonde" },
+    { Icon: Coffee, label: "Bollitore e moka" },
+    { Icon: Refrigerator, label: "Frigorifero" },
+    { Icon: WashingMachine, label: "Lavatrice" },
+    { Icon: Tv, label: "TV schermo piatto" },
+    { Icon: Bath, label: "Phon e set di cortesia" },
+    { Icon: BedDouble, label: "Biancheria e asciugamani" },
+    { Icon: KeyRound, label: "Self check-in (keybox)" },
+    { Icon: Car, label: "Parcheggio gratuito in loco" },
+    { Icon: TreePine, label: "Giardino e terrazza" },
+    { Icon: HomeIcon, label: "Casa intera, solo per te" },
+    { Icon: Plane, label: "Navetta aeroporto (a pagamento)" },
   ];
 
   return (
-    <section id="servizi" className="border-b border-line-soft bg-paper py-16">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
-          viewport={{ once: true, amount: 0.05 }}
-          className="flex flex-wrap items-end gap-x-4 gap-y-1"
-        >
-          <h2 className="font-serif text-3xl font-light text-deep-brown">
-            Servizi e comfort
-          </h2>
-          <span className="mb-1 text-base text-warm-gray/70">
-            — Tutto quello che serve, già incluso.
-          </span>
-        </motion.div>
+    <section id="servizi" className="border-b border-line-soft bg-ivory py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+          Servizi
+        </div>
+        <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+          Cosa offre questa casa.
+        </h2>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-warm-gray">
+          Tutto quello che serve per sentirti a casa, già incluso — in entrambi
+          gli appartamenti.
+        </p>
 
-        <div className="scrollbar-hide mt-8 overflow-x-auto">
-          <div className="flex gap-3">
-            {items.map((it, i) => (
-              <motion.div
-                key={it.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.04, ease }}
-                viewport={{ once: true, amount: 0.05 }}
-                className="flex w-[140px] flex-shrink-0 flex-col rounded-xl border border-[#d8e2e5] bg-paper p-4 transition hover:shadow-md"
-              >
-                <it.Icon className="mb-3 h-8 w-8 text-warm-gray" />
-                <div className="text-sm font-semibold leading-tight text-deep-brown">
-                  {it.label}
-                </div>
-                <div className="mt-0.5 text-xs leading-tight text-warm-gray/70">
-                  {it.subtitle}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it) => (
+            <div
+              key={it.label}
+              className="flex items-center gap-3 border-b border-line-soft pb-4"
+            >
+              <it.Icon
+                className="h-5 w-5 flex-shrink-0 text-deep-brown"
+                strokeWidth={1.5}
+              />
+              <span className="text-sm text-deep-brown">{it.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
