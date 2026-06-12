@@ -282,50 +282,86 @@ function GalleryStrip() {
 /* -------------------------------------------------------------------------- */
 
 function ServiziInclusi() {
-  const items = [
-    { Icon: Wifi, label: "Wi-Fi gratuito" },
-    { Icon: Wind, label: "Aria condizionata" },
-    { Icon: Flame, label: "Riscaldamento" },
-    { Icon: Utensils, label: "Cucina attrezzata" },
-    { Icon: Microwave, label: "Forno e microonde" },
-    { Icon: Coffee, label: "Bollitore e moka" },
-    { Icon: Refrigerator, label: "Frigorifero" },
-    { Icon: WashingMachine, label: "Lavatrice" },
-    { Icon: Tv, label: "TV schermo piatto" },
-    { Icon: Bath, label: "Phon e set di cortesia" },
-    { Icon: BedDouble, label: "Biancheria e asciugamani" },
-    { Icon: Users, label: "Accoglienza dell'host" },
-    { Icon: Car, label: "Parcheggio gratuito in loco" },
-    { Icon: TreePine, label: "Giardino e terrazza" },
-    { Icon: HomeIcon, label: "Casa intera, solo per te" },
-    { Icon: Plane, label: "Navetta aeroporto (a pagamento)" },
+  const gruppi = [
+    {
+      titolo: "Cucina",
+      voci: [
+        { Icon: Utensils, l: "Cucina attrezzata" },
+        { Icon: Microwave, l: "Forno e microonde" },
+        { Icon: Coffee, l: "Bollitore e moka" },
+        { Icon: Refrigerator, l: "Frigorifero" },
+      ],
+    },
+    {
+      titolo: "Bagno",
+      voci: [
+        { Icon: Bath, l: "Doccia" },
+        { Icon: Bath, l: "Phon e asciugamani" },
+        { Icon: Bath, l: "Set di cortesia" },
+      ],
+    },
+    {
+      titolo: "Camera e comfort",
+      voci: [
+        { Icon: Wind, l: "Aria condizionata" },
+        { Icon: Flame, l: "Riscaldamento" },
+        { Icon: BedDouble, l: "Biancheria inclusa" },
+        { Icon: Tv, l: "TV schermo piatto" },
+      ],
+    },
+    {
+      titolo: "Servizi",
+      voci: [
+        { Icon: Wifi, l: "Wi-Fi gratuito" },
+        { Icon: WashingMachine, l: "Lavatrice" },
+        { Icon: Users, l: "Accoglienza dell'host" },
+        { Icon: Plane, l: "Navetta aeroporto (a pagamento)" },
+      ],
+    },
+    {
+      titolo: "Esterni e arrivo",
+      voci: [
+        { Icon: TreePine, l: "Giardino e terrazza" },
+        { Icon: Car, l: "Parcheggio gratuito" },
+        { Icon: HomeIcon, l: "Casa intera, solo per te" },
+      ],
+    },
   ];
 
   return (
-    <section id="servizi" className="border-b border-line-soft bg-ivory py-16 md:py-20">
+    <section
+      id="servizi"
+      className="scroll-mt-20 border-b border-line-soft bg-ivory py-16 md:py-20"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
           Servizi
         </div>
         <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
-          Cosa offre questa casa.
+          Cosa offre la casa
         </h2>
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-warm-gray">
-          Tutto quello che serve per sentirti a casa, già incluso — in entrambi
-          gli appartamenti.
+          Tutto quello che serve, già incluso in entrambi gli appartamenti.
         </p>
 
-        <div className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((it) => (
-            <div
-              key={it.label}
-              className="flex items-center gap-3 border-b border-line-soft pb-4"
-            >
-              <it.Icon
-                className="h-5 w-5 flex-shrink-0 text-deep-brown"
-                strokeWidth={1.5}
-              />
-              <span className="text-sm text-deep-brown">{it.label}</span>
+        <div className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {gruppi.map((g) => (
+            <div key={g.titolo}>
+              <h3 className="font-medium text-deep-brown">{g.titolo}</h3>
+              <ul className="mt-4 space-y-3 border-t border-line-soft pt-4">
+                {g.voci.map((v) => (
+                  <li
+                    key={v.l}
+                    className="flex items-center gap-3 text-sm text-deep-brown"
+                  >
+                    <v.Icon
+                      className="h-4 w-4 flex-shrink-0 text-warm-gray"
+                      strokeWidth={1.5}
+                    />
+                    {v.l}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
