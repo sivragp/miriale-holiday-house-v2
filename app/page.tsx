@@ -371,21 +371,8 @@ function ServiziInclusi() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  InfoCards — 3 motivi "Perché MiriAle" + card rating                       */
+/*  InfoCards — motivi verificati, senza rating esterni non confermati        */
 /* -------------------------------------------------------------------------- */
-
-function GoogleWordmark({ className = "" }: { className?: string }) {
-  return (
-    <span className={`font-medium ${className}`} aria-label="Google">
-      <span style={{ color: "#4285F4" }}>G</span>
-      <span style={{ color: "#EA4335" }}>o</span>
-      <span style={{ color: "#FBBC05" }}>o</span>
-      <span style={{ color: "#4285F4" }}>g</span>
-      <span style={{ color: "#34A853" }}>l</span>
-      <span style={{ color: "#EA4335" }}>e</span>
-    </span>
-  );
-}
 
 function InfoCards() {
   const cardAnim = (delay: number) => ({
@@ -395,126 +382,105 @@ function InfoCards() {
     viewport: { once: true, amount: 0.05 },
   });
 
+  const cards = [
+    {
+      n: "01",
+      title: "Arrivi e riparti senza complicazioni",
+      text:
+        "Fiumicino è a circa 10 minuti. Fabio può organizzare il transfer aeroporto a pagamento e ti accoglie di persona.",
+      href: "#dove-siamo",
+      cta: "Guarda la posizione",
+      image: "/images/aereo-aeroporto.jpg",
+      alt: "Aereo vicino all'aeroporto di Fiumicino",
+      dark: true,
+    },
+    {
+      n: "02",
+      title: "Due appartamenti, privacy reale",
+      text:
+        "Miri e Ale hanno cucina, camere e bagno propri. Puoi prenotarli singolarmente o insieme, fino a 8 ospiti.",
+      href: "#spazi",
+      cta: "Vedi gli appartamenti",
+      image: "/images/house/house-30.jpg",
+      alt: "Cucina attrezzata di MiriAle",
+      dark: false,
+    },
+    {
+      n: "03",
+      title: "Base pratica tra Roma e mare",
+      text:
+        "Roma è raggiungibile in treno, mentre spiagge, Ostia e Fiera di Roma restano a breve distanza in auto.",
+      href: "/cosa-fare-intorno",
+      cta: "Esplora i dintorni",
+      image: "/images/base-roma-mare.jpg",
+      alt: "Litorale vicino a Fiumicino",
+      dark: false,
+    },
+  ];
+
   return (
     <section id="perche" className="border-b border-line-soft bg-ivory py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
-          {/* Card 1 — Vicina all'aeroporto */}
-          <motion.article
-            {...cardAnim(0)}
-            className="flex h-[420px] flex-col overflow-hidden rounded-2xl text-white"
-            style={{ backgroundColor: "#0f2e45" }}
-          >
-            <div className="relative flex flex-1 flex-col p-5">
-              <span
-                className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-white/40 text-sm font-semibold"
-                aria-hidden="true"
-              >
-                01
-              </span>
-              <h3 className="pr-12 font-serif text-lg md:text-xl">
-                Vicina all&apos;aeroporto
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/85">
-                Perfetta per arrivi serali, partenze all&apos;alba o scali
-                lunghi. Senza lo stress dell&apos;hotel.
-              </p>
-              <a
-                href="#dove-siamo"
-                className="mt-auto pt-4 text-sm font-medium text-white/90 transition hover:text-white"
-              >
-                Scopri la posizione →
-              </a>
-            </div>
-            <div className="relative h-[200px] flex-shrink-0">
-              <Image
-                src="/images/aereo-aeroporto.jpg"
-                alt="Vicina all'aeroporto di Fiumicino"
-                fill
-                sizes="(max-width: 640px) 100vw, 25vw"
-                className="object-cover"
-              />
-            </div>
-          </motion.article>
+        <div className="max-w-2xl">
+          <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+            Perché MiriAle
+          </div>
+          <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+            Pensata per chi vuole arrivare, riposare e muoversi bene.
+          </h2>
+        </div>
 
-          {/* Card 2 — Più comoda di una stanza d'hotel */}
-          <motion.article
-            {...cardAnim(0.1)}
-            className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-cream-2"
-          >
-            <div className="flex flex-1 flex-col p-5">
-              <h3 className="font-serif text-lg text-deep-brown md:text-xl">
-                Più comoda di una stanza d&apos;hotel
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-deep-brown/75">
-                Più spazio, privacy e libertà rispetto a una camera
-                tradizionale. Una casa intera, solo per te.
-              </p>
-            </div>
-            <div className="relative h-[200px] flex-shrink-0">
-              <Image
-                src="/images/house/house-19.jpg"
-                alt="Colazione di benvenuto a MiriAle"
-                fill
-                sizes="(max-width: 640px) 100vw, 25vw"
-                className="object-cover"
-              />
-            </div>
-          </motion.article>
-
-          {/* Card 3 — Base tra Roma e mare */}
-          <motion.article
-            {...cardAnim(0.2)}
-            className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-cream-2"
-          >
-            <div className="flex flex-1 flex-col p-5">
-              <h3 className="font-serif text-lg text-deep-brown md:text-xl">
-                Base tra Roma e mare
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-deep-brown/75">
-                Una posizione pratica per muoversi tra Fiumicino, Roma e il
-                litorale, con i tuoi tempi.
-              </p>
-            </div>
-            <div className="relative h-[200px] flex-shrink-0">
-              <Image
-                src="/images/base-roma-mare.jpg"
-                alt="Spiaggia del litorale vicino a MiriAle"
-                fill
-                sizes="(max-width: 640px) 100vw, 25vw"
-                className="object-cover"
-              />
-            </div>
-          </motion.article>
-
-          {/* Card 4 — Dicono di noi (rating) */}
-          <motion.article
-            {...cardAnim(0.3)}
-            className="flex h-[420px] flex-col overflow-hidden rounded-2xl bg-paper p-6"
-          >
-            <h3 className="font-serif text-lg text-deep-brown md:text-xl">
-              Dicono di noi
-            </h3>
-            <div className="mt-auto">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="font-serif text-5xl font-medium leading-none text-deep-brown">
-                  4,9
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+          {cards.map((card, index) => (
+            <motion.article
+              key={card.title}
+              {...cardAnim(index * 0.1)}
+              className={`flex min-h-[430px] flex-col overflow-hidden rounded-2xl border border-line shadow-sm ${
+                card.dark ? "text-white" : "bg-paper text-deep-brown"
+              }`}
+              style={card.dark ? { backgroundColor: "#0f2e45" } : undefined}
+            >
+              <div className="relative flex flex-1 flex-col p-6">
+                <span
+                  className={`absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border text-sm font-semibold ${
+                    card.dark
+                      ? "border-white/40 text-white"
+                      : "border-line text-warm-gray"
+                  }`}
+                  aria-hidden="true"
+                >
+                  {card.n}
                 </span>
-                <I.star className="h-5 w-5 text-[#FBBC05]" />
-                <span className="ml-1 rounded-full bg-olive/15 px-2.5 py-1 text-xs font-medium text-olive-dark">
-                  Eccellente
-                </span>
+                <h3 className="pr-12 font-serif text-xl md:text-2xl">
+                  {card.title}
+                </h3>
+                <p
+                  className={`mt-3 text-sm leading-relaxed ${
+                    card.dark ? "text-white/85" : "text-warm-gray"
+                  }`}
+                >
+                  {card.text}
+                </p>
+                <Link
+                  href={card.href}
+                  className={`mt-auto pt-5 text-sm font-medium underline-offset-4 hover:underline ${
+                    card.dark ? "text-white/90" : "text-terracotta"
+                  }`}
+                >
+                  {card.cta} →
+                </Link>
               </div>
-              <div className="mt-3 flex gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <I.star key={i} className="h-4 w-4 text-[#FBBC05]" />
-                ))}
+              <div className="relative h-[210px] flex-shrink-0">
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-warm-gray">
-                Basato su 87 recensioni su <GoogleWordmark />
-              </p>
-            </div>
-          </motion.article>
+            </motion.article>
+          ))}
         </div>
 
         <div className="mt-10">
@@ -1028,11 +994,12 @@ function Recensioni() {
     },
   ];
   const punti = [
-    "Accoglienza dell'host",
-    "Pulizia",
-    "Posizione",
-    "Tranquillità",
-    "Rapporto qualità-prezzo",
+    { label: "Accoglienza dell'host", tone: "Molto citata" },
+    { label: "Pulizia", tone: "Molto citata" },
+    { label: "Posizione", tone: "Ricorrente" },
+    { label: "Tranquillità", tone: "Ricorrente" },
+    { label: "Cucina attrezzata", tone: "Ricorrente" },
+    { label: "Famiglie", tone: "Ricorrente" },
   ];
 
   return (
@@ -1069,16 +1036,29 @@ function Recensioni() {
           </a>
         </div>
 
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-8 grid gap-3 md:grid-cols-3">
           {punti.map((p) => (
-            <li
-              key={p}
-              className="rounded-full bg-cream-2 px-3 py-1 text-xs text-deep-brown"
+            <div
+              key={p.label}
+              className="rounded-2xl border border-line bg-paper p-4 shadow-sm"
             >
-              {p}
-            </li>
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="text-sm font-medium text-deep-brown">
+                  {p.label}
+                </span>
+                <span className="shrink-0 text-[11px] uppercase tracking-[0.16em] text-warm-gray/70">
+                  {p.tone}
+                </span>
+              </div>
+              <div
+                className="mt-3 h-1.5 overflow-hidden rounded-full bg-cream-2"
+                aria-hidden="true"
+              >
+                <div className="h-full w-full rounded-full bg-terracotta" />
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {recensioni.map((r) => (
@@ -1103,7 +1083,8 @@ function Recensioni() {
 
         <p className="mt-6 text-xs leading-relaxed text-warm-gray/70">
           Estratti sintetizzati dalle recensioni reali su Booking (8.8 · 122
-          recensioni). Citazioni testuali complete disponibili su richiesta.
+          recensioni). I temi sopra sono qualitativi: non indicano punteggi di
+          categoria.
         </p>
       </div>
     </section>
