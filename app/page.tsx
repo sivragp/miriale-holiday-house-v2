@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ImageSlider from "@/components/site/ImageSlider";
 import BookingWidget from "@/components/site/BookingWidget";
 import {
@@ -279,82 +279,6 @@ function GalleryStrip() {
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Benvenuti (id="la-casa")                                                  */
-/* -------------------------------------------------------------------------- */
-
-function Benvenuti() {
-  const badges = [
-    { Icon: I.pin, label: "Aeroporto a circa 6 km" },
-    { Icon: I.key, label: "Casa intera" },
-    { Icon: I.users, label: "Contatto diretto" },
-  ];
-
-  return (
-    <section
-      id="la-casa"
-      className="border-b border-line-soft bg-ivory py-20 md:py-24"
-    >
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[60fr_40fr] md:gap-12 md:px-8">
-        {/* Colonna sinistra */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
-          viewport={{ once: true, amount: 0.05 }}
-          className="flex flex-col justify-center"
-        >
-          <div className="mb-3 text-xs font-medium uppercase tracking-widest text-terracotta">
-            Vicino a Fiumicino
-          </div>
-          <h2 className="mb-5 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
-            Uno spazio pensato per chi viaggia.
-          </h2>
-          <p className="mb-8 max-w-md text-base leading-relaxed text-warm-gray md:text-lg">
-            Tre camere matrimoniali e due bagni, raccontati senza fretta. A
-            pochi minuti dall&apos;aeroporto di Fiumicino: privacy, spazio e
-            tutti i comfort per chi viaggia, riparte o vuole vivere Roma e il
-            litorale con più libertà.
-          </p>
-          <div className="flex flex-wrap gap-3 md:gap-4">
-            {badges.map((b) => (
-              <span
-                key={b.label}
-                className="inline-flex items-center gap-2 rounded-full bg-[#f5f5f4] px-4 py-2 text-sm text-[#44403c]"
-              >
-                <b.Icon className="h-4 w-4 text-warm-gray" />
-                {b.label}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Colonna destra: video del mare in loop */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15, ease }}
-          viewport={{ once: true, amount: 0.05 }}
-        >
-          <div className="relative h-72 w-full overflow-hidden rounded-2xl shadow-lg md:h-80">
-            {/* TODO MiriAle: in futuro può diventare un video in loop (.mp4).
-                Per ora: foto reale della terrazza con vista. */}
-            <Image
-              src="/images/house/house-31.jpg"
-              alt="Giardino di MiriAle Holiday House"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  ServiziInclusi (chip orizzontali)                                         */
 /* -------------------------------------------------------------------------- */
 
 function ServiziInclusi() {
@@ -952,244 +876,89 @@ function DoveSiamo() {
 /* -------------------------------------------------------------------------- */
 
 function Dintorni() {
-  const borghi = [
+  const gruppi = [
     {
-      id: "aeroporto",
-      nome: "Aeroporto di Fiumicino",
-      km: "~10 min · 4 km",
-      img: "/images/aereo-aeroporto.jpg",
-      cosa_vedere: [
-        "Aeroporto Leonardo da Vinci (FCO)",
-        "A pochi minuti dalla casa",
-        "Stazione treni in aeroporto",
-        "Parcheggio gratuito alla casa",
+      titolo: "Trasporti",
+      voci: [
+        { nome: "Aeroporto di Fiumicino (FCO)", dist: "~10 min" },
+        { nome: "Stazione Fiumicino Aeroporto", dist: "~10 min" },
+        { nome: "Roma Termini · Leonardo Express", dist: "32 min in treno" },
+        { nome: "Fiera di Roma", dist: "~15 min" },
       ],
-      attivita: [
-        "Voli all'alba o arrivi serali senza stress",
-        "Transfer su richiesta con il proprietario",
-        "Navetta aeroporto a pagamento",
-        "Deposito bagagli prima/dopo il volo",
-      ],
-      desc: "L'aeroporto Leonardo da Vinci è a circa 10 minuti: ideale per voli presto la mattina o arrivi in tarda serata. Su richiesta, il proprietario organizza il transfer.",
     },
     {
-      id: "mare",
-      nome: "Mare e spiagge",
-      km: "da ~10 min",
-      img: "/images/base-roma-mare.jpg",
-      cosa_vedere: [
-        "Spiaggia di Fregene",
-        "Focene e Maccarese",
-        "Lungomare della Salute",
-        "Tramonti sul Tirreno",
+      titolo: "Mare e spiagge",
+      voci: [
+        { nome: "Spiaggia di Focene", dist: "~10 min" },
+        { nome: "Fregene", dist: "~15 min" },
+        { nome: "Lungomare di Fiumicino", dist: "~10 min" },
+        { nome: "Ostia Lido", dist: "~20 min" },
       ],
-      attivita: [
-        "Giornata in spiaggia",
-        "Aperitivo al tramonto",
-        "Stabilimenti e chalet storici",
-        "Passeggiate sul lungomare",
-      ],
-      desc: "Il litorale romano a pochi minuti: Focene e Fregene, con i loro chalet e i tramonti sul mare, sono tra le mete preferite dai romani.",
     },
     {
-      id: "roma",
-      nome: "Roma",
-      km: "~30 km · treno 32 min",
-      img: "",
-      cosa_vedere: [
-        "Colosseo e Fori Imperiali",
-        "Pantheon e Fontana di Trevi",
-        "Basilica di San Pietro",
-        "Trastevere",
+      titolo: "Da vedere",
+      voci: [
+        { nome: "Roma · centro storico", dist: "~30 km" },
+        { nome: "Ostia Antica · scavi", dist: "~20 min" },
+        { nome: "Porto-canale di Fiumicino", dist: "~10 min" },
+        { nome: "Necropoli di Porto", dist: "~10 min" },
       ],
-      attivita: [
-        "Roma in giornata col Leonardo Express",
-        "Musei Vaticani",
-        "Cena nel centro storico",
-        "Shopping in via del Corso",
-      ],
-      desc: "La Città Eterna è a mezz'ora: il Leonardo Express collega l'aeroporto di Fiumicino a Roma Termini in circa 32 minuti, senza pensare all'auto.",
     },
     {
-      id: "ostia-antica",
-      nome: "Ostia Antica",
-      km: "~20 min in auto",
-      img: "",
-      cosa_vedere: [
-        "Teatro romano",
-        "Terme di Nettuno",
-        "Domus e mosaici",
-        "Decumano Massimo",
+      titolo: "Mangiare",
+      voci: [
+        { nome: "It Italian Restaurant", dist: "700 m" },
+        { nome: "Luana", dist: "700 m" },
+        { nome: "Docking 9 · porto", dist: "1,8 km" },
+        { nome: "Pesce fresco sul porto", dist: "~10 min" },
       ],
-      attivita: [
-        "Visita al parco archeologico",
-        "Gita culturale di mezza giornata",
-        "Trenino Roma–Lido",
-        "Picnic nel verde",
-      ],
-      desc: "Uno dei siti archeologici meglio conservati d'Italia: l'antica città portuale di Roma, a due passi. Bastano 2–3 ore per il percorso principale.",
-    },
-    {
-      id: "porto-fiumicino",
-      nome: "Porto di Fiumicino",
-      km: "~10 min",
-      img: "",
-      cosa_vedere: [
-        "Porto-canale",
-        "Lungomare e faro",
-        "Mercato del pesce",
-        "Necropoli di Porto",
-      ],
-      attivita: [
-        "Cena di pesce fresco",
-        "Passeggiata sul porto",
-        "Aperitivo vista mare",
-        "Gita in barca",
-      ],
-      desc: "Fiumicino è famosa per il pesce: lungo il porto-canale trovi alcune delle migliori tavole di mare della zona.",
     },
   ];
 
-  const [aperta, setAperta] = useState<string | null>(null);
-  const toggleCitta = (id: string) =>
-    setAperta((prev) => (prev === id ? null : id));
-  const borgoAperto = borghi.find((b) => b.id === aperta);
-
   return (
-    <section id="dintorni" className="bg-paper py-16">
+    <section
+      id="dintorni"
+      className="scroll-mt-20 border-b border-line-soft bg-paper py-16 md:py-20"
+    >
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="font-serif text-3xl font-light text-deep-brown">
-          Cosa c&apos;è intorno
+        <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
+          Posizione
+        </div>
+        <h2 className="mt-3 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+          Cosa c&apos;è nelle vicinanze
         </h2>
-        <p className="mt-1 text-sm text-warm-gray/65">
-          Aeroporto, mare e Roma: tutto a portata di soggiorno.
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-warm-gray">
+          MiriAle è una base comoda tra aeroporto, mare e Roma: voli a un passo,
+          spiagge in pochi minuti e la Città Eterna a mezz&apos;ora di treno.
         </p>
 
-        <div className="scrollbar-hide mt-8 overflow-x-auto">
-          <div className="flex gap-4">
-            {borghi.map((b, i) => (
-              <motion.div
-                key={b.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.05, ease }}
-                viewport={{ once: true, amount: 0.05 }}
-                className="relative h-72 w-56 flex-shrink-0 cursor-pointer overflow-hidden rounded-2xl md:w-64"
-              >
-                {/* Fallback gradiente sotto l'Image */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, var(--color-cream-2) 0%, var(--color-stone) 100%)",
-                  }}
-                />
-                {b.img && (
-                  <Image
-                    src={b.img}
-                    alt={b.nome}
-                    fill
-                    sizes="(max-width: 768px) 224px, 256px"
-                    className="object-cover"
-                  />
-                )}
-
-                {/* Overlay scuro dal basso */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%)",
-                  }}
-                />
-
-                {/* Contenuto in basso */}
-                <div className="absolute bottom-0 left-0 p-4">
-                  <div className="font-serif text-lg font-semibold text-white">
-                    {b.nome}
-                  </div>
-                  <div className="text-sm text-white/70">{b.km}</div>
-                  <button
-                    type="button"
-                    onClick={() => toggleCitta(b.id)}
-                    className="mt-1 cursor-pointer text-xs text-white/90 underline transition hover:text-white"
+        <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+          {gruppi.map((g) => (
+            <div key={g.titolo}>
+              <h3 className="font-medium text-deep-brown">{g.titolo}</h3>
+              <ul className="mt-4 space-y-2.5 border-t border-line-soft pt-4">
+                {g.voci.map((v) => (
+                  <li
+                    key={v.nome}
+                    className="flex items-baseline justify-between gap-3 text-sm"
                   >
-                    Scopri di più →
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    <span className="text-deep-brown">{v.nome}</span>
+                    <span className="shrink-0 text-warm-gray">{v.dist}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        {/* Pannello espandibile */}
-        <AnimatePresence>
-          {borgoAperto && (
-            <motion.div
-              key={borgoAperto.id}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.35, ease }}
-              className="overflow-hidden"
-            >
-              <div className="mt-4 rounded-2xl bg-[#fafaf9] p-8">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="font-serif text-2xl text-deep-brown">
-                      {borgoAperto.nome}
-                    </h3>
-                    <p className="mt-1 max-w-2xl text-sm leading-relaxed text-warm-gray">
-                      {borgoAperto.desc}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setAperta(null)}
-                    aria-label="Chiudi pannello"
-                    className="grid h-8 w-8 flex-shrink-0 place-items-center rounded-full text-2xl leading-none text-deep-brown transition hover:bg-cream"
-                  >
-                    ×
-                  </button>
-                </div>
-                <div className="mt-6 grid gap-8 md:grid-cols-2">
-                  <div>
-                    <h4 className="mb-3 text-xs font-medium uppercase tracking-widest text-warm-gray">
-                      Cosa vedere
-                    </h4>
-                    <ul className="space-y-2">
-                      {borgoAperto.cosa_vedere.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2 text-sm text-deep-brown"
-                        >
-                          <I.eye className="mt-0.5 h-4 w-4 flex-shrink-0 text-olive" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="mb-3 text-xs font-medium uppercase tracking-widest text-warm-gray">
-                      Cosa fare
-                    </h4>
-                    <ul className="space-y-2">
-                      {borgoAperto.attivita.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2 text-sm text-deep-brown"
-                        >
-                          <I.sparkle className="mt-0.5 h-4 w-4 flex-shrink-0 text-terracotta" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className="mt-10">
+          <Link
+            href="/cosa-fare-intorno"
+            className="text-sm font-medium text-terracotta underline-offset-4 hover:underline"
+          >
+            Cosa fare nei dintorni →
+          </Link>
+        </div>
       </div>
     </section>
   );
