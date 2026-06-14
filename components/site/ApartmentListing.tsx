@@ -72,6 +72,7 @@ function Ph({ label, className = "" }: { label: string; className?: string }) {
 export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   const { lang } = useLang();
   const t = (b: B) => tr(lang, b);
+  const isCasa = apt.slug === "casa";
   const altro = apt.slug === "miri" ? "/ale" : "/miri";
   const altroNome = apt.slug === "miri" ? "Ale" : "Miri";
 
@@ -103,7 +104,9 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: BedDouble, a: String(apt.camere), b: { it: "Camere matrimoniali", en: "Double bedrooms" } },
     { Icon: ShowerHead, a: String(apt.bagni), b: { it: "Bagno con doccia", en: "Bathroom with shower" } },
     { Icon: Users, a: `${lang === "it" ? "Fino a" : "Up to"} ${apt.ospiti}`, b: { it: "Ospiti", en: "Guests" } },
-    { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Accesso comodo", en: "Easy access" } },
+    isCasa
+      ? { Icon: HomeIcon, a: "2", b: { it: "Appartamenti indipendenti", en: "Independent apartments" } }
+      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Accesso comodo", en: "Easy access" } },
   ];
   const hostBullets: { Icon: typeof UserCheck; t: B }[] = [
     { Icon: HomeIcon, t: { it: "Ospitalità familiare", en: "Family-run hospitality" } },
@@ -112,13 +115,21 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: MapPin, t: { it: "Consigli e suggerimenti locali", en: "Local tips & recommendations" } },
     { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)" } },
   ];
-  const aboutFeatures: { Icon: typeof DoorOpen; t: B; s: B }[] = [
-    { Icon: DoorOpen, t: { it: "Piano terra", en: "Ground floor" }, s: { it: "accesso comodo, niente scale", en: "Easy access · no stairs" } },
-    { Icon: CookingPot, t: { it: "Cucina in legno", en: "Warm wooden" }, s: { it: "e zona living", en: "kitchen & living room" } },
-    { Icon: ShowerHead, t: { it: "Bagno", en: "Bathroom" }, s: { it: "con doccia", en: "with shower" } },
-    { Icon: Car, t: { it: "Parcheggio privato", en: "Private free" }, s: { it: "gratuito", en: "parking" } },
-    { Icon: Leaf, t: { it: "Accesso al giardino", en: "Access to shared" }, s: { it: "privato condiviso con terrazza colazione", en: "private garden with breakfast terrace" } },
-  ];
+  const aboutFeatures: { Icon: typeof DoorOpen; t: B; s: B }[] = isCasa
+    ? [
+        { Icon: HomeIcon, t: { it: "2 appartamenti", en: "2 apartments" }, s: { it: "indipendenti, con ingresso proprio", en: "independent, with own entrance" } },
+        { Icon: BedDouble, t: { it: "4 camere", en: "4 double" }, s: { it: "matrimoniali", en: "bedrooms" } },
+        { Icon: ShowerHead, t: { it: "2 bagni", en: "2 bathrooms" }, s: { it: "con doccia", en: "with shower" } },
+        { Icon: CookingPot, t: { it: "2 cucine", en: "2 kitchens" }, s: { it: "attrezzate", en: "fully equipped" } },
+        { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden" }, s: { it: "condiviso, con terrazza colazione", en: "shared, with breakfast terrace" } },
+      ]
+    : [
+        { Icon: DoorOpen, t: { it: "Piano terra", en: "Ground floor" }, s: { it: "accesso comodo, niente scale", en: "Easy access · no stairs" } },
+        { Icon: CookingPot, t: { it: "Cucina in legno", en: "Warm wooden" }, s: { it: "e zona living", en: "kitchen & living room" } },
+        { Icon: ShowerHead, t: { it: "Bagno", en: "Bathroom" }, s: { it: "con doccia", en: "with shower" } },
+        { Icon: Car, t: { it: "Parcheggio privato", en: "Private free" }, s: { it: "gratuito", en: "parking" } },
+        { Icon: Leaf, t: { it: "Accesso al giardino", en: "Access to shared" }, s: { it: "privato condiviso con terrazza colazione", en: "private garden with breakfast terrace" } },
+      ];
   const amenities: { Icon: typeof Wifi; t: B }[] = [
     { Icon: Wifi, t: { it: "Wi-Fi gratuito", en: "Free Wi-Fi" } },
     { Icon: Wind, t: { it: "Aria condizionata", en: "Air conditioning" } },
@@ -162,12 +173,19 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { img: "/images/aereo-aeroporto.jpg", t: { it: "Roma", en: "Rome" }, s: { it: "storia, arte e cultura", en: "History, art & culture" } },
     { img: "/images/house/house-19.jpg", t: { it: "Pesce locale", en: "Local seafood" }, s: { it: "fresco e gustoso", en: "Fresh & delicious" } },
   ];
-  const whoFor: { Icon: typeof Users; t: B; s: B }[] = [
-    { Icon: Users, t: { it: "Famiglie", en: "Families" }, s: { it: "Spaziosa e comoda per una vacanza in famiglia.", en: "Spacious and comfortable for a relaxing family holiday." } },
-    { Icon: Heart, t: { it: "Coppie", en: "Couples" }, s: { it: "Un rifugio accogliente vicino al mare e alla magia di Roma.", en: "A cosy retreat close to the sea and the magic of Rome." } },
-    { Icon: Sparkles, t: { it: "Amici", en: "Friends" }, s: { it: "Ottimo spazio per esplorare, rilassarsi e stare insieme.", en: "Great space to explore, relax and enjoy time together." } },
-    { Icon: Plane, t: { it: "Scali aeroporto", en: "Airport stopovers" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight." } },
-  ];
+  const whoFor: { Icon: typeof Users; t: B; s: B }[] = isCasa
+    ? [
+        { Icon: Users, t: { it: "Famiglie numerose", en: "Large families" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 8 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 8 guests." } },
+        { Icon: Sparkles, t: { it: "Gruppi di amici", en: "Groups of friends" }, s: { it: "Tutta la casa per voi, vicino al mare e a Roma.", en: "The whole house to yourselves, close to the sea and Rome." } },
+        { Icon: Heart, t: { it: "Due famiglie insieme", en: "Two families together" }, s: { it: "Due appartamenti indipendenti, un solo giardino in comune.", en: "Two independent apartments, one shared garden." } },
+        { Icon: Plane, t: { it: "Occasioni speciali", en: "Special occasions" }, s: { it: "Reunion e ritrovi a due passi dall'aeroporto.", en: "Reunions and gatherings a step from the airport." } },
+      ]
+    : [
+        { Icon: Users, t: { it: "Famiglie", en: "Families" }, s: { it: "Spaziosa e comoda per una vacanza in famiglia.", en: "Spacious and comfortable for a relaxing family holiday." } },
+        { Icon: Heart, t: { it: "Coppie", en: "Couples" }, s: { it: "Un rifugio accogliente vicino al mare e alla magia di Roma.", en: "A cosy retreat close to the sea and the magic of Rome." } },
+        { Icon: Sparkles, t: { it: "Amici", en: "Friends" }, s: { it: "Ottimo spazio per esplorare, rilassarsi e stare insieme.", en: "Great space to explore, relax and enjoy time together." } },
+        { Icon: Plane, t: { it: "Scali aeroporto", en: "Airport stopovers" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight." } },
+      ];
   const rules: { Icon: typeof Clock; t: B; s: B }[] = [
     { Icon: Clock, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
     { Icon: LogOut, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
@@ -191,7 +209,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-deep-brown md:text-5xl">
-              {tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment` })}
+              {apt.titolo ? t(apt.titolo) : tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment` })}
             </h1>
             <p className="mt-3 text-lg text-warm-gray">{t(apt.tagline)}</p>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-warm-gray">{t(apt.descrizione)}</p>
@@ -257,7 +275,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
               <label className="block"><span className="text-xs font-medium text-warm-gray">Check-in</span><input type="date" value={ci} onChange={(e) => setCi(e.target.value)} className={campo} /></label>
               <label className="block"><span className="text-xs font-medium text-warm-gray">Check-out</span><input type="date" value={co} min={ci || undefined} onChange={(e) => setCo(e.target.value)} className={campo} /></label>
               <label className="block"><span className="text-xs font-medium text-warm-gray">{tr(lang, { it: "Ospiti", en: "Guests" })}</span>
-                <select value={g} onChange={(e) => setG(Number(e.target.value))} className={campo}>{[1, 2, 3, 4].map((n) => <option key={n} value={n}>{n} {n === 1 ? tr(lang, { it: "ospite", en: "guest" }) : tr(lang, { it: "ospiti", en: "guests" })}</option>)}</select>
+                <select value={g} onChange={(e) => setG(Number(e.target.value))} className={campo}>{Array.from({ length: apt.ospiti }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? tr(lang, { it: "ospite", en: "guest" }) : tr(lang, { it: "ospiti", en: "guests" })}</option>)}</select>
               </label>
             </div>
             <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="mt-4 flex w-full flex-col items-center justify-center rounded-full px-6 py-3 text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
@@ -293,7 +311,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="paper" id="about">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-12">
           <div>
-            <p className={eyebrow}>{tr(lang, { it: `L'appartamento ${apt.nome}`, en: `About ${apt.nome} Apartment` })}</p>
+            <p className={eyebrow}>{isCasa ? tr(lang, { it: "La casa intera", en: "About the whole house" }) : tr(lang, { it: `L'appartamento ${apt.nome}`, en: `About ${apt.nome} Apartment` })}</p>
             <h2 className={h2}>{tr(lang, { it: "Luminoso, accogliente e confortevole", en: "Bright, warm and comfortable" })}</h2>
             <p className="mt-3 text-sm leading-relaxed text-warm-gray">{t(apt.descrizione)}</p>
           </div>
@@ -463,7 +481,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       {/* ===================== CTA ===================== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta to-olive-section py-16 text-center text-white">
         <div className="relative mx-auto max-w-2xl px-6">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl">{tr(lang, { it: `Pronto a soggiornare a ${apt.nome}?`, en: `Ready to stay at ${apt.nome}?` })}</h2>
+          <h2 className="font-serif text-3xl font-bold md:text-4xl">{isCasa ? tr(lang, { it: "Pronti a prenotare tutta la casa?", en: "Ready to book the whole house?" }) : tr(lang, { it: `Pronto a soggiornare a ${apt.nome}?`, en: `Ready to stay at ${apt.nome}?` })}</h2>
           <p className="mt-2 text-sm text-white/85">{tr(lang, { it: "Chiedi a Fabio le tue date su WhatsApp", en: "Ask Fabio about your dates on WhatsApp" })}</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a href={waLink(t(apt.waMsg))} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
@@ -478,7 +496,14 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             <span>{tr(lang, { it: "Paghi al check-in", en: "Pay at check-in" })}</span>
           </p>
           <p className="mt-4">
-            <Link href={altro} className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: `Guarda anche l'appartamento ${altroNome} →`, en: `See also the ${altroNome} apartment →` })}</Link>
+            {isCasa ? (
+              <span className="inline-flex flex-wrap items-center justify-center gap-4">
+                <Link href="/miri" className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: "Vedi l'appartamento Miri →", en: "See the Miri apartment →" })}</Link>
+                <Link href="/ale" className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: "Vedi l'appartamento Ale →", en: "See the Ale apartment →" })}</Link>
+              </span>
+            ) : (
+              <Link href={altro} className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: `Guarda anche l'appartamento ${altroNome} →`, en: `See also the ${altroNome} apartment →` })}</Link>
+            )}
           </p>
         </div>
       </section>
