@@ -122,8 +122,8 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { img: "/images/house/house-19.jpg", t: { it: "Pesce locale", en: "Local seafood" }, s: { it: "fresco e gustoso", en: "fresh & delicious" } },
   ];
 
-  const eyebrow = "text-sm font-medium text-terracotta";
-  const h2 = "mt-1 font-serif text-2xl font-light text-deep-brown md:text-3xl";
+  const eyebrow = "font-script text-2xl leading-none text-terracotta";
+  const h2 = "mt-1 font-serif text-2xl font-semibold text-deep-brown md:text-3xl";
   const campo = "mt-1 w-full rounded-xl border border-line bg-bone px-3 py-2.5 text-sm text-deep-brown outline-none focus:border-terracotta";
 
   return (
@@ -133,7 +133,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-10 md:grid-cols-2 md:gap-12">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
-            <h1 className="mt-2 font-serif text-4xl font-light text-deep-brown md:text-5xl">
+            <h1 className="mt-2 font-serif text-4xl font-semibold text-deep-brown md:text-5xl">
               {tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment` })}
             </h1>
             <p className="mt-2 text-base text-warm-gray">{t(apt.tagline)}</p>
@@ -283,7 +283,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         <div className="grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-12">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Amati dagli ospiti", en: "Loved by our guests" })}</p>
-            <div className="mt-2 flex items-center gap-2"><span className="font-serif text-4xl font-light text-deep-brown">8.8</span><div className="flex gap-0.5 text-terracotta">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div></div>
+            <div className="mt-2 flex items-center gap-2"><span className="font-serif text-4xl font-semibold text-deep-brown">8.8</span><div className="flex gap-0.5 text-terracotta">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div></div>
             <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni", en: "from 122 reviews" })}</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -365,7 +365,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       {/* CTA */}
       <section className="bg-olive-section py-14 text-center text-white">
         <div className="mx-auto max-w-2xl px-6">
-          <h2 className="font-serif text-3xl font-light md:text-4xl">{tr(lang, { it: `Pronto per ${apt.nome}?`, en: `Ready to stay at ${apt.nome}?` })}</h2>
+          <h2 className="font-serif text-3xl font-semibold md:text-4xl">{tr(lang, { it: `Pronto per ${apt.nome}?`, en: `Ready to stay at ${apt.nome}?` })}</h2>
           <p className="mt-2 text-sm text-white/80">{tr(lang, { it: "Chiedi a Fabio le tue date su WhatsApp.", en: "Ask Fabio about your dates on WhatsApp." })}</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a href={waLink(t(apt.waMsg))} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Message on WhatsApp" })}</a>

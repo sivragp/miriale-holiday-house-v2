@@ -49,10 +49,10 @@ function Hero() {
     <section className="bg-paper">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 md:grid-cols-2 md:gap-12 md:py-16">
         <div>
-          <p className="text-sm font-medium text-terracotta">
+          <p className="font-script text-2xl leading-none text-terracotta">
             {tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-light leading-tight text-deep-brown md:text-5xl">
+          <h1 className="mt-3 font-serif text-4xl font-semibold leading-tight text-deep-brown md:text-5xl">
             {tr(lang, { it: "Vicino a FCO, Roma e il mare", en: "Stay close to FCO, Rome and the sea" })}
           </h1>
           <p className="mt-5 max-w-md text-base leading-relaxed text-warm-gray">
@@ -187,8 +187,8 @@ function Apartments() {
     <section id="apartments" className="scroll-mt-20 bg-cream pb-14">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium text-terracotta">{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
-          <h2 className="mt-2 font-serif text-3xl font-light text-deep-brown md:text-4xl">
+          <p className="font-script text-2xl leading-none text-terracotta">{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-deep-brown md:text-4xl">
             {tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}
           </h2>
         </div>
@@ -206,7 +206,7 @@ function Apartments() {
                 <h3 className="mt-2 font-serif text-xl text-deep-brown">{tr(lang, c.title)}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-warm-gray">{tr(lang, c.desc)}</p>
                 <p className="mt-3 flex-1 text-xs italic text-warm-gray">{tr(lang, c.best)}</p>
-                <Link href={c.href} className="mt-5 inline-flex w-max items-center gap-2 rounded-full border border-terracotta px-5 py-2 text-sm font-medium text-terracotta transition hover:bg-cream-2">
+                <Link href={c.href} className="mt-5 inline-flex w-max items-center gap-2 rounded-full border border-terracotta px-5 py-2 font-script text-2xl leading-none text-terracotta transition hover:bg-cream-2">
                   {tr(lang, { it: "Vedi dettagli", en: "View details" })}
                 </Link>
               </div>
@@ -243,8 +243,8 @@ function Garden() {
           <Image src="/images/house/house-19.jpg" alt="Giardino" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
         </div>
         <div>
-          <p className="text-sm font-medium text-terracotta">{tr(lang, { it: "Il tuo spazio all'aperto", en: "Your private outdoor space" })}</p>
-          <h2 className="mt-2 font-serif text-3xl font-light text-deep-brown md:text-4xl">{tr(lang, { it: "Relax in giardino", en: "Relax in our garden" })}</h2>
+          <p className="font-script text-2xl leading-none text-terracotta">{tr(lang, { it: "Il tuo spazio all'aperto", en: "Your private outdoor space" })}</p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-deep-brown md:text-4xl">{tr(lang, { it: "Relax in giardino", en: "Relax in our garden" })}</h2>
           <ul className="mt-6 space-y-3">
             {points.map((p) => (
               <li key={p.t.en} className="flex items-start gap-3 text-sm text-deep-brown">
@@ -282,10 +282,10 @@ function Reviews() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
           <div>
-            <p className="text-sm font-medium text-terracotta">{tr(lang, { it: "Perché piacciamo agli ospiti", en: "Why guests love" })}</p>
-            <h2 className="font-serif text-3xl font-light text-deep-brown">MiriAle</h2>
+            <p className="font-script text-2xl leading-none text-terracotta">{tr(lang, { it: "Perché piacciamo agli ospiti", en: "Why guests love" })}</p>
+            <h2 className="font-serif text-3xl font-semibold text-deep-brown">MiriAle</h2>
             <div className="mt-3 flex items-center gap-2">
-              <span className="font-serif text-4xl font-light text-deep-brown">8.8</span>
+              <span className="font-serif text-4xl font-semibold text-deep-brown">8.8</span>
               <div className="flex gap-0.5 text-terracotta">
                 {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
               </div>
@@ -312,7 +312,7 @@ function Reviews() {
                 </figure>
               ))}
             </div>
-            <a href="https://www.booking.com/hotel/it/miriale-house.html" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm font-medium text-terracotta hover:underline">
+            <a href="https://www.booking.com/hotel/it/miriale-house.html" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block font-script text-2xl leading-none text-terracotta hover:underline">
               {tr(lang, { it: "Leggi altre recensioni su Booking →", en: "Read more reviews on Booking →" })}
             </a>
           </div>
@@ -340,8 +340,8 @@ function Host() {
           <Image src="/images/house/house-17.jpg" alt="Host" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
         </div>
         <div>
-          <p className="text-sm font-medium text-terracotta">{tr(lang, { it: "Conosci l'host", en: "Meet your host" })}</p>
-          <h2 className="mt-2 font-serif text-3xl font-light text-deep-brown md:text-4xl">{tr(lang, { it: "Ciao, siamo Fabio e famiglia!", en: "Hi, we're Fabio and family!" })}</h2>
+          <p className="font-script text-2xl leading-none text-terracotta">{tr(lang, { it: "Conosci l'host", en: "Meet your host" })}</p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-deep-brown md:text-4xl">{tr(lang, { it: "Ciao, siamo Fabio e famiglia!", en: "Hi, we're Fabio and family!" })}</h2>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-warm-gray">
             {tr(lang, {
               it: "Viviamo a Fiumicino e accogliamo di persona ogni ospite. Siamo sempre disponibili per rendere il vostro soggiorno facile e piacevole.",
@@ -385,8 +385,8 @@ function Location() {
     <section id="dove-siamo" className="scroll-mt-20 bg-cream py-14 md:py-16">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium text-terracotta">{tr(lang, { it: "Perfettamente posizionati", en: "Perfectly located" })}</p>
-          <h2 className="mt-2 font-serif text-3xl font-light text-deep-brown md:text-4xl">{tr(lang, { it: "Vicino a tutto ciò che conta", en: "Close to everything that matters" })}</h2>
+          <p className="font-script text-2xl leading-none text-terracotta">{tr(lang, { it: "Perfettamente posizionati", en: "Perfectly located" })}</p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-deep-brown md:text-4xl">{tr(lang, { it: "Vicino a tutto ciò che conta", en: "Close to everything that matters" })}</h2>
         </div>
         <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-12">
           <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0" loading="lazy" title="Mappa" />
@@ -408,7 +408,7 @@ function Location() {
           })}
         </p>
         <div className="mt-4 text-center">
-          <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-terracotta hover:underline">
+          <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="font-script text-2xl leading-none text-terracotta hover:underline">
             {tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}
           </a>
         </div>
@@ -433,8 +433,8 @@ function WhoFor() {
     <section className="bg-paper py-14 md:py-16">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium text-terracotta">{tr(lang, { it: "Ideale per", en: "Ideal for" })}</p>
-          <h2 className="mt-2 font-serif text-3xl font-light text-deep-brown md:text-4xl">{tr(lang, { it: "Per chi siamo perfetti", en: "Who we're perfect for" })}</h2>
+          <p className="font-script text-2xl leading-none text-terracotta">{tr(lang, { it: "Ideale per", en: "Ideal for" })}</p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-deep-brown md:text-4xl">{tr(lang, { it: "Per chi siamo perfetti", en: "Who we're perfect for" })}</h2>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-5">
           {personas.map((p) => (
@@ -469,7 +469,7 @@ function Amenities() {
   return (
     <section id="servizi" className="scroll-mt-20 bg-cream py-14 md:py-16">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-center font-serif text-2xl font-light text-deep-brown md:text-3xl">
+        <h2 className="text-center font-serif text-2xl font-semibold text-deep-brown md:text-3xl">
           {tr(lang, { it: "Tutti i comfort che ti servono", en: "All the comforts you need" })}
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
@@ -500,7 +500,7 @@ function Experiences() {
   return (
     <section className="bg-paper py-14 md:py-16">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-center font-serif text-2xl font-light text-deep-brown md:text-3xl">
+        <h2 className="text-center font-serif text-2xl font-semibold text-deep-brown md:text-3xl">
           {tr(lang, { it: "Vivi il meglio della zona", en: "Experience the best of the area" })}
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-5">
@@ -513,7 +513,7 @@ function Experiences() {
           ))}
         </div>
         <div className="mt-6 text-center">
-          <Link href="/cosa-fare-intorno" className="text-sm font-medium text-terracotta hover:underline">
+          <Link href="/cosa-fare-intorno" className="font-script text-2xl leading-none text-terracotta hover:underline">
             {tr(lang, { it: "Scopri cosa fare nei dintorni →", en: "Discover what to do nearby →" })}
           </Link>
         </div>
@@ -544,7 +544,7 @@ function HouseRules() {
   return (
     <section className="bg-cream py-14 md:py-16">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-center font-serif text-2xl font-light text-deep-brown md:text-3xl">
+        <h2 className="text-center font-serif text-2xl font-semibold text-deep-brown md:text-3xl">
           {tr(lang, { it: "Regole della casa e info pratiche", en: "House rules & practical info" })}
         </h2>
         <div className="mt-8 grid gap-8 md:grid-cols-2 md:gap-12">
@@ -581,7 +581,7 @@ function FinalCTA() {
   return (
     <section className="bg-olive-section py-16 text-center text-white">
       <div className="mx-auto max-w-2xl px-6">
-        <h2 className="font-serif text-3xl font-light md:text-4xl">
+        <h2 className="font-serif text-3xl font-semibold md:text-4xl">
           {tr(lang, { it: "Hai domande o vuoi prenotare?", en: "Have questions or ready to book?" })}
         </h2>
         <p className="mt-3 font-serif text-lg italic text-white/85">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>
@@ -615,7 +615,7 @@ function FAQ() {
   return (
     <section id="faq" className="scroll-mt-20 bg-paper py-14 md:py-16">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="text-center font-serif text-2xl font-light text-deep-brown md:text-3xl">
+        <h2 className="text-center font-serif text-2xl font-semibold text-deep-brown md:text-3xl">
           {tr(lang, { it: "Domande frequenti", en: "Frequently asked questions" })}
         </h2>
         <div className="mt-8 border-y border-line">
