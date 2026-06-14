@@ -438,7 +438,7 @@ function InfoCards() {
               className={`flex min-h-[430px] flex-col overflow-hidden rounded-2xl border border-line shadow-sm ${
                 card.dark ? "text-white" : "bg-paper text-deep-brown"
               }`}
-              style={card.dark ? { backgroundColor: "#0f2e45" } : undefined}
+              style={card.dark ? { backgroundColor: "#0f3d4a" } : undefined}
             >
               <div className="relative flex flex-1 flex-col p-6">
                 <span
@@ -639,7 +639,7 @@ function GliSpazi() {
                     <Link
                       href={`/${slug}`}
                       className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
-                      style={{ backgroundColor: "#0f2e45" }}
+                      style={{ backgroundColor: "#0f3d4a" }}
                     >
                       Vedi disponibilità
                     </Link>
@@ -797,7 +797,7 @@ function DoveSiamo() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#0f2e45" }}
+                style={{ backgroundColor: "#0f3d4a" }}
               >
                 <I.pin className="h-4 w-4" />
                 Apri su Google Maps
@@ -1267,7 +1267,7 @@ function ContactForm() {
               <a
                 href={mailto}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                style={{ backgroundColor: "#0f2e45" }}
+                style={{ backgroundColor: "#0f3d4a" }}
               >
                 <I.mail className="h-4 w-4" />
                 Invia richiesta
@@ -1629,14 +1629,12 @@ export default function Home() {
       <SummaryBar />
       <GalleryStrip />
       <GliSpazi />
-      <Highlights />
-      <Recensioni />
       <HostStrip />
-      <InfoCards />
+      <Recensioni />
       <DoveSiamo />
       <Dintorni />
-      <ServiziInclusi />
       <GalleriaMosaico />
+      <ServiziInclusi />
       <Regole />
       <FAQ />
       <ContactForm />
