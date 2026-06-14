@@ -1594,7 +1594,7 @@ function FAQ() {
   ];
 
   return (
-    <section className="border-b border-line-soft bg-ivory py-16 md:py-20">
+    <section id="faq" className="scroll-mt-20 border-b border-line-soft bg-ivory py-16 md:py-20">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-xs font-medium uppercase tracking-widest text-terracotta">
           FAQ

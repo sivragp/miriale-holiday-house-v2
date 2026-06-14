@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import WhatsAppFab from "@/components/site/WhatsAppFab";
+import { LangProvider } from "@/components/site/LangProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -61,10 +62,12 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ivory text-deep-brown font-sans">
-        <SiteHeader />
-        {children}
-        <SiteFooter />
-        <WhatsAppFab />
+        <LangProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+          <WhatsAppFab />
+        </LangProvider>
       </body>
     </html>
   );
