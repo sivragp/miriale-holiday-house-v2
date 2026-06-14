@@ -8,11 +8,9 @@ export default function SiteHeader() {
   const { lang, setLang } = useLang();
 
   const nav = [
-    { label: { it: "Posizione", en: "Location" }, href: "/#dove-siamo" },
-    { label: { it: "Servizi", en: "Amenities" }, href: "/#servizi" },
-    { label: { it: "Recensioni", en: "Reviews" }, href: "/#recensioni" },
-    { label: { it: "Chi siamo", en: "About us" }, href: "/la-famiglia" },
-    { label: { it: "FAQ", en: "FAQ" }, href: "/#faq" },
+    { label: { it: "Posizione", en: "Location" }, href: "/#location" },
+    { label: { it: "Servizi", en: "Amenities" }, href: "/#amenities" },
+    { label: { it: "Recensioni", en: "Reviews" }, href: "/#reviews" },
     { label: { it: "Contatti", en: "Contact" }, href: "/contatti" },
   ];
   const apts = [
@@ -93,12 +91,13 @@ export default function SiteHeader() {
             href={waLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:opacity-90"
+            className="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-white shadow-sm transition hover:opacity-90"
             style={{ backgroundColor: "#25d366" }}
           >
-            <I.whatsapp className="h-4 w-4" />
-            <span className="hidden leading-tight sm:block">
-              {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}
+            <I.whatsapp className="h-4 w-4 flex-shrink-0" />
+            <span className="hidden flex-col items-start leading-tight sm:flex">
+              <span className="text-sm font-medium">{tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
+              <span className="text-[10px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
             </span>
           </a>
         </div>
