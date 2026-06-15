@@ -26,6 +26,7 @@ import {
   Waves,
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
+import { SeaDecor } from "@/components/site/SeaDecor";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
 
@@ -304,6 +305,7 @@ export default function Experiences() {
 
       {/* ===================== CTA ===================== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta to-olive-section py-16 text-center text-white">
+        <SeaDecor className="absolute inset-0 hidden md:block" />
         <div className="relative mx-auto max-w-2xl px-6">
           <h2 className="font-serif text-3xl font-bold md:text-4xl">{tr(lang, { it: "Pronto a esplorare?", en: "Ready to explore?" })}</h2>
           <p className="mt-1 font-script text-2xl text-white/95">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>

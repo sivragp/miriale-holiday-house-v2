@@ -1,0 +1,482 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Baby,
+  Building2,
+  CalendarCheck,
+  CalendarX,
+  Check,
+  CigaretteOff,
+  Coffee,
+  CookingPot,
+  Fan,
+  Fish,
+  GraduationCap,
+  Heart,
+  Home as HomeIcon,
+  Image as ImageIcon,
+  Landmark,
+  Leaf,
+  Luggage,
+  MoonStar,
+  PartyPopper,
+  PawPrint,
+  Plane,
+  Quote,
+  ShieldCheck,
+  Shirt,
+  SquareParking,
+  Star,
+  Train,
+  Tv,
+  UserCheck,
+  Users,
+  Waves,
+  WashingMachine,
+  Wifi,
+  Wind,
+} from "lucide-react";
+import { I, MAPS_EMBED, waLink } from "@/lib/site";
+import { SeaDecor } from "@/components/site/SeaDecor";
+import { useLang, tr } from "@/components/site/LangProvider";
+import { APPARTAMENTI, RECENSIONI, type B } from "@/lib/apartments";
+
+function Ph({ label, className = "" }: { label: string; className?: string }) {
+  return (
+    <div className={`flex flex-col items-center justify-center gap-1 bg-gradient-to-br from-cream-2 to-cream text-warm-gray ${className}`}>
+      <ImageIcon className="h-6 w-6 opacity-60" strokeWidth={1.4} />
+      <span className="px-2 text-center text-[10px] uppercase tracking-wide opacity-70">{label}</span>
+    </div>
+  );
+}
+function Wave({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 80 8" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M2 5 q 7 -6 14 0 t 14 0 t 14 0 t 14 0" />
+    </svg>
+  );
+}
+
+export default function HomeMiriale() {
+  const { lang } = useLang();
+  const t = (b: B) => tr(lang, b);
+  const eyebrow = "font-script text-2xl leading-none text-terracotta";
+  const sectionTitle = "font-serif text-2xl font-bold text-deep-brown md:text-3xl";
+
+  const miri = APPARTAMENTI.find((a) => a.slug === "miri")!;
+  const ale = APPARTAMENTI.find((a) => a.slug === "ale")!;
+  const casa = APPARTAMENTI.find((a) => a.slug === "casa")!;
+
+  const stats: { Icon: typeof Plane; a: B; b: B }[] = [
+    { Icon: Plane, a: { it: "10 min", en: "10 min" }, b: { it: "dall'aeroporto FCO", en: "to FCO Airport" } },
+    { Icon: HomeIcon, a: { it: "2", en: "2" }, b: { it: "appartamenti", en: "apartments" } },
+    { Icon: Users, a: { it: "Fino a 8", en: "Up to 8" }, b: { it: "ospiti", en: "guests" } },
+    { Icon: SquareParking, a: { it: "Gratis", en: "Free" }, b: { it: "parcheggio", en: "parking" } },
+    { Icon: Leaf, a: { it: "Privato", en: "Private" }, b: { it: "giardino", en: "garden" } },
+    { Icon: Star, a: { it: "8.8/10", en: "8.8/10" }, b: { it: "da 122 recensioni", en: "From 122 reviews" } },
+  ];
+
+  const stays: { apt: typeof miri; img: string; tab: B; tabColor: string; titolo: B; descr: B; best: B; href: string }[] = [
+    { apt: miri, img: "/images/house/house-10.jpg", tab: { it: "Appartamento Miri", en: "Miri apartment" }, tabColor: "#0fa9b8", titolo: { it: "Spazioso e accogliente", en: "Spacious & warm" }, descr: { it: "Appartamento al piano terra con cucina in legno e soggiorno, due camere matrimoniali e spazi comodi per un soggiorno rilassante.", en: "Ground-floor apartment with wooden kitchen living room, two double bedrooms and comfortable spaces for a relaxing stay." }, best: { it: "Ideale per famiglie, coppie e amici fino a 4", en: "Best for families, couples and friends up to 4" }, href: "/miri" },
+    { apt: ale, img: "/images/house/house-09.jpg", tab: { it: "Appartamento Ale", en: "Ale apartment" }, tabColor: "#1e88b5", titolo: { it: "Mansarda luminosa", en: "Bright attic loft" }, descr: { it: "Mansarda all'ultimo piano con soffitti spioventi, bagno moderno in marmo e cucina completamente attrezzata.", en: "Top-floor attic/loft with sloped ceilings, modern marble bathroom and fully equipped kitchen." }, best: { it: "Ideale per coppie, piccole famiglie e soggiorni di lavoro", en: "Best for couples, small families and business stays" }, href: "/ale" },
+    { apt: casa, img: "/images/house/house-22.jpg", tab: { it: "Casa intera", en: "Whole house" }, tabColor: "#0f3d4a", titolo: { it: "Insieme, tutti", en: "Stay together" }, descr: { it: "Prenota entrambi gli appartamenti e goditi tutta la casa: 4 camere, 2 cucine e il giardino privato.", en: "Book both apartments and enjoy the whole house: 4 bedrooms, 2 kitchens and the private garden." }, best: { it: "Ideale per gruppi e famiglie fino a 8 ospiti", en: "Best for groups and families up to 8 guests" }, href: "/la-casa" },
+  ];
+
+  const gardenChecks: B[] = [
+    { it: "Giardino privato a tuo uso esclusivo", en: "Private garden for your exclusive use" },
+    { it: "Terrazza per la colazione e sedute all'aperto", en: "Breakfast terrace and outdoor seating" },
+    { it: "Verde, tranquillo e perfetto per rilassarsi", en: "Green, quiet and perfect to unwind" },
+    { it: "Parcheggio gratuito in loco, dentro la proprietà", en: "On-site free parking inside the property" },
+  ];
+
+  const praised: B[] = [
+    { it: "Accoglienza dell'host", en: "Host's welcome" },
+    { it: "Pulizia", en: "Cleanliness" },
+    { it: "Zona tranquilla", en: "Quiet area" },
+    { it: "Posizione comoda", en: "Convenient location" },
+    { it: "Appartamenti luminosi e ben attrezzati", en: "Bright, well-equipped apartments" },
+  ];
+
+  const hostChecks: { Icon: typeof UserCheck; t: B }[] = [
+    { Icon: UserCheck, t: { it: "Check-in di persona e consigli locali", en: "In-person check-in and local tips" } },
+    { Icon: Luggage, t: { it: "Aiuto coi bagagli e supporto parcheggio", en: "Luggage help and parking support" } },
+    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid service)" } },
+    { Icon: Users, t: { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish" } },
+  ];
+
+  const dist: { Icon: typeof Plane; d: B; t: B }[] = [
+    { Icon: Plane, d: { it: "10 min", en: "10 min" }, t: { it: "Aeroporto FCO", en: "FCO Airport" } },
+    { Icon: Building2, d: { it: "12 min", en: "12 min" }, t: { it: "Fiera di Roma", en: "Fiera di Roma" } },
+    { Icon: Landmark, d: { it: "12 min", en: "12 min" }, t: { it: "Ostia Antica", en: "Ostia Antica" } },
+    { Icon: Waves, d: { it: "10 min", en: "10 min" }, t: { it: "Spiagge", en: "Beaches" } },
+    { Icon: Fish, d: { it: "8 min", en: "8 min" }, t: { it: "Ristoranti al porto", en: "Port restaurants" } },
+    { Icon: Train, d: { it: "32 min", en: "32 min" }, t: { it: "Roma Termini (Leonardo Express)", en: "Rome Termini (Leonardo Express)" } },
+  ];
+
+  const whoFor: { Icon: typeof Users; ph: string; t: B }[] = [
+    { Icon: Landmark, ph: "Roma & mare", t: { it: "Turisti in visita a Roma e al mare", en: "Tourists visiting Rome and the sea" } },
+    { Icon: Plane, ph: "Scali / voli", t: { it: "Voli presto o tardi e scali", en: "Early or late flights & stopovers" } },
+    { Icon: GraduationCap, ph: "Fiera di Roma", t: { it: "Visitatori della Fiera di Roma o esami", en: "Visitors to Fiera di Roma or exams" } },
+    { Icon: ShieldCheck, ph: "Guardia di Finanza", t: { it: "Visite ufficiali Guardia di Finanza e famiglie", en: "Guardia di Finanza official visitors and families" } },
+    { Icon: Users, ph: "Famiglie & gruppi", t: { it: "Famiglie e gruppi fino a 8 ospiti", en: "Families & groups up to 8 guests" } },
+  ];
+
+  const comforts: { Icon: typeof Wifi; t: B }[] = [
+    { Icon: Wifi, t: { it: "Wi-Fi gratuito", en: "Free Wi-Fi" } },
+    { Icon: Wind, t: { it: "Aria condizionata e riscaldamento", en: "Air conditioning & heating" } },
+    { Icon: CookingPot, t: { it: "Cucine completamente attrezzate", en: "Fully equipped kitchens" } },
+    { Icon: Tv, t: { it: "Smart TV", en: "Smart TV" } },
+    { Icon: WashingMachine, t: { it: "Lavatrice", en: "Washing machine" } },
+    { Icon: Coffee, t: { it: "Macchina del caffè", en: "Coffee machine" } },
+    { Icon: Fan, t: { it: "Phon", en: "Hair dryer" } },
+    { Icon: Shirt, t: { it: "Ferro e asse da stiro", en: "Iron & board" } },
+    { Icon: Baby, t: { it: "Culla su richiesta", en: "Baby bed on request" } },
+    { Icon: SquareParking, t: { it: "Parcheggio privato gratuito", en: "Free private parking" } },
+  ];
+
+  const area: { ph: string; img?: string; t: B; s: B }[] = [
+    { ph: "Roma", t: { it: "Roma", en: "Rome" }, s: { it: "storia, arte e cultura", en: "history, art & culture" } },
+    { ph: "Spiaggia", img: "/images/base-roma-mare.jpg", t: { it: "Vita da spiaggia", en: "Beach life" }, s: { it: "sole, mare e relax", en: "sun, sea & relaxation" } },
+    { ph: "Pesce", t: { it: "Cene di pesce", en: "Seafood dinners" }, s: { it: "fresco e gustoso", en: "fresh & delicious" } },
+    { ph: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, s: { it: "antica città romana", en: "ancient Roman city" } },
+    { ph: "Tramonto", img: "/images/base-roma-mare.jpg", t: { it: "Tramonto sul mare", en: "Sunset by the sea" }, s: { it: "momenti indimenticabili", en: "unforgettable moments" } },
+  ];
+
+  const rules: { Icon: typeof CalendarCheck; t: B; s: B }[] = [
+    { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
+    { Icon: CalendarX, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 10:00", en: "by 10:00" } },
+    { Icon: CigaretteOff, t: { it: "Non fumatori", en: "No smoking" }, s: { it: "all'interno", en: "indoors" } },
+    { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },
+    { Icon: MoonStar, t: { it: "Silenzio", en: "Quiet time" }, s: { it: "23:00 – 07:00", en: "23:00 – 07:00" } },
+    { Icon: PawPrint, t: { it: "Animali", en: "Pets" }, s: { it: "non ammessi", en: "not allowed" } },
+  ];
+
+  const goodToKnow: B[] = [
+    { it: "Pagamento al check-in: contanti o carta", en: "Payment at check-in: cash or card" },
+    { it: "Nessun pagamento online richiesto", en: "No online payment required" },
+    { it: "Documenti d'identità richiesti al check-in", en: "ID documents required at check-in" },
+    { it: "Tassa di soggiorno esclusa (€2,00 a persona a notte, fino a 10 notti)", en: "City tax not included (€2.00 per person per night, up to 10 nights)" },
+  ];
+
+  return (
+    <main className="flex-1">
+      {/* ===================== HERO ===================== */}
+      <section className="relative overflow-hidden bg-paper">
+        <Leaf className="pointer-events-none absolute right-2 top-24 hidden h-16 w-16 rotate-12 text-terracotta/15 lg:block" />
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 md:grid-cols-2 md:gap-12">
+          <div>
+            <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
+            <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.08] tracking-tight text-deep-brown md:text-5xl">
+              {tr(lang, { it: "Vicino a FCO, Roma e al mare", en: "Stay close to FCO, Rome and the sea" })}
+            </h1>
+            <Wave className="mt-3 h-2 w-24 text-terracotta" />
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-warm-gray">
+              {tr(lang, {
+                it: "Casa vacanze a gestione familiare in una zona tranquilla di Fiumicino. Due appartamenti indipendenti o la casa intera, ideali per scali, gite in città e soggiorni in famiglia.",
+                en: "Family-run holiday house in a quiet area of Fiumicino. Two independent apartments or the whole house, ideal for stopovers, city trips and family stays.",
+              })}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-6 py-2.5 text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
+                <span className="text-[10px] text-white/90">{tr(lang, { it: "Miglior prezzo, nessuna commissione", en: "Best price, no fees" })}</span>
+              </a>
+              <Link href="#apartments" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-6 py-3 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
+                {tr(lang, { it: "Scopri gli appartamenti", en: "Explore the apartments" })}
+              </Link>
+            </div>
+            <p className="mt-4 flex items-start gap-2 text-xs text-warm-gray">
+              <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-terracotta" />
+              {tr(lang, { it: "Prenotazione diretta, nessun pagamento online. Paghi al check-in: semplice e sicuro.", en: "Direct booking, no online payment. Pay at check-in. It's simple and safe." })}
+            </p>
+          </div>
+
+          {/* collage */}
+          <div className="grid grid-cols-3 grid-rows-2 gap-2.5">
+            <div className="relative col-span-2 row-span-2 overflow-hidden rounded-2xl">
+              <Image src="/images/house/house-02.jpg" alt="Soggiorno con cucina in legno" fill priority sizes="(max-width:768px) 100vw, 40vw" className="object-cover" />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl">
+              <Image src="/images/house/house-06.jpg" alt="Camera mansardata" fill sizes="20vw" className="object-cover" />
+            </div>
+            <div className="relative overflow-hidden rounded-2xl">
+              <Image src="/images/base-roma-mare.jpg" alt="Mare vicino a Fiumicino" fill sizes="20vw" className="object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== STATS BAR ===================== */}
+      <section className="bg-paper pb-10">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-2 gap-4 rounded-2xl border border-line bg-paper px-6 py-5 shadow-card sm:grid-cols-3 lg:grid-cols-6">
+            {stats.map((s) => (
+              <div key={s.b.en} className="flex items-center gap-3">
+                <s.Icon className="h-6 w-6 flex-shrink-0 text-terracotta" strokeWidth={1.6} />
+                <div className="leading-tight"><div className="font-semibold text-deep-brown">{t(s.a)}</div><div className="text-xs text-warm-gray">{t(s.b)}</div></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== CHOOSE YOUR STAY ===================== */}
+      <section id="apartments" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center">
+            <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
+            <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
+            <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
+          </div>
+          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+            {stays.map((s) => (
+              <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+                <div className="relative aspect-[16/10]">
+                  <Image src={s.img} alt={t(s.tab)} fill sizes="(max-width:1024px) 100vw, 33vw" className="object-cover" />
+                  <span className="absolute left-1/2 top-3 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 border-b border-line-soft pb-3 text-xs text-warm-gray">
+                    <span className="flex items-center gap-1"><HomeIcon className="h-3.5 w-3.5 text-terracotta" /> {s.apt.mq}</span>
+                    <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5 text-terracotta" /> {s.apt.camere} {tr(lang, { it: "matrimoniali", en: "double bedrooms" })}</span>
+                    <span className="flex items-center gap-1"><Waves className="h-3.5 w-3.5 text-terracotta" /> {s.apt.bagni} {tr(lang, { it: s.apt.bagni > 1 ? "bagni" : "bagno", en: s.apt.bagni > 1 ? "bathrooms" : "bathroom" })}</span>
+                  </div>
+                  <h3 className="mt-3 font-serif text-lg font-bold text-deep-brown">{t(s.titolo)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-warm-gray">{t(s.descr)}</p>
+                  <div className="mt-4 flex items-center justify-between gap-3 pt-2">
+                    <p className="flex items-center gap-1.5 text-xs text-warm-gray"><Users className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(s.best)}</p>
+                    <Link href={s.href} className="flex-shrink-0 rounded-full border border-terracotta px-4 py-2 text-xs font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">{tr(lang, { it: "Dettagli", en: "View details" })}</Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="mx-auto mt-6 flex max-w-3xl items-center justify-center gap-2 rounded-full bg-paper px-5 py-3 text-center text-sm text-warm-gray shadow-sm">
+            <Heart className="h-4 w-4 flex-shrink-0 text-terracotta" /> {tr(lang, { it: "L'unico spazio condiviso è il giardino privato con terrazza per la colazione, sedute e parcheggio gratuito.", en: "The only shared area is the private garden with breakfast terrace, seating and free parking." })}
+          </p>
+        </div>
+      </section>
+
+      {/* ===================== GARDEN ===================== */}
+      <section className="relative overflow-hidden bg-paper py-12 md:py-14">
+        <Leaf className="pointer-events-none absolute right-4 top-10 hidden h-20 w-20 rotate-12 text-terracotta/12 lg:block" />
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-2 md:gap-12">
+          <div className="relative aspect-[16/11] overflow-hidden rounded-2xl shadow-sm">
+            <Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+          </div>
+          <div>
+            <p className={eyebrow}>{tr(lang, { it: "Il tuo spazio all'aperto", en: "Your private outdoor space" })}</p>
+            <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Rilassati nel nostro giardino", en: "Relax in our garden" })}</h2>
+            <ul className="mt-5 space-y-3">
+              {gardenChecks.map((c) => (
+                <li key={c.en} className="flex items-start gap-2.5 text-sm text-deep-brown"><Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-terracotta" /> {t(c)}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== REVIEWS ===================== */}
+      <section id="recensioni" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
+            <div>
+              <p className={eyebrow}>{tr(lang, { it: "Perché gli ospiti amano", en: "Why guests love" })}</p>
+              <h2 className={`mt-1 ${sectionTitle}`}>MiriAle</h2>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="font-serif text-4xl font-bold text-deep-brown">8.8<span className="text-xl text-warm-gray">/10</span></span>
+                <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
+              </div>
+              <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni", en: "from 122 reviews" })}</p>
+              <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Più apprezzati", en: "Most praised for" })}</p>
+              <ul className="mt-2 space-y-1.5">
+                {praised.map((p) => (
+                  <li key={p.en} className="flex items-center gap-2 text-sm text-warm-gray"><Check className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(p)}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {RECENSIONI.map((r) => (
+                  <figure key={r.who} className="rounded-2xl border border-line bg-paper p-5">
+                    <Quote className="h-6 w-6 text-terracotta/50" />
+                    <blockquote className="mt-2 text-sm leading-relaxed text-deep-brown">{t(r.t)}</blockquote>
+                    <div className="mt-3 flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}</div>
+                    <figcaption className="mt-2 text-xs font-semibold text-warm-gray">{r.who}</figcaption>
+                  </figure>
+                ))}
+              </div>
+              <p className="mt-4 text-center text-xs text-warm-gray sm:text-right">{tr(lang, { it: "Leggi altre recensioni su Google", en: "Read more reviews on Google" })}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== MEET HOST ===================== */}
+      <section className="bg-paper py-12 md:py-14">
+        <div className="mx-auto grid max-w-7xl items-stretch gap-6 px-6 lg:grid-cols-[1fr_1fr_0.7fr] lg:gap-8">
+          <div className="relative min-h-[260px] overflow-hidden rounded-2xl">
+            <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family" })} className="absolute inset-0" />
+          </div>
+          <div className="flex flex-col justify-center">
+            <p className={eyebrow}>{tr(lang, { it: "Conosci il tuo host", en: "Meet your host" })}</p>
+            <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Ciao, siamo Fabio e famiglia!", en: "Hi, we're Fabio and family!" })}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-warm-gray">{tr(lang, { it: "Viviamo a Fiumicino e accogliamo personalmente ogni ospite. Siamo sempre disponibili per rendere il tuo soggiorno facile e piacevole.", en: "We live here in Fiumicino and personally welcome every guest. We are always available to make your stay easy and enjoyable." })}</p>
+            <ul className="mt-4 space-y-2">
+              {hostChecks.map((c) => (
+                <li key={c.t.en} className="flex items-center gap-2 text-sm text-deep-brown"><c.Icon className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(c.t)}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col justify-center rounded-2xl border border-terracotta/20 bg-cream-2 p-6 text-center">
+            <p className="font-script text-xl leading-snug text-deep-brown">{tr(lang, { it: "“Trattiamo i nostri ospiti come vorremmo essere trattati noi.”", en: "“We treat our guests the way we'd like to be treated.”" })}</p>
+            <p className="mt-3 font-script text-lg text-terracotta">{tr(lang, { it: "A presto!", en: "See you soon!" })}</p>
+            <p className="mt-1 inline-flex items-center justify-center gap-1.5 font-serif text-sm font-semibold text-deep-brown">Fabio <Heart className="h-3.5 w-3.5 fill-terracotta text-terracotta" /></p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== LOCATION ===================== */}
+      <section id="dove-siamo" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center">
+            <p className={eyebrow}>{tr(lang, { it: "In posizione perfetta", en: "Perfectly located" })}</p>
+            <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Vicino a tutto ciò che conta", en: "Close to everything that matters" })}</h2>
+            <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
+          </div>
+          <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-10">
+            <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0 shadow-sm" loading="lazy" title="Map" />
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {dist.map((x) => (
+                <div key={x.t.en} className="rounded-xl border border-line bg-paper p-4">
+                  <x.Icon className="h-5 w-5 text-terracotta" strokeWidth={1.6} />
+                  <div className="mt-2 font-semibold text-deep-brown">{t(x.d)}</div>
+                  <div className="text-xs leading-tight text-warm-gray">{t(x.t)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 rounded-2xl bg-paper px-6 py-4 text-center text-sm text-warm-gray shadow-sm">
+            <span className="flex items-center gap-1.5"><Leaf className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Zona residenziale tranquilla", en: "Quiet residential area" })}</span>
+            <span>{tr(lang, { it: "Supermercati 5 min", en: "Supermarkets 5 min" })}</span>
+            <span>{tr(lang, { it: "Ristoranti e caffè 5 min", en: "Restaurants & cafés 5 min" })}</span>
+            <span>{tr(lang, { it: "Stazione 7 min a piedi", en: "Train station 7 min walk" })}</span>
+          </p>
+        </div>
+      </section>
+
+      {/* ===================== WHO WE'RE PERFECT FOR ===================== */}
+      <section className="bg-paper py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center">
+            <p className={eyebrow}>{tr(lang, { it: "Ideale per", en: "Ideal for" })}</p>
+            <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Per chi siamo perfetti", en: "Who we're perfect for" })}</h2>
+            <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {whoFor.map((w) => (
+              <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+                <div className="relative aspect-[4/3]">
+                  <Ph label={w.ph} className="absolute inset-0" />
+                  <span className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-terracotta shadow-sm"><w.Icon className="h-5 w-5" strokeWidth={1.6} /></span>
+                </div>
+                <div className="p-4 text-center"><p className="text-sm font-semibold leading-snug text-deep-brown">{t(w.t)}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== COMFORTS (AMENITIES) ===================== */}
+      <section id="servizi" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center">
+            <h2 className={sectionTitle}>{tr(lang, { it: "Tutti i comfort che ti servono", en: "All the comforts you need" })}</h2>
+            <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 rounded-2xl border border-line bg-paper px-6 py-7 sm:grid-cols-3 lg:grid-cols-5">
+            {comforts.map((c) => (
+              <div key={c.t.en} className="flex flex-col items-center gap-2 text-center">
+                <c.Icon className="h-7 w-7 text-terracotta" strokeWidth={1.5} />
+                <span className="text-xs leading-snug text-deep-brown">{t(c.t)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== EXPERIENCE THE AREA ===================== */}
+      <section className="bg-paper py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center">
+            <h2 className={sectionTitle}>{tr(lang, { it: "Vivi il meglio della zona", en: "Experience the best of the area" })}</h2>
+            <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {area.map((a) => (
+              <article key={a.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+                <div className="relative aspect-[4/3]">
+                  {a.img ? <Image src={a.img} alt={t(a.t)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" /> : <Ph label={a.ph} className="absolute inset-0" />}
+                </div>
+                <div className="p-3"><p className="text-sm font-semibold text-deep-brown">{t(a.t)}</p><p className="text-xs text-warm-gray">{t(a.s)}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== HOUSE RULES + GOOD TO KNOW ===================== */}
+      <section id="faq" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+            <div>
+              <h2 className={`text-center lg:text-left ${sectionTitle}`}>{tr(lang, { it: "Regole della casa e info pratiche", en: "House rules & practical info" })}</h2>
+              <div className="mt-6 grid grid-cols-3 gap-5 rounded-2xl border border-line bg-paper px-5 py-6 sm:grid-cols-6">
+                {rules.map((r) => (
+                  <div key={r.t.en} className="flex flex-col items-center text-center">
+                    <r.Icon className="h-6 w-6 text-terracotta" strokeWidth={1.5} />
+                    <div className="mt-2 text-xs font-semibold leading-tight text-deep-brown">{t(r.t)}</div>
+                    <div className="text-[11px] text-warm-gray">{t(r.s)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-line bg-paper p-6">
+              <h3 className="font-serif text-lg font-bold text-deep-brown">{tr(lang, { it: "Buono a sapersi", en: "Good to know" })}</h3>
+              <ul className="mt-3 space-y-2">
+                {goodToKnow.map((g) => (
+                  <li key={g.en} className="flex items-start gap-2 text-sm text-warm-gray"><Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-terracotta" /> {t(g)}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== CTA ===================== */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-terracotta to-olive-section py-14 text-white">
+        <SeaDecor className="absolute inset-0 hidden sm:block" />
+        <div className="relative mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:pl-48 md:text-left">
+          <div>
+            <h2 className="font-serif text-2xl font-bold md:text-3xl">{tr(lang, { it: "Hai domande o vuoi prenotare?", en: "Have questions or ready to book?" })}</h2>
+            <p className="mt-1 font-script text-2xl text-white/95">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>
+            <p className="mt-2 max-w-md text-sm text-white/85">{tr(lang, { it: "Scrivici su WhatsApp per disponibilità, info sul soggiorno e il miglior prezzo diretto. Risposta rapida garantita.", en: "Chat with us on WhatsApp for availability, stay info and the best direct price. Quick reply guaranteed." })}</p>
+          </div>
+          <div className="flex flex-col items-center gap-3">
+            <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
+              <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
+              <span className="text-[11px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
+            </a>
+            <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-white/75">
+              <span>{tr(lang, { it: "Nessuna commissione", en: "No booking fees" })}</span>·
+              <span>{tr(lang, { it: "Nessun pagamento online", en: "No online payment" })}</span>·
+              <span>{tr(lang, { it: "Paghi al check-in", en: "Pay at check-in" })}</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

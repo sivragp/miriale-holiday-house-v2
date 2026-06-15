@@ -37,6 +37,7 @@ import {
   telLink,
   waLink,
 } from "@/lib/site";
+import { SeaDecor } from "@/components/site/SeaDecor";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
 
@@ -292,6 +293,7 @@ export default function Contacts() {
 
       {/* ===================== CTA ===================== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta to-olive-section py-16 text-center text-white">
+        <SeaDecor className="absolute inset-0 hidden md:block" />
         <div className="relative mx-auto max-w-3xl px-6">
           <h2 className="font-serif text-3xl font-bold md:text-4xl">{tr(lang, { it: "Pronto a prenotare?", en: "Ready to book?" })}</h2>
           <p className="mt-1 font-script text-2xl text-white/95">{tr(lang, { it: "Non vediamo l'ora di accoglierti!", en: "We can't wait to welcome you!" })}</p>
