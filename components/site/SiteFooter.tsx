@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { EMAIL, I, WHATSAPP_DISPLAY, mailto, telLink, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
@@ -50,13 +51,10 @@ export default function SiteFooter() {
         <div className="border-t border-white/15">
           <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 text-cream md:grid-cols-4 md:px-8">
             <div>
-              <Link href="/" className="flex items-center gap-3" aria-label="MiriAle Holiday House — Home">
-                <I.arch className="h-9 w-9 text-gold" />
-                <span className="leading-tight">
-                  <span className="block font-serif text-lg font-bold tracking-[0.12em] text-cream">MiriAle Holiday House</span>
-                  <span className="block text-[10px] uppercase tracking-[0.3em] text-cream/60">{tr(lang, { it: "Fiumicino · Italia", en: "Fiumicino · Italy" })}</span>
-                </span>
+              <Link href="/" className="inline-block" aria-label="MiriAle Holiday House — Home">
+                <Image src="/images/logo-miriale-light.png" alt="MiriAle Holiday House" width={367} height={276} className="h-20 w-auto" />
               </Link>
+              <p className="mt-3 text-[10px] uppercase tracking-[0.3em] text-cream/60">{tr(lang, { it: "Fiumicino · Italia", en: "Fiumicino · Italy" })}</p>
             </div>
 
             <div>

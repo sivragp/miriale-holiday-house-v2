@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { I, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
@@ -24,16 +25,8 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/60 bg-paper/95 shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label="MiriAle Holiday House">
-          <I.arch className="h-9 w-9 text-terracotta" />
-          <span className="leading-tight">
-            <span className="block font-serif text-base font-bold tracking-[0.14em] text-deep-brown md:text-lg">
-              MiriAle Holiday House
-            </span>
-            <span className="block text-[10px] uppercase tracking-[0.32em] text-warm-gray">
-              {tr(lang, { it: "Fiumicino · Italia", en: "Fiumicino · Italy" })}
-            </span>
-          </span>
+        <Link href="/" className="flex items-center" aria-label="MiriAle Holiday House">
+          <Image src="/images/logo-miriale.png" alt="MiriAle Holiday House" width={391} height={300} priority className="h-12 w-auto md:h-14" />
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-deep-brown lg:flex">
