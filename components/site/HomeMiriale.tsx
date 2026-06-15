@@ -194,22 +194,26 @@ export default function HomeMiriale() {
             </p>
           </div>
 
-          {/* foto principale + stack laterale */}
+          {/* collage polaroid: foto grande incorniciata + 3 foto piccole inclinate */}
           <div className="relative">
-            <Leaf className="pointer-events-none absolute -left-3 -top-5 z-10 hidden h-14 w-14 -rotate-45 text-terracotta/25 lg:block" />
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] rounded-tr-[5rem] shadow-card lg:mr-20">
-              <Image src="/images/house/house-22.jpg" alt="La casa e il giardino di MiriAle" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
+            <Leaf className="pointer-events-none absolute -left-4 -top-6 z-10 hidden h-16 w-16 -rotate-45 text-terracotta/30 lg:block" />
+            {/* foto principale con cornice bianca */}
+            <div className="relative -rotate-1 rounded-[2rem] bg-white p-2.5 shadow-card lg:mr-16">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
+                <Image src="/images/house/house-22.jpg" alt="La casa e il giardino di MiriAle" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
+              </div>
             </div>
-            <div className="absolute right-0 top-8 hidden w-24 space-y-3 lg:block xl:w-28">
-              {[
-                { src: "/images/house/house-02.jpg", alt: "Interno luminoso", rot: "rotate-3" },
-                { src: "/images/house/house-19.jpg", alt: "Colazione in giardino", rot: "-rotate-2" },
-                { src: "/images/base-roma-mare.jpg", alt: "Mare vicino a Fiumicino", rot: "rotate-2" },
-              ].map((im) => (
-                <div key={im.src} className={`relative aspect-square overflow-hidden rounded-2xl border-4 border-white shadow-lg ${im.rot}`}>
-                  <Image src={im.src} alt={im.alt} fill sizes="120px" className="object-cover" />
-                </div>
-              ))}
+            {/* cluster di polaroid sovrapposte */}
+            <div className="absolute -right-1 top-4 hidden w-28 lg:block xl:w-32">
+              <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-02.jpg" alt="Interno luminoso" fill sizes="130px" className="object-cover" /></div>
+              </div>
+              <div className="-mt-3 ml-4 -rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="130px" className="object-cover" /></div>
+              </div>
+              <div className="-mt-3 ml-1 rotate-2 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/base-roma-mare.jpg" alt="Mare vicino a Fiumicino" fill sizes="130px" className="object-cover" /></div>
+              </div>
             </div>
           </div>
         </div>
@@ -460,28 +464,6 @@ export default function HomeMiriale() {
         </div>
       </section>
 
-      {/* ===================== CTA ===================== */}
-      <section className="relative overflow-hidden bg-cover bg-center py-14 text-white" style={{ backgroundImage: "url('/images/cta-mare.jpg')" }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-brown/80 to-deep-brown/45" />
-        <div className="relative mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:pl-48 md:text-left">
-          <div>
-            <h2 className="font-serif text-2xl font-bold md:text-3xl">{tr(lang, { it: "Hai domande o vuoi prenotare?", en: "Have questions or ready to book?" })}</h2>
-            <p className="mt-1 font-script text-2xl text-white/95">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>
-            <p className="mt-2 max-w-md text-sm text-white/85">{tr(lang, { it: "Scrivici su WhatsApp per disponibilità, info sul soggiorno e il miglior prezzo diretto. Risposta rapida garantita.", en: "Chat with us on WhatsApp for availability, stay info and the best direct price. Quick reply guaranteed." })}</p>
-          </div>
-          <div className="flex flex-col items-center gap-3">
-            <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
-              <span className="text-[11px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
-            </a>
-            <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-white/75">
-              <span>{tr(lang, { it: "Nessuna commissione", en: "No booking fees" })}</span>·
-              <span>{tr(lang, { it: "Nessun pagamento online", en: "No online payment" })}</span>·
-              <span>{tr(lang, { it: "Paghi al check-in", en: "Pay at check-in" })}</span>
-            </p>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

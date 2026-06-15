@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Bath,
   BedDouble,
@@ -73,8 +72,6 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   const { lang } = useLang();
   const t = (b: B) => tr(lang, b);
   const isCasa = apt.slug === "casa";
-  const altro = apt.slug === "miri" ? "/ale" : "/miri";
-  const altroNome = apt.slug === "miri" ? "Ale" : "Miri";
 
   // Booking box
   const [ci, setCi] = useState("");
@@ -478,36 +475,6 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         </div>
       </Section>
 
-      {/* ===================== CTA ===================== */}
-      <section className="relative overflow-hidden bg-cover bg-center py-16 text-center text-white" style={{ backgroundImage: "url('/images/cta-mare.jpg')" }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-brown/75 to-deep-brown/45" />
-        <div className="relative mx-auto max-w-2xl px-6">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl">{isCasa ? tr(lang, { it: "Pronti a prenotare tutta la casa?", en: "Ready to book the whole house?" }) : tr(lang, { it: `Pronto a soggiornare a ${apt.nome}?`, en: `Ready to stay at ${apt.nome}?` })}</h2>
-          <p className="mt-2 text-sm text-white/85">{tr(lang, { it: "Chiedi a Fabio le tue date su WhatsApp", en: "Ask Fabio about your dates on WhatsApp" })}</p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <a href={waLink(t(apt.waMsg))} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Message on WhatsApp" })}</span>
-              <span className="text-[11px] text-white/90">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</span>
-            </a>
-          </div>
-          <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-white/75">
-            <span>{tr(lang, { it: "Risposta rapida", en: "Quick reply" })}</span>·
-            <span>{tr(lang, { it: "Prenotazione diretta", en: "Direct booking" })}</span>·
-            <span>{tr(lang, { it: "Nessun pagamento online", en: "No online payment" })}</span>·
-            <span>{tr(lang, { it: "Paghi al check-in", en: "Pay at check-in" })}</span>
-          </p>
-          <p className="mt-4">
-            {isCasa ? (
-              <span className="inline-flex flex-wrap items-center justify-center gap-4">
-                <Link href="/miri" className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: "Vedi l'appartamento Miri →", en: "See the Miri apartment →" })}</Link>
-                <Link href="/ale" className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: "Vedi l'appartamento Ale →", en: "See the Ale apartment →" })}</Link>
-              </span>
-            ) : (
-              <Link href={altro} className="text-xs font-medium text-white/80 underline-offset-4 hover:underline">{tr(lang, { it: `Guarda anche l'appartamento ${altroNome} →`, en: `See also the ${altroNome} apartment →` })}</Link>
-            )}
-          </p>
-        </div>
-      </section>
     </main>
   );
 }

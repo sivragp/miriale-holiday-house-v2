@@ -22,7 +22,6 @@ import {
   Train,
   TrainFront,
   Umbrella,
-  Utensils,
   Waves,
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
@@ -302,26 +301,6 @@ export default function Experiences() {
         </div>
       </section>
 
-      {/* ===================== CTA ===================== */}
-      <section className="relative overflow-hidden bg-cover bg-center py-16 text-center text-white" style={{ backgroundImage: "url('/images/cta-mare.jpg')" }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-brown/75 to-deep-brown/45" />
-        <div className="relative mx-auto max-w-2xl px-6">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl">{tr(lang, { it: "Pronto a esplorare?", en: "Ready to explore?" })}</h2>
-          <p className="mt-1 font-script text-2xl text-white/95">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>
-          <p className="mx-auto mt-3 max-w-md text-sm text-white/85">{tr(lang, { it: "Scrivici su WhatsApp per consigli locali, transfer e il miglior prezzo diretto.", en: "Chat with us on WhatsApp for local tips, transfers and the best direct price." })}</p>
-          <div className="mt-6 flex justify-center">
-            <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
-              <span className="text-[11px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
-            </a>
-          </div>
-          <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-white/75">
-            <span className="inline-flex items-center gap-1.5"><Tag className="h-3.5 w-3.5" /> {tr(lang, { it: "Nessuna commissione", en: "No booking fees" })}</span>
-            <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5" /> {tr(lang, { it: "Nessun pagamento online", en: "No online payment" })}</span>
-            <span className="inline-flex items-center gap-1.5"><Utensils className="h-3.5 w-3.5" /> {tr(lang, { it: "Paghi al check-in", en: "Pay at check-in" })}</span>
-          </p>
-        </div>
-      </section>
     </main>
   );
 }
