@@ -39,6 +39,7 @@ import {
   Wind,
 } from "lucide-react";
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
+import { BranchDecor } from "@/components/site/BranchDecor";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { APPARTAMENTI, RECENSIONI, type B } from "@/lib/apartments";
 
@@ -114,12 +115,12 @@ export default function HomeMiriale() {
     { Icon: Train, d: { it: "32 min", en: "32 min" }, t: { it: "Roma Termini (Leonardo Express)", en: "Rome Termini (Leonardo Express)" } },
   ];
 
-  const whoFor: { Icon: typeof Users; ph: string; t: B }[] = [
-    { Icon: Landmark, ph: "Roma & mare", t: { it: "Turisti in visita a Roma e al mare", en: "Tourists visiting Rome and the sea" } },
-    { Icon: Plane, ph: "Scali / voli", t: { it: "Voli presto o tardi e scali", en: "Early or late flights & stopovers" } },
-    { Icon: GraduationCap, ph: "Fiera di Roma", t: { it: "Visitatori della Fiera di Roma o esami", en: "Visitors to Fiera di Roma or exams" } },
-    { Icon: ShieldCheck, ph: "Guardia di Finanza", t: { it: "Visite ufficiali Guardia di Finanza e famiglie", en: "Guardia di Finanza official visitors and families" } },
-    { Icon: Users, ph: "Famiglie & gruppi", t: { it: "Famiglie e gruppi fino a 8 ospiti", en: "Families & groups up to 8 guests" } },
+  const whoFor: { Icon: typeof Users; img: string; t: B }[] = [
+    { Icon: Landmark, img: "/images/luoghi/beach.jpg", t: { it: "Turisti in visita a Roma e al mare", en: "Tourists visiting Rome and the sea" } },
+    { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Voli presto o tardi e scali", en: "Early or late flights & stopovers" } },
+    { Icon: GraduationCap, img: "/images/luoghi/fiera.jpg", t: { it: "Visitatori della Fiera di Roma o esami", en: "Visitors to Fiera di Roma or exams" } },
+    { Icon: ShieldCheck, img: "/images/luoghi/guardia-finanza.jpg", t: { it: "Visite ufficiali Guardia di Finanza e famiglie", en: "Guardia di Finanza official visitors and families" } },
+    { Icon: Users, img: "/images/luoghi/famiglie.jpg", t: { it: "Famiglie e gruppi fino a 8 ospiti", en: "Families & groups up to 8 guests" } },
   ];
 
   const comforts: { Icon: typeof Wifi; t: B }[] = [
@@ -135,12 +136,12 @@ export default function HomeMiriale() {
     { Icon: SquareParking, t: { it: "Parcheggio privato gratuito", en: "Free private parking" } },
   ];
 
-  const area: { ph: string; img?: string; t: B; s: B }[] = [
-    { ph: "Roma", t: { it: "Roma", en: "Rome" }, s: { it: "storia, arte e cultura", en: "history, art & culture" } },
-    { ph: "Spiaggia", img: "/images/base-roma-mare.jpg", t: { it: "Vita da spiaggia", en: "Beach life" }, s: { it: "sole, mare e relax", en: "sun, sea & relaxation" } },
-    { ph: "Pesce", t: { it: "Cene di pesce", en: "Seafood dinners" }, s: { it: "fresco e gustoso", en: "fresh & delicious" } },
-    { ph: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, s: { it: "antica città romana", en: "ancient Roman city" } },
-    { ph: "Tramonto", img: "/images/base-roma-mare.jpg", t: { it: "Tramonto sul mare", en: "Sunset by the sea" }, s: { it: "momenti indimenticabili", en: "unforgettable moments" } },
+  const area: { img: string; t: B; s: B }[] = [
+    { img: "/images/luoghi/roma.jpg", t: { it: "Roma", en: "Rome" }, s: { it: "storia, arte e cultura", en: "history, art & culture" } },
+    { img: "/images/luoghi/beach.jpg", t: { it: "Vita da spiaggia", en: "Beach life" }, s: { it: "sole, mare e relax", en: "sun, sea & relaxation" } },
+    { img: "/images/luoghi/pesce.jpg", t: { it: "Cene di pesce", en: "Seafood dinners" }, s: { it: "fresco e gustoso", en: "fresh & delicious" } },
+    { img: "/images/luoghi/ostia.jpg", t: { it: "Ostia Antica", en: "Ostia Antica" }, s: { it: "antica città romana", en: "ancient Roman city" } },
+    { img: "/images/luoghi/tramonto.jpg", t: { it: "Tramonto sul mare", en: "Sunset by the sea" }, s: { it: "momenti indimenticabili", en: "unforgettable moments" } },
   ];
 
   const rules: { Icon: typeof CalendarCheck; t: B; s: B }[] = [
@@ -163,7 +164,7 @@ export default function HomeMiriale() {
     <main className="flex-1">
       {/* ===================== HERO ===================== */}
       <section className="relative overflow-hidden bg-paper">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pt-12 md:grid-cols-2 md:gap-8">
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 pt-12 md:grid-cols-2 md:gap-8">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-[2.9rem] lg:text-5xl">
@@ -196,7 +197,6 @@ export default function HomeMiriale() {
 
           {/* collage polaroid: foto grande incorniciata + 3 foto piccole inclinate */}
           <div className="relative">
-            <Leaf className="pointer-events-none absolute -left-4 -top-6 z-10 hidden h-16 w-16 -rotate-45 text-terracotta/30 lg:block" />
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-2.5 shadow-card lg:mr-16">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
@@ -270,7 +270,7 @@ export default function HomeMiriale() {
 
       {/* ===================== GARDEN ===================== */}
       <section className="relative overflow-hidden bg-paper py-12 md:py-14">
-        <Leaf className="pointer-events-none absolute right-4 top-10 hidden h-20 w-20 rotate-12 text-terracotta/12 lg:block" />
+        <BranchDecor className="top-6 w-24 xl:w-32" flip />
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-2 md:gap-12">
           <div className="relative aspect-[16/11] overflow-hidden rounded-2xl shadow-sm">
             <Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
@@ -377,8 +377,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== WHO WE'RE PERFECT FOR ===================== */}
-      <section className="bg-paper py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative overflow-hidden bg-paper py-12 md:py-14">
+        <BranchDecor className="top-4 w-24 xl:w-28" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Ideale per", en: "Ideal for" })}</p>
             <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Per chi siamo perfetti", en: "Who we're perfect for" })}</h2>
@@ -388,7 +389,7 @@ export default function HomeMiriale() {
             {whoFor.map((w) => (
               <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
                 <div className="relative aspect-[4/3]">
-                  <Ph label={w.ph} className="absolute inset-0" />
+                  <Image src={w.img} alt={t(w.t)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" />
                   <span className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-terracotta shadow-sm"><w.Icon className="h-5 w-5" strokeWidth={1.6} /></span>
                 </div>
                 <div className="p-4 text-center"><p className="text-sm font-semibold leading-snug text-deep-brown">{t(w.t)}</p></div>
@@ -417,8 +418,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== EXPERIENCE THE AREA ===================== */}
-      <section className="bg-paper py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative overflow-hidden bg-paper py-12 md:py-14">
+        <BranchDecor className="top-4 w-24 xl:w-28" flip />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Vivi il meglio della zona", en: "Experience the best of the area" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
@@ -427,7 +429,7 @@ export default function HomeMiriale() {
             {area.map((a) => (
               <article key={a.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
                 <div className="relative aspect-[4/3]">
-                  {a.img ? <Image src={a.img} alt={t(a.t)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" /> : <Ph label={a.ph} className="absolute inset-0" />}
+                  <Image src={a.img} alt={t(a.t)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" />
                 </div>
                 <div className="p-3"><p className="text-sm font-semibold text-deep-brown">{t(a.t)}</p><p className="text-xs text-warm-gray">{t(a.s)}</p></div>
               </article>
@@ -437,8 +439,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== HOUSE RULES + GOOD TO KNOW ===================== */}
-      <section id="faq" className="bg-cream py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="faq" className="relative overflow-hidden bg-cream py-12 md:py-14">
+        <BranchDecor className="top-8 w-24 xl:w-28" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <h2 className={`text-center lg:text-left ${sectionTitle}`}>{tr(lang, { it: "Regole della casa e info pratiche", en: "House rules & practical info" })}</h2>
