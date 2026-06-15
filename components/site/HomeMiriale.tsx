@@ -163,14 +163,16 @@ export default function HomeMiriale() {
     <main className="flex-1">
       {/* ===================== HERO ===================== */}
       <section className="relative overflow-hidden bg-paper">
-        <Leaf className="pointer-events-none absolute right-2 top-24 hidden h-16 w-16 rotate-12 text-terracotta/15 lg:block" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 md:grid-cols-2 md:gap-12">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pt-12 md:grid-cols-2 md:gap-8">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
-            <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.08] tracking-tight text-deep-brown md:text-5xl">
-              {tr(lang, { it: "Vicino a FCO, Roma e al mare", en: "Stay close to FCO, Rome and the sea" })}
+            <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-[2.9rem] lg:text-5xl">
+              {lang === "it" ? (
+                <>Vicino a FCO, <span className="text-terracotta">Roma</span> e al <span className="text-terracotta">mare</span></>
+              ) : (
+                <>Stay close to FCO, <span className="text-terracotta">Rome</span> and the <span className="text-terracotta">sea</span></>
+              )}
             </h1>
-            <Wave className="mt-3 h-2 w-24 text-terracotta" />
             <p className="mt-5 max-w-md text-sm leading-relaxed text-warm-gray">
               {tr(lang, {
                 it: "Casa vacanze a gestione familiare in una zona tranquilla di Fiumicino. Due appartamenti indipendenti o la casa intera, ideali per scali, gite in città e soggiorni in famiglia.",
@@ -192,25 +194,29 @@ export default function HomeMiriale() {
             </p>
           </div>
 
-          {/* collage */}
-          <div className="grid grid-cols-3 grid-rows-2 gap-2.5">
-            <div className="relative col-span-2 row-span-2 overflow-hidden rounded-2xl">
-              <Image src="/images/house/house-02.jpg" alt="Soggiorno con cucina in legno" fill priority sizes="(max-width:768px) 100vw, 40vw" className="object-cover" />
+          {/* foto principale + stack laterale */}
+          <div className="relative">
+            <Leaf className="pointer-events-none absolute -left-3 -top-5 z-10 hidden h-14 w-14 -rotate-45 text-terracotta/25 lg:block" />
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] rounded-tr-[5rem] shadow-card lg:mr-20">
+              <Image src="/images/house/house-22.jpg" alt="La casa e il giardino di MiriAle" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
             </div>
-            <div className="relative overflow-hidden rounded-2xl">
-              <Image src="/images/house/house-06.jpg" alt="Camera mansardata" fill sizes="20vw" className="object-cover" />
-            </div>
-            <div className="relative overflow-hidden rounded-2xl">
-              <Image src="/images/base-roma-mare.jpg" alt="Mare vicino a Fiumicino" fill sizes="20vw" className="object-cover" />
+            <div className="absolute right-0 top-8 hidden w-24 space-y-3 lg:block xl:w-28">
+              {[
+                { src: "/images/house/house-02.jpg", alt: "Interno luminoso", rot: "rotate-3" },
+                { src: "/images/house/house-19.jpg", alt: "Colazione in giardino", rot: "-rotate-2" },
+                { src: "/images/base-roma-mare.jpg", alt: "Mare vicino a Fiumicino", rot: "rotate-2" },
+              ].map((im) => (
+                <div key={im.src} className={`relative aspect-square overflow-hidden rounded-2xl border-4 border-white shadow-lg ${im.rot}`}>
+                  <Image src={im.src} alt={im.alt} fill sizes="120px" className="object-cover" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ===================== STATS BAR ===================== */}
-      <section className="bg-paper pb-10">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-2 gap-4 rounded-2xl border border-line bg-paper px-6 py-5 shadow-card sm:grid-cols-3 lg:grid-cols-6">
+        {/* stats integrate nella hero */}
+        <div className="mx-auto max-w-7xl px-6 pb-10 pt-8">
+          <div className="grid grid-cols-2 gap-4 rounded-2xl border border-line bg-paper px-6 py-4 shadow-card sm:grid-cols-3 lg:grid-cols-6">
             {stats.map((s) => (
               <div key={s.b.en} className="flex items-center gap-3">
                 <s.Icon className="h-6 w-6 flex-shrink-0 text-terracotta" strokeWidth={1.6} />
