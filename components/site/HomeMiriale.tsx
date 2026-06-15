@@ -204,7 +204,7 @@ export default function HomeMiriale() {
               </div>
             </div>
             {/* cluster di polaroid sovrapposte */}
-            <div className="absolute -right-1 top-4 hidden w-28 lg:block xl:w-32">
+            <div className="absolute -right-2 top-4 hidden w-32 lg:block xl:w-36">
               <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
                 <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-02.jpg" alt="Interno luminoso" fill sizes="130px" className="object-cover" /></div>
               </div>
