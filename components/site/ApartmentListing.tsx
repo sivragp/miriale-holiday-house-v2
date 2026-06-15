@@ -48,7 +48,6 @@ import {
   Wind,
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
-import { SeaDecor } from "@/components/site/SeaDecor";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type Appartamento, type B, RECENSIONI } from "@/lib/apartments";
 
@@ -480,8 +479,8 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== CTA ===================== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-terracotta to-olive-section py-16 text-center text-white">
-        <SeaDecor className="absolute inset-0 hidden md:block" />
+      <section className="relative overflow-hidden bg-cover bg-center py-16 text-center text-white" style={{ backgroundImage: "url('/images/cta-mare.jpg')" }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-brown/75 to-deep-brown/45" />
         <div className="relative mx-auto max-w-2xl px-6">
           <h2 className="font-serif text-3xl font-bold md:text-4xl">{isCasa ? tr(lang, { it: "Pronti a prenotare tutta la casa?", en: "Ready to book the whole house?" }) : tr(lang, { it: `Pronto a soggiornare a ${apt.nome}?`, en: `Ready to stay at ${apt.nome}?` })}</h2>
           <p className="mt-2 text-sm text-white/85">{tr(lang, { it: "Chiedi a Fabio le tue date su WhatsApp", en: "Ask Fabio about your dates on WhatsApp" })}</p>

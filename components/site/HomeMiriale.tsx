@@ -39,7 +39,6 @@ import {
   Wind,
 } from "lucide-react";
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
-import { SeaDecor } from "@/components/site/SeaDecor";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { APPARTAMENTI, RECENSIONI, type B } from "@/lib/apartments";
 
@@ -456,8 +455,8 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== CTA ===================== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-terracotta to-olive-section py-14 text-white">
-        <SeaDecor className="absolute inset-0 hidden sm:block" />
+      <section className="relative overflow-hidden bg-cover bg-center py-14 text-white" style={{ backgroundImage: "url('/images/cta-mare.jpg')" }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-brown/80 to-deep-brown/45" />
         <div className="relative mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:pl-48 md:text-left">
           <div>
             <h2 className="font-serif text-2xl font-bold md:text-3xl">{tr(lang, { it: "Hai domande o vuoi prenotare?", en: "Have questions or ready to book?" })}</h2>
