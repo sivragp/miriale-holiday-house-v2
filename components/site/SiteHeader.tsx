@@ -9,11 +9,7 @@ export default function SiteHeader() {
   const { lang, setLang } = useLang();
 
   const nav = [
-    { label: { it: "Posizione", en: "Location" }, href: "/#dove-siamo" },
-    { label: { it: "Servizi", en: "Amenities" }, href: "/#servizi" },
-    { label: { it: "Recensioni", en: "Reviews" }, href: "/#recensioni" },
-    { label: { it: "Chi siamo", en: "About us" }, href: "/la-famiglia" },
-    { label: { it: "FAQ", en: "FAQ" }, href: "/#faq" },
+    { label: { it: "Esperienze", en: "Experiences" }, href: "/cosa-fare-intorno" },
     { label: { it: "Contatti", en: "Contact" }, href: "/contatti" },
   ];
   const apts = [

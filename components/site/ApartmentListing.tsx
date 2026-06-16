@@ -16,10 +16,12 @@ import {
   CupSoda,
   DoorOpen,
   Fan,
+  Fish,
   Flame,
   Heart,
   Home as HomeIcon,
   Image as ImageIcon,
+  Landmark,
   Leaf,
   LogOut,
   Luggage,
@@ -30,10 +32,12 @@ import {
   PartyPopper,
   PawPrint,
   Plane,
+  Plus,
   Quote,
   Refrigerator,
   ShieldCheck,
   Shirt,
+  ShoppingCart,
   ShowerHead,
   Sofa,
   Sparkles,
@@ -182,11 +186,31 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: MapPin, t: { it: "Consigli su ristoranti, spiagge e Roma", en: "Local tips for restaurants, beaches & Rome" } },
     { Icon: MessageCircle, t: { it: "Comunicazione rapida su WhatsApp", en: "Quick communication on WhatsApp" } },
   ];
-  const dist: { Icon: typeof Plane; d: B; t: B }[] = [
-    { Icon: Plane, d: { it: "10 min", en: "10 min" }, t: { it: "dall'aeroporto FCO", en: "to FCO Airport" } },
-    { Icon: Train, d: { it: "32 min", en: "32 min" }, t: { it: "con il Leonardo Express per Roma (Termini)", en: "by Leonardo Express to Rome (Termini)" } },
-    { Icon: Waves, d: { it: "Pochi minuti", en: "Minutes" }, t: { it: "dal mare", en: "from the sea" } },
-    { Icon: Utensils, d: { it: "Vicinissimo", en: "Close to" }, t: { it: "ai ristoranti di pesce di Fiumicino", en: "Fiumicino seafood restaurants" } },
+  const localPoints: { Icon: typeof Plane; t: B; rows: { p: B; d: B }[] }[] = [
+    { Icon: ShoppingCart, t: { it: "Supermercati", en: "Supermarkets" }, rows: [
+      { p: { it: "Conad", en: "Conad" }, d: { it: "5 min", en: "5 min" } },
+      { p: { it: "Carrefour Express", en: "Carrefour Express" }, d: { it: "6 min", en: "6 min" } },
+    ] },
+    { Icon: Fish, t: { it: "Ristoranti di pesce", en: "Seafood restaurants" }, rows: [
+      { p: { it: "Pascucci al Porticciolo", en: "Pascucci al Porticciolo" }, d: { it: "6 min", en: "6 min" } },
+      { p: { it: "Bastianelli al Molo", en: "Bastianelli al Molo" }, d: { it: "5 min", en: "5 min" } },
+    ] },
+    { Icon: Waves, t: { it: "Spiagge", en: "Beaches" }, rows: [
+      { p: { it: "Focene", en: "Focene" }, d: { it: "5 min", en: "5 min" } },
+      { p: { it: "Fregene", en: "Fregene" }, d: { it: "15 min", en: "15 min" } },
+    ] },
+    { Icon: Plus, t: { it: "Farmacia e servizi", en: "Pharmacy & essentials" }, rows: [
+      { p: { it: "Farmacia", en: "Pharmacy" }, d: { it: "5 min", en: "5 min" } },
+      { p: { it: "Bancomat / ATM", en: "ATM / cash" }, d: { it: "5 min", en: "5 min" } },
+    ] },
+    { Icon: Train, t: { it: "Trasporti", en: "Transport" }, rows: [
+      { p: { it: "Stazione treni", en: "Train station" }, d: { it: "7 min a piedi", en: "7 min walk" } },
+      { p: { it: "Aeroporto FCO", en: "FCO Airport" }, d: { it: "10 min", en: "10 min" } },
+    ] },
+    { Icon: Landmark, t: { it: "Cultura", en: "Culture" }, rows: [
+      { p: { it: "Ostia Antica", en: "Ostia Antica" }, d: { it: "12 min", en: "12 min" } },
+      { p: { it: "Roma (in treno)", en: "Rome (by train)" }, d: { it: "32 min", en: "32 min" } },
+    ] },
   ];
   const whoFor: { Icon: typeof Users; img: string; t: B; s: B }[] = isCasa
     ? [
@@ -321,8 +345,9 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </section>
 
       {/* ===================== SPECS BAR ===================== */}
-      <section className="bg-cream">
-        <div className="mx-auto max-w-7xl px-6 pb-8">
+      <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/images/luoghi/teal-water-2.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/45" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8 pt-8">
           <div className="grid grid-cols-2 gap-4 rounded-2xl border border-line bg-paper px-6 py-5 shadow-card sm:grid-cols-3 lg:grid-cols-5">
             {specs.map((s) => (
               <div key={s.b.en} className="flex items-center gap-3">
@@ -338,8 +363,9 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </section>
 
       {/* ===================== BOOKING + HOST ===================== */}
-      <section className="bg-cream pb-12">
-        <div className="mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[1.4fr_1fr]">
+      <section className="relative overflow-hidden bg-cover bg-center pb-12" style={{ backgroundImage: "url('/images/luoghi/teal-water-2.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/45" />
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[1.4fr_1fr]">
           {/* booking */}
           <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm">
             <h3 className="font-serif text-lg font-semibold text-deep-brown">{tr(lang, { it: "Verifica disponibilità e scrivi a Fabio", en: "Check availability & message Fabio" })}</h3>
@@ -402,7 +428,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== WHAT YOU'LL LOVE ===================== */}
-      <Section bg="cream">
+      <Section bg="teal">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Cosa amerai", en: "What you'll love" })}</p>
@@ -455,7 +481,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== AMENITIES ===================== */}
-      <Section bg="cream" id="amenities">
+      <Section bg="teal" id="amenities">
         <p className={eyebrow}>{tr(lang, { it: "Servizi", en: "Amenities" })}</p>
         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
           {amenities.map((a) => (
@@ -500,7 +526,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== MEET YOUR HOST ===================== */}
-      <Section bg="cream">
+      <Section bg="teal">
         <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_1.1fr_0.8fr] lg:gap-8">
           <div className="relative min-h-[260px] overflow-hidden rounded-2xl">
             <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family" })} className="absolute inset-0" />
@@ -525,23 +551,36 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== LOCATION ===================== */}
       <Section bg="paper" id="location">
-        <p className={eyebrow}>{tr(lang, { it: "Posizione e comodità", en: "Location & convenience" })}</p>
-        <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-10">
-          <iframe src={MAPS_EMBED} className="h-[320px] w-full rounded-2xl border-0" loading="lazy" title="Map" />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {dist.map((x) => (
-              <div key={x.t.en} className="flex items-start gap-3">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-cream"><x.Icon className="h-5 w-5 text-terracotta" strokeWidth={1.6} /></span>
-                <div className="leading-snug"><div className="font-semibold text-deep-brown">{t(x.d)}</div><div className="text-xs text-warm-gray">{t(x.t)}</div></div>
+        <p className={eyebrow}>{tr(lang, { it: "Posizione e dintorni utili", en: "Location & local essentials" })}</p>
+        <h2 className={h2}>{tr(lang, { it: "Tutto l'essenziale a portata di mano", en: "Everything you need nearby" })}</h2>
+        <div className="mt-6 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
+          <div className="flex flex-col gap-3">
+            <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0" loading="lazy" title="Map" />
+            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-terracotta hover:underline">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}</a>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {localPoints.map((c) => (
+              <div key={c.t.en} className="rounded-xl border border-line bg-paper p-4">
+                <div className="flex items-center gap-2">
+                  <c.Icon className="h-5 w-5 flex-shrink-0 text-terracotta" strokeWidth={1.6} />
+                  <span className="font-semibold text-deep-brown">{t(c.t)}</span>
+                </div>
+                <ul className="mt-2 space-y-1">
+                  {c.rows.map((r) => (
+                    <li key={r.p.en} className="flex items-baseline justify-between gap-3 text-xs">
+                      <span className="text-warm-gray">{t(r.p)}</span>
+                      <span className="flex-shrink-0 font-medium text-deep-brown">{t(r.d)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
-            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="inline-block self-end text-sm font-semibold text-terracotta hover:underline sm:col-span-2">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}</a>
           </div>
         </div>
       </Section>
 
       {/* ===================== EXPLORE THE AREA ===================== */}
-      <Section bg="cream">
+      <Section bg="teal">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Esplora la zona", en: "Explore the area" })}</p>
@@ -607,10 +646,16 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   );
 }
 
-function Section({ bg, id, children }: { bg: "paper" | "cream"; id?: string; children: React.ReactNode }) {
+function Section({ bg, id, children }: { bg: "paper" | "cream" | "teal"; id?: string; children: React.ReactNode }) {
+  const isTeal = bg === "teal";
   return (
-    <section id={id} className={`${bg === "cream" ? "bg-cream" : "bg-paper"} py-12 md:py-14`}>
-      <div className="mx-auto max-w-7xl px-6">{children}</div>
+    <section
+      id={id}
+      className={`relative overflow-hidden py-12 md:py-14 ${isTeal ? "bg-cover bg-center" : bg === "cream" ? "bg-cream" : "bg-paper"}`}
+      style={isTeal ? { backgroundImage: "url('/images/luoghi/teal-water-2.jpg')" } : undefined}
+    >
+      {isTeal ? <div className="absolute inset-0 bg-paper/45" /> : null}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">{children}</div>
     </section>
   );
 }
