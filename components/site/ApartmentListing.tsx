@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowRight,
   Bath,
   BedDouble,
   Car,
@@ -31,7 +33,9 @@ import {
   Quote,
   Refrigerator,
   ShieldCheck,
+  Shirt,
   ShowerHead,
+  Sofa,
   Sparkles,
   Star,
   Sun,
@@ -47,8 +51,28 @@ import {
   Wind,
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
+import GalleryModal from "@/components/site/GalleryModal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type Appartamento, type B, RECENSIONI } from "@/lib/apartments";
+
+/** Mappa chiave dotazione → icona, per i bullet di ogni stanza. */
+const AMENITY_ICONS: Record<string, typeof BedDouble> = {
+  bed: BedDouble,
+  wardrobe: Shirt,
+  ac: Wind,
+  tv: Tv,
+  shower: ShowerHead,
+  sink: Bath,
+  hairdryer: Fan,
+  kitchen: CookingPot,
+  sofa: Sofa,
+  table: Utensils,
+  skylight: Sun,
+  fridge: Refrigerator,
+  garden: Leaf,
+  parking: Car,
+};
+type Dotaz = { icon: keyof typeof AMENITY_ICONS; t: B };
 
 function fmt(d: string) {
   if (!d) return "";
@@ -77,6 +101,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   const [ci, setCi] = useState("");
   const [co, setCo] = useState("");
   const [g, setG] = useState(1);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const msg =
     t(apt.waMsg) +
     (ci && co
@@ -164,24 +189,18 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: Waves, d: { it: "Pochi minuti", en: "Minutes" }, t: { it: "dal mare", en: "from the sea" } },
     { Icon: Utensils, d: { it: "Vicinissimo", en: "Close to" }, t: { it: "ai ristoranti di pesce di Fiumicino", en: "Fiumicino seafood restaurants" } },
   ];
-  const explore: { img: string; t: B; s: B }[] = [
-    { img: "/images/base-roma-mare.jpg", t: { it: "Lungomare di Fiumicino", en: "Fiumicino waterfront" }, s: { it: "passeggiate e viste mare", en: "Seaside walks & views" } },
-    { img: "/images/house/house-14.jpg", t: { it: "Ostia Antica", en: "Ostia Antica" }, s: { it: "antica città romana", en: "Ancient Roman city" } },
-    { img: "/images/aereo-aeroporto.jpg", t: { it: "Roma", en: "Rome" }, s: { it: "storia, arte e cultura", en: "History, art & culture" } },
-    { img: "/images/house/house-19.jpg", t: { it: "Pesce locale", en: "Local seafood" }, s: { it: "fresco e gustoso", en: "Fresh & delicious" } },
-  ];
-  const whoFor: { Icon: typeof Users; t: B; s: B }[] = isCasa
+  const whoFor: { Icon: typeof Users; img: string; t: B; s: B }[] = isCasa
     ? [
-        { Icon: Users, t: { it: "Famiglie numerose", en: "Large families" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 8 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 8 guests." } },
-        { Icon: Sparkles, t: { it: "Gruppi di amici", en: "Groups of friends" }, s: { it: "Tutta la casa per voi, vicino al mare e a Roma.", en: "The whole house to yourselves, close to the sea and Rome." } },
-        { Icon: Heart, t: { it: "Due famiglie insieme", en: "Two families together" }, s: { it: "Due appartamenti indipendenti, un solo giardino in comune.", en: "Two independent apartments, one shared garden." } },
-        { Icon: Plane, t: { it: "Occasioni speciali", en: "Special occasions" }, s: { it: "Reunion e ritrovi a due passi dall'aeroporto.", en: "Reunions and gatherings a step from the airport." } },
+        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie numerose", en: "Large families" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 8 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 8 guests." } },
+        { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Gruppi di amici", en: "Groups of friends" }, s: { it: "Tutta la casa per voi, vicino al mare e a Roma.", en: "The whole house to yourselves, close to the sea and Rome." } },
+        { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Due famiglie insieme", en: "Two families together" }, s: { it: "Due appartamenti indipendenti, un solo giardino in comune.", en: "Two independent apartments, one shared garden." } },
+        { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Occasioni speciali", en: "Special occasions" }, s: { it: "Reunion e ritrovi a due passi dall'aeroporto.", en: "Reunions and gatherings a step from the airport." } },
       ]
     : [
-        { Icon: Users, t: { it: "Famiglie", en: "Families" }, s: { it: "Spaziosa e comoda per una vacanza in famiglia.", en: "Spacious and comfortable for a relaxing family holiday." } },
-        { Icon: Heart, t: { it: "Coppie", en: "Couples" }, s: { it: "Un rifugio accogliente vicino al mare e alla magia di Roma.", en: "A cosy retreat close to the sea and the magic of Rome." } },
-        { Icon: Sparkles, t: { it: "Amici", en: "Friends" }, s: { it: "Ottimo spazio per esplorare, rilassarsi e stare insieme.", en: "Great space to explore, relax and enjoy time together." } },
-        { Icon: Plane, t: { it: "Scali aeroporto", en: "Airport stopovers" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight." } },
+        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie", en: "Families" }, s: { it: "Spaziosa e comoda per una vacanza in famiglia.", en: "Spacious and comfortable for a relaxing family holiday." } },
+        { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Coppie", en: "Couples" }, s: { it: "Un rifugio accogliente vicino al mare e alla magia di Roma.", en: "A cosy retreat close to the sea and the magic of Rome." } },
+        { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Amici", en: "Friends" }, s: { it: "Ottimo spazio per esplorare, rilassarsi e stare insieme.", en: "Great space to explore, relax and enjoy time together." } },
+        { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Scali aeroporto", en: "Airport stopovers" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight." } },
       ];
   const rules: { Icon: typeof Clock; t: B; s: B }[] = [
     { Icon: Clock, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
@@ -191,6 +210,61 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },
     { Icon: UserCheck, t: { it: "Età minima", en: "Minimum age" }, s: { it: "18", en: "18" } },
     { Icon: MoonStar, t: { it: "Silenzio", en: "Quiet time" }, s: { it: "23:00 – 07:00", en: "23:00 – 07:00" } },
+  ];
+
+  // "Cosa amerai" — punti forti curati per appartamento
+  const highlightsBySlug: Record<string, { Icon: typeof HomeIcon; t: B; s: B }[]> = {
+    miri: [
+      { Icon: CookingPot, t: { it: "Una vera cucina in legno", en: "A real wooden kitchen" }, s: { it: "Forno, piano cottura, frigo e tutto per cucinare in autonomia, con tavolo da pranzo.", en: "Oven, hob, fridge and everything to cook on your own, with a dining table." } },
+      { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms" }, s: { it: "Spazio comodo fino a 4 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 4 guests, with quality linens and wardrobes." } },
+      { Icon: DoorOpen, t: { it: "Piano terra, senza scale", en: "Ground floor, no stairs" }, s: { it: "Ingresso comodo con bagagli, passeggini o per chi preferisce evitare le scale.", en: "Easy entrance with luggage, strollers or for anyone avoiding stairs." } },
+      { Icon: Leaf, t: { it: "Giardino e parcheggio", en: "Garden & parking" }, s: { it: "Accesso al giardino privato condiviso con terrazza colazione e parcheggio gratuito.", en: "Access to the shared private garden with breakfast terrace and free parking." } },
+    ],
+    ale: [
+      { Icon: Sun, t: { it: "Mansarda luminosa", en: "Bright attic" }, s: { it: "Soffitti spioventi e lucernari che riempiono gli ambienti di luce naturale.", en: "Sloped ceilings and skylights that fill the rooms with natural light." } },
+      { Icon: ShowerHead, t: { it: "Bagno moderno in marmo", en: "Modern marble bathroom" }, s: { it: "Doccia e finiture eleganti per un soggiorno curato nei dettagli.", en: "Shower and elegant finishes for a stay with attention to detail." } },
+      { Icon: CookingPot, t: { it: "Cucina attrezzata", en: "Equipped kitchen" }, s: { it: "Angolo cottura completo con tavolo da pranzo: cucini quando vuoi.", en: "Fully equipped kitchen with dining table: cook whenever you like." } },
+      { Icon: Heart, t: { it: "Raccolta e tranquilla", en: "Cosy and quiet" }, s: { it: "Perfetta per coppie e piccole famiglie, vicino al mare e a Roma.", en: "Perfect for couples and small families, close to the sea and Rome." } },
+    ],
+    casa: [
+      { Icon: HomeIcon, t: { it: "Due appartamenti, una casa", en: "Two apartments, one house" }, s: { it: "Miri e Ale insieme: indipendenti ma uniti dallo stesso giardino.", en: "Miri and Ale together: independent but joined by the same garden." } },
+      { Icon: BedDouble, t: { it: "4 camere, 2 bagni", en: "4 bedrooms, 2 bathrooms" }, s: { it: "Spazio e privacy fino a 8 ospiti, ideale per gruppi e famiglie numerose.", en: "Space and privacy for up to 8 guests, ideal for groups and large families." } },
+      { Icon: CookingPot, t: { it: "Due cucine indipendenti", en: "Two independent kitchens" }, s: { it: "Una per appartamento: organizzazione facile anche in tanti.", en: "One per apartment: easy organisation even in large groups." } },
+      { Icon: Leaf, t: { it: "Giardino privato condiviso", en: "Shared private garden" }, s: { it: "Terrazza per la colazione, sedute all'aperto e parcheggio gratuito.", en: "Breakfast terrace, outdoor seating and free parking." } },
+    ],
+  };
+  const highlights = highlightsBySlug[apt.slug] ?? highlightsBySlug.miri;
+
+  // dotazioni (con icone) per ogni stanza, in ordine con apt.stanze
+  const dotazioniBySlug: Record<string, Dotaz[][]> = {
+    miri: [
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "tv", t: { it: "TV", en: "TV" } }],
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }],
+      [{ icon: "shower", t: { it: "Doccia", en: "Shower" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer" } }],
+      [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "sofa", t: { it: "Divano e TV", en: "Sofa & TV" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table" } }],
+      [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking" } }],
+    ],
+    ale: [
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "skylight", t: { it: "Mansardata", en: "Attic" } }],
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "skylight", t: { it: "Lucernario", en: "Skylight" } }],
+      [{ icon: "shower", t: { it: "Doccia in marmo", en: "Marble shower" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer" } }],
+      [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "fridge", t: { it: "Frigorifero", en: "Fridge" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table" } }],
+      [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking" } }],
+    ],
+    casa: [
+      [{ icon: "bed", t: { it: "2 matrimoniali", en: "2 double beds" } }, { icon: "kitchen", t: { it: "Cucina in legno", en: "Wooden kitchen" } }, { icon: "shower", t: { it: "Bagno con doccia", en: "Bathroom w/ shower" } }],
+      [{ icon: "bed", t: { it: "2 matrimoniali", en: "2 double beds" } }, { icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "shower", t: { it: "Bagno in marmo", en: "Marble bathroom" } }],
+      [{ icon: "garden", t: { it: "Giardino privato", en: "Private garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio gratuito", en: "Free parking" } }],
+    ],
+  };
+  const roomDotazioni = dotazioniBySlug[apt.slug] ?? dotazioniBySlug.miri;
+
+  // "Esplora la zona" — città e luoghi vicini con cosa vedere
+  const exploreCities: { img: string; t: B; time: B; s: B }[] = [
+    { img: "/images/luoghi/roma.jpg", t: { it: "Roma", en: "Rome" }, time: { it: "~32 min in treno", en: "~32 min by train" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi e Trastevere: la Città Eterna in giornata, senza auto.", en: "Colosseum, Vatican, Trevi Fountain and Trastevere: the Eternal City in a day, no car needed." } },
+    { img: "/images/luoghi/ostia.jpg", t: { it: "Ostia Antica", en: "Ostia Antica" }, time: { it: "~12 min in auto", en: "~12 min by car" }, s: { it: "Uno dei siti archeologici meglio conservati: teatro romano, terme e mosaici.", en: "One of the best preserved archaeological sites: Roman theatre, baths and mosaics." } },
+    { img: "/images/luoghi/beach.jpg", t: { it: "Spiagge e lungomare", en: "Beaches & seafront" }, time: { it: "~10 min in auto", en: "~10 min by car" }, s: { it: "Focene, Fregene e Ostia: stabilimenti, passeggiate e tramonti sul mare.", en: "Focene, Fregene and Ostia: beach clubs, walks and sunsets by the sea." } },
+    { img: "/images/luoghi/pesce.jpg", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, time: { it: "~8 min in auto", en: "~8 min by car" }, s: { it: "Ristoranti di pesce, il faro e la passeggiata lungo il porto-canale.", en: "Seafood restaurants, the lighthouse and a walk along the canal-port." } },
   ];
 
   const eyebrow = "font-script text-2xl leading-none text-terracotta";
@@ -217,6 +291,12 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
                 </li>
               ))}
             </ul>
+            {/* foto orizzontale sotto il testo, apre la galleria */}
+            <button type="button" onClick={() => setGalleryOpen(true)} className="group relative mt-6 hidden aspect-[16/7] w-full overflow-hidden rounded-2xl md:block">
+              <Image src={apt.gallery[3]?.src ?? apt.gallery[0].src} alt={apt.gallery[3]?.alt ?? apt.gallery[0].alt} fill sizes="40vw" className="object-cover transition duration-500 group-hover:scale-105" />
+              <span className="absolute inset-0 bg-deep-brown/0 transition group-hover:bg-deep-brown/15" />
+              <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-paper/95 px-3 py-1.5 text-xs font-semibold text-deep-brown shadow"><ImageIcon className="h-3.5 w-3.5 text-terracotta" /> {tr(lang, { it: "Vedi tutte le foto", en: "View all photos" })}</span>
+            </button>
           </div>
 
           {/* collage */}
@@ -232,15 +312,13 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
                 <Image src={im.src} alt={im.alt} fill sizes="20vw" className="object-cover" />
               </div>
             ))}
-            <div className="relative col-span-3 aspect-[16/7] overflow-hidden rounded-xl">
-              <Image src={apt.gallery[7]?.src ?? apt.gallery[3].src} alt={apt.gallery[7]?.alt ?? "Giardino"} fill sizes="(max-width:768px) 100vw, 60vw" className="object-cover" />
-            </div>
-            <div className="relative col-span-3 aspect-[16/6] overflow-hidden rounded-xl">
-              <Image src="/images/base-roma-mare.jpg" alt={tr(lang, { it: "Mare vicino a Fiumicino", en: "Sea near Fiumicino" })} fill sizes="(max-width:768px) 100vw, 60vw" className="object-cover" />
-              <span className="absolute bottom-3 right-3 rounded-xl bg-paper/95 px-3 py-2 text-center text-xs font-semibold leading-tight text-deep-brown shadow-sm">
-                +{apt.gallery.length + 4}<br />{tr(lang, { it: "foto", en: "photos" })}
+            <button type="button" onClick={() => setGalleryOpen(true)} className="group relative col-span-3 aspect-[16/7] overflow-hidden rounded-xl">
+              <Image src={apt.gallery[7]?.src ?? apt.gallery[3].src} alt={apt.gallery[7]?.alt ?? "Giardino"} fill sizes="(max-width:768px) 100vw, 60vw" className="object-cover transition duration-500 group-hover:scale-105" />
+              <span className="absolute inset-0 bg-deep-brown/0 transition group-hover:bg-deep-brown/15" />
+              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-xl bg-paper/95 px-3 py-2 text-xs font-semibold text-deep-brown shadow-sm">
+                <ImageIcon className="h-4 w-4 text-terracotta" /> +{apt.gallery.length} {tr(lang, { it: "foto", en: "photos" })}
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </section>
@@ -326,25 +404,46 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== WHAT YOU'LL LOVE ===================== */}
       <Section bg="cream">
-        <p className={eyebrow}>{tr(lang, { it: "Cosa amerai", en: "What you'll love" })}</p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {apt.love.map((l) => (
-            <article key={l.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
-              <div className="relative aspect-[16/10]"><Image src={l.img} alt={t(l.t)} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover" /></div>
-              <div className="p-4"><h3 className="font-semibold text-deep-brown">{t(l.t)}</h3><p className="mt-1 text-xs leading-relaxed text-warm-gray">{t(l.s)}</p></div>
-            </article>
-          ))}
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+          <div>
+            <p className={eyebrow}>{tr(lang, { it: "Cosa amerai", en: "What you'll love" })}</p>
+            <h2 className={h2}>{tr(lang, { it: "Pensato per un soggiorno senza pensieri", en: "Designed for a carefree stay" })}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-warm-gray">{tr(lang, { it: "Pochi punti che fanno la differenza: spazi comodi, dotazioni vere e una posizione che ti fa risparmiare tempo, tra aeroporto, mare e Roma.", en: "A few things that make the difference: comfortable spaces, real amenities and a location that saves you time, between the airport, the sea and Rome." })}</p>
+          </div>
+          <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {highlights.map((hl) => (
+              <div key={hl.t.en} className="flex gap-4">
+                <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-paper text-terracotta shadow-sm"><hl.Icon className="h-6 w-6" strokeWidth={1.5} /></span>
+                <div>
+                  <h3 className="font-serif text-base font-bold text-deep-brown">{t(hl.t)}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-warm-gray">{t(hl.s)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
       {/* ===================== WHAT & LAYOUT ===================== */}
       <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout" })}</p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {apt.stanze.map((s) => (
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {apt.stanze.map((s, i) => (
             <article key={s.nome.en} className="overflow-hidden rounded-2xl border border-line bg-cream shadow-sm">
-              <div className="relative aspect-[4/3]"><Image src={s.imgs[0].src} alt={t(s.nome)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" /></div>
-              <div className="p-4"><h3 className="font-semibold text-deep-brown">{t(s.nome)}</h3><p className="mt-1 text-xs leading-relaxed text-warm-gray">{t(s.descr)}</p></div>
+              <div className="relative aspect-[16/10]"><Image src={s.imgs[0].src} alt={t(s.nome)} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover" /></div>
+              <div className="p-4">
+                <h3 className="font-semibold text-deep-brown">{t(s.nome)}</h3>
+                <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-1.5">
+                  {(roomDotazioni[i] ?? []).map((d) => {
+                    const Ic = AMENITY_ICONS[d.icon];
+                    return (
+                      <li key={d.t.en} className="flex items-center gap-1.5 text-xs text-warm-gray">
+                        <Ic className="h-3.5 w-3.5 flex-shrink-0 text-terracotta" strokeWidth={1.6} /> {t(d.t)}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </article>
           ))}
         </div>
@@ -419,40 +518,55 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       {/* ===================== LOCATION ===================== */}
       <Section bg="paper" id="location">
         <p className={eyebrow}>{tr(lang, { it: "Posizione e comodità", en: "Location & convenience" })}</p>
-        <div className="mt-6 grid gap-6 lg:grid-cols-3 lg:gap-8">
-          <iframe src={MAPS_EMBED} className="h-[280px] w-full rounded-2xl border-0" loading="lazy" title="Map" />
-          <div className="flex flex-col justify-center gap-4">
+        <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-10">
+          <iframe src={MAPS_EMBED} className="h-[320px] w-full rounded-2xl border-0" loading="lazy" title="Map" />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {dist.map((x) => (
               <div key={x.t.en} className="flex items-start gap-3">
                 <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-cream"><x.Icon className="h-5 w-5 text-terracotta" strokeWidth={1.6} /></span>
                 <div className="leading-snug"><div className="font-semibold text-deep-brown">{t(x.d)}</div><div className="text-xs text-warm-gray">{t(x.t)}</div></div>
               </div>
             ))}
-            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-sm font-semibold text-terracotta hover:underline">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}</a>
-          </div>
-          <div>
-            <p className="font-script text-lg leading-none text-terracotta">{tr(lang, { it: "Esplora la zona", en: "Explore the area" })}</p>
-            <div className="mt-3 grid grid-cols-2 gap-2.5">
-              {explore.map((e) => (
-                <div key={e.t.en} className="relative aspect-[16/11] overflow-hidden rounded-xl">
-                  <Image src={e.img} alt={t(e.t)} fill sizes="25vw" className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
-                  <div className="absolute bottom-2 left-2 right-2 text-white"><div className="text-xs font-semibold leading-tight">{t(e.t)}</div><div className="text-[10px] text-white/85">{t(e.s)}</div></div>
-                </div>
-              ))}
-            </div>
+            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="inline-block self-end text-sm font-semibold text-terracotta hover:underline sm:col-span-2">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}</a>
           </div>
         </div>
       </Section>
 
-      {/* ===================== WHO IT'S PERFECT FOR ===================== */}
+      {/* ===================== EXPLORE THE AREA ===================== */}
       <Section bg="cream">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className={eyebrow}>{tr(lang, { it: "Esplora la zona", en: "Explore the area" })}</p>
+            <h2 className={h2}>{tr(lang, { it: "Cosa c'è intorno a te", en: "What's around you" })}</h2>
+          </div>
+          <Link href="/cosa-fare-intorno" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-5 py-2.5 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
+            {tr(lang, { it: "Scopri tutte le esperienze", en: "Discover all experiences" })} <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {exploreCities.map((c) => (
+            <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <div className="relative aspect-[16/10]"><Image src={c.img} alt={t(c.t)} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" /></div>
+              <div className="flex flex-1 flex-col p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-semibold text-deep-brown">{t(c.t)}</h3>
+                  <span className="flex-shrink-0 text-[11px] font-medium text-terracotta">{t(c.time)}</span>
+                </div>
+                <p className="mt-1.5 text-xs leading-relaxed text-warm-gray">{t(c.s)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      {/* ===================== WHO IT'S PERFECT FOR ===================== */}
+      <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Per chi è perfetto", en: "Who it's perfect for" })}</p>
         <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {whoFor.map((w) => (
             <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
               <div className="relative aspect-[4/3]">
-                <Ph label={t(w.t)} className="absolute inset-0" />
+                <Image src={w.img} alt={t(w.t)} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" />
                 <span className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-terracotta shadow-sm"><w.Icon className="h-5 w-5" strokeWidth={1.6} /></span>
               </div>
               <div className="p-4 text-center"><h3 className="font-semibold text-deep-brown">{t(w.t)}</h3><p className="mt-1 text-xs leading-relaxed text-warm-gray">{t(w.s)}</p></div>
@@ -462,7 +576,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== HOUSE RULES ===================== */}
-      <Section bg="paper">
+      <Section bg="cream">
         <p className={eyebrow}>{tr(lang, { it: "Regole della casa e info pratiche", en: "House rules & practical info" })}</p>
         <div className="mt-6 grid grid-cols-3 gap-5 sm:grid-cols-4 lg:grid-cols-7">
           {rules.map((r) => (
@@ -475,6 +589,12 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         </div>
       </Section>
 
+      <GalleryModal
+        images={apt.gallery}
+        open={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        title={tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} apartment` })}
+      />
     </main>
   );
 }
