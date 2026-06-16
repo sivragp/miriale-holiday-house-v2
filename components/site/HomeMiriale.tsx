@@ -7,6 +7,7 @@ import {
   Building2,
   CalendarCheck,
   CalendarX,
+  Car,
   Check,
   CigaretteOff,
   Coffee,
@@ -106,29 +107,34 @@ export default function HomeMiriale() {
     { Icon: Users, t: { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish" } },
   ];
 
-  const places: { Icon: typeof Plane; t: B; rows: { p: B; d: B }[] }[] = [
+  const places: { Icon: typeof Plane; t: B; rows: { p: B; d: B; car?: boolean }[] }[] = [
     { Icon: Plane, t: { it: "Aeroporto FCO", en: "FCO Airport" }, rows: [
-      { p: { it: "In auto / taxi", en: "By car / taxi" }, d: { it: "~10 min · 5 km", en: "~10 min · 5 km" } },
+      { p: { it: "In auto / taxi", en: "By car / taxi" }, d: { it: "~10 min · 5 km", en: "~10 min · 5 km" }, car: true },
       { p: { it: "Stazione treni", en: "Train station" }, d: { it: "7 min a piedi", en: "7 min walk" } },
     ] },
     { Icon: Train, t: { it: "Roma", en: "Rome" }, rows: [
       { p: { it: "Leonardo Express → Termini", en: "Leonardo Express → Termini" }, d: { it: "32 min", en: "32 min" } },
       { p: { it: "Treno regionale FL1", en: "Regional train FL1" }, d: { it: "~45 min", en: "~45 min" } },
-      { p: { it: "In auto", en: "By car" }, d: { it: "~30 km", en: "~30 km" } },
+      { p: { it: "In auto", en: "By car" }, d: { it: "~30 km", en: "~30 km" }, car: true },
     ] },
     { Icon: Waves, t: { it: "Spiagge", en: "Beaches" }, rows: [
-      { p: { it: "Focene", en: "Focene" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" } },
-      { p: { it: "Fregene", en: "Fregene" }, d: { it: "15 min · 10 km", en: "15 min · 10 km" } },
-      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "20 min · 18 km", en: "20 min · 18 km" } },
+      { p: { it: "Focene", en: "Focene" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" }, car: true },
+      { p: { it: "Fregene", en: "Fregene" }, d: { it: "15 min · 10 km", en: "15 min · 10 km" }, car: true },
+      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "20 min · 18 km", en: "20 min · 18 km" }, car: true },
     ] },
     { Icon: Landmark, t: { it: "Ostia Antica", en: "Ostia Antica" }, rows: [
-      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 10 km", en: "12 min · 10 km" } },
+      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 10 km", en: "12 min · 10 km" }, car: true },
     ] },
     { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, rows: [
-      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 8 km", en: "12 min · 8 km" } },
+      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 8 km", en: "12 min · 8 km" }, car: true },
+      { p: { it: "Treno FL1 · stazione Fiera di Roma", en: "FL1 train · Fiera di Roma station" }, d: { it: "~15 min", en: "~15 min" } },
+      { p: { it: "Autobus di linea", en: "Local bus" }, d: { it: "~25 min", en: "~25 min" } },
     ] },
-    { Icon: Fish, t: { it: "Porto e ristoranti", en: "Port & restaurants" }, rows: [
-      { p: { it: "In auto", en: "By car" }, d: { it: "8 min · 5 km", en: "8 min · 5 km" } },
+    { Icon: Fish, t: { it: "Ristoranti di pesce", en: "Seafood restaurants" }, rows: [
+      { p: { it: "Pascucci al Porticciolo", en: "Pascucci al Porticciolo" }, d: { it: "6 min · 4 km", en: "6 min · 4 km" }, car: true },
+      { p: { it: "Bastianelli al Molo", en: "Bastianelli al Molo" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" }, car: true },
+      { p: { it: "L'Osteria dell'Orologio", en: "L'Osteria dell'Orologio" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" }, car: true },
+      { p: { it: "Il Tino", en: "Il Tino" }, d: { it: "7 min · 5 km", en: "7 min · 5 km" }, car: true },
     ] },
   ];
 
@@ -261,7 +267,7 @@ export default function HomeMiriale() {
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
                 <div className="relative aspect-[16/10]">
-                  <CardCarousel images={s.apt.gallery} className="absolute inset-0" />
+                  <CardCarousel images={s.apt.gallery} />
                   <span className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
@@ -385,9 +391,12 @@ export default function HomeMiriale() {
                   </div>
                   <ul className="mt-2 space-y-1">
                     {x.rows.map((r) => (
-                      <li key={r.p.en} className="flex items-baseline justify-between gap-3 text-xs">
+                      <li key={r.p.en} className="flex items-center justify-between gap-3 text-xs">
                         <span className="text-warm-gray">{t(r.p)}</span>
-                        <span className="flex-shrink-0 font-medium text-deep-brown">{t(r.d)}</span>
+                        <span className="flex flex-shrink-0 items-center gap-1 font-medium text-deep-brown">
+                          {r.car ? <Car className="h-3.5 w-3.5 text-terracotta" strokeWidth={1.7} /> : null}
+                          {t(r.d)}
+                        </span>
                       </li>
                     ))}
                   </ul>

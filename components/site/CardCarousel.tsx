@@ -13,7 +13,7 @@ export default function CardCarousel({ images, className = "" }: { images: Img[]
   const go = (d: number) => setI((p) => (p + d + n) % n);
 
   return (
-    <div className={`group relative overflow-hidden ${className}`}>
+    <div className={`group absolute inset-0 overflow-hidden ${className}`}>
       {images.map((im, idx) => (
         <Image
           key={im.src + idx}
