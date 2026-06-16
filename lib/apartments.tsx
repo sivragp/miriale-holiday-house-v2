@@ -158,10 +158,12 @@ export function getAppartamento(slug: string): Appartamento | undefined {
   return APPARTAMENTI.find((a) => a.slug === slug);
 }
 
-/** Recensioni reali sintetizzate da Booking (8.8 · 122), bilingui. */
+/** Recensioni reali di ospiti Booking (8.8 · 122 recensioni), bilingui. */
 export const RECENSIONI: { t: B; who: string }[] = [
-  { t: { it: "Fabio ci ha accolti di persona e ci ha aiutati coi bagagli. Ottimi consigli su ristoranti e Roma!", en: "Fabio welcomed us in person and helped with our bags. Great tips for restaurants and Rome!" }, who: "Sophia · 🇫🇷" },
-  { t: { it: "Appartamento super pulito, ben attrezzato e a soli 10 minuti dall'aeroporto. Perfetto!", en: "Super clean apartment, very well equipped and just 10 minutes from the airport. Perfect!" }, who: "Mark · 🇬🇧" },
-  { t: { it: "Zona tranquilla, letti comodi e un grazioso giardino per la colazione. Ci siamo sentiti a casa!", en: "Quiet area, comfy beds and a lovely garden for breakfast. We felt at home!" }, who: "Laura · 🇩🇪" },
-  { t: { it: "Appartamento luminoso con tutto il necessario. Il treno per Roma è comodissimo.", en: "Bright apartment with everything we needed. The train to Rome is easy and fast." }, who: "James · 🇮🇪" },
+  { t: { it: "Il miglior appartamento in cui abbia soggiornato: a conduzione familiare e padroni di casa attentissimi.", en: "The best apartment I've stayed in: family-run with very attentive hosts." }, who: "Martino · 🇬🇧" },
+  { t: { it: "Posizione ottima, tutto pulitissimo e un host davvero disponibile.", en: "Great location, everything spotless and a really helpful host." }, who: "Lucio · 🇺🇸" },
+  { t: { it: "L'host fa molto più del dovuto per gli ospiti. Comunicazione fantastica.", en: "The host goes over and above for guests. Fantastic communication." }, who: "Shelly-lynn · 🇨🇦" },
+  { t: { it: "Spazioso, sicuro e tranquillo: perfetto a due passi dall'aeroporto.", en: "Spacious, secure and quiet — perfect a step from the airport." }, who: "Stephen · 🇦🇺" },
+  { t: { it: "Molto bello, proprietario gentile e tutto pulito.", en: "Very nice, friendly owner and everything clean." }, who: "Zuzana · 🇨🇿" },
+  { t: { it: "Eccellente. Lo consiglio vivamente.", en: "Excellent. Highly recommended." }, who: "Dror · 🇮🇱" },
 ];

@@ -92,12 +92,13 @@ export default function HomeMiriale() {
     { it: "Parcheggio gratuito in loco, dentro la proprietà", en: "On-site free parking inside the property" },
   ];
 
-  const praised: B[] = [
-    { it: "Accoglienza dell'host", en: "Host's welcome" },
-    { it: "Pulizia", en: "Cleanliness" },
-    { it: "Zona tranquilla", en: "Quiet area" },
-    { it: "Posizione comoda", en: "Convenient location" },
-    { it: "Appartamenti luminosi e ben attrezzati", en: "Bright, well-equipped apartments" },
+  const praised: { t: B; v: string }[] = [
+    { t: { it: "Personale", en: "Staff" }, v: "9.4" },
+    { t: { it: "Pulizia", en: "Cleanliness" }, v: "9.3" },
+    { t: { it: "Comfort", en: "Comfort" }, v: "8.7" },
+    { t: { it: "Servizi", en: "Facilities" }, v: "8.7" },
+    { t: { it: "Qualità-prezzo", en: "Value" }, v: "8.7" },
+    { t: { it: "Posizione", en: "Location" }, v: "8.5" },
   ];
 
   const hostChecks: { Icon: typeof UserCheck; t: B }[] = [
@@ -323,15 +324,18 @@ export default function HomeMiriale() {
                 <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
               </div>
               <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni", en: "from 122 reviews" })}</p>
-              <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Più apprezzati", en: "Most praised for" })}</p>
+              <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings" })}</p>
               <ul className="mt-2 space-y-1.5">
                 {praised.map((p) => (
-                  <li key={p.en} className="flex items-center gap-2 text-sm text-warm-gray"><Check className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(p)}</li>
+                  <li key={p.t.en} className="flex items-center justify-between gap-3 border-b border-line-soft pb-1 text-sm">
+                    <span className="text-warm-gray">{t(p.t)}</span>
+                    <span className="font-semibold text-deep-brown">{p.v}</span>
+                  </li>
                 ))}
               </ul>
             </div>
             <div>
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {RECENSIONI.map((r) => (
                   <figure key={r.who} className="rounded-2xl border border-line bg-paper p-5">
                     <Quote className="h-6 w-6 text-terracotta/50" />

@@ -168,12 +168,13 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: Sun, t: { it: "Balcone", en: "Balcony" } },
     { Icon: Car, t: { it: "Parcheggio privato gratuito", en: "Private free parking" } },
   ];
-  const praised: B[] = [
-    { it: "Accoglienza di Fabio", en: "Fabio's welcome" },
-    { it: "Pulizia", en: "Cleanliness" },
-    { it: "Posizione comoda", en: "Convenient location" },
-    { it: "Zona tranquilla", en: "Quiet area" },
-    { it: "Appartamento luminoso e ben attrezzato", en: "Bright, well-equipped apartment" },
+  const praised: { t: B; v: string }[] = [
+    { t: { it: "Personale", en: "Staff" }, v: "9.4" },
+    { t: { it: "Pulizia", en: "Cleanliness" }, v: "9.3" },
+    { t: { it: "Comfort", en: "Comfort" }, v: "8.7" },
+    { t: { it: "Servizi", en: "Facilities" }, v: "8.7" },
+    { t: { it: "Qualità-prezzo", en: "Value" }, v: "8.7" },
+    { t: { it: "Posizione", en: "Location" }, v: "8.5" },
   ];
   const hostBullets2: { Icon: typeof UserCheck; t: B }[] = [
     { Icon: UserCheck, t: { it: "Accoglienza e aiuto coi bagagli", en: "Personal welcome and luggage help" } },
@@ -475,10 +476,13 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
               <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
             </div>
             <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni", en: "from 122 reviews" })}</p>
-            <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Più apprezzati", en: "Most praised for" })}</p>
+            <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings" })}</p>
             <ul className="mt-2 space-y-1.5">
               {praised.map((p) => (
-                <li key={p.en} className="flex items-center gap-2 text-sm text-warm-gray"><Check className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(p)}</li>
+                <li key={p.t.en} className="flex items-center justify-between gap-3 border-b border-line-soft pb-1 text-sm">
+                  <span className="text-warm-gray">{t(p.t)}</span>
+                  <span className="font-semibold text-deep-brown">{p.v}</span>
+                </li>
               ))}
             </ul>
           </div>
