@@ -26,7 +26,7 @@ export default function SiteFooter() {
       style={{ backgroundImage: "url('/images/cta-mare.jpg')" }}
     >
       {/* velo leggero in alto (CTA), piu' scuro in basso (footer leggibile) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-deep-brown/20 via-deep-brown/38 to-deep-brown/78" />
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-brown/10 via-deep-brown/28 to-deep-brown/68" />
 
       <div className="relative">
         {/* ---------- CTA ---------- */}

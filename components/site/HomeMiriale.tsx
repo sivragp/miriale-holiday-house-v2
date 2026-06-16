@@ -256,7 +256,7 @@ export default function HomeMiriale() {
 
       {/* ===================== CHOOSE YOUR STAY ===================== */}
       <section id="apartments" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/55" />
+        <div className="absolute inset-0 bg-paper/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
@@ -312,7 +312,7 @@ export default function HomeMiriale() {
 
       {/* ===================== REVIEWS ===================== */}
       <section id="recensioni" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/55" />
+        <div className="absolute inset-0 bg-paper/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
             <div>
@@ -373,7 +373,7 @@ export default function HomeMiriale() {
 
       {/* ===================== LOCATION ===================== */}
       <section id="dove-siamo" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/55" />
+        <div className="absolute inset-0 bg-paper/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "In posizione perfetta", en: "Perfectly located" })}</p>
@@ -441,7 +441,7 @@ export default function HomeMiriale() {
 
       {/* ===================== COMFORTS (AMENITIES) ===================== */}
       <section id="servizi" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/55" />
+        <div className="absolute inset-0 bg-paper/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Tutti i comfort che ti servono", en: "All the comforts you need" })}</h2>
