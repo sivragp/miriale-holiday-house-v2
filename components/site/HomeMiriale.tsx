@@ -39,7 +39,7 @@ import {
   Wind,
 } from "lucide-react";
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
-import { BranchDecor } from "@/components/site/BranchDecor";
+import CardCarousel from "@/components/site/CardCarousel";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { APPARTAMENTI, RECENSIONI, type B } from "@/lib/apartments";
 
@@ -106,17 +106,34 @@ export default function HomeMiriale() {
     { Icon: Users, t: { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish" } },
   ];
 
-  const dist: { Icon: typeof Plane; d: B; t: B }[] = [
-    { Icon: Plane, d: { it: "10 min", en: "10 min" }, t: { it: "Aeroporto FCO", en: "FCO Airport" } },
-    { Icon: Building2, d: { it: "12 min", en: "12 min" }, t: { it: "Fiera di Roma", en: "Fiera di Roma" } },
-    { Icon: Landmark, d: { it: "12 min", en: "12 min" }, t: { it: "Ostia Antica", en: "Ostia Antica" } },
-    { Icon: Waves, d: { it: "10 min", en: "10 min" }, t: { it: "Spiagge", en: "Beaches" } },
-    { Icon: Fish, d: { it: "8 min", en: "8 min" }, t: { it: "Ristoranti al porto", en: "Port restaurants" } },
-    { Icon: Train, d: { it: "32 min", en: "32 min" }, t: { it: "Roma Termini (Leonardo Express)", en: "Rome Termini (Leonardo Express)" } },
+  const places: { Icon: typeof Plane; t: B; rows: { p: B; d: B }[] }[] = [
+    { Icon: Plane, t: { it: "Aeroporto FCO", en: "FCO Airport" }, rows: [
+      { p: { it: "In auto / taxi", en: "By car / taxi" }, d: { it: "~10 min · 5 km", en: "~10 min · 5 km" } },
+      { p: { it: "Stazione treni", en: "Train station" }, d: { it: "7 min a piedi", en: "7 min walk" } },
+    ] },
+    { Icon: Train, t: { it: "Roma", en: "Rome" }, rows: [
+      { p: { it: "Leonardo Express → Termini", en: "Leonardo Express → Termini" }, d: { it: "32 min", en: "32 min" } },
+      { p: { it: "Treno regionale FL1", en: "Regional train FL1" }, d: { it: "~45 min", en: "~45 min" } },
+      { p: { it: "In auto", en: "By car" }, d: { it: "~30 km", en: "~30 km" } },
+    ] },
+    { Icon: Waves, t: { it: "Spiagge", en: "Beaches" }, rows: [
+      { p: { it: "Focene", en: "Focene" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" } },
+      { p: { it: "Fregene", en: "Fregene" }, d: { it: "15 min · 10 km", en: "15 min · 10 km" } },
+      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "20 min · 18 km", en: "20 min · 18 km" } },
+    ] },
+    { Icon: Landmark, t: { it: "Ostia Antica", en: "Ostia Antica" }, rows: [
+      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 10 km", en: "12 min · 10 km" } },
+    ] },
+    { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, rows: [
+      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 8 km", en: "12 min · 8 km" } },
+    ] },
+    { Icon: Fish, t: { it: "Porto e ristoranti", en: "Port & restaurants" }, rows: [
+      { p: { it: "In auto", en: "By car" }, d: { it: "8 min · 5 km", en: "8 min · 5 km" } },
+    ] },
   ];
 
   const whoFor: { Icon: typeof Users; img: string; t: B }[] = [
-    { Icon: Landmark, img: "/images/luoghi/beach.jpg", t: { it: "Turisti in visita a Roma e al mare", en: "Tourists visiting Rome and the sea" } },
+    { Icon: Landmark, img: "/images/luoghi/roma-vittoriano.jpg", t: { it: "Turisti in visita a Roma e al mare", en: "Tourists visiting Rome and the sea" } },
     { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Voli presto o tardi e scali", en: "Early or late flights & stopovers" } },
     { Icon: GraduationCap, img: "/images/luoghi/fiera.jpg", t: { it: "Visitatori della Fiera di Roma o esami", en: "Visitors to Fiera di Roma or exams" } },
     { Icon: ShieldCheck, img: "/images/luoghi/guardia-finanza.jpg", t: { it: "Visite ufficiali Guardia di Finanza e famiglie", en: "Guardia di Finanza official visitors and families" } },
@@ -164,7 +181,7 @@ export default function HomeMiriale() {
     <main className="flex-1">
       {/* ===================== HERO ===================== */}
       <section className="relative overflow-hidden bg-paper">
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 pt-12 md:grid-cols-2 md:gap-8">
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 pt-12 md:grid-cols-[1fr_1.15fr] md:gap-8">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-[2.9rem] lg:text-5xl">
@@ -198,13 +215,13 @@ export default function HomeMiriale() {
           {/* collage polaroid: foto grande incorniciata + 3 foto piccole inclinate */}
           <div className="relative">
             {/* foto principale con cornice bianca */}
-            <div className="relative -rotate-1 rounded-[2rem] bg-white p-2.5 shadow-card lg:mr-16">
+            <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
                 <Image src="/images/house/house-22.jpg" alt="La casa e il giardino di MiriAle" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
               </div>
             </div>
             {/* cluster di polaroid sovrapposte */}
-            <div className="absolute -right-2 top-4 hidden w-32 lg:block xl:w-36">
+            <div className="absolute -right-3 top-4 hidden w-36 lg:block xl:w-44">
               <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
                 <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-02.jpg" alt="Interno luminoso" fill sizes="130px" className="object-cover" /></div>
               </div>
@@ -232,8 +249,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== CHOOSE YOUR STAY ===================== */}
-      <section id="apartments" className="bg-cream py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="apartments" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/55" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
             <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
@@ -243,8 +261,8 @@ export default function HomeMiriale() {
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
                 <div className="relative aspect-[16/10]">
-                  <Image src={s.img} alt={t(s.tab)} fill sizes="(max-width:1024px) 100vw, 33vw" className="object-cover" />
-                  <span className="absolute left-1/2 top-3 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
+                  <CardCarousel images={s.apt.gallery} className="absolute inset-0" />
+                  <span className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex flex-wrap gap-x-3 gap-y-1 border-b border-line-soft pb-3 text-xs text-warm-gray">
@@ -270,10 +288,9 @@ export default function HomeMiriale() {
 
       {/* ===================== GARDEN ===================== */}
       <section className="relative overflow-hidden bg-paper py-12 md:py-14">
-        <BranchDecor className="top-6 w-24 xl:w-32" flip />
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 md:grid-cols-2 md:gap-12">
           <div className="relative aspect-[16/11] overflow-hidden rounded-2xl shadow-sm">
-            <Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
+            <Image src="/images/house/house-29.jpg" alt="Il giardino di MiriAle" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
           </div>
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Il tuo spazio all'aperto", en: "Your private outdoor space" })}</p>
@@ -288,8 +305,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== REVIEWS ===================== */}
-      <section id="recensioni" className="bg-cream py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="recensioni" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/55" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
             <div>
               <p className={eyebrow}>{tr(lang, { it: "Perché gli ospiti amano", en: "Why guests love" })}</p>
@@ -348,8 +366,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== LOCATION ===================== */}
-      <section id="dove-siamo" className="bg-cream py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="dove-siamo" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/55" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "In posizione perfetta", en: "Perfectly located" })}</p>
             <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Vicino a tutto ciò che conta", en: "Close to everything that matters" })}</h2>
@@ -357,28 +376,40 @@ export default function HomeMiriale() {
           </div>
           <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-10">
             <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0 shadow-sm" loading="lazy" title="Map" />
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {dist.map((x) => (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {places.map((x) => (
                 <div key={x.t.en} className="rounded-xl border border-line bg-paper p-4">
-                  <x.Icon className="h-5 w-5 text-terracotta" strokeWidth={1.6} />
-                  <div className="mt-2 font-semibold text-deep-brown">{t(x.d)}</div>
-                  <div className="text-xs leading-tight text-warm-gray">{t(x.t)}</div>
+                  <div className="flex items-center gap-2">
+                    <x.Icon className="h-5 w-5 flex-shrink-0 text-terracotta" strokeWidth={1.6} />
+                    <span className="font-semibold text-deep-brown">{t(x.t)}</span>
+                  </div>
+                  <ul className="mt-2 space-y-1">
+                    {x.rows.map((r) => (
+                      <li key={r.p.en} className="flex items-baseline justify-between gap-3 text-xs">
+                        <span className="text-warm-gray">{t(r.p)}</span>
+                        <span className="flex-shrink-0 font-medium text-deep-brown">{t(r.d)}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
           </div>
-          <p className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 rounded-2xl bg-paper px-6 py-4 text-center text-sm text-warm-gray shadow-sm">
-            <span className="flex items-center gap-1.5"><Leaf className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Zona residenziale tranquilla", en: "Quiet residential area" })}</span>
-            <span>{tr(lang, { it: "Supermercati 5 min", en: "Supermarkets 5 min" })}</span>
-            <span>{tr(lang, { it: "Ristoranti e caffè 5 min", en: "Restaurants & cafés 5 min" })}</span>
-            <span>{tr(lang, { it: "Stazione 7 min a piedi", en: "Train station 7 min walk" })}</span>
-          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center rounded-2xl bg-paper px-6 py-4 text-center text-sm text-warm-gray shadow-sm">
+            {[
+              { it: "Zona residenziale tranquilla", en: "Quiet residential area" },
+              { it: "Supermercati 5 min", en: "Supermarkets 5 min" },
+              { it: "Ristoranti e caffè 5 min", en: "Restaurants & cafés 5 min" },
+              { it: "Stazione 7 min a piedi", en: "Train station 7 min walk" },
+            ].map((item, i) => (
+              <span key={item.en} className={`px-4 py-1 ${i > 0 ? "border-l border-line" : ""}`}>{tr(lang, item)}</span>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===================== WHO WE'RE PERFECT FOR ===================== */}
       <section className="relative overflow-hidden bg-paper py-12 md:py-14">
-        <BranchDecor className="top-4 w-24 xl:w-28" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Ideale per", en: "Ideal for" })}</p>
@@ -400,8 +431,9 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== COMFORTS (AMENITIES) ===================== */}
-      <section id="servizi" className="bg-cream py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section id="servizi" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/55" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Tutti i comfort che ti servono", en: "All the comforts you need" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
@@ -419,7 +451,6 @@ export default function HomeMiriale() {
 
       {/* ===================== EXPERIENCE THE AREA ===================== */}
       <section className="relative overflow-hidden bg-paper py-12 md:py-14">
-        <BranchDecor className="top-4 w-24 xl:w-28" flip />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Vivi il meglio della zona", en: "Experience the best of the area" })}</h2>
@@ -440,7 +471,6 @@ export default function HomeMiriale() {
 
       {/* ===================== HOUSE RULES + GOOD TO KNOW ===================== */}
       <section id="faq" className="relative overflow-hidden bg-cream py-12 md:py-14">
-        <BranchDecor className="top-8 w-24 xl:w-28" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
             <div>
