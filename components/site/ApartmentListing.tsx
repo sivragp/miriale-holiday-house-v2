@@ -114,12 +114,10 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
   /* ---- contenuti ---- */
   const heroBullets: B[] = [
-    { it: "Gestione familiare · ospiti di Fabio", en: "Family-run · Hosted by Fabio" },
-    { it: "Fabio ti accoglie di persona", en: "Fabio welcomes guests in person" },
-    { it: "10 min dall'aeroporto FCO", en: "10 min to FCO Airport" },
+    { it: "Gestione familiare · ti accoglie Fabio", en: "Family-run · hosted by Fabio" },
+    { it: "10 min dall'aeroporto FCO · pochi minuti dal mare", en: "10 min to FCO Airport · minutes from the sea" },
     { it: "32 min in treno per Roma", en: "32 min by train to Rome" },
-    { it: "A pochi minuti dal mare", en: "Minutes from the sea" },
-    { it: "Prenotazione diretta – nessun pagamento online · paghi al check-in", en: "Direct booking – no online payment · Pay at check-in" },
+    { it: "Prenotazione diretta · paghi al check-in", en: "Direct booking · pay at check-in" },
   ];
   const specs: { Icon: typeof HomeIcon; a: string; b: B }[] = [
     { Icon: HomeIcon, a: apt.mq, b: { it: "Dimensione", en: "Apartment size" } },
@@ -276,47 +274,45 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     <main className="flex-1">
       {/* ===================== HERO ===================== */}
       <section className="bg-paper">
-        <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 py-10 md:grid-cols-2 md:gap-12">
-          <div>
+        <div className="mx-auto grid max-w-7xl items-stretch gap-8 px-6 py-10 md:grid-cols-2 md:gap-10">
+          {/* sinistra: testo + foto in fondo */}
+          <div className="flex flex-col">
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-deep-brown md:text-5xl">
               {apt.titolo ? t(apt.titolo) : tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment` })}
             </h1>
             <p className="mt-3 text-lg text-warm-gray">{t(apt.tagline)}</p>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-warm-gray">{t(apt.descrizione)}</p>
-            <ul className="mt-6 space-y-2.5">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-warm-gray line-clamp-3">{t(apt.descrizione)}</p>
+            <ul className="mt-5 space-y-2.5">
               {heroBullets.map((b) => (
                 <li key={b.en} className="flex items-start gap-2.5 text-sm text-deep-brown">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-terracotta" /> <span>{t(b)}</span>
                 </li>
               ))}
             </ul>
-            {/* foto orizzontale sotto il testo, apre la galleria */}
-            <button type="button" onClick={() => setGalleryOpen(true)} className="group relative mt-6 hidden aspect-[16/7] w-full overflow-hidden rounded-2xl md:block">
-              <Image src={apt.gallery[3]?.src ?? apt.gallery[0].src} alt={apt.gallery[3]?.alt ?? apt.gallery[0].alt} fill sizes="40vw" className="object-cover transition duration-500 group-hover:scale-105" />
+            <button type="button" onClick={() => setGalleryOpen(true)} className="group relative mt-6 hidden h-40 w-full overflow-hidden rounded-2xl md:mt-auto md:block lg:h-48">
+              <Image src={apt.gallery[3]?.src ?? apt.gallery[0].src} alt={apt.gallery[3]?.alt ?? apt.gallery[0].alt} fill sizes="45vw" className="object-cover transition duration-500 group-hover:scale-105" />
               <span className="absolute inset-0 bg-deep-brown/0 transition group-hover:bg-deep-brown/15" />
-              <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-paper/95 px-3 py-1.5 text-xs font-semibold text-deep-brown shadow"><ImageIcon className="h-3.5 w-3.5 text-terracotta" /> {tr(lang, { it: "Vedi tutte le foto", en: "View all photos" })}</span>
             </button>
           </div>
 
-          {/* collage */}
-          <div className="grid grid-cols-3 gap-2.5">
-            <div className="relative col-span-2 row-span-2 aspect-square overflow-hidden rounded-2xl">
-              <Image src={apt.gallery[0].src} alt={apt.gallery[0].alt} fill priority sizes="(max-width:768px) 100vw, 40vw" className="object-cover" />
-              <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-deep-brown/80 px-3 py-1 text-xs font-medium text-white backdrop-blur">
-                <ImageIcon className="h-3.5 w-3.5" /> {tr(lang, { it: "Foto principale", en: "Main photo" })}
-              </span>
-            </div>
-            {apt.gallery.slice(1, 3).map((im) => (
-              <div key={im.src + im.alt} className="relative aspect-square overflow-hidden rounded-xl">
-                <Image src={im.src} alt={im.alt} fill sizes="20vw" className="object-cover" />
+          {/* destra: collage + foto in fondo con "Vedi tutto" */}
+          <div className="flex flex-col gap-2.5">
+            <div className="grid grid-cols-3 gap-2.5">
+              <div className="relative col-span-2 row-span-2 aspect-square overflow-hidden rounded-2xl">
+                <Image src={apt.gallery[0].src} alt={apt.gallery[0].alt} fill priority sizes="(max-width:768px) 100vw, 40vw" className="object-cover" />
               </div>
-            ))}
-            <button type="button" onClick={() => setGalleryOpen(true)} className="group relative col-span-3 aspect-[16/7] overflow-hidden rounded-xl">
-              <Image src={apt.gallery[7]?.src ?? apt.gallery[3].src} alt={apt.gallery[7]?.alt ?? "Giardino"} fill sizes="(max-width:768px) 100vw, 60vw" className="object-cover transition duration-500 group-hover:scale-105" />
+              {apt.gallery.slice(1, 3).map((im) => (
+                <div key={im.src + im.alt} className="relative aspect-square overflow-hidden rounded-xl">
+                  <Image src={im.src} alt={im.alt} fill sizes="20vw" className="object-cover" />
+                </div>
+              ))}
+            </div>
+            <button type="button" onClick={() => setGalleryOpen(true)} className="group relative h-40 w-full overflow-hidden rounded-2xl lg:h-48">
+              <Image src={apt.gallery[7]?.src ?? apt.gallery[3].src} alt={apt.gallery[7]?.alt ?? "Giardino"} fill sizes="(max-width:768px) 100vw, 45vw" className="object-cover transition duration-500 group-hover:scale-105" />
               <span className="absolute inset-0 bg-deep-brown/0 transition group-hover:bg-deep-brown/15" />
-              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-xl bg-paper/95 px-3 py-2 text-xs font-semibold text-deep-brown shadow-sm">
-                <ImageIcon className="h-4 w-4 text-terracotta" /> +{apt.gallery.length} {tr(lang, { it: "foto", en: "photos" })}
+              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-paper/95 px-4 py-2 text-xs font-semibold text-deep-brown shadow-sm">
+                <ImageIcon className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Vedi tutto", en: "View all" })}
               </span>
             </button>
           </div>
@@ -353,10 +349,12 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
                 <select value={g} onChange={(e) => setG(Number(e.target.value))} className={campo}>{Array.from({ length: apt.ospiti }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? tr(lang, { it: "ospite", en: "guest" }) : tr(lang, { it: "ospiti", en: "guests" })}</option>)}</select>
               </label>
             </div>
-            <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="mt-4 flex w-full flex-col items-center justify-center rounded-full px-6 py-3 text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Message on WhatsApp" })}</span>
-              <span className="text-[11px] text-white/90">{tr(lang, { it: "Risposta rapida da Fabio", en: "Quick reply from Fabio" })}</span>
-            </a>
+            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
+                <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Message on WhatsApp" })}
+              </a>
+              <span className="text-xs text-warm-gray">{tr(lang, { it: "Risposta rapida da Fabio", en: "Quick reply from Fabio" })}</span>
+            </div>
             <p className="mt-3 text-center text-xs text-warm-gray">
               <ShieldCheck className="mr-1 inline h-3.5 w-3.5 text-terracotta" />
               {tr(lang, { it: "Prenotazione diretta · nessun pagamento online · paghi al check-in", en: "Direct booking · no online payment · pay at check-in" })}
@@ -427,22 +425,28 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       {/* ===================== WHAT & LAYOUT ===================== */}
       <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout" })}</p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail" })}</h2>
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
           {apt.stanze.map((s, i) => (
-            <article key={s.nome.en} className="overflow-hidden rounded-2xl border border-line bg-cream shadow-sm">
-              <div className="relative aspect-[16/10]"><Image src={s.imgs[0].src} alt={t(s.nome)} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover" /></div>
-              <div className="p-4">
-                <h3 className="font-semibold text-deep-brown">{t(s.nome)}</h3>
-                <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-1.5">
+            <article key={s.nome.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm sm:flex-row">
+              <div className="relative aspect-[4/3] sm:aspect-auto sm:w-44 sm:flex-shrink-0">
+                <Image src={s.imgs[0].src} alt={t(s.nome)} fill sizes="(max-width:768px) 100vw, 180px" className="object-cover" />
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-serif text-lg font-bold text-deep-brown">{t(s.nome)}</h3>
+                  <span className="rounded-full bg-cream px-2.5 py-0.5 text-[11px] font-medium text-terracotta">{t(s.tag)}</span>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
                   {(roomDotazioni[i] ?? []).map((d) => {
                     const Ic = AMENITY_ICONS[d.icon];
                     return (
-                      <li key={d.t.en} className="flex items-center gap-1.5 text-xs text-warm-gray">
+                      <span key={d.t.en} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-bone px-3 py-1 text-xs text-deep-brown">
                         <Ic className="h-3.5 w-3.5 flex-shrink-0 text-terracotta" strokeWidth={1.6} /> {t(d.t)}
-                      </li>
+                      </span>
                     );
                   })}
-                </ul>
+                </div>
               </div>
             </article>
           ))}
