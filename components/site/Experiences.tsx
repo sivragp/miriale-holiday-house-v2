@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import {
-  Anchor,
   Building2,
   Bus,
   Car,
@@ -15,9 +14,7 @@ import {
   MapPin,
   MessageCircle,
   Plane,
-  ShieldCheck,
   ShoppingCart,
-  Stethoscope,
   Tag,
   Train,
   TrainFront,
@@ -62,9 +59,9 @@ export default function Experiences() {
   const top: { img: string | null; phLabel: string; t: B; near: B; s: B; time: B; by: B; Icon: typeof Car }[] = [
     { img: "/images/luoghi/esp-roma-card.jpg", phLabel: "Roma", t: { it: "Roma", en: "Rome" }, near: { it: "~30 km", en: "~30 km" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi, Trastevere e molto altro. Senza auto!", en: "Colosseum, Vatican, Trevi Fountain, Trastevere and more. No car needed!" }, time: { it: "32 min", en: "32 min" }, by: { it: "in treno", en: "by train" }, Icon: Train },
     { img: "/images/base-roma-mare.jpg", phLabel: "Mare", t: { it: "Il mare", en: "The Sea" }, near: { it: "Focene, Fregene, Ostia Lido", en: "Focene, Fregene, Ostia Lido" }, s: { it: "Spiagge, stabilimenti, passeggiate sul lungomare e tramonti spettacolari.", en: "Beaches, beach clubs, seafront walks and stunning sunsets." }, time: { it: "5–20 min", en: "5–20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "~20 min", en: "~20 min" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "20 min", en: "20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "4,3 km", en: "4.3 km" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "~10 min", en: "~10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/porto.jpg", phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, near: { it: "~10 min", en: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare." }, time: { it: "10 min", en: "10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "~15 min", en: "~15 min" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "15 min", en: "15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "7 km", en: "7 km" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "~15 min", en: "~15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/negozi.jpg", phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services" }, near: { it: "~5 min", en: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." }, time: { it: "5 min", en: "5 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
   ];
 
@@ -115,18 +112,18 @@ export default function Experiences() {
   ];
 
   const nearby: { Icon: typeof Plane; t: B; v: B }[] = [
-    { Icon: Plane, t: { it: "Aeroporto FCO", en: "FCO Airport" }, v: { it: "10 min", en: "10 min" } },
-    { Icon: Train, t: { it: "Roma (Termini) con Leonardo Express", en: "Rome (Termini) by Leonardo Express" }, v: { it: "32 min", en: "32 min" } },
-    { Icon: Waves, t: { it: "Spiagge (Focene)", en: "Beaches (Focene)" }, v: { it: "5–10 min", en: "5–10 min" } },
-    { Icon: Anchor, t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, v: { it: "10 min", en: "10 min" } },
-    { Icon: Landmark, t: { it: "Ostia Antica", en: "Ostia Antica" }, v: { it: "20 min", en: "20 min" } },
-    { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, v: { it: "15 min", en: "15 min" } },
-    { Icon: Umbrella, t: { it: "Ostia Lido", en: "Ostia Lido" }, v: { it: "20 min", en: "20 min" } },
-    { Icon: ShoppingCart, t: { it: "Supermercati e ristoranti", en: "Supermarkets & restaurants" }, v: { it: "5 min", en: "5 min" } },
-    { Icon: Footprints, t: { it: "Stazione dei treni", en: "Train station" }, v: { it: "7 min a piedi", en: "7 min walk" } },
-    { Icon: Stethoscope, t: { it: "Farmacia", en: "Pharmacy" }, v: { it: "5 min", en: "5 min" } },
-    { Icon: Stethoscope, t: { it: "Ospedale", en: "Hospital" }, v: { it: "10 min", en: "10 min" } },
-    { Icon: ShieldCheck, t: { it: "Guardia di Finanza", en: "Guardia di Finanza" }, v: { it: "5 min", en: "5 min" } },
+    { Icon: Plane, t: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)" }, v: { it: "5 km", en: "5 km" } },
+    { Icon: Plane, t: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport" }, v: { it: "31 km", en: "31 km" } },
+    { Icon: Footprints, t: { it: "Bus pubblico (FCO e Ostia)", en: "Public bus (FCO & Ostia)" }, v: { it: "500 m a piedi", en: "500 m walk" } },
+    { Icon: Train, t: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train" }, v: { it: "5 km", en: "5 km" } },
+    { Icon: Waves, t: { it: "Spiaggia Lungomare della Salute", en: "Lungomare della Salute beach" }, v: { it: "3,9 km", en: "3.9 km" } },
+    { Icon: Waves, t: { it: "Spiaggia di Focene", en: "Focene beach" }, v: { it: "4,7 km", en: "4.7 km" } },
+    { Icon: Umbrella, t: { it: "Spiaggia di Ostia Lido", en: "Ostia Lido beach" }, v: { it: "4,7 km", en: "4.7 km" } },
+    { Icon: Umbrella, t: { it: "Spiaggia di Castel Fusano", en: "Castel Fusano beach" }, v: { it: "7 km", en: "7 km" } },
+    { Icon: Landmark, t: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins" }, v: { it: "4,3 km", en: "4.3 km" } },
+    { Icon: Leaf, t: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods" }, v: { it: "11 km", en: "11 km" } },
+    { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, v: { it: "7 km", en: "7 km" } },
+    { Icon: ShoppingCart, t: { it: "Ristoranti (It Italian, Luana)", en: "Restaurants (It Italian, Luana)" }, v: { it: "700 m", en: "700 m" } },
   ];
 
   const nearbyBar: { Icon: typeof Leaf; t: B }[] = [

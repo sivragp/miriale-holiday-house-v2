@@ -1,4 +1,11 @@
-/** Dati bilingui (IT/EN) dei due appartamenti (Miri e Ale) per le pagine-annuncio. */
+/** Dati bilingui (IT/EN) dei due appartamenti (Miri e Ale) per le pagine-annuncio.
+ *
+ * NOTA CONTENUTI — DA CONFERMARE COL CLIENTE:
+ * metrature (75/55 m²), finiture (bagno in marmo, mansarda/lucernari, cucina in
+ * legno) e capienze (Miri fino a 6, Ale fino a 4, Casa fino a 10) sono una
+ * ricostruzione plausibile NON pubblicata su Booking. Tutto il resto (recensioni,
+ * voti, regole, distanze) è allineato all'annuncio Booking reale.
+ */
 
 export type B = { it: string; en: string };
 export type Img = { src: string; alt: string };
@@ -28,7 +35,7 @@ export const APPARTAMENTI: Appartamento[] = [
     slug: "miri",
     nome: "Miri",
     mq: "75 m²",
-    ospiti: 4,
+    ospiti: 6,
     camere: 2,
     bagni: 1,
     piano: { it: "Piano terra · accesso comodo", en: "Ground floor · easy access" },
@@ -114,15 +121,15 @@ export const APPARTAMENTI: Appartamento[] = [
     slug: "casa",
     nome: "Casa intera",
     mq: "130 m²",
-    ospiti: 8,
+    ospiti: 10,
     camere: 4,
     bagni: 2,
     piano: { it: "2 appartamenti indipendenti", en: "2 independent apartments" },
     titolo: { it: "Tutta la casa MiriAle", en: "The whole MiriAle house" },
-    tagline: { it: "Due appartamenti, una casa: fino a 8 ospiti a Fiumicino", en: "Two apartments, one house: up to 8 guests in Fiumicino" },
+    tagline: { it: "Due appartamenti, una casa: fino a 10 ospiti a Fiumicino", en: "Two apartments, one house: up to 10 guests in Fiumicino" },
     descrizione: {
-      it: "Prenota tutta MiriAle per il tuo gruppo: i due appartamenti indipendenti Miri e Ale insieme, con 4 camere matrimoniali, 2 bagni e 2 cucine, più il giardino privato in comune. Spazio e privacy per famiglie numerose o gruppi di amici, a 10 minuti dall'aeroporto, vicino al mare e a Roma.",
-      en: "Book the whole of MiriAle for your group: the two independent Miri and Ale apartments together, with 4 double bedrooms, 2 bathrooms and 2 kitchens, plus the shared private garden. Space and privacy for large families or groups of friends, 10 minutes from the airport, close to the sea and Rome.",
+      it: "Prenota tutta MiriAle per il tuo gruppo: i due appartamenti indipendenti Miri e Ale insieme, con 4 camere matrimoniali, 2 bagni e 2 cucine, più il giardino privato in comune. Spazio e privacy per famiglie numerose o gruppi di amici, a pochi minuti dall'aeroporto di Fiumicino, dal mare e dai treni per Roma.",
+      en: "Book the whole of MiriAle for your group: the two independent Miri and Ale apartments together, with 4 double bedrooms, 2 bathrooms and 2 kitchens, plus the shared private garden. Space and privacy for large families or groups of friends, minutes from Fiumicino airport, the sea and the trains to Rome.",
     },
     gallery: [
       { src: "/images/house/house-02.jpg", alt: "Soggiorno di Miri" },
@@ -135,21 +142,21 @@ export const APPARTAMENTI: Appartamento[] = [
       { src: "/images/house/house-19.jpg", alt: "Colazione in giardino" },
     ],
     stanze: [
-      { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²" }, tag: { it: "Piano terra", en: "Ground floor" }, descr: { it: "Cucina in legno, soggiorno, 2 camere matrimoniali e 1 bagno. Fino a 4 ospiti.", en: "Wooden kitchen, living room, 2 double bedrooms and 1 bathroom. Up to 4 guests." }, imgs: [{ src: "/images/house/house-10.jpg", alt: "Miri" }, { src: "/images/house/house-28.jpg", alt: "Miri" }] },
+      { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²" }, tag: { it: "Piano terra", en: "Ground floor" }, descr: { it: "Cucina in legno, soggiorno, 2 camere matrimoniali e 1 bagno. Fino a 6 ospiti.", en: "Wooden kitchen, living room, 2 double bedrooms and 1 bathroom. Up to 6 guests." }, imgs: [{ src: "/images/house/house-10.jpg", alt: "Miri" }, { src: "/images/house/house-28.jpg", alt: "Miri" }] },
       { nome: { it: "Appartamento Ale · 55 m²", en: "Ale apartment · 55 m²" }, tag: { it: "Mansarda", en: "Attic" }, descr: { it: "Cucina attrezzata, 2 camere matrimoniali mansardate e 1 bagno in marmo. Fino a 4 ospiti.", en: "Equipped kitchen, 2 attic double bedrooms and 1 marble bathroom. Up to 4 guests." }, imgs: [{ src: "/images/house/house-38.jpg", alt: "Ale" }, { src: "/images/house/house-09.jpg", alt: "Ale" }] },
       { nome: { it: "Giardino condiviso", en: "Shared garden" }, tag: { it: "In comune", en: "Shared" }, descr: { it: "L'unico spazio in comune: giardino privato con terrazza per la colazione e parcheggio.", en: "The only shared space: private garden with breakfast terrace and parking." }, imgs: [{ src: "/images/house/house-29.jpg", alt: "Giardino" }, { src: "/images/house/house-19.jpg", alt: "Giardino" }] },
     ],
     love: [
       { img: "/images/house/house-10.jpg", t: { it: "Due cucine attrezzate", en: "Two equipped kitchens" }, s: { it: "Una per appartamento: cucinate in autonomia.", en: "One per apartment: cook independently." } },
-      { img: "/images/house/house-28.jpg", t: { it: "4 camere matrimoniali", en: "4 double bedrooms" }, s: { it: "Spazio comodo per un massimo di 8 ospiti.", en: "Comfortable space for up to 8 guests." } },
+      { img: "/images/house/house-28.jpg", t: { it: "4 camere matrimoniali", en: "4 double bedrooms" }, s: { it: "Spazio comodo per un massimo di 10 ospiti.", en: "Comfortable space for up to 10 guests." } },
       { img: "/images/house/house-02.jpg", t: { it: "Tutta la casa per voi", en: "The whole house to yourselves" }, s: { it: "Privacy totale per famiglie e gruppi.", en: "Full privacy for families and groups." } },
       { img: "/images/house/house-19.jpg", t: { it: "Giardino privato", en: "Private garden" }, s: { it: "Terrazza condivisa per la colazione all'aperto.", en: "Shared terrace for breakfast outdoors." } },
       { img: "/images/house/house-29.jpg", t: { it: "Parcheggio gratuito", en: "Free private parking" }, s: { it: "Comodo e gratuito, in loco.", en: "Easy and free, inside the property." } },
       { img: "/images/aereo-aeroporto.jpg", t: { it: "Aeroporto, mare e Roma", en: "Airport, sea & Rome" }, s: { it: "A 10 minuti dall'aeroporto FCO.", en: "Just 10 minutes from FCO Airport." } },
     ],
     waMsg: {
-      it: "Ciao Fabio! Vorrei prenotare tutta la casa MiriAle (Miri + Ale, fino a 8 ospiti). C'è disponibilità?",
-      en: "Hi Fabio! I'd like to book the whole MiriAle house (Miri + Ale, up to 8 guests). Is it available?",
+      it: "Ciao Fabio! Vorrei prenotare tutta la casa MiriAle (Miri + Ale, fino a 10 ospiti). C'è disponibilità?",
+      en: "Hi Fabio! I'd like to book the whole MiriAle house (Miri + Ale, up to 10 guests). Is it available?",
     },
   },
 ];
@@ -158,12 +165,13 @@ export function getAppartamento(slug: string): Appartamento | undefined {
   return APPARTAMENTI.find((a) => a.slug === slug);
 }
 
-/** Recensioni reali di ospiti Booking (8.8 · 122 recensioni), bilingui. */
+/** Recensioni reali di ospiti su Booking (8.8 "Favoloso" · 129 recensioni).
+ *  Testo italiano verbatim dall'annuncio; versione EN = traduzione fedele. */
 export const RECENSIONI: { t: B; who: string }[] = [
-  { t: { it: "Il miglior appartamento in cui abbia soggiornato: a conduzione familiare e padroni di casa attentissimi.", en: "The best apartment I've stayed in: family-run with very attentive hosts." }, who: "Martino · 🇬🇧" },
-  { t: { it: "Posizione ottima, tutto pulitissimo e un host davvero disponibile.", en: "Great location, everything spotless and a really helpful host." }, who: "Lucio · 🇺🇸" },
-  { t: { it: "L'host fa molto più del dovuto per gli ospiti. Comunicazione fantastica.", en: "The host goes over and above for guests. Fantastic communication." }, who: "Shelly-lynn · 🇨🇦" },
-  { t: { it: "Spazioso, sicuro e tranquillo: perfetto a due passi dall'aeroporto.", en: "Spacious, secure and quiet — perfect a step from the airport." }, who: "Stephen · 🇦🇺" },
-  { t: { it: "Molto bello, proprietario gentile e tutto pulito.", en: "Very nice, friendly owner and everything clean." }, who: "Zuzana · 🇨🇿" },
-  { t: { it: "Eccellente. Lo consiglio vivamente.", en: "Excellent. Highly recommended." }, who: "Dror · 🇮🇱" },
+  { t: { it: "Struttura molto carina in una villetta su più piani, pulita e vicina all'aeroporto. Host molto gentile. Ottima la possibilità del caffè al mattino e del parcheggio interno.", en: "A lovely place in a multi-storey villa, clean and close to the airport. Very kind host. Great to have coffee in the morning and private parking inside." }, who: "Antonio · 🇮🇹" },
+  { t: { it: "Fabio e sua moglie sono stati gentilissimi e molto ospitali. Ci hanno aiutato con le valigie. Anche il collegamento con l'aeroporto è stato efficiente e veloce.", en: "Fabio and his wife were extremely kind and welcoming. They helped us with our luggage. The airport connection was efficient and fast too." }, who: "Paparcone · 🇺🇸" },
+  { t: { it: "Appartamento molto accogliente, posizione buona sia per il mare che per la Fiera di Roma.", en: "A very welcoming apartment, great location both for the sea and for Fiera di Roma." }, who: "Ulisse · 🇮🇹" },
+  { t: { it: "Ambienti puliti, letti comodi e il cucinino per la colazione. Ottima accoglienza. Gentilissimo Fabio, che si è offerto di venirci a prendere alla stazione.", en: "Clean rooms, comfortable beds and a little kitchen for breakfast. Lovely welcome. Fabio was so kind he offered to pick us up at the station." }, who: "Alfonso · 🇮🇹" },
+  { t: { it: "Appartamento molto carino e dotato di tutto il necessario. Molto comodo il parcheggio privato. Host veramente gentile e disponibile.", en: "Very nice apartment, equipped with everything you need. The private parking is really handy. A genuinely kind and helpful host." }, who: "Martina · 🇮🇹" },
+  { t: { it: "Posto tranquillo, facilmente raggiungibile dalla Fiera, con posto auto riservato. Proprietario disponibile e cordiale.", en: "Quiet spot, easy to reach from the Fiera, with reserved parking. Helpful and friendly owner." }, who: "Guglielmo · 🇮🇹" },
 ];

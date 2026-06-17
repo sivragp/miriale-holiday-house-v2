@@ -87,7 +87,7 @@ export default function Contacts() {
   const practical: { Icon: typeof Clock; t: B; s: B }[] = [
     { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
     { Icon: CalendarX, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
-    { Icon: Users, t: { it: "Età minima", en: "Minimum age" }, s: { it: "18 anni", en: "18 years" } },
+    { Icon: Users, t: { it: "Bambini", en: "Children" }, s: { it: "di tutte le età benvenuti", en: "all ages welcome" } },
     { Icon: PawPrint, t: { it: "Niente animali", en: "No pets" }, s: { it: "", en: "" } },
     { Icon: CigaretteOff, t: { it: "Non fumatori", en: "No smoking" }, s: { it: "all'interno", en: "indoors" } },
     { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },
@@ -98,7 +98,7 @@ export default function Contacts() {
     { n: "2", Icon: Train, t: { it: "In treno verso Roma", en: "Train to Rome" }, time: { it: "32 min", en: "32 min" }, s: { it: "Leonardo Express dall'aeroporto di Fiumicino a Roma Termini. Senza auto!", en: "Leonardo Express from Fiumicino Airport to Roma Termini. No car needed!" } },
     { n: "3", Icon: Car, t: { it: "In auto", en: "By car" }, time: { it: "", en: "" }, s: { it: "Accesso comodo dall'A91 e dalle strade principali. Parcheggio privato gratuito in loco.", en: "Easy access from the A91 and main roads. Free private parking on-site." } },
     { n: "4", Icon: Footprints, t: { it: "A piedi", en: "On foot" }, time: { it: "7 min", en: "7 min" }, s: { it: "La stazione dei treni di Fiumicino è a soli 7 minuti a piedi dalla casa.", en: "Fiumicino train station is just a 7-minute walk from the house." } },
-    { n: "5", Icon: ShoppingCart, t: { it: "Nei dintorni", en: "Nearby" }, time: { it: "5 min", en: "5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." } },
+    { n: "5", Icon: ShoppingCart, t: { it: "Nei dintorni", en: "Nearby" }, time: { it: "500 m", en: "500 m" }, s: { it: "Fermata del bus pubblico a 500 m e ristoranti (It Italian, Luana) a circa 700 m.", en: "Public bus stop 500 m away and restaurants (It Italian, Luana) about 700 m away." } },
   ];
 
   return (
@@ -167,7 +167,7 @@ export default function Contacts() {
               <Phone className="mx-auto h-7 w-7 text-terracotta" strokeWidth={1.5} />
               <h3 className="mt-3 font-semibold text-deep-brown">{tr(lang, { it: "Chiamaci", en: "Call us" })}</h3>
               <p className="mt-1 font-semibold text-terracotta">{WHATSAPP_DISPLAY}</p>
-              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: "Lun–Dom 8:00 – 22:00", en: "Mon–Sun 8:00 – 22:00" })}</p>
+              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: "Tutti i giorni · risposta rapida", en: "Every day · quick reply" })}</p>
               <p className="text-xs text-warm-gray">{tr(lang, { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English & Spanish" })}</p>
             </a>
             <a href={mailto} className="rounded-2xl border border-line bg-paper p-6 text-center shadow-sm transition hover:shadow-card">
@@ -234,13 +234,13 @@ export default function Contacts() {
           <div className="rounded-2xl border border-line bg-paper p-7 shadow-sm">
             <div className="flex items-start justify-between gap-4">
               <h3 className="font-serif text-xl font-bold text-deep-brown">{tr(lang, { it: "Perché gli ospiti amano stare da noi", en: "Why guests love staying with us" })}</h3>
-              <span className="flex-shrink-0 rounded-lg bg-[#003580] px-3 py-2 text-center text-[10px] font-semibold leading-tight text-white">Booking.com<br />{tr(lang, { it: "Traveller Review Awards 2024", en: "Traveller Review Awards 2024" })}</span>
+              <span className="flex-shrink-0 rounded-lg bg-[#003580] px-3 py-2 text-center text-[10px] font-semibold leading-tight text-white">Booking.com<br />{tr(lang, { it: "8.8 · Favoloso", en: "8.8 · Fabulous" })}</span>
             </div>
             <div className="mt-4 flex items-center gap-3">
               <span className="font-serif text-4xl font-bold text-deep-brown">8.8<span className="text-xl text-warm-gray">/10</span></span>
               <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
             </div>
-            <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni su Booking.com", en: "from 122 reviews on Booking.com" })}</p>
+            <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 129 recensioni su Booking.com", en: "from 129 reviews on Booking.com" })}</p>
             <ul className="mt-5 space-y-2.5">
               {loveChecks.map((c) => (
                 <li key={c.en} className="flex items-center gap-2 text-sm text-deep-brown"><Check className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(c)}</li>

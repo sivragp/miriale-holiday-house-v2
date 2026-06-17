@@ -27,7 +27,6 @@ import {
   Plane,
   Quote,
   ShieldCheck,
-  Shirt,
   SquareParking,
   Star,
   Train,
@@ -73,16 +72,16 @@ export default function HomeMiriale() {
   const stats: { Icon: typeof Plane; a: B; b: B }[] = [
     { Icon: Plane, a: { it: "10 min", en: "10 min" }, b: { it: "dall'aeroporto FCO", en: "to FCO Airport" } },
     { Icon: HomeIcon, a: { it: "2", en: "2" }, b: { it: "appartamenti", en: "apartments" } },
-    { Icon: Users, a: { it: "Fino a 8", en: "Up to 8" }, b: { it: "ospiti", en: "guests" } },
+    { Icon: Users, a: { it: "Fino a 10", en: "Up to 10" }, b: { it: "ospiti", en: "guests" } },
     { Icon: SquareParking, a: { it: "Gratis", en: "Free" }, b: { it: "parcheggio", en: "parking" } },
     { Icon: Leaf, a: { it: "Privato", en: "Private" }, b: { it: "giardino", en: "garden" } },
-    { Icon: Star, a: { it: "8.8/10", en: "8.8/10" }, b: { it: "da 122 recensioni", en: "From 122 reviews" } },
+    { Icon: Star, a: { it: "8.8/10", en: "8.8/10" }, b: { it: "da 129 recensioni", en: "From 129 reviews" } },
   ];
 
   const stays: { apt: typeof miri; img: string; tab: B; tabColor: string; titolo: B; descr: B; best: B; href: string }[] = [
-    { apt: miri, img: "/images/house/house-10.jpg", tab: { it: "Appartamento Miri", en: "Miri apartment" }, tabColor: "#0fa9b8", titolo: { it: "Spazioso e accogliente", en: "Spacious & warm" }, descr: { it: "Appartamento al piano terra con cucina in legno e soggiorno, due camere matrimoniali e spazi comodi per un soggiorno rilassante.", en: "Ground-floor apartment with wooden kitchen living room, two double bedrooms and comfortable spaces for a relaxing stay." }, best: { it: "Ideale per famiglie, coppie e amici fino a 4", en: "Best for families, couples and friends up to 4" }, href: "/miri" },
+    { apt: miri, img: "/images/house/house-10.jpg", tab: { it: "Appartamento Miri", en: "Miri apartment" }, tabColor: "#0fa9b8", titolo: { it: "Spazioso e accogliente", en: "Spacious & warm" }, descr: { it: "Appartamento al piano terra con cucina in legno e soggiorno, due camere matrimoniali e spazi comodi per un soggiorno rilassante.", en: "Ground-floor apartment with wooden kitchen living room, two double bedrooms and comfortable spaces for a relaxing stay." }, best: { it: "Ideale per famiglie, coppie e amici fino a 6", en: "Best for families, couples and friends up to 6" }, href: "/miri" },
     { apt: ale, img: "/images/house/house-09.jpg", tab: { it: "Appartamento Ale", en: "Ale apartment" }, tabColor: "#1e88b5", titolo: { it: "Mansarda luminosa", en: "Bright attic loft" }, descr: { it: "Mansarda all'ultimo piano con soffitti spioventi, bagno moderno in marmo e cucina completamente attrezzata.", en: "Top-floor attic/loft with sloped ceilings, modern marble bathroom and fully equipped kitchen." }, best: { it: "Ideale per coppie, piccole famiglie e soggiorni di lavoro", en: "Best for couples, small families and business stays" }, href: "/ale" },
-    { apt: casa, img: "/images/house/house-22.jpg", tab: { it: "Casa intera", en: "Whole house" }, tabColor: "#0f3d4a", titolo: { it: "Insieme, tutti", en: "Stay together" }, descr: { it: "Prenota entrambi gli appartamenti e goditi tutta la casa: 4 camere, 2 cucine e il giardino privato.", en: "Book both apartments and enjoy the whole house: 4 bedrooms, 2 kitchens and the private garden." }, best: { it: "Ideale per gruppi e famiglie fino a 8 ospiti", en: "Best for groups and families up to 8 guests" }, href: "/la-casa" },
+    { apt: casa, img: "/images/house/house-22.jpg", tab: { it: "Casa intera", en: "Whole house" }, tabColor: "#0f3d4a", titolo: { it: "Insieme, tutti", en: "Stay together" }, descr: { it: "Prenota entrambi gli appartamenti e goditi tutta la casa: 4 camere, 2 cucine e il giardino privato.", en: "Book both apartments and enjoy the whole house: 4 bedrooms, 2 kitchens and the private garden." }, best: { it: "Ideale per gruppi e famiglie fino a 10 ospiti", en: "Best for groups and families up to 10 guests" }, href: "/la-casa" },
   ];
 
   const gardenChecks: B[] = [
@@ -108,34 +107,36 @@ export default function HomeMiriale() {
     { Icon: Users, t: { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish" } },
   ];
 
+  // Distanze REALI dall'annuncio Booking (sezione "Dintorni della struttura").
   const places: { Icon: typeof Plane; t: B; rows: { p: B; d: B; car?: boolean }[] }[] = [
-    { Icon: Plane, t: { it: "Aeroporto FCO", en: "FCO Airport" }, rows: [
-      { p: { it: "In auto / taxi", en: "By car / taxi" }, d: { it: "~10 min · 5 km", en: "~10 min · 5 km" }, car: true },
-      { p: { it: "Stazione treni", en: "Train station" }, d: { it: "7 min a piedi", en: "7 min walk" } },
+    { Icon: Plane, t: { it: "Aeroporti", en: "Airports" }, rows: [
+      { p: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)" }, d: { it: "5 km", en: "5 km" }, car: true },
+      { p: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport" }, d: { it: "31 km", en: "31 km" }, car: true },
     ] },
-    { Icon: Train, t: { it: "Roma", en: "Rome" }, rows: [
-      { p: { it: "Leonardo Express → Termini", en: "Leonardo Express → Termini" }, d: { it: "32 min", en: "32 min" } },
-      { p: { it: "Treno regionale FL1", en: "Regional train FL1" }, d: { it: "~45 min", en: "~45 min" } },
-      { p: { it: "In auto", en: "By car" }, d: { it: "~30 km", en: "~30 km" }, car: true },
+    { Icon: Train, t: { it: "Roma e treni", en: "Rome & trains" }, rows: [
+      { p: { it: "Bus pubblico (verso FCO e Ostia)", en: "Public bus (to FCO and Ostia)" }, d: { it: "500 m a piedi", en: "500 m walk" } },
+      { p: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train" }, d: { it: "5 km", en: "5 km" }, car: true },
+      { p: { it: "Roma centro (in auto)", en: "Central Rome (by car)" }, d: { it: "~30 km", en: "~30 km" }, car: true },
     ] },
     { Icon: Waves, t: { it: "Spiagge", en: "Beaches" }, rows: [
-      { p: { it: "Focene", en: "Focene" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" }, car: true },
-      { p: { it: "Fregene", en: "Fregene" }, d: { it: "15 min · 10 km", en: "15 min · 10 km" }, car: true },
-      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "20 min · 18 km", en: "20 min · 18 km" }, car: true },
+      { p: { it: "Lungomare della Salute", en: "Lungomare della Salute beach" }, d: { it: "3,9 km", en: "3.9 km" }, car: true },
+      { p: { it: "Focene", en: "Focene" }, d: { it: "4,7 km", en: "4.7 km" }, car: true },
+      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "4,7 km", en: "4.7 km" }, car: true },
+      { p: { it: "Castel Fusano", en: "Castel Fusano" }, d: { it: "7 km", en: "7 km" }, car: true },
     ] },
-    { Icon: Landmark, t: { it: "Ostia Antica", en: "Ostia Antica" }, rows: [
-      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 10 km", en: "12 min · 10 km" }, car: true },
+    { Icon: Landmark, t: { it: "Cultura e natura", en: "Culture & nature" }, rows: [
+      { p: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins" }, d: { it: "4,3 km", en: "4.3 km" }, car: true },
+      { p: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods" }, d: { it: "11 km", en: "11 km" }, car: true },
     ] },
-    { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, rows: [
-      { p: { it: "In auto", en: "By car" }, d: { it: "12 min · 8 km", en: "12 min · 8 km" }, car: true },
-      { p: { it: "Treno FL1 · stazione Fiera di Roma", en: "FL1 train · Fiera di Roma station" }, d: { it: "~15 min", en: "~15 min" } },
-      { p: { it: "Autobus di linea", en: "Local bus" }, d: { it: "~25 min", en: "~25 min" } },
+    { Icon: Building2, t: { it: "Fiere ed eventi", en: "Fairs & events" }, rows: [
+      { p: { it: "Fiera di Roma", en: "Fiera di Roma" }, d: { it: "7 km", en: "7 km" }, car: true },
+      { p: { it: "PalaLottomatica", en: "PalaLottomatica" }, d: { it: "22 km", en: "22 km" }, car: true },
+      { p: { it: "Metro EUR Fermi", en: "EUR Fermi metro" }, d: { it: "23 km", en: "23 km" }, car: true },
     ] },
-    { Icon: Fish, t: { it: "Ristoranti di pesce", en: "Seafood restaurants" }, rows: [
-      { p: { it: "Pascucci al Porticciolo", en: "Pascucci al Porticciolo" }, d: { it: "6 min · 4 km", en: "6 min · 4 km" }, car: true },
-      { p: { it: "Bastianelli al Molo", en: "Bastianelli al Molo" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" }, car: true },
-      { p: { it: "L'Osteria dell'Orologio", en: "L'Osteria dell'Orologio" }, d: { it: "5 min · 3 km", en: "5 min · 3 km" }, car: true },
-      { p: { it: "Il Tino", en: "Il Tino" }, d: { it: "7 min · 5 km", en: "7 min · 5 km" }, car: true },
+    { Icon: Fish, t: { it: "Ristoranti vicini", en: "Nearby restaurants" }, rows: [
+      { p: { it: "It Italian Restaurant", en: "It Italian Restaurant" }, d: { it: "700 m", en: "700 m" } },
+      { p: { it: "Ristorante Luana", en: "Luana restaurant" }, d: { it: "700 m", en: "700 m" } },
+      { p: { it: "Ristorante Docking 9", en: "Docking 9 restaurant" }, d: { it: "1,8 km", en: "1.8 km" }, car: true },
     ] },
   ];
 
@@ -144,19 +145,19 @@ export default function HomeMiriale() {
     { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Voli presto o tardi e scali", en: "Early or late flights & stopovers" } },
     { Icon: GraduationCap, img: "/images/luoghi/fiera.jpg", t: { it: "Visitatori della Fiera di Roma o esami", en: "Visitors to Fiera di Roma or exams" } },
     { Icon: ShieldCheck, img: "/images/luoghi/guardia-finanza.jpg", t: { it: "Visite ufficiali Guardia di Finanza e famiglie", en: "Guardia di Finanza official visitors and families" } },
-    { Icon: Users, img: "/images/luoghi/famiglie.jpg", t: { it: "Famiglie e gruppi fino a 8 ospiti", en: "Families & groups up to 8 guests" } },
+    { Icon: Users, img: "/images/luoghi/famiglie.jpg", t: { it: "Famiglie e gruppi fino a 10 ospiti", en: "Families & groups up to 10 guests" } },
   ];
 
   const comforts: { Icon: typeof Wifi; t: B }[] = [
     { Icon: Wifi, t: { it: "Wi-Fi gratuito", en: "Free Wi-Fi" } },
     { Icon: Wind, t: { it: "Aria condizionata e riscaldamento", en: "Air conditioning & heating" } },
     { Icon: CookingPot, t: { it: "Cucine completamente attrezzate", en: "Fully equipped kitchens" } },
-    { Icon: Tv, t: { it: "Smart TV", en: "Smart TV" } },
+    { Icon: Tv, t: { it: "TV a schermo piatto", en: "Flat-screen TV" } },
     { Icon: WashingMachine, t: { it: "Lavatrice", en: "Washing machine" } },
-    { Icon: Coffee, t: { it: "Macchina del caffè", en: "Coffee machine" } },
+    { Icon: Coffee, t: { it: "Moka per il caffè", en: "Moka coffee pot" } },
     { Icon: Fan, t: { it: "Phon", en: "Hair dryer" } },
-    { Icon: Shirt, t: { it: "Ferro e asse da stiro", en: "Iron & board" } },
-    { Icon: Baby, t: { it: "Culla su richiesta", en: "Baby bed on request" } },
+    { Icon: Plane, t: { it: "Navetta aeroporto (a pagamento)", en: "Airport shuttle (paid)" } },
+    { Icon: Baby, t: { it: "Culla su richiesta", en: "Baby cot on request" } },
     { Icon: SquareParking, t: { it: "Parcheggio privato gratuito", en: "Free private parking" } },
   ];
 
@@ -170,7 +171,7 @@ export default function HomeMiriale() {
 
   const rules: { Icon: typeof CalendarCheck; t: B; s: B }[] = [
     { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
-    { Icon: CalendarX, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 10:00", en: "by 10:00" } },
+    { Icon: CalendarX, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
     { Icon: CigaretteOff, t: { it: "Non fumatori", en: "No smoking" }, s: { it: "all'interno", en: "indoors" } },
     { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },
     { Icon: MoonStar, t: { it: "Silenzio", en: "Quiet time" }, s: { it: "23:00 – 07:00", en: "23:00 – 07:00" } },
@@ -178,10 +179,10 @@ export default function HomeMiriale() {
   ];
 
   const goodToKnow: B[] = [
-    { it: "Pagamento al check-in: contanti o carta", en: "Payment at check-in: cash or card" },
-    { it: "Nessun pagamento online richiesto", en: "No online payment required" },
+    { it: "Pagamento in loco al check-in (nessun pagamento online)", en: "Payment on arrival at check-in (no online payment)" },
+    { it: "Bambini di tutte le età benvenuti · culla su richiesta (€10/soggiorno)", en: "Children of all ages welcome · baby cot on request (€10/stay)" },
     { it: "Documenti d'identità richiesti al check-in", en: "ID documents required at check-in" },
-    { it: "Tassa di soggiorno esclusa (€2,00 a persona a notte, fino a 10 notti)", en: "City tax not included (€2.00 per person per night, up to 10 nights)" },
+    { it: "Eventuale tassa di soggiorno comunale, da saldare in loco", en: "Any municipal tourist tax payable on site" },
   ];
 
   return (
@@ -409,9 +410,9 @@ export default function HomeMiriale() {
           <div className="mt-6 flex flex-wrap items-center justify-center rounded-2xl bg-paper px-6 py-4 text-center text-sm text-warm-gray shadow-sm">
             {[
               { it: "Zona residenziale tranquilla", en: "Quiet residential area" },
-              { it: "Supermercati 5 min", en: "Supermarkets 5 min" },
-              { it: "Ristoranti e caffè 5 min", en: "Restaurants & cafés 5 min" },
-              { it: "Stazione 7 min a piedi", en: "Train station 7 min walk" },
+              { it: "Aeroporto FCO a 5 km", en: "FCO Airport 5 km away" },
+              { it: "Ristoranti a 700 m", en: "Restaurants 700 m away" },
+              { it: "Bus pubblico a 500 m", en: "Public bus 500 m away" },
             ].map((item, i) => (
               <span key={item.en} className={`px-4 py-1 ${i > 0 ? "border-l border-line" : ""}`}>{tr(lang, item)}</span>
             ))}

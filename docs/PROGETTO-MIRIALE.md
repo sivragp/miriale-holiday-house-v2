@@ -5,6 +5,21 @@
 
 ---
 
+## 0. Ultimo intervento (2026-06-17) — Revisione contenuti su dati reali Booking
+
+Scrape reale dell'annuncio Booking (`miriale-house`) → allineamento di **tutti** i contenuti. Niente più dati inventati sulla casa; solo info Booking.
+
+- **Recensioni**: ora 6 recensioni **verbatim reali** in italiano (Antonio, Paparcone, Ulisse, Alfonso, Martina, Guglielmo) in `lib/apartments.tsx` `RECENSIONI`. Conteggio aggiornato ovunque **122 → 129**.
+- **Distanze/POI**: ricostruiti su sezione "Dintorni" di Booking (valori in km) in Home (`places`), pagine appartamento (`localPoints`) ed Esperienze (cards `top` + lista `nearby`). Reali: Aeroporto FCO 5 km · Ciampino 31 km · Bus pubblico 500 m · Treno Lido/Ostia Nord 5 km · Ostia Antica (scavi) 4,3 km · Spiagge: Lungomare della Salute 3,9 km, Focene 4,7 km, Ostia Lido 4,7 km, Castel Fusano 7 km · Bosco Macchia Grande di Focene 11 km · Fiera di Roma 7 km · PalaLottomatica 22 km · Metro EUR Fermi 23 km · Ristoranti: It Italian 700 m, Luana 700 m, Docking 9 1,8 km. (Rimossi nomi NON su Booking tipo Pascucci/Bastianelli/Conad/Carrefour.)
+- **Regole**: età minima 18 era **errata** → Booking dice "nessuna età minima, bambini di tutte le età benvenuti". Corretto in tutte le pagine. Check-out home allineato a **11:00**. Culla su richiesta €10/soggiorno.
+- **Capienze (DA CONFERMARE col cliente)**: Miri (grande) **fino a 6**, Ale (piccola) **fino a 4**, Casa intera = somma **fino a 10**. Aggiornato in `apartments.tsx`, Home stats/stays, pagine appartamento, metadata. (Nota: Booking pubblico mostra max 6 e "2 camere"; i numeri 6/4/10 li ha dati il cliente tramite l'agenzia.)
+- **Footer**: aggiunta riga legale **host privato · CIN IT058120C27MWUIVNF · N. licenza 058120-ALT-00210** (da Booking). `© 2025 → 2026`. Costanti in `lib/site.tsx` (`LICENSE_NUMBER`, `CIN`).
+- **Amenities**: aggiunte Navetta aeroporto (a pagamento) e Giardino privato; "Smart TV"→"TV a schermo piatto", "Macchina caffè"→"Moka", rimosso "Ferro/asse" (non confermato).
+- **`goodToKnow` home**: ammorbiditi pagamento (in loco al check-in) e tassa di soggiorno (generica, "se applicabile") perché l'importo €2 non è confermato.
+- **DA CONFERMARE col cliente** (segnato anche in commento in `apartments.tsx`): metrature 75/55 m², finiture (bagno in marmo, mansarda/lucernari, cucina in legno), capienze 6/4/10, mapping foto→stanze, tassa di soggiorno, orari telefono, social reali.
+
+---
+
 ## 1. Contesto e accesso
 
 - **Cliente**: MiriAle Holiday House — casa vacanze a gestione familiare a **Fiumicino (Roma)**, a ~10 min dall'aeroporto FCO. Due appartamenti indipendenti ("Miri" 75 m² e "Ale" 55 m²) affittabili singolarmente o insieme come casa intera (fino a 8 ospiti).

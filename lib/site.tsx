@@ -20,6 +20,10 @@ export const MAPS_SHORT = "https://maps.app.goo.gl/2KgSGxzFX5MnWGMR8";
 export const MAPS_EMBED =
   "https://www.google.com/maps?q=Via%20Castagnevizza%2C%2076%2C%2000054%20Fiumicino%20RM&output=embed";
 
+/* Dati legali struttura (pubblicati sull'annuncio Booking). Gestita da host privato. */
+export const LICENSE_NUMBER = "058120-ALT-00210";
+export const CIN = "IT058120C27MWUIVNF";
+
 export const waLink = (
   msg = "Ciao! Vorrei avere informazioni su MiriAle Holiday House.",
 ) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;

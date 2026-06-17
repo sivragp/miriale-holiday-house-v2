@@ -5,7 +5,7 @@ import { getAppartamento } from "@/lib/apartments";
 export const metadata: Metadata = {
   title: "Miri — appartamento 75 m² a Fiumicino",
   description:
-    "Miri: appartamento indipendente di 75 m² a Fiumicino, a 10 minuti dall'aeroporto. Soggiorno con cucina in legno, 2 camere matrimoniali, 1 bagno, fino a 4 ospiti.",
+    "Miri: appartamento indipendente di 75 m² a Fiumicino, a 10 minuti dall'aeroporto. Soggiorno con cucina in legno, 2 camere matrimoniali, 1 bagno, fino a 6 ospiti.",
   alternates: { canonical: "https://mirialeholidayhouse.it/miri" },
   openGraph: {
     title: "Miri — MiriAle Holiday House",

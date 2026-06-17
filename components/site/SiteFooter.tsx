@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { EMAIL, I, WHATSAPP_DISPLAY, mailto, telLink, waLink } from "@/lib/site";
+import { CIN, EMAIL, I, LICENSE_NUMBER, WHATSAPP_DISPLAY, mailto, telLink, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
 
 /** CTA finale + footer globale: un'unica sezione con sfondo mare condiviso. */
@@ -91,10 +91,20 @@ export default function SiteFooter() {
           </div>
         </div>
 
+        {/* ---------- legal line ---------- */}
+        <div className="border-t border-white/10">
+          <p className="mx-auto max-w-7xl px-6 py-3 text-center text-[11px] leading-relaxed text-cream/55 md:px-8">
+            {tr(lang, {
+              it: `Casa vacanze gestita da host privato · Codice identificativo nazionale (CIN) ${CIN} · N. licenza ${LICENSE_NUMBER}`,
+              en: `Holiday home managed by a private host · National identification code (CIN) ${CIN} · Licence no. ${LICENSE_NUMBER}`,
+            })}
+          </p>
+        </div>
+
         {/* ---------- bottom bar ---------- */}
         <div className="border-t border-white/10">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-[11px] text-cream/65 sm:flex-row md:px-8">
-            <span>© 2025 MiriAle Holiday House · {tr(lang, { it: "Tutti i diritti riservati", en: "All rights reserved" })}</span>
+            <span>© 2026 MiriAle Holiday House · {tr(lang, { it: "Tutti i diritti riservati", en: "All rights reserved" })}</span>
             <span className="flex gap-5">
               <Link href="/contatti" className="transition hover:text-white">{tr(lang, { it: "Privacy Policy", en: "Privacy Policy" })}</Link>
               <Link href="/contatti" className="transition hover:text-white">{tr(lang, { it: "Termini e condizioni", en: "Terms & Conditions" })}</Link>

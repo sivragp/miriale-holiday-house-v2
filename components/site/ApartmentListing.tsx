@@ -7,6 +7,7 @@ import {
   ArrowRight,
   Bath,
   BedDouble,
+  Building2,
   Car,
   Check,
   CigaretteOff,
@@ -32,12 +33,10 @@ import {
   PartyPopper,
   PawPrint,
   Plane,
-  Plus,
   Quote,
   Refrigerator,
   ShieldCheck,
   Shirt,
-  ShoppingCart,
   ShowerHead,
   Sofa,
   Sparkles,
@@ -170,6 +169,8 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: Fan, t: { it: "Phon", en: "Hairdryer" } },
     { Icon: Bath, t: { it: "Biancheria inclusa", en: "Towels & linen included" } },
     { Icon: Sun, t: { it: "Balcone", en: "Balcony" } },
+    { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden" } },
+    { Icon: Plane, t: { it: "Navetta aeroporto (a pagamento)", en: "Airport shuttle (paid)" } },
     { Icon: Car, t: { it: "Parcheggio privato gratuito", en: "Private free parking" } },
   ];
   const praised: { t: B; v: string }[] = [
@@ -186,35 +187,39 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: MapPin, t: { it: "Consigli su ristoranti, spiagge e Roma", en: "Local tips for restaurants, beaches & Rome" } },
     { Icon: MessageCircle, t: { it: "Comunicazione rapida su WhatsApp", en: "Quick communication on WhatsApp" } },
   ];
+  // Distanze REALI dall'annuncio Booking ("Dintorni della struttura").
   const localPoints: { Icon: typeof Plane; t: B; rows: { p: B; d: B }[] }[] = [
-    { Icon: ShoppingCart, t: { it: "Supermercati", en: "Supermarkets" }, rows: [
-      { p: { it: "Conad", en: "Conad" }, d: { it: "5 min", en: "5 min" } },
-      { p: { it: "Carrefour Express", en: "Carrefour Express" }, d: { it: "6 min", en: "6 min" } },
+    { Icon: Plane, t: { it: "Aeroporti", en: "Airports" }, rows: [
+      { p: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)" }, d: { it: "5 km", en: "5 km" } },
+      { p: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport" }, d: { it: "31 km", en: "31 km" } },
     ] },
-    { Icon: Fish, t: { it: "Ristoranti di pesce", en: "Seafood restaurants" }, rows: [
-      { p: { it: "Pascucci al Porticciolo", en: "Pascucci al Porticciolo" }, d: { it: "6 min", en: "6 min" } },
-      { p: { it: "Bastianelli al Molo", en: "Bastianelli al Molo" }, d: { it: "5 min", en: "5 min" } },
+    { Icon: Train, t: { it: "Mezzi pubblici", en: "Public transport" }, rows: [
+      { p: { it: "Bus pubblico (FCO e Ostia)", en: "Public bus (FCO & Ostia)" }, d: { it: "500 m a piedi", en: "500 m walk" } },
+      { p: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train" }, d: { it: "5 km", en: "5 km" } },
+    ] },
+    { Icon: Fish, t: { it: "Ristoranti vicini", en: "Nearby restaurants" }, rows: [
+      { p: { it: "It Italian Restaurant", en: "It Italian Restaurant" }, d: { it: "700 m", en: "700 m" } },
+      { p: { it: "Ristorante Luana", en: "Luana restaurant" }, d: { it: "700 m", en: "700 m" } },
+      { p: { it: "Ristorante Docking 9", en: "Docking 9 restaurant" }, d: { it: "1,8 km", en: "1.8 km" } },
     ] },
     { Icon: Waves, t: { it: "Spiagge", en: "Beaches" }, rows: [
-      { p: { it: "Focene", en: "Focene" }, d: { it: "5 min", en: "5 min" } },
-      { p: { it: "Fregene", en: "Fregene" }, d: { it: "15 min", en: "15 min" } },
+      { p: { it: "Lungomare della Salute", en: "Lungomare della Salute" }, d: { it: "3,9 km", en: "3.9 km" } },
+      { p: { it: "Focene", en: "Focene" }, d: { it: "4,7 km", en: "4.7 km" } },
+      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "4,7 km", en: "4.7 km" } },
+      { p: { it: "Castel Fusano", en: "Castel Fusano" }, d: { it: "7 km", en: "7 km" } },
     ] },
-    { Icon: Plus, t: { it: "Farmacia e servizi", en: "Pharmacy & essentials" }, rows: [
-      { p: { it: "Farmacia", en: "Pharmacy" }, d: { it: "5 min", en: "5 min" } },
-      { p: { it: "Bancomat / ATM", en: "ATM / cash" }, d: { it: "5 min", en: "5 min" } },
+    { Icon: Landmark, t: { it: "Cultura e natura", en: "Culture & nature" }, rows: [
+      { p: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins" }, d: { it: "4,3 km", en: "4.3 km" } },
+      { p: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods" }, d: { it: "11 km", en: "11 km" } },
     ] },
-    { Icon: Train, t: { it: "Trasporti", en: "Transport" }, rows: [
-      { p: { it: "Stazione treni", en: "Train station" }, d: { it: "7 min a piedi", en: "7 min walk" } },
-      { p: { it: "Aeroporto FCO", en: "FCO Airport" }, d: { it: "10 min", en: "10 min" } },
-    ] },
-    { Icon: Landmark, t: { it: "Cultura", en: "Culture" }, rows: [
-      { p: { it: "Ostia Antica", en: "Ostia Antica" }, d: { it: "12 min", en: "12 min" } },
-      { p: { it: "Roma (in treno)", en: "Rome (by train)" }, d: { it: "32 min", en: "32 min" } },
+    { Icon: Building2, t: { it: "Fiere ed eventi", en: "Fairs & events" }, rows: [
+      { p: { it: "Fiera di Roma", en: "Fiera di Roma" }, d: { it: "7 km", en: "7 km" } },
+      { p: { it: "PalaLottomatica", en: "PalaLottomatica" }, d: { it: "22 km", en: "22 km" } },
     ] },
   ];
   const whoFor: { Icon: typeof Users; img: string; t: B; s: B }[] = isCasa
     ? [
-        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie numerose", en: "Large families" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 8 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 8 guests." } },
+        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie numerose", en: "Large families" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 10 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 10 guests." } },
         { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Gruppi di amici", en: "Groups of friends" }, s: { it: "Tutta la casa per voi, vicino al mare e a Roma.", en: "The whole house to yourselves, close to the sea and Rome." } },
         { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Due famiglie insieme", en: "Two families together" }, s: { it: "Due appartamenti indipendenti, un solo giardino in comune.", en: "Two independent apartments, one shared garden." } },
         { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Occasioni speciali", en: "Special occasions" }, s: { it: "Reunion e ritrovi a due passi dall'aeroporto.", en: "Reunions and gatherings a step from the airport." } },
@@ -231,7 +236,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: CigaretteOff, t: { it: "Non fumatori", en: "Non-smoking" }, s: { it: "all'interno", en: "inside" } },
     { Icon: PawPrint, t: { it: "Niente animali", en: "No pets" }, s: { it: "", en: "" } },
     { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },
-    { Icon: UserCheck, t: { it: "Età minima", en: "Minimum age" }, s: { it: "18", en: "18" } },
+    { Icon: Users, t: { it: "Bambini", en: "Children" }, s: { it: "di tutte le età", en: "all ages welcome" } },
     { Icon: MoonStar, t: { it: "Silenzio", en: "Quiet time" }, s: { it: "23:00 – 07:00", en: "23:00 – 07:00" } },
   ];
 
@@ -239,7 +244,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   const highlightsBySlug: Record<string, { Icon: typeof HomeIcon; t: B; s: B }[]> = {
     miri: [
       { Icon: CookingPot, t: { it: "Una vera cucina in legno", en: "A real wooden kitchen" }, s: { it: "Forno, piano cottura, frigo e tutto per cucinare in autonomia, con tavolo da pranzo.", en: "Oven, hob, fridge and everything to cook on your own, with a dining table." } },
-      { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms" }, s: { it: "Spazio comodo fino a 4 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 4 guests, with quality linens and wardrobes." } },
+      { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms" }, s: { it: "Spazio comodo fino a 6 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 6 guests, with quality linens and wardrobes." } },
       { Icon: DoorOpen, t: { it: "Piano terra, senza scale", en: "Ground floor, no stairs" }, s: { it: "Ingresso comodo con bagagli, passeggini o per chi preferisce evitare le scale.", en: "Easy entrance with luggage, strollers or for anyone avoiding stairs." } },
       { Icon: Leaf, t: { it: "Giardino e parcheggio", en: "Garden & parking" }, s: { it: "Accesso al giardino privato condiviso con terrazza colazione e parcheggio gratuito.", en: "Access to the shared private garden with breakfast terrace and free parking." } },
     ],
@@ -251,7 +256,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     ],
     casa: [
       { Icon: HomeIcon, t: { it: "Due appartamenti, una casa", en: "Two apartments, one house" }, s: { it: "Miri e Ale insieme: indipendenti ma uniti dallo stesso giardino.", en: "Miri and Ale together: independent but joined by the same garden." } },
-      { Icon: BedDouble, t: { it: "4 camere, 2 bagni", en: "4 bedrooms, 2 bathrooms" }, s: { it: "Spazio e privacy fino a 8 ospiti, ideale per gruppi e famiglie numerose.", en: "Space and privacy for up to 8 guests, ideal for groups and large families." } },
+      { Icon: BedDouble, t: { it: "4 camere, 2 bagni", en: "4 bedrooms, 2 bathrooms" }, s: { it: "Spazio e privacy fino a 10 ospiti, ideale per gruppi e famiglie numerose.", en: "Space and privacy for up to 10 guests, ideal for groups and large families." } },
       { Icon: CookingPot, t: { it: "Due cucine indipendenti", en: "Two independent kitchens" }, s: { it: "Una per appartamento: organizzazione facile anche in tanti.", en: "One per apartment: easy organisation even in large groups." } },
       { Icon: Leaf, t: { it: "Giardino privato condiviso", en: "Shared private garden" }, s: { it: "Terrazza per la colazione, sedute all'aperto e parcheggio gratuito.", en: "Breakfast terrace, outdoor seating and free parking." } },
     ],
@@ -285,7 +290,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   // "Esplora la zona" — città e luoghi vicini con cosa vedere
   const exploreCities: { img: string; t: B; time: B; s: B }[] = [
     { img: "/images/luoghi/roma.jpg", t: { it: "Roma", en: "Rome" }, time: { it: "~32 min in treno", en: "~32 min by train" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi e Trastevere: la Città Eterna in giornata, senza auto.", en: "Colosseum, Vatican, Trevi Fountain and Trastevere: the Eternal City in a day, no car needed." } },
-    { img: "/images/luoghi/ostia.jpg", t: { it: "Ostia Antica", en: "Ostia Antica" }, time: { it: "~12 min in auto", en: "~12 min by car" }, s: { it: "Uno dei siti archeologici meglio conservati: teatro romano, terme e mosaici.", en: "One of the best preserved archaeological sites: Roman theatre, baths and mosaics." } },
+    { img: "/images/luoghi/ostia.jpg", t: { it: "Ostia Antica", en: "Ostia Antica" }, time: { it: "~4 km in auto", en: "~4 km by car" }, s: { it: "Uno dei siti archeologici meglio conservati: teatro romano, terme e mosaici.", en: "One of the best preserved archaeological sites: Roman theatre, baths and mosaics." } },
     { img: "/images/luoghi/beach.jpg", t: { it: "Spiagge e lungomare", en: "Beaches & seafront" }, time: { it: "~10 min in auto", en: "~10 min by car" }, s: { it: "Focene, Fregene e Ostia: stabilimenti, passeggiate e tramonti sul mare.", en: "Focene, Fregene and Ostia: beach clubs, walks and sunsets by the sea." } },
     { img: "/images/luoghi/pesce.jpg", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, time: { it: "~8 min in auto", en: "~8 min by car" }, s: { it: "Ristoranti di pesce, il faro e la passeggiata lungo il porto-canale.", en: "Seafood restaurants, the lighthouse and a walk along the canal-port." } },
   ];
@@ -501,7 +506,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
               <span className="font-serif text-4xl font-bold text-deep-brown">8.8<span className="text-xl font-semibold text-warm-gray">/10</span></span>
               <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
             </div>
-            <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni", en: "from 122 reviews" })}</p>
+            <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 129 recensioni", en: "from 129 reviews" })}</p>
             <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings" })}</p>
             <ul className="mt-2 space-y-1.5">
               {praised.map((p) => (
