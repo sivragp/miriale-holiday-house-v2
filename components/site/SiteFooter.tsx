@@ -15,7 +15,7 @@ export default function SiteFooter() {
     { label: { it: "Servizi", en: "Amenities" }, href: "/#servizi" },
   ];
   const quick2 = [
-    { label: { it: "Recensioni", en: "Reviews" }, href: "/#recensioni" },
+    { label: { it: "Recensioni", en: "Reviews" }, href: "/recensioni" },
     { label: { it: "FAQ", en: "FAQ" }, href: "/#faq" },
     { label: { it: "Contatti", en: "Contact" }, href: "/contatti" },
   ];

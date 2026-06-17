@@ -165,13 +165,4 @@ export function getAppartamento(slug: string): Appartamento | undefined {
   return APPARTAMENTI.find((a) => a.slug === slug);
 }
 
-/** Recensioni reali di ospiti su Booking (8.8 "Favoloso" · 129 recensioni).
- *  Testo italiano verbatim dall'annuncio; versione EN = traduzione fedele. */
-export const RECENSIONI: { t: B; who: string }[] = [
-  { t: { it: "Struttura molto carina in una villetta su più piani, pulita e vicina all'aeroporto. Host molto gentile. Ottima la possibilità del caffè al mattino e del parcheggio interno.", en: "A lovely place in a multi-storey villa, clean and close to the airport. Very kind host. Great to have coffee in the morning and private parking inside." }, who: "Antonio · 🇮🇹" },
-  { t: { it: "Fabio e sua moglie sono stati gentilissimi e molto ospitali. Ci hanno aiutato con le valigie. Anche il collegamento con l'aeroporto è stato efficiente e veloce.", en: "Fabio and his wife were extremely kind and welcoming. They helped us with our luggage. The airport connection was efficient and fast too." }, who: "Paparcone · 🇺🇸" },
-  { t: { it: "Appartamento molto accogliente, posizione buona sia per il mare che per la Fiera di Roma.", en: "A very welcoming apartment, great location both for the sea and for Fiera di Roma." }, who: "Ulisse · 🇮🇹" },
-  { t: { it: "Ambienti puliti, letti comodi e il cucinino per la colazione. Ottima accoglienza. Gentilissimo Fabio, che si è offerto di venirci a prendere alla stazione.", en: "Clean rooms, comfortable beds and a little kitchen for breakfast. Lovely welcome. Fabio was so kind he offered to pick us up at the station." }, who: "Alfonso · 🇮🇹" },
-  { t: { it: "Appartamento molto carino e dotato di tutto il necessario. Molto comodo il parcheggio privato. Host veramente gentile e disponibile.", en: "Very nice apartment, equipped with everything you need. The private parking is really handy. A genuinely kind and helpful host." }, who: "Martina · 🇮🇹" },
-  { t: { it: "Posto tranquillo, facilmente raggiungibile dalla Fiera, con posto auto riservato. Proprietario disponibile e cordiale.", en: "Quiet spot, easy to reach from the Fiera, with reserved parking. Helpful and friendly owner." }, who: "Guglielmo · 🇮🇹" },
-];
+// Le recensioni reali sono ora in `lib/reviews.tsx` (REVIEWS + REVIEW_STATS).

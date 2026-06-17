@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   CalendarCheck,
   CalendarX,
@@ -246,6 +247,9 @@ export default function Contacts() {
                 <li key={c.en} className="flex items-center gap-2 text-sm text-deep-brown"><Check className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(c)}</li>
               ))}
             </ul>
+            <Link href="/recensioni" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:underline">
+              {tr(lang, { it: "Leggi tutte le 129 recensioni →", en: "Read all 129 reviews →" })}
+            </Link>
           </div>
         </div>
       </section>

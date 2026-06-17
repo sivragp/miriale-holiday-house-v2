@@ -33,7 +33,6 @@ import {
   PartyPopper,
   PawPrint,
   Plane,
-  Quote,
   Refrigerator,
   ShieldCheck,
   Shirt,
@@ -55,8 +54,10 @@ import {
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
 import GalleryModal from "@/components/site/GalleryModal";
+import ReviewsCarousel from "@/components/site/ReviewsCarousel";
 import { useLang, tr } from "@/components/site/LangProvider";
-import { type Appartamento, type B, RECENSIONI } from "@/lib/apartments";
+import { type Appartamento, type B } from "@/lib/apartments";
+import { REVIEWS } from "@/lib/reviews";
 
 /** Mappa chiave dotazione → icona, per i bullet di ogni stanza. */
 const AMENITY_ICONS: Record<string, typeof BedDouble> = {
@@ -517,15 +518,14 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
               ))}
             </ul>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {RECENSIONI.map((r) => (
-              <figure key={r.who} className="rounded-2xl border border-line bg-cream p-5">
-                <Quote className="h-6 w-6 text-terracotta/60" />
-                <blockquote className="mt-2 text-sm leading-relaxed text-deep-brown">{t(r.t)}</blockquote>
-                <div className="mt-3 flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}</div>
-                <figcaption className="mt-2 text-xs font-semibold text-warm-gray">{r.who}</figcaption>
-              </figure>
-            ))}
+          <div>
+            <ReviewsCarousel reviews={REVIEWS} />
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <Link href="/recensioni" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-5 py-2.5 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
+                {tr(lang, { it: "Leggi tutte le 129 recensioni", en: "Read all 129 reviews" })} <ArrowRight className="h-4 w-4" />
+              </Link>
+              <span className="text-xs text-warm-gray">{tr(lang, { it: "Recensioni reali verificate da Booking.com", en: "Genuine reviews verified by Booking.com" })}</span>
+            </div>
           </div>
         </div>
       </Section>

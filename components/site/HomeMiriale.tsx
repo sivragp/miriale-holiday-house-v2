@@ -25,7 +25,6 @@ import {
   PartyPopper,
   PawPrint,
   Plane,
-  Quote,
   ShieldCheck,
   SquareParking,
   Star,
@@ -40,8 +39,10 @@ import {
 } from "lucide-react";
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
 import CardCarousel from "@/components/site/CardCarousel";
+import ReviewsCarousel from "@/components/site/ReviewsCarousel";
 import { useLang, tr } from "@/components/site/LangProvider";
-import { APPARTAMENTI, RECENSIONI, type B } from "@/lib/apartments";
+import { APPARTAMENTI, type B } from "@/lib/apartments";
+import { REVIEWS } from "@/lib/reviews";
 
 function Ph({ label, className = "" }: { label: string; className?: string }) {
   return (
@@ -323,7 +324,7 @@ export default function HomeMiriale() {
                 <span className="font-serif text-4xl font-bold text-deep-brown">8.8<span className="text-xl text-warm-gray">/10</span></span>
                 <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
               </div>
-              <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 122 recensioni", en: "from 122 reviews" })}</p>
+              <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "Favoloso · da 129 recensioni", en: "Fabulous · from 129 reviews" })}</p>
               <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings" })}</p>
               <ul className="mt-2 space-y-1.5">
                 {praised.map((p) => (
@@ -335,17 +336,13 @@ export default function HomeMiriale() {
               </ul>
             </div>
             <div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {RECENSIONI.map((r) => (
-                  <figure key={r.who} className="rounded-2xl border border-line bg-paper p-5">
-                    <Quote className="h-6 w-6 text-terracotta/50" />
-                    <blockquote className="mt-2 text-sm leading-relaxed text-deep-brown">{t(r.t)}</blockquote>
-                    <div className="mt-3 flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}</div>
-                    <figcaption className="mt-2 text-xs font-semibold text-warm-gray">{r.who}</figcaption>
-                  </figure>
-                ))}
+              <ReviewsCarousel reviews={REVIEWS} />
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <Link href="/recensioni" className="inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:underline">
+                  {tr(lang, { it: "Leggi tutte le 129 recensioni →", en: "Read all 129 reviews →" })}
+                </Link>
+                <span className="text-xs text-warm-gray">{tr(lang, { it: "Recensioni reali verificate da Booking.com", en: "Genuine reviews verified by Booking.com" })}</span>
               </div>
-              <p className="mt-4 text-center text-xs text-warm-gray sm:text-right">{tr(lang, { it: "Leggi altre recensioni su Google", en: "Read more reviews on Google" })}</p>
             </div>
           </div>
         </div>
