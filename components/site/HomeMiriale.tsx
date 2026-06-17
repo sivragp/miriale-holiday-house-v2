@@ -39,7 +39,7 @@ import {
 } from "lucide-react";
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
 import CardCarousel from "@/components/site/CardCarousel";
-import ReviewsCarousel from "@/components/site/ReviewsCarousel";
+import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { APPARTAMENTI, type B } from "@/lib/apartments";
 import { REVIEWS } from "@/lib/reviews";
@@ -336,7 +336,7 @@ export default function HomeMiriale() {
               </ul>
             </div>
             <div>
-              <ReviewsCarousel reviews={REVIEWS} />
+              <ReviewsGridCarousel reviews={REVIEWS} perPage={4} maxPages={3} />
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                 <Link href="/recensioni" className="inline-flex items-center gap-2 text-sm font-semibold text-terracotta hover:underline">
                   {tr(lang, { it: "Leggi tutte le 129 recensioni →", en: "Read all 129 reviews →" })}
