@@ -346,7 +346,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== SPECS BAR ===================== */}
       <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/45" />
+        <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8 pt-8">
           <div className="grid grid-cols-2 gap-4 rounded-2xl border border-line bg-paper px-6 py-5 shadow-card sm:grid-cols-3 lg:grid-cols-5">
             {specs.map((s) => (
@@ -364,7 +364,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== BOOKING + HOST ===================== */}
       <section className="relative overflow-hidden bg-cover bg-center pb-12" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/45" />
+        <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[1.4fr_1fr]">
           {/* booking */}
           <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm">
@@ -428,7 +428,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== WHAT YOU'LL LOVE ===================== */}
-      <Section bg="teal">
+      <Section bg="cream">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Cosa amerai", en: "What you'll love" })}</p>
@@ -481,7 +481,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== AMENITIES ===================== */}
-      <Section bg="teal" id="amenities">
+      <Section bg="cream" id="amenities">
         <p className={eyebrow}>{tr(lang, { it: "Servizi", en: "Amenities" })}</p>
         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
           {amenities.map((a) => (
@@ -526,7 +526,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== MEET YOUR HOST ===================== */}
-      <Section bg="teal">
+      <Section bg="cream">
         <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_1.1fr_0.8fr] lg:gap-8">
           <div className="relative min-h-[260px] overflow-hidden rounded-2xl">
             <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family" })} className="absolute inset-0" />
@@ -580,7 +580,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </Section>
 
       {/* ===================== EXPLORE THE AREA ===================== */}
-      <Section bg="teal">
+      <Section bg="cream">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className={eyebrow}>{tr(lang, { it: "Esplora la zona", en: "Explore the area" })}</p>
@@ -654,7 +654,7 @@ function Section({ bg, id, children }: { bg: "paper" | "cream" | "teal"; id?: st
       className={`relative overflow-hidden py-12 md:py-14 ${isTeal ? "bg-cover bg-center" : bg === "cream" ? "bg-cream" : "bg-paper"}`}
       style={isTeal ? { backgroundImage: "url('/images/luoghi/teal-water.jpg')" } : undefined}
     >
-      {isTeal ? <div className="absolute inset-0 bg-paper/45" /> : null}
+      {isTeal ? <div className="absolute inset-0 bg-paper/30" /> : null}
       <div className="relative z-10 mx-auto max-w-7xl px-6">{children}</div>
     </section>
   );

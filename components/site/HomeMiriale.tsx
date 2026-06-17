@@ -257,7 +257,7 @@ export default function HomeMiriale() {
 
       {/* ===================== CHOOSE YOUR STAY ===================== */}
       <section id="apartments" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/40" />
+        <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
@@ -312,9 +312,8 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== REVIEWS ===================== */}
-      <section id="recensioni" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/40" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <section id="recensioni" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
             <div>
               <p className={eyebrow}>{tr(lang, { it: "Perché gli ospiti amano", en: "Why guests love" })}</p>
@@ -376,9 +375,8 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== LOCATION ===================== */}
-      <section id="dove-siamo" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/40" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <section id="dove-siamo" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "In posizione perfetta", en: "Perfectly located" })}</p>
             <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Vicino a tutto ciò che conta", en: "Close to everything that matters" })}</h2>
@@ -444,9 +442,8 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== COMFORTS (AMENITIES) ===================== */}
-      <section id="servizi" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
-        <div className="absolute inset-0 bg-paper/40" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <section id="servizi" className="bg-cream py-12 md:py-14">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Tutti i comfort che ti servono", en: "All the comforts you need" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />

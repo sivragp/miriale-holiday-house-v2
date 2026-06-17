@@ -155,8 +155,9 @@ export default function Contacts() {
       </section>
 
       {/* ===================== ALL WAYS TO CONTACT ===================== */}
-      <section className="bg-cream py-12 md:py-14">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
+        <div className="absolute inset-0 bg-paper/30" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <h2 className={titleC}>{tr(lang, { it: "Tutti i modi per contattarci", en: "All the ways to contact us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
