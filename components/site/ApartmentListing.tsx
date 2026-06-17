@@ -345,7 +345,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </section>
 
       {/* ===================== SPECS BAR ===================== */}
-      <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/images/luoghi/teal-water-2.jpg')" }}>
+      <section className="relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
         <div className="absolute inset-0 bg-paper/45" />
         <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8 pt-8">
           <div className="grid grid-cols-2 gap-4 rounded-2xl border border-line bg-paper px-6 py-5 shadow-card sm:grid-cols-3 lg:grid-cols-5">
@@ -363,7 +363,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       </section>
 
       {/* ===================== BOOKING + HOST ===================== */}
-      <section className="relative overflow-hidden bg-cover bg-center pb-12" style={{ backgroundImage: "url('/images/luoghi/teal-water-2.jpg')" }}>
+      <section className="relative overflow-hidden bg-cover bg-center pb-12" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
         <div className="absolute inset-0 bg-paper/45" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[1.4fr_1fr]">
           {/* booking */}
@@ -652,7 +652,7 @@ function Section({ bg, id, children }: { bg: "paper" | "cream" | "teal"; id?: st
     <section
       id={id}
       className={`relative overflow-hidden py-12 md:py-14 ${isTeal ? "bg-cover bg-center" : bg === "cream" ? "bg-cream" : "bg-paper"}`}
-      style={isTeal ? { backgroundImage: "url('/images/luoghi/teal-water-2.jpg')" } : undefined}
+      style={isTeal ? { backgroundImage: "url('/images/luoghi/teal-water.jpg')" } : undefined}
     >
       {isTeal ? <div className="absolute inset-0 bg-paper/45" /> : null}
       <div className="relative z-10 mx-auto max-w-7xl px-6">{children}</div>
