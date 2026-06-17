@@ -60,18 +60,18 @@ export default function Experiences() {
   ];
 
   const top: { img: string | null; phLabel: string; t: B; near: B; s: B; time: B; by: B; Icon: typeof Car }[] = [
-    { img: null, phLabel: "Roma", t: { it: "Roma", en: "Rome" }, near: { it: "~30 km", en: "~30 km" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi, Trastevere e molto altro. Senza auto!", en: "Colosseum, Vatican, Trevi Fountain, Trastevere and more. No car needed!" }, time: { it: "32 min", en: "32 min" }, by: { it: "in treno", en: "by train" }, Icon: Train },
+    { img: "/images/luoghi/esp-roma-card.jpg", phLabel: "Roma", t: { it: "Roma", en: "Rome" }, near: { it: "~30 km", en: "~30 km" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi, Trastevere e molto altro. Senza auto!", en: "Colosseum, Vatican, Trevi Fountain, Trastevere and more. No car needed!" }, time: { it: "32 min", en: "32 min" }, by: { it: "in treno", en: "by train" }, Icon: Train },
     { img: "/images/base-roma-mare.jpg", phLabel: "Mare", t: { it: "Il mare", en: "The Sea" }, near: { it: "Focene, Fregene, Ostia Lido", en: "Focene, Fregene, Ostia Lido" }, s: { it: "Spiagge, stabilimenti, passeggiate sul lungomare e tramonti spettacolari.", en: "Beaches, beach clubs, seafront walks and stunning sunsets." }, time: { it: "5–20 min", en: "5–20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: null, phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "~20 min", en: "~20 min" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "20 min", en: "20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: null, phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, near: { it: "~10 min", en: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare." }, time: { it: "10 min", en: "10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: null, phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "~15 min", en: "~15 min" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "15 min", en: "15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: null, phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services" }, near: { it: "~5 min", en: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." }, time: { it: "5 min", en: "5 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "~20 min", en: "~20 min" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "20 min", en: "20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/porto.jpg", phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, near: { it: "~10 min", en: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare." }, time: { it: "10 min", en: "10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "~15 min", en: "~15 min" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "15 min", en: "15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/negozi.jpg", phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services" }, near: { it: "~5 min", en: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." }, time: { it: "5 min", en: "5 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
   ];
 
   type Step = { time: string; a: B; sub?: B };
   const ideas: { n: string; img: string | null; phLabel: string; t: B; sub: B; steps: Step[]; tip: B }[] = [
     {
-      n: "01", img: null, phLabel: "Roma", t: { it: "Una giornata a Roma", en: "A day in Rome" }, sub: { it: "Storia, arte e cultura", en: "History, art & culture" },
+      n: "01", img: "/images/luoghi/pantheon.jpg", phLabel: "Roma", t: { it: "Una giornata a Roma", en: "A day in Rome" }, sub: { it: "Storia, arte e cultura", en: "History, art & culture" },
       steps: [
         { time: "09:00", a: { it: "Treno per Roma Termini (Leonardo Express — 32 min)", en: "Train to Roma Termini (Leonardo Express — 32 min)" } },
         { time: "09:30", a: { it: "Colosseo e Foro Romano", en: "Colosseum & Roman Forum" } },
@@ -94,7 +94,7 @@ export default function Experiences() {
       tip: { it: "Fregene è perfetta per i tramonti e l'aperitivo in riva al mare.", en: "Fregene is perfect for sunsets and seaside aperitivo." },
     },
     {
-      n: "03", img: null, phLabel: "Ostia Antica", t: { it: "Mezza giornata a Ostia Antica", en: "Half day in Ostia Antica" }, sub: { it: "Indietro nel tempo", en: "Step back in time" },
+      n: "03", img: "/images/luoghi/ostia-antica.jpg", phLabel: "Ostia Antica", t: { it: "Mezza giornata a Ostia Antica", en: "Half day in Ostia Antica" }, sub: { it: "Indietro nel tempo", en: "Step back in time" },
       steps: [
         { time: "10:00", a: { it: "Arrivo e inizio della visita", en: "Arrive & start your visit" }, sub: { it: "Esplora la città antica: teatro, terme, mosaici", en: "Explore the ancient city: theatre, baths, mosaics" } },
         { time: "12:30", a: { it: "Pausa al caffè dentro il parco", en: "Break at the café inside the park" } },
@@ -104,7 +104,7 @@ export default function Experiences() {
       tip: { it: "Indossa scarpe comode e porta acqua, soprattutto in estate.", en: "Wear comfortable shoes and bring water, especially in summer." },
     },
     {
-      n: "04", img: null, phLabel: "Porto di Fiumicino", t: { it: "Serata di pesce al porto", en: "Seafood evening at the port" }, sub: { it: "Buon cibo e atmosfera locale", en: "Good food & local vibe" },
+      n: "04", img: "/images/luoghi/ristorante-pesce.jpg", phLabel: "Porto di Fiumicino", t: { it: "Serata di pesce al porto", en: "Seafood evening at the port" }, sub: { it: "Buon cibo e atmosfera locale", en: "Good food & local vibe" },
       steps: [
         { time: "19:00", a: { it: "Passeggiata al porto-canale di Fiumicino", en: "Fiumicino canal-port stroll" } },
         { time: "19:30", a: { it: "Cena con pesce fresco e vino locale", en: "Dinner with fresh fish and local wine" } },
@@ -170,8 +170,29 @@ export default function Experiences() {
               ))}
             </div>
           </div>
-          <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] shadow-card">
-            <Ph label={tr(lang, { it: "Foto di Roma (Vaticano e Tevere)", en: "Photo of Rome (Vatican & Tiber)" })} className="absolute inset-0" />
+          {/* collage polaroid: foto grande incorniciata + foto piccole inclinate (come in home) */}
+          <div className="relative">
+            {/* foto principale con cornice bianca */}
+            <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
+                <Image src="/images/luoghi/esp-roma.jpg" alt={tr(lang, { it: "Panorama di Roma", en: "Rome skyline" })} fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
+              </div>
+            </div>
+            {/* cluster di polaroid sovrapposte */}
+            <div className="absolute -right-3 top-4 hidden w-36 lg:block xl:w-44">
+              <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-vaticano.jpg" alt={tr(lang, { it: "Piazza San Pietro", en: "St. Peter's Square" })} fill sizes="130px" className="object-cover" /></div>
+              </div>
+              <div className="-mt-3 ml-4 -rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-trevi.jpg" alt={tr(lang, { it: "Fontana di Trevi", en: "Trevi Fountain" })} fill sizes="130px" className="object-cover" /></div>
+              </div>
+              <div className="-mt-3 ml-1 rotate-2 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-villa-borghese.jpg" alt={tr(lang, { it: "Giardini di Villa Borghese", en: "Villa Borghese gardens" })} fill sizes="130px" className="object-cover" /></div>
+              </div>
+              <div className="-mt-3 ml-3 -rotate-2 rounded-xl bg-white p-1.5 shadow-xl">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-lungomare.jpg" alt={tr(lang, { it: "Lungomare e mare di Fiumicino", en: "Fiumicino seafront" })} fill sizes="130px" className="object-cover" /></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
