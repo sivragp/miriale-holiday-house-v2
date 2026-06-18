@@ -12,6 +12,7 @@ import {
   TRAVELLER_LABEL,
 } from "@/lib/reviews";
 import ReviewCard from "@/components/site/ReviewCard";
+import Reveal from "@/components/site/Reveal";
 import { I, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
 import type { B } from "@/lib/apartments";
@@ -84,7 +85,7 @@ export default function AllReviews() {
     <main className="flex-1">
       {/* ===================== HERO ===================== */}
       <section className="bg-paper">
-        <div className="mx-auto max-w-7xl px-6 py-10">
+        <Reveal className="mx-auto max-w-7xl px-6 py-10">
           <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-warm-gray transition hover:text-terracotta">
             <ArrowLeft className="h-4 w-4" /> {tr(lang, { it: "Torna alla home", en: "Back to home" })}
           </Link>
@@ -100,7 +101,7 @@ export default function AllReviews() {
             <span>·</span>
             <span>{tr(lang, { it: `${REVIEW_STATS.count} recensioni reali su Booking.com`, en: `${REVIEW_STATS.count} genuine reviews on Booking.com` })}</span>
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-cream py-10 md:py-12">

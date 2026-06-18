@@ -37,6 +37,7 @@ import {
   telLink,
   waLink,
 } from "@/lib/site";
+import Reveal from "@/components/site/Reveal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
 
@@ -159,10 +160,10 @@ export default function Contacts() {
       <section className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Tutti i modi per contattarci", en: "All the ways to contact us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <a href={telLink} className="rounded-2xl border border-line bg-paper p-6 text-center shadow-sm transition hover:shadow-card">
               <Phone className="mx-auto h-7 w-7 text-terracotta" strokeWidth={1.5} />
@@ -257,10 +258,10 @@ export default function Contacts() {
       {/* ===================== PRACTICAL INFO ===================== */}
       <section className="bg-paper py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className={titleC}>{tr(lang, { it: "Informazioni pratiche", en: "Practical information" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-5 rounded-2xl border border-line bg-cream px-6 py-6 sm:grid-cols-3 lg:grid-cols-6">
             {practical.map((p) => (
               <div key={p.t.en} className="flex flex-col items-center gap-2 text-center sm:flex-row sm:text-left">
@@ -275,10 +276,10 @@ export default function Contacts() {
       {/* ===================== HOW TO REACH US ===================== */}
       <section className="bg-cream py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className={titleC}>{tr(lang, { it: "Come raggiungerci", en: "How to reach us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {reach.map((r) => (
               <article key={r.n} className="flex flex-col rounded-2xl border border-line bg-paper p-5 shadow-sm">

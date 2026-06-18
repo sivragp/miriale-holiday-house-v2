@@ -54,6 +54,7 @@ import {
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
 import GalleryModal from "@/components/site/GalleryModal";
+import Reveal from "@/components/site/Reveal";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type Appartamento, type B } from "@/lib/apartments";
@@ -661,7 +662,7 @@ function Section({ bg, id, children }: { bg: "paper" | "cream" | "teal"; id?: st
       style={isTeal ? { backgroundImage: "url('/images/luoghi/teal-water.jpg')" } : undefined}
     >
       {isTeal ? <div className="absolute inset-0 bg-paper/30" /> : null}
-      <div className="relative z-10 mx-auto max-w-7xl px-6">{children}</div>
+      <Reveal className="relative z-10 mx-auto max-w-7xl px-6">{children}</Reveal>
     </section>
   );
 }

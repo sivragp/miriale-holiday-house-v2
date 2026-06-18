@@ -22,6 +22,7 @@ import {
   Waves,
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
+import Reveal from "@/components/site/Reveal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
 
@@ -62,7 +63,6 @@ export default function Experiences() {
     { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "4,3 km", en: "4.3 km" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "~10 min", en: "~10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/porto.jpg", phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, near: { it: "~10 min", en: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare." }, time: { it: "10 min", en: "10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "7 km", en: "7 km" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "~15 min", en: "~15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/guardia-finanza.jpg", phLabel: "Fiamme Gialle Ostia", t: { it: "Fiamme Gialle · Ostia", en: "Fiamme Gialle · Ostia" }, near: { it: "~20 min", en: "~20 min" }, s: { it: "Caserma e centro sportivo della Guardia di Finanza a Ostia: cerimonie, giuramenti e visite ai familiari degli allievi.", en: "Guardia di Finanza barracks and sports centre in Ostia: ceremonies, oath-taking and visits to cadets' families." }, time: { it: "~20 min", en: "~20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/negozi.jpg", phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services" }, near: { it: "~5 min", en: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." }, time: { it: "5 min", en: "5 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
   ];
 
@@ -200,10 +200,10 @@ export default function Experiences() {
       <section className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {top.map((c) => (
               <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
@@ -227,11 +227,11 @@ export default function Experiences() {
       {/* ===================== READY-MADE DAY IDEAS ===================== */}
       <section className="bg-paper py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Idee per la giornata, pronte all'uso", en: "Ready-made day ideas" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
             <p className="mt-3 text-sm text-warm-gray">{tr(lang, { it: "Itinerari facili per ispirare il tuo soggiorno — suggeriti da Fabio", en: "Easy itineraries to inspire your stay — suggested by Fabio" })}</p>
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {ideas.map((d) => (
               <article key={d.n} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
@@ -279,10 +279,10 @@ export default function Experiences() {
       {/* ===================== ALL NEARBY AT A GLANCE ===================== */}
       <section className="bg-cream py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Tutto nei dintorni — in sintesi", en: "All nearby – at a glance" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
             <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0" loading="lazy" title="Map" />
             <div className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
@@ -306,10 +306,10 @@ export default function Experiences() {
       {/* ===================== PRACTICAL INFO ===================== */}
       <section className="bg-paper py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Info pratiche per il tuo soggiorno", en: "Practical info for your stay" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {practical.map((p) => (
               <div key={p.t.en} className="rounded-2xl border border-line bg-cream p-5 text-center">

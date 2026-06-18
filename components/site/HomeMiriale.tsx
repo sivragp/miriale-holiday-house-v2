@@ -264,7 +264,7 @@ export default function HomeMiriale() {
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
+            <p className="font-script text-2xl leading-none text-white drop-shadow">{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
