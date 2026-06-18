@@ -21,7 +21,9 @@ export default function ReviewsGridCarousel({
   // suddivide in pagine da `perPage`, limitate a `maxPages`
   const pages: Review[][] = [];
   for (let i = 0; i < reviews.length; i += perPage) pages.push(reviews.slice(i, i + perPage));
-  const visiblePages = pages.slice(0, maxPages);
+  // tiene solo le pagine COMPLETE (sempre `perPage` card); se nessuna è completa, usa quel che c'è
+  const fullPages = pages.filter((p) => p.length === perPage);
+  const visiblePages = (fullPages.length ? fullPages : pages).slice(0, maxPages);
 
   const [page, setPage] = useState(0);
   const n = visiblePages.length;
