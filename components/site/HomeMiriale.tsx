@@ -226,13 +226,13 @@ export default function HomeMiriale() {
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
-                <Image src="/images/house/house-22.jpg" alt="La casa e il giardino di MiriAle" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
+                <Image src="/images/house/comune-32.jpg" alt="La villa MiriAle Holiday House a Fiumicino" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
               </div>
             </div>
             {/* cluster di polaroid sovrapposte */}
             <div className="absolute -right-3 top-4 hidden w-36 lg:block xl:w-44">
               <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-02.jpg" alt="Interno luminoso" fill sizes="130px" className="object-cover" /></div>
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/comune-24.jpg" alt="Giardino con ombrellone di MiriAle" fill sizes="130px" className="object-cover" /></div>
               </div>
               <div className="-mt-3 ml-4 -rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
                 <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="130px" className="object-cover" /></div>
