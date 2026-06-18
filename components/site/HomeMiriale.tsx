@@ -104,6 +104,7 @@ export default function HomeMiriale() {
   const hostChecks: { Icon: typeof UserCheck; t: B }[] = [
     { Icon: UserCheck, t: { it: "Check-in di persona e consigli locali", en: "In-person check-in and local tips" } },
     { Icon: Luggage, t: { it: "Aiuto coi bagagli e supporto parcheggio", en: "Luggage help and parking support" } },
+    { Icon: Coffee, t: { it: "Caffè al mattino offerto", en: "Complimentary morning coffee" } },
     { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid service)" } },
     { Icon: Users, t: { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish" } },
   ];
@@ -263,7 +264,7 @@ export default function HomeMiriale() {
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
-            <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
+            <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </div>
           <div className="mt-8 grid gap-5 lg:grid-cols-3">

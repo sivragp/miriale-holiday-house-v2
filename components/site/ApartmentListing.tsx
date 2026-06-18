@@ -136,6 +136,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: HomeIcon, t: { it: "Ospitalità familiare", en: "Family-run hospitality" } },
     { Icon: UserCheck, t: { it: "Accoglienza di persona", en: "In-person welcome" } },
     { Icon: Luggage, t: { it: "Aiuto coi bagagli", en: "Luggage help" } },
+    { Icon: Coffee, t: { it: "Caffè al mattino", en: "Morning coffee" } },
     { Icon: MapPin, t: { it: "Consigli e suggerimenti locali", en: "Local tips & recommendations" } },
     { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)" } },
   ];

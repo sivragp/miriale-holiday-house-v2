@@ -160,7 +160,7 @@ export default function Contacts() {
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
-            <h2 className={titleC}>{tr(lang, { it: "Tutti i modi per contattarci", en: "All the ways to contact us" })}</h2>
+            <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Tutti i modi per contattarci", en: "All the ways to contact us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">

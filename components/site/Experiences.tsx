@@ -62,6 +62,7 @@ export default function Experiences() {
     { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "4,3 km", en: "4.3 km" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "~10 min", en: "~10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/porto.jpg", phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, near: { it: "~10 min", en: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare." }, time: { it: "10 min", en: "10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "7 km", en: "7 km" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "~15 min", en: "~15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/guardia-finanza.jpg", phLabel: "Fiamme Gialle Ostia", t: { it: "Fiamme Gialle · Ostia", en: "Fiamme Gialle · Ostia" }, near: { it: "~20 min", en: "~20 min" }, s: { it: "Caserma e centro sportivo della Guardia di Finanza a Ostia: cerimonie, giuramenti e visite ai familiari degli allievi.", en: "Guardia di Finanza barracks and sports centre in Ostia: ceremonies, oath-taking and visits to cadets' families." }, time: { it: "~20 min", en: "~20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
     { img: "/images/luoghi/negozi.jpg", phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services" }, near: { it: "~5 min", en: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." }, time: { it: "5 min", en: "5 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
   ];
 
@@ -123,6 +124,7 @@ export default function Experiences() {
     { Icon: Landmark, t: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins" }, v: { it: "4,3 km", en: "4.3 km" } },
     { Icon: Leaf, t: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods" }, v: { it: "11 km", en: "11 km" } },
     { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, v: { it: "7 km", en: "7 km" } },
+    { Icon: Building2, t: { it: "Fiamme Gialle · Ostia (Guardia di Finanza)", en: "Fiamme Gialle · Ostia (Guardia di Finanza)" }, v: { it: "~20 min", en: "~20 min" } },
     { Icon: ShoppingCart, t: { it: "Ristoranti (It Italian, Luana)", en: "Restaurants (It Italian, Luana)" }, v: { it: "700 m", en: "700 m" } },
   ];
 
@@ -199,7 +201,7 @@ export default function Experiences() {
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House" })}</h2>
+            <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
