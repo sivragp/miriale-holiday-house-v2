@@ -10,24 +10,33 @@ import {
 } from "@/lib/reviews";
 import { useLang, tr } from "@/components/site/LangProvider";
 
-/** Card recensione in stile Booking: intestazione ospite, punteggio, pro e contro. */
-export default function ReviewCard({ r, className = "" }: { r: Review; className?: string }) {
+/** Card recensione in stile Booking: intestazione ospite, punteggio, pro e contro.
+ *  `compact` = altezza/testo contenuti (per il carosello in home/appartamento). */
+export default function ReviewCard({
+  r,
+  className = "",
+  compact = false,
+}: {
+  r: Review;
+  className?: string;
+  compact?: boolean;
+}) {
   const { lang } = useLang();
   const initial = r.name.charAt(0).toUpperCase();
 
   return (
-    <figure className={`flex h-full flex-col rounded-2xl border border-line bg-paper p-5 shadow-sm ${className}`}>
+    <figure className={`flex h-full flex-col rounded-2xl border border-line bg-paper shadow-sm ${compact ? "p-4" : "p-5"} ${className}`}>
       {/* header */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-cream-2 font-serif text-base font-bold text-deep-brown">
+          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-cream-2 font-serif text-sm font-bold text-deep-brown">
             {initial}
           </span>
           <div className="leading-tight">
-            <p className="font-semibold text-deep-brown">
+            <p className="text-sm font-semibold text-deep-brown">
               {r.name} <span className="ml-0.5">{flag(r.cc)}</span>
             </p>
-            <p className="text-xs text-warm-gray">
+            <p className="text-[11px] text-warm-gray">
               {tr(lang, TRAVELLER_LABEL[r.traveller])} · {tr(lang, PURPOSE_LABEL[r.purpose])}
             </p>
           </div>
@@ -38,21 +47,21 @@ export default function ReviewCard({ r, className = "" }: { r: Review; className
       </div>
 
       {/* body: pro / contro */}
-      <div className="mt-4 flex-1 space-y-2.5 text-sm leading-relaxed">
+      <div className={`mt-3 flex-1 space-y-2 leading-relaxed ${compact ? "text-[13px]" : "text-sm"}`}>
         <p className="flex gap-2 text-deep-brown">
           <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#2a9d4a]" strokeWidth={2} />
-          <span>{tr(lang, r.pos)}</span>
+          <span className={compact ? "line-clamp-4" : ""}>{tr(lang, r.pos)}</span>
         </p>
         {r.neg ? (
           <p className="flex gap-2 text-warm-gray">
             <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-warm-gray" strokeWidth={2} />
-            <span>{tr(lang, r.neg)}</span>
+            <span className={compact ? "line-clamp-2" : ""}>{tr(lang, r.neg)}</span>
           </p>
         ) : null}
       </div>
 
       {/* footer: data */}
-      <figcaption className="mt-4 border-t border-line-soft pt-3 text-xs text-warm-gray">
+      <figcaption className={`border-t border-line-soft text-warm-gray ${compact ? "mt-3 pt-2.5 text-[11px]" : "mt-4 pt-3 text-xs"}`}>
         {formatReviewDate(r.date, lang)} · Booking.com
       </figcaption>
     </figure>

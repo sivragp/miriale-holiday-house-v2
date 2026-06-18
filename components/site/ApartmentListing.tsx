@@ -54,7 +54,7 @@ import {
 } from "lucide-react";
 import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
 import GalleryModal from "@/components/site/GalleryModal";
-import ReviewsCarousel from "@/components/site/ReviewsCarousel";
+import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type Appartamento, type B } from "@/lib/apartments";
 import { REVIEWS } from "@/lib/reviews";
@@ -519,7 +519,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             </ul>
           </div>
           <div>
-            <ReviewsCarousel reviews={REVIEWS} />
+            <ReviewsGridCarousel reviews={REVIEWS} perPage={4} maxPages={3} />
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <Link href="/recensioni" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-5 py-2.5 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
                 {tr(lang, { it: "Leggi tutte le 129 recensioni", en: "Read all 129 reviews" })} <ArrowRight className="h-4 w-4" />

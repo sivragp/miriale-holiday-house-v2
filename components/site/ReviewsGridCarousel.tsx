@@ -31,9 +31,20 @@ export default function ReviewsGridCarousel({
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {visiblePages[page].map((r, i) => (
-          <ReviewCard key={r.name + i} r={r} />
+      {/* pagine impilate nella stessa cella: l'altezza resta fissa (= pagina più alta) */}
+      <div className="grid">
+        {visiblePages.map((pg, idx) => (
+          <div
+            key={idx}
+            aria-hidden={idx !== page}
+            className={`col-start-1 row-start-1 grid grid-cols-1 gap-4 transition-opacity duration-300 sm:grid-cols-2 ${
+              idx === page ? "opacity-100" : "pointer-events-none invisible opacity-0"
+            }`}
+          >
+            {pg.map((r, i) => (
+              <ReviewCard key={r.name + i} r={r} compact />
+            ))}
+          </div>
         ))}
       </div>
 
