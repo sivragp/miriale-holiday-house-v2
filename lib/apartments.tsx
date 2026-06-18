@@ -23,6 +23,8 @@ export type Appartamento = {
   tagline: B;
   descrizione: B;
   gallery: Img[];
+  /** Selezione curata (max 10, ~2 per stanza) per il carosello in home "Scegli il tuo soggiorno". */
+  cardGallery: Img[];
   stanze: Stanza[];
   love: Love[];
   waMsg: B;
@@ -65,6 +67,14 @@ export const APPARTAMENTI: Appartamento[] = [
       ...ph("miri", others(28, [1, 14, 11, 10, 8, 5, 16]), "Appartamento Miri"),
       ...ph("comune", [13, 16, 7, 1, 3, 26, 28, 4], "Spazi comuni e giardino"),
     ],
+    cardGallery: [
+      ...ph("miri", [1, 8], "Soggiorno e cucina di Miri"),
+      ...ph("miri", [14, 16], "Camera matrimoniale di Miri"),
+      ...ph("miri", [5, 6], "Seconda camera di Miri"),
+      ...ph("miri", [11, 12], "Bagno di Miri"),
+      ...ph("comune", [21], "Giardino di MiriAle"),
+      ...ph("miri", [22], "Terrazzo di Miri"),
+    ],
     stanze: [
       { nome: { it: "Camera matrimoniale", en: "Double bedroom" }, tag: { it: "Luminosa", en: "Bright" }, descr: { it: "Letto matrimoniale, armadio, aria condizionata e TV.", en: "Double bed, wardrobe, air conditioning and TV." }, imgs: ph("miri", [14, 16, 15], "Camera di Miri") },
       { nome: { it: "Seconda camera", en: "Second bedroom" }, tag: { it: "Due letti", en: "Twin beds" }, descr: { it: "Due letti singoli, armadio e aria condizionata.", en: "Two single beds, wardrobe and air conditioning." }, imgs: ph("miri", [5, 6], "Seconda camera di Miri") },
@@ -103,6 +113,14 @@ export const APPARTAMENTI: Appartamento[] = [
       ...ph("comune", [21], "Giardino di MiriAle"),
       ...ph("ale", others(67, [1, 40, 9, 15, 17, 5, 21]), "Appartamento Ale"),
       ...ph("comune", [13, 16, 7, 1, 3, 26, 28, 4], "Spazi comuni e giardino"),
+    ],
+    cardGallery: [
+      ...ph("ale", [1, 17], "Cucina e zona pranzo di Ale"),
+      ...ph("ale", [40, 5], "Camera matrimoniale di Ale"),
+      ...ph("ale", [9, 7], "Camera con lucernario di Ale"),
+      ...ph("ale", [15, 14], "Bagno in marmo di Ale"),
+      ...ph("ale", [21], "Balcone di Ale"),
+      ...ph("comune", [21], "Giardino di MiriAle"),
     ],
     stanze: [
       { nome: { it: "Camera matrimoniale", en: "Double bedroom" }, tag: { it: "Mansardata", en: "Attic" }, descr: { it: "Letto matrimoniale, armadio, aria condizionata. Soffitto spiovente.", en: "Double bed, wardrobe, air conditioning. Sloped ceiling." }, imgs: ph("ale", [40, 5, 18, 44], "Camera di Ale") },
@@ -150,6 +168,18 @@ export const APPARTAMENTI: Appartamento[] = [
       ...ph("miri", [8, 10, 5, 16, 2, 22], "Appartamento Miri"),
       ...ph("ale", [5, 9, 17, 46, 12, 25, 21], "Appartamento Ale"),
       ...ph("comune", others(34, [21, 28]), "Spazi comuni e giardino"),
+    ],
+    cardGallery: [
+      ...ph("miri", [1], "Soggiorno di Miri"),
+      ...ph("ale", [1], "Cucina di Ale"),
+      ...ph("miri", [14], "Camera di Miri"),
+      ...ph("ale", [40], "Camera di Ale"),
+      ...ph("miri", [11], "Bagno di Miri"),
+      ...ph("ale", [15], "Bagno di Ale"),
+      ...ph("miri", [16], "Camera di Miri"),
+      ...ph("ale", [9], "Camera di Ale"),
+      ...ph("comune", [21], "Giardino di MiriAle"),
+      ...ph("comune", [28], "La villa MiriAle"),
     ],
     stanze: [
       { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²" }, tag: { it: "Piano terra", en: "Ground floor" }, descr: { it: "Cucina in legno, soggiorno, 2 camere e 1 bagno. Fino a 6 ospiti.", en: "Wooden kitchen, living room, 2 bedrooms and 1 bathroom. Up to 6 guests." }, imgs: ph("miri", [1, 14], "Appartamento Miri") },

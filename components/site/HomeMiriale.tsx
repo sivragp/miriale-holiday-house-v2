@@ -270,7 +270,7 @@ export default function HomeMiriale() {
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
                 <div className="relative aspect-[16/10]">
-                  <CardCarousel images={s.apt.gallery} />
+                  <CardCarousel images={s.apt.cardGallery} />
                   <span className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
