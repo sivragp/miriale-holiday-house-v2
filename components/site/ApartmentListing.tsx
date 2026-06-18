@@ -617,7 +617,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         <p className={eyebrow}>{tr(lang, { it: "Per chi è perfetto", en: "Who it's perfect for" })}</p>
         <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {whoFor.map((w) => (
-            <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+            <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
               <div className="relative aspect-[4/3]">
                 <Image src={w.img} alt={t(w.t)} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" />
                 <span className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-terracotta shadow-sm"><w.Icon className="h-5 w-5" strokeWidth={1.6} /></span>

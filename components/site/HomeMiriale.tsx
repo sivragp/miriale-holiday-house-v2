@@ -40,6 +40,7 @@ import {
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
 import CardCarousel from "@/components/site/CardCarousel";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
+import Reveal from "@/components/site/Reveal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { APPARTAMENTI, type B } from "@/lib/apartments";
 import { REVIEWS } from "@/lib/reviews";
@@ -262,14 +263,14 @@ export default function HomeMiriale() {
       <section id="apartments" className="relative overflow-hidden bg-cover bg-center py-12 md:py-14" style={{ backgroundImage: "url('/images/luoghi/teal-water.jpg')" }}>
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Scegli il tuo soggiorno", en: "Choose your stay" })}</p>
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
             {stays.map((s) => (
-              <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">
                   <CardCarousel images={s.apt.cardGallery} />
                   <span className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
@@ -376,11 +377,11 @@ export default function HomeMiriale() {
       {/* ===================== LOCATION ===================== */}
       <section id="dove-siamo" className="bg-cream py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "In posizione perfetta", en: "Perfectly located" })}</p>
             <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Vicino a tutto ciò che conta", en: "Close to everything that matters" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-10">
             <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0 shadow-sm" loading="lazy" title="Map" />
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -421,14 +422,14 @@ export default function HomeMiriale() {
       {/* ===================== WHO WE'RE PERFECT FOR ===================== */}
       <section className="relative overflow-hidden bg-paper py-12 md:py-14">
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className={eyebrow}>{tr(lang, { it: "Ideale per", en: "Ideal for" })}</p>
             <h2 className={`mt-1 ${sectionTitle}`}>{tr(lang, { it: "Per chi siamo perfetti", en: "Who we're perfect for" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {whoFor.map((w) => (
-              <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[4/3]">
                   <Image src={w.img} alt={t(w.t)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" />
                   <span className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-paper/90 text-terracotta shadow-sm"><w.Icon className="h-5 w-5" strokeWidth={1.6} /></span>
@@ -443,10 +444,10 @@ export default function HomeMiriale() {
       {/* ===================== COMFORTS (AMENITIES) ===================== */}
       <section id="servizi" className="bg-cream py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Tutti i comfort che ti servono", en: "All the comforts you need" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 rounded-2xl border border-line bg-paper px-6 py-7 sm:grid-cols-3 lg:grid-cols-5">
             {comforts.map((c) => (
               <div key={c.t.en} className="flex flex-col items-center gap-2 text-center">
@@ -461,13 +462,13 @@ export default function HomeMiriale() {
       {/* ===================== EXPERIENCE THE AREA ===================== */}
       <section className="relative overflow-hidden bg-paper py-12 md:py-14">
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <h2 className={sectionTitle}>{tr(lang, { it: "Vivi il meglio della zona", en: "Experience the best of the area" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-          </div>
+          </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {area.map((a) => (
-              <article key={a.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <article key={a.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[4/3]">
                   <Image src={a.img} alt={t(a.t)} fill sizes="(max-width:1024px) 50vw, 20vw" className="object-cover" />
                 </div>

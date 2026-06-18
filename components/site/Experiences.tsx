@@ -206,7 +206,7 @@ export default function Experiences() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {top.map((c) => (
-              <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[4/3]">
                   {c.img ? <Image src={c.img} alt={t(c.t)} fill sizes="(max-width:1280px) 50vw, 16vw" className="object-cover" /> : <Ph label={c.phLabel} className="absolute inset-0" />}
                 </div>
@@ -234,7 +234,7 @@ export default function Experiences() {
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {ideas.map((d) => (
-              <article key={d.n} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <article key={d.n} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">
                   {d.img ? <Image src={d.img} alt={t(d.t)} fill sizes="(max-width:1280px) 50vw, 25vw" className="object-cover" /> : <Ph label={d.phLabel} className="absolute inset-0" />}
                   <span className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-deep-brown text-sm font-bold text-white shadow">{d.n}</span>

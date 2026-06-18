@@ -25,7 +25,7 @@ export default function ReviewCard({
   const initial = r.name.charAt(0).toUpperCase();
 
   return (
-    <figure className={`flex h-full flex-col rounded-2xl border border-line bg-paper shadow-sm ${compact ? "p-4" : "p-5"} ${className}`}>
+    <figure className={`flex h-full flex-col rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-card ${compact ? "p-4" : "p-5"} ${className}`}>
       {/* header */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
