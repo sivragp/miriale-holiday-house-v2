@@ -52,7 +52,7 @@ import {
   Wifi,
   Wind,
 } from "lucide-react";
-import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, MAPS_SHORT, cardRail, waLink } from "@/lib/site";
 import GalleryModal from "@/components/site/GalleryModal";
 import Reveal from "@/components/site/Reveal";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
@@ -309,7 +309,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <section className="bg-paper">
         <div className="mx-auto grid max-w-7xl items-stretch gap-8 px-6 py-10 md:grid-cols-2 md:gap-10">
           {/* sinistra: testo + foto in fondo */}
-          <div className="flex flex-col">
+          <div className="order-2 flex flex-col md:order-1">
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-deep-brown md:text-5xl">
               {apt.titolo ? t(apt.titolo) : tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment` })}
@@ -330,7 +330,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
           </div>
 
           {/* destra: collage + foto in fondo con "Vedi tutto" */}
-          <div className="flex flex-col gap-2.5">
+          <div className="order-1 flex flex-col gap-2.5 md:order-2">
             <div className="grid grid-cols-3 gap-2.5">
               <div className="relative col-span-2 row-span-2 aspect-square overflow-hidden rounded-2xl">
                 <Image src={apt.gallery[0].src} alt={apt.gallery[0].alt} fill priority sizes="(max-width:768px) 100vw, 40vw" className="object-cover" />
@@ -461,7 +461,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout" })}</p>
         <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail" })}</h2>
-        <div className="mt-6 grid gap-5 md:grid-cols-2">
+        <div className={`mt-6 ${cardRail} md:grid-cols-2`}>
           {apt.stanze.map((s, i) => (
             <article key={s.nome.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm sm:flex-row">
               <div className="relative aspect-[4/3] sm:aspect-auto sm:w-44 sm:flex-shrink-0">
@@ -597,7 +597,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             {tr(lang, { it: "Scopri tutte le esperienze", en: "Discover all experiences" })} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className={`mt-6 ${cardRail} sm:grid-cols-2 lg:grid-cols-4`}>
           {exploreCities.map((c) => (
             <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
               <div className="relative aspect-[16/10]"><Image src={c.img} alt={t(c.t)} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" /></div>

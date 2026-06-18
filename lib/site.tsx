@@ -31,6 +31,12 @@ export const waLink = (
 export const mailto = `mailto:${EMAIL}`;
 export const telLink = `tel:+${WHATSAPP_NUMBER}`;
 
+/** Utility: carosello orizzontale (scroll-snap) su mobile, griglia su sm+.
+ *  Aggiungi dopo le classi colonne (es. `${cardRail} sm:grid-cols-2 lg:grid-cols-3`).
+ *  Stila i figli diretti: nessuna modifica alle singole card. */
+export const cardRail =
+  "flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:min-w-[80%] [&>*]:shrink-0 [&>*]:snap-start sm:grid sm:gap-4 sm:overflow-visible sm:pb-0 sm:[&>*]:min-w-0";
+
 /* -------------------------------------------------------------------------- */
 /*  Navigazione globale (header + footer) — punta alle pagine                  */
 /* -------------------------------------------------------------------------- */

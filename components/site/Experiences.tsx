@@ -21,7 +21,7 @@ import {
   Umbrella,
   Waves,
 } from "lucide-react";
-import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, MAPS_SHORT, cardRail, waLink } from "@/lib/site";
 import Reveal from "@/components/site/Reveal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
@@ -147,7 +147,7 @@ export default function Experiences() {
       {/* ===================== HERO ===================== */}
       <section className="bg-paper">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 md:grid-cols-2 md:gap-12">
-          <div>
+          <div className="order-2 md:order-1">
             <p className={eyebrow}>{tr(lang, { it: "Esplora i dintorni", en: "Explore more" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-5xl">
               {tr(lang, { it: "Tanto da vedere, vicino a casa", en: "So much to see, so close to home" })}
@@ -170,7 +170,7 @@ export default function Experiences() {
             </div>
           </div>
           {/* collage polaroid: foto grande incorniciata + foto piccole inclinate (come in home) */}
-          <div className="relative">
+          <div className="relative order-1 md:order-2">
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
@@ -204,7 +204,7 @@ export default function Experiences() {
             <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6`}>
             {top.map((c) => (
               <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[4/3]">
@@ -232,7 +232,7 @@ export default function Experiences() {
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
             <p className="mt-3 text-sm text-warm-gray">{tr(lang, { it: "Itinerari facili per ispirare il tuo soggiorno — suggeriti da Fabio", en: "Easy itineraries to inspire your stay — suggested by Fabio" })}</p>
           </Reveal>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className={`mt-8 ${cardRail} md:grid-cols-2 xl:grid-cols-4`}>
             {ideas.map((d) => (
               <article key={d.n} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">

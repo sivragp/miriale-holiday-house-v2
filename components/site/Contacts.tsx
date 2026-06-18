@@ -33,6 +33,7 @@ import {
   MAPS_EMBED,
   MAPS_SHORT,
   WHATSAPP_DISPLAY,
+  cardRail,
   mailto,
   telLink,
   waLink,
@@ -108,7 +109,7 @@ export default function Contacts() {
       {/* ===================== HERO ===================== */}
       <section className="bg-paper">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 md:grid-cols-2 md:gap-12">
-          <div>
+          <div className="order-2 md:order-1">
             <p className={eyebrow}>{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-5xl">
               {tr(lang, { it: "Contattaci e prenota con noi", en: "Get in touch & book with us" })}
@@ -132,7 +133,7 @@ export default function Contacts() {
           </div>
 
           {/* photo + overlapping cards */}
-          <div className="relative">
+          <div className="relative order-1 md:order-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-card">
               <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family" })} className="absolute inset-0" />
             </div>
@@ -164,7 +165,7 @@ export default function Contacts() {
             <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Tutti i modi per contattarci", en: "All the ways to contact us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className={`mt-8 ${cardRail} md:grid-cols-3`}>
             <a href={telLink} className="rounded-2xl border border-line bg-paper p-6 text-center shadow-sm transition hover:shadow-card">
               <Phone className="mx-auto h-7 w-7 text-terracotta" strokeWidth={1.5} />
               <h3 className="mt-3 font-semibold text-deep-brown">{tr(lang, { it: "Chiamaci", en: "Call us" })}</h3>
@@ -280,7 +281,7 @@ export default function Contacts() {
             <h2 className={titleC}>{tr(lang, { it: "Come raggiungerci", en: "How to reach us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-5`}>
             {reach.map((r) => (
               <article key={r.n} className="flex flex-col rounded-2xl border border-line bg-paper p-5 shadow-sm">
                 <div className="flex items-center gap-3">

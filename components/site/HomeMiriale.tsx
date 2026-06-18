@@ -37,7 +37,7 @@ import {
   Wifi,
   Wind,
 } from "lucide-react";
-import { I, MAPS_EMBED, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, cardRail, waLink } from "@/lib/site";
 import CardCarousel from "@/components/site/CardCarousel";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
 import Reveal from "@/components/site/Reveal";
@@ -192,8 +192,8 @@ export default function HomeMiriale() {
     <main className="flex-1">
       {/* ===================== HERO ===================== */}
       <section className="relative overflow-hidden bg-paper">
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 pt-12 md:grid-cols-[1fr_1.15fr] md:gap-8">
-          <div>
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-6 pt-8 md:gap-8 md:pt-12 md:grid-cols-[1fr_1.15fr]">
+          <div className="order-2 md:order-1">
             <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-[2.9rem] lg:text-5xl">
               {lang === "it" ? (
@@ -224,7 +224,7 @@ export default function HomeMiriale() {
           </div>
 
           {/* collage polaroid: foto grande incorniciata + 3 foto piccole inclinate */}
-          <div className="relative">
+          <div className="relative order-1 md:order-2">
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
@@ -268,7 +268,7 @@ export default function HomeMiriale() {
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-3`}>
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">
