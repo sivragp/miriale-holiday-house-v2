@@ -268,7 +268,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   const dotazioniBySlug: Record<string, Dotaz[][]> = {
     miri: [
       [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "tv", t: { it: "TV", en: "TV" } }],
-      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }],
+      [{ icon: "bed", t: { it: "Due letti singoli", en: "Two single beds" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }],
       [{ icon: "shower", t: { it: "Doccia", en: "Shower" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer" } }],
       [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "sofa", t: { it: "Divano e TV", en: "Sofa & TV" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table" } }],
       [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking" } }],
