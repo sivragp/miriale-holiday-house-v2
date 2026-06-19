@@ -31,7 +31,7 @@ export default function CardCarousel({ images, className = "" }: { images: Img[]
             type="button"
             aria-label="Foto precedente"
             onClick={() => go(-1)}
-            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-deep-brown opacity-0 shadow transition hover:bg-white group-hover:opacity-100"
+            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-deep-brown opacity-100 shadow transition hover:bg-white sm:opacity-0 sm:group-hover:opacity-100"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -39,7 +39,7 @@ export default function CardCarousel({ images, className = "" }: { images: Img[]
             type="button"
             aria-label="Foto successiva"
             onClick={() => go(1)}
-            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-deep-brown opacity-0 shadow transition hover:bg-white group-hover:opacity-100"
+            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-deep-brown opacity-100 shadow transition hover:bg-white sm:opacity-0 sm:group-hover:opacity-100"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
