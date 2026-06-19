@@ -235,22 +235,22 @@ export default function HomeMiriale() {
 
           {/* collage polaroid: foto grande incorniciata + 3 foto piccole inclinate */}
           <div className="relative order-1 md:order-2">
-            {/* mobile: piccole foto sopra la grande (il cluster desktop resta invariato) */}
-            <div className="mb-3 flex items-end justify-center gap-3 lg:hidden">
-              <div className="w-1/4 -rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/comune-24.jpg" alt="Giardino con ombrellone di MiriAle" fill sizes="90px" className="object-cover" /></div>
-              </div>
-              <div className="w-1/4 rotate-1 rounded-xl bg-white p-1.5 shadow-lg">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="90px" className="object-cover" /></div>
-              </div>
-              <div className="w-1/4 -rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/base-roma-mare.jpg" alt="Mare vicino a Fiumicino" fill sizes="90px" className="object-cover" /></div>
-              </div>
-            </div>
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
                 <Image src="/images/house/comune-32.jpg" alt="La villa MiriAle Holiday House a Fiumicino" fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
+              </div>
+            </div>
+            {/* mobile: piccole foto "a rotaia" centrate sul bordo inferiore (cluster desktop invariato) */}
+            <div className="relative z-10 -mt-12 mb-1 flex justify-center gap-4 lg:hidden">
+              <div className="w-[26%] -rotate-3 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/comune-24.jpg" alt="Giardino con ombrellone di MiriAle" fill sizes="100px" className="object-cover" /></div>
+              </div>
+              <div className="w-[26%] rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="100px" className="object-cover" /></div>
+              </div>
+              <div className="w-[26%] -rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/base-roma-mare.jpg" alt="Mare vicino a Fiumicino" fill sizes="100px" className="object-cover" /></div>
               </div>
             </div>
             {/* cluster di polaroid sovrapposte */}
@@ -290,7 +290,7 @@ export default function HomeMiriale() {
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[18%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:min-w-[64%] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:min-w-0 lg:grid-cols-3">
+          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[8%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:min-w-[84%] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:min-w-0 lg:grid-cols-3">
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">
