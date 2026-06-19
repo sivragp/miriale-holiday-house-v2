@@ -68,7 +68,7 @@ export default function RootLayout({
       lang="it"
       className={`${inter.variable} ${poppins.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-ivory text-deep-brown font-sans">
+      <body className="min-h-full flex flex-col overflow-x-clip bg-ivory text-deep-brown font-sans">
         <LangProvider>
           <SiteHeader />
           {children}
