@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -37,7 +38,7 @@ import {
   Wifi,
   Wind,
 } from "lucide-react";
-import { I, MAPS_EMBED, cardRail, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, waLink } from "@/lib/site";
 import CardCarousel from "@/components/site/CardCarousel";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
 import Reveal from "@/components/site/Reveal";
@@ -70,6 +71,15 @@ export default function HomeMiriale() {
   const miri = APPARTAMENTI.find((a) => a.slug === "miri")!;
   const ale = APPARTAMENTI.find((a) => a.slug === "ale")!;
   const casa = APPARTAMENTI.find((a) => a.slug === "casa")!;
+
+  // Su mobile il carosello "Scegli il tuo soggiorno" parte centrato sulla card di mezzo (Ale).
+  const staysRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = staysRef.current;
+    if (!el || window.matchMedia("(min-width: 640px)").matches) return;
+    const mid = el.children[1] as HTMLElement | undefined;
+    if (mid) el.scrollLeft = mid.offsetLeft - (el.clientWidth - mid.clientWidth) / 2;
+  }, []);
 
   const stats: { Icon: typeof Plane; a: B; b: B }[] = [
     { Icon: Plane, a: { it: "10 min", en: "10 min" }, b: { it: "dall'aeroporto FCO", en: "to FCO Airport" } },
@@ -225,6 +235,18 @@ export default function HomeMiriale() {
 
           {/* collage polaroid: foto grande incorniciata + 3 foto piccole inclinate */}
           <div className="relative order-1 md:order-2">
+            {/* mobile: piccole foto sopra la grande (il cluster desktop resta invariato) */}
+            <div className="mb-3 flex items-end justify-center gap-3 lg:hidden">
+              <div className="w-1/4 -rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/comune-24.jpg" alt="Giardino con ombrellone di MiriAle" fill sizes="90px" className="object-cover" /></div>
+              </div>
+              <div className="w-1/4 rotate-1 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/house/house-19.jpg" alt="Colazione in giardino" fill sizes="90px" className="object-cover" /></div>
+              </div>
+              <div className="w-1/4 -rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/base-roma-mare.jpg" alt="Mare vicino a Fiumicino" fill sizes="90px" className="object-cover" /></div>
+              </div>
+            </div>
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
@@ -268,7 +290,7 @@ export default function HomeMiriale() {
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-3`}>
+          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[18%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:min-w-[64%] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:min-w-0 lg:grid-cols-3">
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">

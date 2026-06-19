@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { type Review } from "@/lib/reviews";
 import ReviewCard from "@/components/site/ReviewCard";
 import { useLang, tr } from "@/components/site/LangProvider";
 
-/** Carosello paginato di recensioni: 4 card per pagina in griglia 2x2, con frecce. */
+/** Carosello paginato di recensioni: `perPage` card per pagina su desktop (griglia 2x2),
+ *  ridotte a max 2 per pagina su mobile, con frecce. */
 export default function ReviewsGridCarousel({
   reviews,
   perPage = 4,
@@ -17,17 +18,31 @@ export default function ReviewsGridCarousel({
   maxPages?: number;
 }) {
   const { lang } = useLang();
+  const [page, setPage] = useState(0);
 
-  // suddivide in pagine da `perPage`, limitate a `maxPages`
+  // Su mobile (<640px) max 2 card per pagina; su desktop il `perPage` passato.
+  const [cols, setCols] = useState(perPage);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 640px)");
+    const update = () => {
+      setCols(mq.matches ? perPage : Math.min(2, perPage));
+      setPage(0);
+    };
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [perPage]);
+
+  // suddivide in pagine da `cols`, limitate a `maxPages`
   const pages: Review[][] = [];
-  for (let i = 0; i < reviews.length; i += perPage) pages.push(reviews.slice(i, i + perPage));
-  // tiene solo le pagine COMPLETE (sempre `perPage` card); se nessuna è completa, usa quel che c'è
-  const fullPages = pages.filter((p) => p.length === perPage);
+  for (let i = 0; i < reviews.length; i += cols) pages.push(reviews.slice(i, i + cols));
+  // tiene solo le pagine COMPLETE (sempre `cols` card); se nessuna è completa, usa quel che c'è
+  const fullPages = pages.filter((p) => p.length === cols);
   const visiblePages = (fullPages.length ? fullPages : pages).slice(0, maxPages);
 
-  const [page, setPage] = useState(0);
   const n = visiblePages.length;
-  const go = (d: number) => setPage((p) => (p + d + n) % n);
+  const cur = Math.min(page, n - 1);
+  const go = (d: number) => setPage((p) => (Math.min(p, n - 1) + d + n) % n);
 
   if (!n) return null;
 
@@ -38,9 +53,9 @@ export default function ReviewsGridCarousel({
         {visiblePages.map((pg, idx) => (
           <div
             key={idx}
-            aria-hidden={idx !== page}
+            aria-hidden={idx !== cur}
             className={`col-start-1 row-start-1 grid grid-cols-1 gap-4 transition-opacity duration-300 sm:grid-cols-2 ${
-              idx === page ? "opacity-100" : "pointer-events-none invisible opacity-0"
+              idx === cur ? "opacity-100" : "pointer-events-none invisible opacity-0"
             }`}
           >
             {pg.map((r, i) => (
@@ -68,7 +83,7 @@ export default function ReviewsGridCarousel({
                 type="button"
                 aria-label={tr(lang, { it: `Vai alla pagina ${idx + 1}`, en: `Go to page ${idx + 1}` })}
                 onClick={() => setPage(idx)}
-                className={`h-2 rounded-full transition-all ${idx === page ? "w-5 bg-terracotta" : "w-2 bg-line"}`}
+                className={`h-2 rounded-full transition-all ${idx === cur ? "w-5 bg-terracotta" : "w-2 bg-line"}`}
               />
             ))}
           </div>
