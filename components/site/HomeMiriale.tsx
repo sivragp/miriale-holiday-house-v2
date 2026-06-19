@@ -290,21 +290,21 @@ export default function HomeMiriale() {
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory justify-start gap-4 overflow-x-auto px-[10%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[80%] [&>*]:max-w-[296px] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto sm:[&>*]:max-w-none lg:grid-cols-3">
+          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory justify-start gap-3 overflow-x-auto px-[4%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[92%] [&>*]:max-w-[360px] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto sm:[&>*]:max-w-none lg:grid-cols-3">
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
-                <div className="relative aspect-[16/10]">
+                <div className="relative aspect-[2/1] sm:aspect-[16/10]">
                   <CardCarousel images={s.apt.cardGallery} />
                   <span className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-1 flex-col p-4 sm:p-5">
                   <div className="flex flex-wrap gap-x-3 gap-y-1 border-b border-line-soft pb-3 text-xs text-warm-gray">
                     <span className="flex items-center gap-1"><HomeIcon className="h-3.5 w-3.5 text-terracotta" /> {s.apt.mq}</span>
                     <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5 text-terracotta" /> {s.apt.camere} {tr(lang, { it: "matrimoniali", en: "double bedrooms" })}</span>
                     <span className="flex items-center gap-1"><Waves className="h-3.5 w-3.5 text-terracotta" /> {s.apt.bagni} {tr(lang, { it: s.apt.bagni > 1 ? "bagni" : "bagno", en: s.apt.bagni > 1 ? "bathrooms" : "bathroom" })}</span>
                   </div>
                   <h3 className="mt-3 font-serif text-lg font-bold text-deep-brown">{t(s.titolo)}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-warm-gray">{t(s.descr)}</p>
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-warm-gray sm:line-clamp-none">{t(s.descr)}</p>
                   <div className="mt-4 flex items-center justify-between gap-3 pt-2">
                     <p className="flex items-center gap-1.5 text-xs text-warm-gray"><Users className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(s.best)}</p>
                     <Link href={s.href} className="flex-shrink-0 rounded-full border border-terracotta px-4 py-2 text-xs font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">{tr(lang, { it: "Dettagli", en: "View details" })}</Link>
