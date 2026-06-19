@@ -290,7 +290,7 @@ export default function HomeMiriale() {
             <h2 className="mt-1 font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Due appartamenti, una casa", en: "Two apartments, one house" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[8%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:min-w-[84%] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:min-w-0 lg:grid-cols-3">
+          <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory justify-start gap-4 overflow-x-auto px-[10%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[80%] [&>*]:max-w-[296px] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto sm:[&>*]:max-w-none lg:grid-cols-3">
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">
