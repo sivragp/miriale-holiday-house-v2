@@ -293,7 +293,7 @@ export default function HomeMiriale() {
           <div ref={staysRef} className="mt-8 flex snap-x snap-mandatory justify-start gap-3 overflow-x-auto px-[7%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[86%] [&>*]:max-w-[340px] [&>*]:shrink-0 [&>*]:snap-center sm:mt-8 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto sm:[&>*]:max-w-none lg:grid-cols-3">
             {stays.map((s) => (
               <article key={s.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
-                <div className="relative aspect-[2/1] sm:aspect-[16/10]">
+                <div className="relative aspect-[4/3] sm:aspect-[16/10]">
                   <CardCarousel images={s.apt.cardGallery} />
                   <span className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow" style={{ backgroundColor: s.tabColor }}>{t(s.tab)}</span>
                 </div>
