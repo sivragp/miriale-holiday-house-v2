@@ -52,7 +52,7 @@ import {
   Wifi,
   Wind,
 } from "lucide-react";
-import { I, MAPS_EMBED, MAPS_SHORT, cardRail, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
 import GalleryModal from "@/components/site/GalleryModal";
 import Reveal from "@/components/site/Reveal";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
@@ -461,7 +461,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout" })}</p>
         <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail" })}</h2>
-        <div className={`mt-6 ${cardRail} md:grid-cols-2`}>
+        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-2">
           {apt.stanze.map((s, i) => (
             <article key={s.nome.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm sm:flex-row">
               <div className="relative aspect-[4/3] sm:aspect-auto sm:w-44 sm:flex-shrink-0">
@@ -597,7 +597,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             {tr(lang, { it: "Scopri tutte le esperienze", en: "Discover all experiences" })} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className={`mt-6 ${cardRail} sm:grid-cols-2 lg:grid-cols-4`}>
+        <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {exploreCities.map((c) => (
             <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
               <div className="relative aspect-[16/10]"><Image src={c.img} alt={t(c.t)} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" /></div>
