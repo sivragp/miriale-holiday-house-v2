@@ -461,7 +461,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout" })}</p>
         <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail" })}</h2>
-        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-2">
+        <div className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[7%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[86%] [&>*]:shrink-0 [&>*]:snap-center sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto md:grid-cols-2">
           {apt.stanze.map((s, i) => (
             <article key={s.nome.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm sm:flex-row">
               <div className="relative aspect-[4/3] sm:aspect-auto sm:w-44 sm:flex-shrink-0">
