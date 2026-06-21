@@ -33,7 +33,6 @@ import {
   MAPS_EMBED,
   MAPS_SHORT,
   WHATSAPP_DISPLAY,
-  cardRail,
   mailto,
   telLink,
   waLink,
@@ -132,8 +131,8 @@ export default function Contacts() {
             </div>
           </div>
 
-          {/* photo + overlapping cards */}
-          <div className="relative order-1 md:order-2">
+          {/* photo + overlapping cards (nascosta su mobile: resta solo il testo) */}
+          <div className="relative order-1 hidden md:order-2 md:block">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-card">
               <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family" })} className="absolute inset-0" />
             </div>
@@ -165,26 +164,32 @@ export default function Contacts() {
             <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Tutti i modi per contattarci", en: "All the ways to contact us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className={`mt-8 ${cardRail} md:grid-cols-3`}>
-            <a href={telLink} className="rounded-2xl border border-line bg-paper p-6 text-center shadow-sm transition hover:shadow-card">
-              <Phone className="mx-auto h-7 w-7 text-terracotta" strokeWidth={1.5} />
-              <h3 className="mt-3 font-semibold text-deep-brown">{tr(lang, { it: "Chiamaci", en: "Call us" })}</h3>
-              <p className="mt-1 font-semibold text-terracotta">{WHATSAPP_DISPLAY}</p>
-              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: "Tutti i giorni · risposta rapida", en: "Every day · quick reply" })}</p>
-              <p className="text-xs text-warm-gray">{tr(lang, { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English & Spanish" })}</p>
+          <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+            <a href={telLink} className="flex items-center gap-4 rounded-2xl border border-line bg-paper p-4 text-left shadow-sm transition hover:shadow-card sm:block sm:p-6 sm:text-center">
+              <Phone className="h-7 w-7 flex-shrink-0 text-terracotta sm:mx-auto" strokeWidth={1.5} />
+              <div className="sm:mt-3">
+                <h3 className="font-semibold text-deep-brown">{tr(lang, { it: "Chiamaci", en: "Call us" })}</h3>
+                <p className="font-semibold text-terracotta sm:mt-1">{WHATSAPP_DISPLAY}</p>
+                <p className="mt-1 text-xs text-warm-gray sm:mt-2">{tr(lang, { it: "Tutti i giorni · risposta rapida", en: "Every day · quick reply" })}</p>
+                <p className="text-xs text-warm-gray">{tr(lang, { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English & Spanish" })}</p>
+              </div>
             </a>
-            <a href={mailto} className="rounded-2xl border border-line bg-paper p-6 text-center shadow-sm transition hover:shadow-card">
-              <Mail className="mx-auto h-7 w-7 text-terracotta" strokeWidth={1.5} />
-              <h3 className="mt-3 font-semibold text-deep-brown">{tr(lang, { it: "Scrivici una email", en: "Email us" })}</h3>
-              <p className="mt-1 font-semibold text-terracotta">{EMAIL}</p>
-              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: "Di solito rispondiamo in poche ore", en: "We usually reply within a few hours" })}</p>
+            <a href={mailto} className="flex items-center gap-4 rounded-2xl border border-line bg-paper p-4 text-left shadow-sm transition hover:shadow-card sm:block sm:p-6 sm:text-center">
+              <Mail className="h-7 w-7 flex-shrink-0 text-terracotta sm:mx-auto" strokeWidth={1.5} />
+              <div className="sm:mt-3">
+                <h3 className="font-semibold text-deep-brown">{tr(lang, { it: "Scrivici una email", en: "Email us" })}</h3>
+                <p className="font-semibold text-terracotta sm:mt-1">{EMAIL}</p>
+                <p className="mt-1 text-xs text-warm-gray sm:mt-2">{tr(lang, { it: "Di solito rispondiamo in poche ore", en: "We usually reply within a few hours" })}</p>
+              </div>
             </a>
-            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="rounded-2xl border border-line bg-paper p-6 text-center shadow-sm transition hover:shadow-card">
-              <MapPin className="mx-auto h-7 w-7 text-terracotta" strokeWidth={1.5} />
-              <h3 className="mt-3 font-semibold text-deep-brown">{tr(lang, { it: "Vieni a trovarci", en: "Write to us" })}</h3>
-              <p className="mt-1 text-sm font-semibold text-deep-brown">{ADDRESS_LINE_1}</p>
-              <p className="text-sm text-deep-brown">{ADDRESS_LINE_2}</p>
-              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: "Zona residenziale, tranquilla e sicura", en: "Residential area, quiet and safe" })}</p>
+            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-2xl border border-line bg-paper p-4 text-left shadow-sm transition hover:shadow-card sm:block sm:p-6 sm:text-center">
+              <MapPin className="h-7 w-7 flex-shrink-0 text-terracotta sm:mx-auto" strokeWidth={1.5} />
+              <div className="sm:mt-3">
+                <h3 className="font-semibold text-deep-brown">{tr(lang, { it: "Vieni a trovarci", en: "Write to us" })}</h3>
+                <p className="text-sm font-semibold text-deep-brown sm:mt-1">{ADDRESS_LINE_1}</p>
+                <p className="text-sm text-deep-brown">{ADDRESS_LINE_2}</p>
+                <p className="mt-1 text-xs text-warm-gray sm:mt-2">{tr(lang, { it: "Zona residenziale, tranquilla e sicura", en: "Residential area, quiet and safe" })}</p>
+              </div>
             </a>
           </div>
         </div>
@@ -281,15 +286,15 @@ export default function Contacts() {
             <h2 className={titleC}>{tr(lang, { it: "Come raggiungerci", en: "How to reach us" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-5`}>
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5">
             {reach.map((r) => (
-              <article key={r.n} className="flex flex-col rounded-2xl border border-line bg-paper p-5 shadow-sm">
+              <article key={r.n} className="flex flex-col rounded-2xl border border-line bg-paper p-4 shadow-sm sm:p-5">
                 <div className="flex items-center gap-3">
                   <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-terracotta text-sm font-bold text-white">{r.n}</span>
                   <div className="leading-tight"><p className="font-semibold text-deep-brown">{t(r.t)}</p>{t(r.time) ? <p className="text-xs font-medium text-terracotta">{t(r.time)}</p> : null}</div>
                 </div>
-                <r.Icon className="mt-4 h-9 w-9 text-terracotta/80" strokeWidth={1.3} />
-                <p className="mt-3 text-xs leading-relaxed text-warm-gray">{t(r.s)}</p>
+                <r.Icon className="mt-4 hidden h-9 w-9 text-terracotta/80 sm:block" strokeWidth={1.3} />
+                <p className="mt-2 text-xs leading-relaxed text-warm-gray sm:mt-3">{t(r.s)}</p>
               </article>
             ))}
           </div>
