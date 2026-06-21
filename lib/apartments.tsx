@@ -34,7 +34,7 @@ export type Appartamento = {
 
 /* --------------------------------------------------------------------------
  *  Foto reali categorizzate per appartamento (vedi public/images/house):
- *  miri-NN (28, piano terra) · ale-NN (67, mansarda) · comune-NN (34, esterni).
+ *  miri-NN (28, primo piano) · ale-NN (67, mansarda) · comune-NN (34, esterni).
  *  Verificate col campo `associated_rooms` di Booking + categorizzazione cliente.
  * -------------------------------------------------------------------------- */
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -55,11 +55,11 @@ export const APPARTAMENTI: Appartamento[] = [
     ospiti: 6,
     camere: 2,
     bagni: 1,
-    piano: { it: "Piano terra · accesso comodo", en: "Ground floor · easy access" },
+    piano: { it: "Primo piano · accesso con scale", en: "First floor · stair access" },
     tagline: { it: "Luminoso, accogliente, vivere facile a Fiumicino", en: "Bright, warm, easy living in Fiumicino" },
     descrizione: {
-      it: "Comodo appartamento al piano terra con cucina in legno calda e accogliente, due camere matrimoniali e tutto ciò che serve per un soggiorno rilassante vicino all'aeroporto, al mare e a Roma.",
-      en: "A comfortable ground-floor apartment with a warm wooden kitchen, two double bedrooms and everything you need for a relaxing stay near the airport, the sea and Rome.",
+      it: "Comodo appartamento al primo piano (accesso tramite scale) con cucina in legno calda e accogliente, due camere matrimoniali e tutto ciò che serve per un soggiorno rilassante vicino all'aeroporto, al mare e a Roma.",
+      en: "A comfortable first-floor apartment (reached via stairs) with a warm wooden kitchen, two double bedrooms and everything you need for a relaxing stay near the airport, the sea and Rome.",
     },
     gallery: [
       ...ph("miri", [1, 14, 11, 10, 8, 5, 16], "Appartamento Miri"),
@@ -182,7 +182,7 @@ export const APPARTAMENTI: Appartamento[] = [
       ...ph("comune", [28], "La villa MiriAle"),
     ],
     stanze: [
-      { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²" }, tag: { it: "Piano terra", en: "Ground floor" }, descr: { it: "Cucina in legno, soggiorno, 2 camere e 1 bagno. Fino a 6 ospiti.", en: "Wooden kitchen, living room, 2 bedrooms and 1 bathroom. Up to 6 guests." }, imgs: ph("miri", [1, 14], "Appartamento Miri") },
+      { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²" }, tag: { it: "Primo piano", en: "First floor" }, descr: { it: "Cucina in legno, soggiorno, 2 camere e 1 bagno. Fino a 6 ospiti.", en: "Wooden kitchen, living room, 2 bedrooms and 1 bathroom. Up to 6 guests." }, imgs: ph("miri", [1, 14], "Appartamento Miri") },
       { nome: { it: "Appartamento Ale · 55 m²", en: "Ale apartment · 55 m²" }, tag: { it: "Mansarda", en: "Attic" }, descr: { it: "Cucina attrezzata, 2 camere mansardate e 1 bagno in marmo. Fino a 4 ospiti.", en: "Equipped kitchen, 2 attic bedrooms and 1 marble bathroom. Up to 4 guests." }, imgs: ph("ale", [40, 1], "Appartamento Ale") },
       { nome: { it: "Giardino condiviso", en: "Shared garden" }, tag: { it: "In comune", en: "Shared" }, descr: { it: "L'unico spazio in comune: giardino privato con terrazza per la colazione e parcheggio.", en: "The only shared space: private garden with breakfast terrace and parking." }, imgs: ph("comune", [21, 13, 16], "Giardino di MiriAle") },
     ],

@@ -131,7 +131,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: Users, a: `${lang === "it" ? "Fino a" : "Up to"} ${apt.ospiti}`, b: { it: "Ospiti", en: "Guests" } },
     isCasa
       ? { Icon: HomeIcon, a: "2", b: { it: "Appartamenti indipendenti", en: "Independent apartments" } }
-      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Accesso comodo", en: "Easy access" } },
+      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Piano", en: "Floor" } },
   ];
   const hostBullets: { Icon: typeof UserCheck; t: B }[] = [
     { Icon: HomeIcon, t: { it: "Ospitalità familiare", en: "Family-run hospitality" } },
@@ -150,7 +150,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden" }, s: { it: "condiviso, con terrazza colazione", en: "shared, with breakfast terrace" } },
       ]
     : [
-        { Icon: DoorOpen, t: { it: "Piano terra", en: "Ground floor" }, s: { it: "accesso comodo, niente scale", en: "Easy access · no stairs" } },
+        { Icon: DoorOpen, t: apt.piano, s: { it: "ingresso indipendente", en: "independent entrance" } },
         { Icon: CookingPot, t: { it: "Cucina in legno", en: "Warm wooden" }, s: { it: "e zona living", en: "kitchen & living room" } },
         { Icon: ShowerHead, t: { it: "Bagno", en: "Bathroom" }, s: { it: "con doccia", en: "with shower" } },
         { Icon: Car, t: { it: "Parcheggio privato", en: "Private free" }, s: { it: "gratuito", en: "parking" } },
@@ -248,7 +248,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     miri: [
       { Icon: CookingPot, t: { it: "Una vera cucina in legno", en: "A real wooden kitchen" }, s: { it: "Forno, piano cottura, frigo e tutto per cucinare in autonomia, con tavolo da pranzo.", en: "Oven, hob, fridge and everything to cook on your own, with a dining table." } },
       { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms" }, s: { it: "Spazio comodo fino a 6 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 6 guests, with quality linens and wardrobes." } },
-      { Icon: DoorOpen, t: { it: "Piano terra, senza scale", en: "Ground floor, no stairs" }, s: { it: "Ingresso comodo con bagagli, passeggini o per chi preferisce evitare le scale.", en: "Easy entrance with luggage, strollers or for anyone avoiding stairs." } },
+      { Icon: DoorOpen, t: { it: "Al primo piano", en: "On the first floor" }, s: { it: "L'appartamento si trova al primo piano, con accesso tramite scale: tienilo presente per bagagli pesanti, passeggini o problemi di mobilità.", en: "The apartment is on the first floor, reached via stairs: keep in mind for heavy luggage, strollers or mobility needs." } },
       { Icon: Leaf, t: { it: "Giardino e parcheggio", en: "Garden & parking" }, s: { it: "Accesso al giardino privato condiviso con terrazza colazione e parcheggio gratuito.", en: "Access to the shared private garden with breakfast terrace and free parking." } },
     ],
     ale: [
