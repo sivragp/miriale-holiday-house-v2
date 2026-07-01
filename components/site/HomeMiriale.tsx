@@ -190,7 +190,7 @@ export default function HomeMiriale() {
   ];
 
   const rules: { Icon: typeof CalendarCheck; t: B; s: B }[] = [
-    { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
+    { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00 a mezzanotte", en: "from 15:00 to midnight" } },
     { Icon: CalendarX, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
     { Icon: CigaretteOff, t: { it: "Non fumatori", en: "No smoking" }, s: { it: "all'interno", en: "indoors" } },
     { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },

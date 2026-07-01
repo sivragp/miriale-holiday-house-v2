@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
 
 export const WHATSAPP_NUMBER = "393284898704";
 export const WHATSAPP_DISPLAY = "+39 328 489 8704";
-export const EMAIL = "info@mirialeholidayhouse.it";
+export const EMAIL = "miriale.holidayhouse@gmail.com";
 export const ADDRESS_LINE_1 = "Via Castagnevizza, 76";
 export const ADDRESS_LINE_2 = "00054 Fiumicino RM";
 export const ADDRESS_FULL = "Via Castagnevizza, 76, 00054 Fiumicino RM";

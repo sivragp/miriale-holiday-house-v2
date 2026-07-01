@@ -234,7 +234,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Scali aeroporto", en: "Airport stopovers" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight." } },
       ];
   const rules: { Icon: typeof Clock; t: B; s: B }[] = [
-    { Icon: Clock, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
+    { Icon: Clock, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00 a mezzanotte", en: "from 15:00 to midnight" } },
     { Icon: LogOut, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
     { Icon: CigaretteOff, t: { it: "Non fumatori", en: "Non-smoking" }, s: { it: "all'interno", en: "inside" } },
     { Icon: PawPrint, t: { it: "Niente animali", en: "No pets" }, s: { it: "", en: "" } },
