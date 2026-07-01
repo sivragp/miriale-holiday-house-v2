@@ -88,7 +88,7 @@ export default function Contacts() {
   ];
 
   const practical: { Icon: typeof Clock; t: B; s: B }[] = [
-    { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00", en: "from 15:00" } },
+    { Icon: CalendarCheck, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00 a mezzanotte", en: "from 15:00 to midnight" } },
     { Icon: CalendarX, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
     { Icon: Users, t: { it: "Bambini", en: "Children" }, s: { it: "di tutte le età benvenuti", en: "all ages welcome" } },
     { Icon: PawPrint, t: { it: "Niente animali", en: "No pets" }, s: { it: "", en: "" } },
