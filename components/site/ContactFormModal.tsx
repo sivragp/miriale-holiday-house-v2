@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { type ReactNode, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AlertCircle, CheckCircle2, Loader2, Mail, Send, X } from "lucide-react";
+import { I } from "@/lib/site";
 import { type Lang, useLang, tr } from "@/components/site/LangProvider";
 
 /* -------------------------------------------------------------------------- */
@@ -10,19 +11,16 @@ import { type Lang, useLang, tr } from "@/components/site/LangProvider";
 /* -------------------------------------------------------------------------- */
 
 type B = { it: string; en: string };
-type Variant = "solid" | "outline";
-type Size = "sm" | "md" | "lg";
 type Status = "idle" | "loading" | "success" | "error";
 
 interface ContactFormModalProps {
-  /** solid = pill teal pieno (fratello del bottone WhatsApp); outline = versione chiara. */
-  variant?: Variant;
-  size?: Size;
-  /** Etichetta del bottone trigger (bilingue). Default: "Modulo contatti". */
-  label?: B;
-  /** Sottotitolo opzionale su seconda riga (per allineare l'altezza al bottone WhatsApp a due righe). */
-  subtitle?: B;
-  /** Classi extra applicate al trigger (es. w-full, larghezze responsive). */
+  /**
+   * Trigger personalizzato: ricevi `open` e rendi il bottone che preferisci
+   * (usato in ogni punto per rispecchiare 1:1 il bottone WhatsApp adiacente).
+   * Se omesso, viene reso il bottone di default (blu, "Email", logo Gmail).
+   */
+  renderTrigger?: (open: () => void) => ReactNode;
+  /** Classi extra applicate al trigger di default. */
   className?: string;
 }
 
@@ -30,54 +28,56 @@ interface ContactFormModalProps {
 const FORMSUBMIT_ENDPOINT =
   "https://formsubmit.co/ajax/miriale.holidayhouse@gmail.com";
 
-const SIZE_CLASSES: Record<Size, string> = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-2.5 text-sm",
-  lg: "px-8 py-3 text-sm",
-};
+/* Blu Gmail: colore unico del bottone Email in tutto il sito. */
+export const GMAIL_BLUE = "#1a73e8";
 
-const VARIANT_CLASSES: Record<Variant, string> = {
-  // Palette del sito: teal profondo (#0f3d4a) — NON verde WhatsApp.
-  solid: "bg-deep-brown text-white shadow-sm hover:opacity-90",
-  outline:
-    "border border-deep-brown/30 bg-paper text-deep-brown hover:border-deep-brown hover:bg-cream-2",
-};
+/**
+ * Logo Gmail dentro un chip bianco arrotondato: garantisce leggibilità
+ * dell'icona multicolore sul fondo blu. Dimensioni proporzionabili per punto.
+ */
+export function GmailChip({
+  iconClass = "h-4 w-4",
+  chipClass = "p-0.5",
+}: {
+  iconClass?: string;
+  chipClass?: string;
+}) {
+  return (
+    <span className={`grid flex-shrink-0 place-items-center rounded bg-white ${chipClass}`}>
+      <I.gmail className={iconClass} />
+    </span>
+  );
+}
 
 /* -------------------------------------------------------------------------- */
 /*  Componente                                                                 */
 /* -------------------------------------------------------------------------- */
 
 export default function ContactFormModal({
-  variant = "solid",
-  size = "sm",
-  label,
-  subtitle,
+  renderTrigger,
   className = "",
 }: ContactFormModalProps) {
   const { lang } = useLang();
   const [open, setOpen] = useState(false);
-
-  const triggerLabel = label ?? { it: "Modulo contatti", en: "Contact form" };
+  const openModal = () => setOpen(true);
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-haspopup="dialog"
-        aria-label={tr(lang, triggerLabel)}
-        className={`inline-flex items-center justify-center gap-2 rounded-full font-medium transition ${SIZE_CLASSES[size]} ${VARIANT_CLASSES[variant]} ${className}`}
-      >
-        <Mail className="h-4 w-4 flex-shrink-0" />
-        {subtitle ? (
-          <span className="flex flex-col items-start leading-tight">
-            <span className="font-medium">{tr(lang, triggerLabel)}</span>
-            <span className="text-[10px] opacity-90">{tr(lang, subtitle)}</span>
-          </span>
-        ) : (
-          <span>{tr(lang, triggerLabel)}</span>
-        )}
-      </button>
+      {renderTrigger ? (
+        renderTrigger(openModal)
+      ) : (
+        <button
+          type="button"
+          onClick={openModal}
+          aria-haspopup="dialog"
+          aria-label="Email"
+          className={`inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 ${className}`}
+          style={{ backgroundColor: GMAIL_BLUE }}
+        >
+          <GmailChip />
+          <span>Email</span>
+        </button>
+      )}
 
       {open ? (
         <ContactDialog lang={lang} onClose={() => setOpen(false)} />

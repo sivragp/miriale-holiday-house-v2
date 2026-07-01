@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CIN, EMAIL, I, LICENSE_NUMBER, WHATSAPP_DISPLAY, mailto, telLink, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
-import ContactFormModal from "@/components/site/ContactFormModal";
+import ContactFormModal, { GmailChip, GMAIL_BLUE } from "@/components/site/ContactFormModal";
 
 /** CTA finale + footer globale: un'unica sezione con sfondo mare condiviso. */
 export default function SiteFooter() {
@@ -30,10 +30,12 @@ export default function SiteFooter() {
               <span className="text-[11px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
             </a>
             <ContactFormModal
-              variant="outline"
-              size="lg"
-              label={{ it: "Compila il modulo", en: "Fill in the form" }}
-              className="border-white/60 bg-white/10 text-white shadow-lg backdrop-blur-sm hover:border-white hover:bg-white/20 hover:text-white"
+              renderTrigger={(open) => (
+                <button type="button" onClick={open} aria-haspopup="dialog" aria-label="Email" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: GMAIL_BLUE }}>
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold"><GmailChip /> Email</span>
+                  <span className="text-[11px] text-white/90">{tr(lang, { it: "Ti rispondiamo presto", en: "We reply soon" })}</span>
+                </button>
+              )}
             />
           </div>
           <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-white/85 drop-shadow">
