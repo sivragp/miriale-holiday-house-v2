@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CIN, EMAIL, I, LICENSE_NUMBER, WHATSAPP_DISPLAY, mailto, telLink, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
+import ContactFormModal from "@/components/site/ContactFormModal";
 
 /** CTA finale + footer globale: un'unica sezione con sfondo mare condiviso. */
 export default function SiteFooter() {
@@ -23,11 +24,17 @@ export default function SiteFooter() {
           <h2 className="font-serif text-3xl font-bold drop-shadow md:text-4xl">{tr(lang, { it: "Pronto a prenotare?", en: "Ready to book?" })}</h2>
           <p className="mt-1 font-script text-2xl text-white drop-shadow">{tr(lang, { it: "Siamo qui per te!", en: "We're here for you!" })}</p>
           <p className="mx-auto mt-3 max-w-lg text-sm text-white/90 drop-shadow">{tr(lang, { it: "Scrivici su WhatsApp per disponibilità, info sul soggiorno e il miglior prezzo diretto. Risposta rapida garantita.", en: "Chat with us on WhatsApp for availability, stay info and the best direct price. Quick reply guaranteed." })}</p>
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center rounded-full px-8 py-3 text-white shadow-lg transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
               <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
               <span className="text-[11px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
             </a>
+            <ContactFormModal
+              variant="outline"
+              size="lg"
+              label={{ it: "Compila il modulo", en: "Fill in the form" }}
+              className="border-white/60 bg-white/10 text-white shadow-lg backdrop-blur-sm hover:border-white hover:bg-white/20 hover:text-white"
+            />
           </div>
           <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-white/85 drop-shadow">
             <span>{tr(lang, { it: "Nessuna commissione", en: "No booking fees" })}</span>·

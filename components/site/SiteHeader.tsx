@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { I, waLink } from "@/lib/site";
 import { useLang, tr } from "@/components/site/LangProvider";
+import ContactFormModal from "@/components/site/ContactFormModal";
 
 export default function SiteHeader() {
   const { lang, setLang } = useLang();
@@ -94,6 +95,15 @@ export default function SiteHeader() {
               <span className="text-[10px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
             </span>
           </a>
+
+          {/* modulo di contatto — fratello del bottone WhatsApp (stessa altezza, palette del sito) */}
+          <div className="hidden sm:flex">
+            <ContactFormModal
+              size="sm"
+              label={{ it: "Modulo contatti", en: "Contact form" }}
+              subtitle={{ it: "Compila e invia", en: "Fill in & send" }}
+            />
+          </div>
 
           {/* hamburger (mobile/tablet) */}
           <button
@@ -212,6 +222,15 @@ export default function SiteHeader() {
                   >
                     <I.whatsapp className="h-4 w-4" /> WhatsApp
                   </a>
+                </div>
+
+                <div className="mt-3">
+                  <ContactFormModal
+                    variant="outline"
+                    size="md"
+                    className="w-full"
+                    label={{ it: "Scrivici un messaggio", en: "Send us a message" }}
+                  />
                 </div>
               </div>
             </motion.div>

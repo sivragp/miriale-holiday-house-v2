@@ -39,6 +39,7 @@ import {
   waLink,
 } from "@/lib/site";
 import Reveal from "@/components/site/Reveal";
+import ContactFormModal from "@/components/site/ContactFormModal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
 
@@ -148,6 +149,12 @@ export default function Contacts() {
                 </span>
                 <span aria-hidden className="text-xl">›</span>
               </a>
+              <ContactFormModal
+                variant="outline"
+                size="lg"
+                className="mt-3 w-full"
+                label={{ it: "Oppure compila il modulo", en: "Or fill in the form" }}
+              />
               <div className="mt-3 flex items-center gap-2 rounded-xl border border-line bg-paper px-4 py-3 text-xs text-warm-gray shadow-sm">
                 <MapPin className="h-4 w-4 flex-shrink-0 text-terracotta" />
                 {tr(lang, { it: "Il modo migliore per aiutarti in fretta. Salutaci, chiedici qualsiasi cosa, siamo qui!", en: "Our best way to help you quickly. Say hello, ask anything, we're here!" })}
