@@ -5,6 +5,15 @@ import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import WhatsAppFab from "@/components/site/WhatsAppFab";
 import { LangProvider } from "@/components/site/LangProvider";
+import JsonLd from "@/components/site/JsonLd";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+  graph,
+  organizationNode,
+  webSiteNode,
+} from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,7 +36,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mirialeholidayhouse.it"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "MiriAle Holiday House",
     template: "%s — MiriAle Holiday House",
@@ -35,26 +44,41 @@ export const metadata: Metadata = {
   description:
     "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
   alternates: {
-    canonical: "https://mirialeholidayhouse.it",
+    canonical: "/",
+    languages: {
+      "it-IT": "/",
+      en: "/",
+      "x-default": "/",
+    },
   },
   openGraph: {
-    title: "MiriAle Holiday House",
+    title: SITE_NAME,
     description:
       "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
-    url: "https://mirialeholidayhouse.it",
-    siteName: "MiriAle Holiday House",
+    url: "/",
+    siteName: SITE_NAME,
     locale: "it_IT",
+    alternateLocale: "en_GB",
     type: "website",
+    images: [{ url: DEFAULT_OG_IMAGE, alt: SITE_NAME }],
   },
   twitter: {
-    card: "summary",
-    title: "MiriAle Holiday House",
+    card: "summary_large_image",
+    title: SITE_NAME,
     description:
       "Casa vacanze vicino all'aeroporto di Fiumicino, pensata per soggiorni comodi, contatto diretto e massima semplicità.",
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -69,6 +93,7 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-clip bg-ivory text-deep-brown font-sans">
+        <JsonLd data={graph(organizationNode(), webSiteNode())} />
         <LangProvider>
           <SiteHeader />
           {children}

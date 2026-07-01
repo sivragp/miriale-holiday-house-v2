@@ -2,23 +2,27 @@ import type { Metadata } from "next";
 import PageHero from "@/components/site/PageHero";
 import TodoNote from "@/components/site/TodoNote";
 import { Eyebrow, I, waLink } from "@/lib/site";
+import JsonLd from "@/components/site/JsonLd";
+import { breadcrumbNode, buildMetadata, graph } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "La famiglia",
   description:
     "Una casa a conduzione familiare. La famiglia che gestisce MiriAle abita accanto, ti accoglie e ti dà supporto durante tutto il soggiorno.",
-  alternates: { canonical: "https://mirialeholidayhouse.it/la-famiglia" },
-  openGraph: {
-    title: "La famiglia — MiriAle Holiday House",
-    description:
-      "Non un Airbnb anonimo: una struttura a conduzione familiare, con chi ti accoglie sempre raggiungibile.",
-    url: "https://mirialeholidayhouse.it/la-famiglia",
-  },
-};
+  path: "/la-famiglia",
+});
 
 export default function LaFamigliaPage() {
   return (
     <main className="flex-1">
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "La famiglia", path: "/la-famiglia" },
+          ]),
+        )}
+      />
       <PageHero
         eyebrow="La famiglia"
         title="Una casa. E una famiglia."
