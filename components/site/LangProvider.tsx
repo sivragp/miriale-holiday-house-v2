@@ -2,13 +2,13 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-export type Lang = "it" | "en";
+export type Lang = "it" | "en" | "es";
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void };
 
 const LangCtx = createContext<Ctx>({ lang: "it", setLang: () => {} });
 
-/** Provider lingua (IT/EN) con persistenza in localStorage. */
+/** Provider lingua (IT/EN/ES) con persistenza in localStorage. */
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("it");
 
@@ -16,7 +16,7 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     try {
       const saved = localStorage.getItem("miriale-lang");
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      if (saved === "it" || saved === "en") setLangState(saved);
+      if (saved === "it" || saved === "en" || saved === "es") setLangState(saved);
     } catch {}
   }, []);
 
@@ -35,7 +35,9 @@ export function useLang() {
   return useContext(LangCtx);
 }
 
-/** Helper: sceglie la stringa giusta in base alla lingua corrente. */
-export function tr(lang: Lang, s: { it: string; en: string }) {
-  return s[lang];
+/** Helper: sceglie la stringa giusta in base alla lingua corrente.
+ *  Fallback su en → it così il build non si rompe mai e stringhe non
+ *  ancora tradotte mostrano comunque un testo valido. */
+export function tr(lang: Lang, s: { it: string; en: string; es?: string }) {
+  return s[lang] ?? s.en ?? s.it;
 }

@@ -10,7 +10,7 @@ import { type Lang, useLang, tr } from "@/components/site/LangProvider";
 /*  Tipi                                                                       */
 /* -------------------------------------------------------------------------- */
 
-type B = { it: string; en: string };
+type B = { it: string; en: string; es?: string };
 type Status = "idle" | "loading" | "success" | "error";
 
 interface ContactFormModalProps {
@@ -91,40 +91,44 @@ export default function ContactFormModal({
 /* -------------------------------------------------------------------------- */
 
 const T = {
-  title: { it: "Scrivici un messaggio", en: "Send us a message" },
+  title: { it: "Scrivici un messaggio", en: "Send us a message", es: "Escríbenos un mensaje" },
   intro: {
     it: "Compila il modulo: ti rispondiamo il prima possibile.",
     en: "Fill in the form: we'll get back to you as soon as possible.",
+    es: "Rellena el formulario: te responderemos lo antes posible.",
   },
-  firstName: { it: "Nome", en: "First name" },
-  lastName: { it: "Cognome", en: "Last name" },
-  email: { it: "Email", en: "Email" },
-  phone: { it: "Numero di telefono", en: "Phone number" },
-  reason: { it: "Motivo del contatto", en: "Reason for contact" },
-  optional: { it: "facoltativo", en: "optional" },
-  firstNamePh: { it: "Es. Mario", en: "e.g. Mario" },
-  lastNamePh: { it: "Es. Rossi", en: "e.g. Rossi" },
-  emailPh: { it: "nome@email.com", en: "name@email.com" },
-  phonePh: { it: "+39 ...", en: "+39 ..." },
+  firstName: { it: "Nome", en: "First name", es: "Nombre" },
+  lastName: { it: "Cognome", en: "Last name", es: "Apellido" },
+  email: { it: "Email", en: "Email", es: "Email" },
+  phone: { it: "Numero di telefono", en: "Phone number", es: "Número de teléfono" },
+  reason: { it: "Motivo del contatto", en: "Reason for contact", es: "Motivo del contacto" },
+  optional: { it: "facoltativo", en: "optional", es: "opcional" },
+  firstNamePh: { it: "Es. Mario", en: "e.g. Mario", es: "Ej. Mario" },
+  lastNamePh: { it: "Es. Rossi", en: "e.g. Rossi", es: "Ej. Rossi" },
+  emailPh: { it: "nome@email.com", en: "name@email.com", es: "nombre@email.com" },
+  phonePh: { it: "+39 ...", en: "+39 ...", es: "+39 ..." },
   reasonPh: {
     it: "Date, numero di ospiti, domande sul soggiorno...",
     en: "Dates, number of guests, questions about your stay...",
+    es: "Fechas, número de huéspedes, preguntas sobre tu estancia...",
   },
-  send: { it: "Invia richiesta", en: "Send request" },
-  sending: { it: "Invio in corso...", en: "Sending..." },
-  close: { it: "Chiudi", en: "Close" },
-  successTitle: { it: "Richiesta inviata!", en: "Request sent!" },
+  send: { it: "Invia richiesta", en: "Send request", es: "Enviar solicitud" },
+  sending: { it: "Invio in corso...", en: "Sending...", es: "Enviando..." },
+  close: { it: "Chiudi", en: "Close", es: "Cerrar" },
+  successTitle: { it: "Richiesta inviata!", en: "Request sent!", es: "¡Solicitud enviada!" },
   successBody: {
     it: "Grazie! Abbiamo ricevuto il tuo messaggio e ti risponderemo al più presto.",
     en: "Thank you! We received your message and will reply as soon as possible.",
+    es: "¡Gracias! Hemos recibido tu mensaje y te responderemos lo antes posible.",
   },
-  errorTitle: { it: "Qualcosa è andato storto", en: "Something went wrong" },
+  errorTitle: { it: "Qualcosa è andato storto", en: "Something went wrong", es: "Algo salió mal" },
   errorBody: {
     it: "Non siamo riusciti a inviare la richiesta. Riprova o scrivici su WhatsApp.",
     en: "We couldn't send your request. Please try again or reach us on WhatsApp.",
+    es: "No hemos podido enviar tu solicitud. Reinténtalo o escríbenos por WhatsApp.",
   },
-  retry: { it: "Riprova", en: "Try again" },
-  required: { it: "Campo obbligatorio", en: "Required field" },
+  retry: { it: "Riprova", en: "Try again", es: "Reintentar" },
+  required: { it: "Campo obbligatorio", en: "Required field", es: "Campo obligatorio" },
 } satisfies Record<string, B>;
 
 const EMPTY = { firstName: "", lastName: "", email: "", phone: "", reason: "" };

@@ -69,7 +69,7 @@ export default function ReviewsGridCarousel({
         <div className="mt-5 flex items-center justify-center gap-4">
           <button
             type="button"
-            aria-label={tr(lang, { it: "Pagina precedente", en: "Previous page" })}
+            aria-label={tr(lang, { it: "Pagina precedente", en: "Previous page", es: "Página anterior" })}
             onClick={() => go(-1)}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-paper text-deep-brown shadow-sm transition hover:bg-cream"
           >
@@ -81,7 +81,7 @@ export default function ReviewsGridCarousel({
               <button
                 key={idx}
                 type="button"
-                aria-label={tr(lang, { it: `Vai alla pagina ${idx + 1}`, en: `Go to page ${idx + 1}` })}
+                aria-label={tr(lang, { it: `Vai alla pagina ${idx + 1}`, en: `Go to page ${idx + 1}`, es: `Ir a la página ${idx + 1}` })}
                 onClick={() => setPage(idx)}
                 className={`h-2 rounded-full transition-all ${idx === cur ? "w-5 bg-terracotta" : "w-2 bg-line"}`}
               />
@@ -90,7 +90,7 @@ export default function ReviewsGridCarousel({
 
           <button
             type="button"
-            aria-label={tr(lang, { it: "Pagina successiva", en: "Next page" })}
+            aria-label={tr(lang, { it: "Pagina successiva", en: "Next page", es: "Página siguiente" })}
             onClick={() => go(1)}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-paper text-deep-brown shadow-sm transition hover:bg-cream"
           >

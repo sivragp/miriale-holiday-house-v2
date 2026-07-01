@@ -76,9 +76,9 @@ export default function AllReviews() {
   const hasFilters = travellers.size > 0 || topic !== null || query.trim() !== "";
 
   const sortOptions: { v: Sort; t: B }[] = [
-    { v: "recent", t: { it: "Più recenti", en: "Most recent" } },
-    { v: "high", t: { it: "Punteggio più alto", en: "Highest score" } },
-    { v: "low", t: { it: "Punteggio più basso", en: "Lowest score" } },
+    { v: "recent", t: { it: "Più recenti", en: "Most recent", es: "Más recientes" } },
+    { v: "high", t: { it: "Punteggio più alto", en: "Highest score", es: "Puntuación más alta" } },
+    { v: "low", t: { it: "Punteggio più basso", en: "Lowest score", es: "Puntuación más baja" } },
   ];
 
   return (
@@ -87,11 +87,11 @@ export default function AllReviews() {
       <section className="bg-paper">
         <Reveal className="mx-auto max-w-7xl px-6 py-10">
           <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-warm-gray transition hover:text-terracotta">
-            <ArrowLeft className="h-4 w-4" /> {tr(lang, { it: "Torna alla home", en: "Back to home" })}
+            <ArrowLeft className="h-4 w-4" /> {tr(lang, { it: "Torna alla home", en: "Back to home", es: "Volver al inicio" })}
           </Link>
-          <p className={`mt-4 ${eyebrow}`}>{tr(lang, { it: "Cosa dicono gli ospiti", en: "What guests say" })}</p>
+          <p className={`mt-4 ${eyebrow}`}>{tr(lang, { it: "Cosa dicono gli ospiti", en: "What guests say", es: "Lo que dicen los huéspedes" })}</p>
           <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-deep-brown md:text-5xl">
-            {tr(lang, { it: "Recensioni di MiriAle Holiday House", en: "MiriAle Holiday House reviews" })}
+            {tr(lang, { it: "Recensioni di MiriAle Holiday House", en: "MiriAle Holiday House reviews", es: "Reseñas de MiriAle Holiday House" })}
           </h1>
           <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-warm-gray">
             <span className="inline-flex items-center gap-2">
@@ -99,7 +99,7 @@ export default function AllReviews() {
               <span className="font-semibold text-deep-brown">{t(REVIEW_STATS.word)}</span>
             </span>
             <span>·</span>
-            <span>{tr(lang, { it: `${REVIEW_STATS.count} recensioni reali su Booking.com`, en: `${REVIEW_STATS.count} genuine reviews on Booking.com` })}</span>
+            <span>{tr(lang, { it: `${REVIEW_STATS.count} recensioni reali su Booking.com`, en: `${REVIEW_STATS.count} genuine reviews on Booking.com`, es: `${REVIEW_STATS.count} reseñas reales en Booking.com` })}</span>
           </p>
         </Reveal>
       </section>
@@ -117,9 +117,9 @@ export default function AllReviews() {
                   <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}</div>
                 </div>
               </div>
-              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: `Media su ${REVIEW_STATS.count} recensioni`, en: `Average over ${REVIEW_STATS.count} reviews` })}</p>
+              <p className="mt-2 text-xs text-warm-gray">{tr(lang, { it: `Media su ${REVIEW_STATS.count} recensioni`, en: `Average over ${REVIEW_STATS.count} reviews`, es: `Media sobre ${REVIEW_STATS.count} reseñas` })}</p>
 
-              <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings" })}</p>
+              <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings", es: "Puntuaciones por categoría" })}</p>
               <ul className="mt-3 space-y-2.5">
                 {REVIEW_STATS.subs.map((s) => (
                   <li key={s.t.en}>
@@ -137,7 +137,7 @@ export default function AllReviews() {
 
             {/* filtro per tipo di viaggiatore */}
             <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm">
-              <p className="text-sm font-semibold text-deep-brown">{tr(lang, { it: "Tipo di viaggiatore", en: "Traveller type" })}</p>
+              <p className="text-sm font-semibold text-deep-brown">{tr(lang, { it: "Tipo di viaggiatore", en: "Traveller type", es: "Tipo de viajero" })}</p>
               <ul className="mt-3 space-y-1.5">
                 {[...travellerCounts.entries()].map(([tt, c]) => (
                   <li key={tt}>
@@ -153,7 +153,7 @@ export default function AllReviews() {
 
             {/* argomenti più citati */}
             <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm">
-              <p className="text-sm font-semibold text-deep-brown">{tr(lang, { it: "Argomenti più citati", en: "Most mentioned topics" })}</p>
+              <p className="text-sm font-semibold text-deep-brown">{tr(lang, { it: "Argomenti più citati", en: "Most mentioned topics", es: "Temas más mencionados" })}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {REVIEW_TOPICS.map((tp) => {
                   const active = topic === tp.it;
@@ -182,12 +182,12 @@ export default function AllReviews() {
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder={tr(lang, { it: "Cerca nelle recensioni…", en: "Search reviews…" })}
+                  placeholder={tr(lang, { it: "Cerca nelle recensioni…", en: "Search reviews…", es: "Buscar en las reseñas…" })}
                   className="w-full rounded-xl border border-line bg-bone py-2.5 pl-9 pr-3 text-sm text-deep-brown outline-none focus:border-terracotta"
                 />
               </div>
               <label className="flex items-center gap-2 text-sm text-warm-gray">
-                {tr(lang, { it: "Ordina:", en: "Sort:" })}
+                {tr(lang, { it: "Ordina:", en: "Sort:", es: "Ordenar:" })}
                 <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="rounded-xl border border-line bg-bone px-3 py-2.5 text-sm font-medium text-deep-brown outline-none focus:border-terracotta">
                   {sortOptions.map((o) => <option key={o.v} value={o.v}>{t(o.t)}</option>)}
                 </select>
@@ -197,11 +197,11 @@ export default function AllReviews() {
             {/* conteggio + reset */}
             <div className="mt-4 flex items-center justify-between">
               <p className="text-sm text-warm-gray">
-                {tr(lang, { it: `${filtered.length} recensioni a testo integrale`, en: `${filtered.length} full-text reviews` })}
+                {tr(lang, { it: `${filtered.length} recensioni a testo integrale`, en: `${filtered.length} full-text reviews`, es: `${filtered.length} reseñas con texto completo` })}
               </p>
               {hasFilters ? (
                 <button type="button" onClick={resetFilters} className="text-sm font-semibold text-terracotta hover:underline">
-                  {tr(lang, { it: "Azzera filtri", en: "Clear filters" })}
+                  {tr(lang, { it: "Azzera filtri", en: "Clear filters", es: "Borrar filtros" })}
                 </button>
               ) : null}
             </div>
@@ -213,7 +213,7 @@ export default function AllReviews() {
               </div>
             ) : (
               <p className="mt-8 rounded-2xl border border-line bg-paper p-8 text-center text-sm text-warm-gray">
-                {tr(lang, { it: "Nessuna recensione corrisponde ai filtri scelti.", en: "No reviews match the selected filters." })}
+                {tr(lang, { it: "Nessuna recensione corrisponde ai filtri scelti.", en: "No reviews match the selected filters.", es: "Ninguna reseña coincide con los filtros seleccionados." })}
               </p>
             )}
 
@@ -222,17 +222,18 @@ export default function AllReviews() {
               {tr(lang, {
                 it: `MiriAle ha ${REVIEW_STATS.count} recensioni su Booking.com con punteggio ${REVIEW_STATS.overall}. Qui mostriamo a testo integrale le recensioni pubblicate dagli ospiti; il punteggio complessivo e i punteggi per categoria sono calcolati su tutte le ${REVIEW_STATS.count} recensioni.`,
                 en: `MiriAle has ${REVIEW_STATS.count} reviews on Booking.com with a ${REVIEW_STATS.overall} score. Here we show the full text of the guest reviews; the overall and category scores are calculated across all ${REVIEW_STATS.count} reviews.`,
+                es: `MiriAle tiene ${REVIEW_STATS.count} reseñas en Booking.com con una puntuación de ${REVIEW_STATS.overall}. Aquí mostramos el texto completo de las reseñas de los huéspedes; la puntuación global y las puntuaciones por categoría se calculan sobre las ${REVIEW_STATS.count} reseñas.`,
               })}
             </p>
 
             {/* CTA */}
             <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-line bg-paper px-6 py-5 text-center sm:flex-row sm:text-left">
               <div>
-                <p className="font-semibold text-deep-brown">{tr(lang, { it: "Vuoi soggiornare da noi?", en: "Want to stay with us?" })}</p>
-                <p className="text-sm text-warm-gray">{tr(lang, { it: "Scrivi a Fabio su WhatsApp per disponibilità e miglior prezzo diretto.", en: "Message Fabio on WhatsApp for availability and the best direct price." })}</p>
+                <p className="font-semibold text-deep-brown">{tr(lang, { it: "Vuoi soggiornare da noi?", en: "Want to stay with us?", es: "¿Quieres alojarte con nosotros?" })}</p>
+                <p className="text-sm text-warm-gray">{tr(lang, { it: "Scrivi a Fabio su WhatsApp per disponibilità e miglior prezzo diretto.", en: "Message Fabio on WhatsApp for availability and the best direct price.", es: "Escribe a Fabio por WhatsApp para consultar disponibilidad y el mejor precio directo." })}</p>
               </div>
               <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-shrink-0 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-                <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Chat on WhatsApp" })}
+                <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Chat on WhatsApp", es: "Escribe por WhatsApp" })}
               </a>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
@@ -9,7 +9,15 @@ import { I, waLink } from "@/lib/site";
 import { type Lang, useLang, tr } from "@/components/site/LangProvider";
 import ContactFormModal, { GmailChip, GMAIL_BLUE } from "@/components/site/ContactFormModal";
 
-/** Switch lingua IT/EN riusato in header (desktop) e accanto all'hamburger (mobile). */
+/** Le 3 lingue disponibili. Le etichette sono endonimi: restano sempre
+ *  nella loro lingua nativa, non si traducono per lingua corrente. */
+const LANGS: { code: Lang; label: string; short: string }[] = [
+  { code: "it", label: "Italiano", short: "IT" },
+  { code: "en", label: "English", short: "EN" },
+  { code: "es", label: "Español", short: "ES" },
+];
+
+/** Tendina lingua IT/EN/ES riusata in header (desktop) e accanto all'hamburger (mobile). */
 function LangSwitch({
   lang,
   setLang,
@@ -19,26 +27,65 @@ function LangSwitch({
   setLang: (l: Lang) => void;
   className?: string;
 }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const current = LANGS.find((l) => l.code === lang) ?? LANGS[0];
+
   return (
-    <div className={`items-center rounded-full border border-line text-xs font-semibold ${className}`}>
+    <div ref={ref} className={`relative ${className}`}>
       <button
         type="button"
-        onClick={() => setLang("it")}
-        className={`rounded-full px-2.5 py-1 transition ${
-          lang === "it" ? "bg-deep-brown text-white" : "text-warm-gray hover:text-deep-brown"
-        }`}
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label="Lingua / Language / Idioma"
+        className="inline-flex items-center gap-1 rounded-full border border-line px-2.5 py-1 text-xs font-semibold text-deep-brown transition hover:bg-cream-2"
       >
-        IT
+        {current.short}
+        <span className="text-[10px] leading-none">▾</span>
       </button>
-      <button
-        type="button"
-        onClick={() => setLang("en")}
-        className={`rounded-full px-2.5 py-1 transition ${
-          lang === "en" ? "bg-deep-brown text-white" : "text-warm-gray hover:text-deep-brown"
-        }`}
-      >
-        EN
-      </button>
+      {open && (
+        <div
+          role="menu"
+          className="absolute right-0 top-full z-50 mt-1 min-w-[9rem] overflow-hidden rounded-xl border border-line bg-paper p-1 text-xs font-semibold shadow-card"
+        >
+          {LANGS.map((l) => (
+            <button
+              key={l.code}
+              type="button"
+              role="menuitem"
+              autoFocus={l.code === lang}
+              onClick={() => {
+                setLang(l.code);
+                setOpen(false);
+              }}
+              className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 transition ${
+                l.code === lang ? "bg-deep-brown text-white" : "text-deep-brown hover:bg-cream-2"
+              }`}
+            >
+              <span>{l.label}</span>
+              <span className={l.code === lang ? "text-white/80" : "text-warm-gray"}>{l.short}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -48,13 +95,13 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   const nav = [
-    { label: { it: "Esperienze", en: "Experiences" }, href: "/cosa-fare-intorno" },
-    { label: { it: "Contatti", en: "Contact" }, href: "/contatti" },
+    { label: { it: "Esperienze", en: "Experiences", es: "Experiencias" }, href: "/cosa-fare-intorno" },
+    { label: { it: "Contatti", en: "Contact", es: "Contacto" }, href: "/contatti" },
   ];
   const apts = [
-    { label: { it: "Miri · 75 m²", en: "Miri · 75 m²" }, href: "/miri" },
-    { label: { it: "Ale · 55 m²", en: "Ale · 55 m²" }, href: "/ale" },
-    { label: { it: "Casa intera", en: "Whole house" }, href: "/la-casa" },
+    { label: { it: "Miri · 75 m²", en: "Miri · 75 m²", es: "Miri · 75 m²" }, href: "/miri" },
+    { label: { it: "Ale · 55 m²", en: "Ale · 55 m²", es: "Ale · 55 m²" }, href: "/ale" },
+    { label: { it: "Casa intera", en: "Whole house", es: "Casa entera" }, href: "/la-casa" },
   ];
 
   return (
@@ -70,7 +117,7 @@ export default function SiteHeader() {
               type="button"
               className="inline-flex items-center gap-1 transition hover:text-terracotta"
             >
-              {tr(lang, { it: "Appartamenti", en: "Apartments" })}
+              {tr(lang, { it: "Appartamenti", en: "Apartments", es: "Apartamentos" })}
               <span className="text-xs">▾</span>
             </button>
             <div className="invisible absolute left-0 top-full z-10 w-48 translate-y-1 rounded-xl border border-line bg-paper p-2 opacity-0 shadow-card transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
@@ -91,7 +138,7 @@ export default function SiteHeader() {
             </Link>
           ))}
           <Link href="/recensioni" className="transition hover:text-terracotta">
-            {tr(lang, { it: "Recensioni", en: "Reviews" })}
+            {tr(lang, { it: "Recensioni", en: "Reviews", es: "Reseñas" })}
           </Link>
         </nav>
 
@@ -109,8 +156,8 @@ export default function SiteHeader() {
           >
             <I.whatsapp className="h-4 w-4 flex-shrink-0" />
             <span className="hidden flex-col items-start leading-tight sm:flex">
-              <span className="text-sm font-medium">{tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
-              <span className="text-[10px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
+              <span className="text-sm font-medium">{tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp", es: "Escríbenos por WhatsApp" })}</span>
+              <span className="text-[10px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!", es: "¡Respuesta rápida!" })}</span>
             </span>
           </a>
 
@@ -121,7 +168,7 @@ export default function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            aria-label={tr(lang, { it: "Apri il menu", en: "Open menu" })}
+            aria-label={tr(lang, { it: "Apri il menu", en: "Open menu", es: "Abrir el menú" })}
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-deep-brown transition hover:bg-cream-2 lg:hidden"
           >
             <Menu className="h-5 w-5" />
@@ -142,7 +189,7 @@ export default function SiteHeader() {
             {/* backdrop */}
             <button
               type="button"
-              aria-label={tr(lang, { it: "Chiudi il menu", en: "Close menu" })}
+              aria-label={tr(lang, { it: "Chiudi il menu", en: "Close menu", es: "Cerrar el menú" })}
               onClick={() => setOpen(false)}
               className="absolute inset-0 h-full w-full bg-deep-brown/40 backdrop-blur-sm"
             />
@@ -180,7 +227,7 @@ export default function SiteHeader() {
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
-                    aria-label={tr(lang, { it: "Chiudi", en: "Close" })}
+                    aria-label={tr(lang, { it: "Chiudi", en: "Close", es: "Cerrar" })}
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-paper/80 text-deep-brown shadow-sm transition hover:bg-paper"
                   >
                     <X className="h-5 w-5" />
@@ -188,7 +235,7 @@ export default function SiteHeader() {
                 </div>
 
                 <nav className="mt-6 flex flex-col gap-1">
-                  <p className="px-1 font-script text-xl text-terracotta">{tr(lang, { it: "Appartamenti", en: "Apartments" })}</p>
+                  <p className="px-1 font-script text-xl text-terracotta">{tr(lang, { it: "Appartamenti", en: "Apartments", es: "Apartamentos" })}</p>
                   {apts.map((a) => (
                     <Link
                       key={a.href}
@@ -215,7 +262,7 @@ export default function SiteHeader() {
                     onClick={() => setOpen(false)}
                     className="rounded-2xl px-4 py-3 font-serif text-lg font-semibold text-deep-brown transition hover:bg-paper/60"
                   >
-                    {tr(lang, { it: "Recensioni", en: "Reviews" })}
+                    {tr(lang, { it: "Recensioni", en: "Reviews", es: "Reseñas" })}
                   </Link>
                 </nav>
 

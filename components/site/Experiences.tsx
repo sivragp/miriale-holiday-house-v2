@@ -51,95 +51,95 @@ export default function Experiences() {
   const eyebrow = "font-script text-2xl leading-none text-terracotta";
 
   const heroFeatures: { Icon: typeof MapPin; t: B; s: B }[] = [
-    { Icon: MapPin, t: { it: "Posizione perfetta", en: "Perfect location" }, s: { it: "Vicino ad aeroporto, Roma e mare", en: "Near airport, Rome and the sea" } },
-    { Icon: Lightbulb, t: { it: "Consigli locali", en: "Local tips" }, s: { it: "Suggerimenti personali di Fabio", en: "Personal suggestions from Fabio" } },
-    { Icon: TrainFront, t: { it: "Facile da raggiungere", en: "Easy to reach" }, s: { it: "Treni, spiagge e attrazioni vicine", en: "Trains, beaches and attractions nearby" } },
-    { Icon: Heart, t: { it: "Comfort e relax", en: "Comfort & relax" }, s: { it: "Torna a casa e rilassati", en: "Come back home and unwind" } },
+    { Icon: MapPin, t: { it: "Posizione perfetta", en: "Perfect location", es: "Ubicación perfecta" }, s: { it: "Vicino ad aeroporto, Roma e mare", en: "Near airport, Rome and the sea", es: "Cerca del aeropuerto, Roma y el mar" } },
+    { Icon: Lightbulb, t: { it: "Consigli locali", en: "Local tips", es: "Consejos locales" }, s: { it: "Suggerimenti personali di Fabio", en: "Personal suggestions from Fabio", es: "Sugerencias personales de Fabio" } },
+    { Icon: TrainFront, t: { it: "Facile da raggiungere", en: "Easy to reach", es: "Fácil de llegar" }, s: { it: "Treni, spiagge e attrazioni vicine", en: "Trains, beaches and attractions nearby", es: "Trenes, playas y atracciones cercanas" } },
+    { Icon: Heart, t: { it: "Comfort e relax", en: "Comfort & relax", es: "Confort y relax" }, s: { it: "Torna a casa e rilassati", en: "Come back home and unwind", es: "Vuelve a casa y relájate" } },
   ];
 
   const top: { img: string | null; phLabel: string; t: B; near: B; s: B; time: B; by: B; Icon: typeof Car }[] = [
-    { img: "/images/luoghi/esp-roma-card.jpg", phLabel: "Roma", t: { it: "Roma", en: "Rome" }, near: { it: "~30 km", en: "~30 km" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi, Trastevere e molto altro. Senza auto!", en: "Colosseum, Vatican, Trevi Fountain, Trastevere and more. No car needed!" }, time: { it: "32 min", en: "32 min" }, by: { it: "in treno", en: "by train" }, Icon: Train },
-    { img: "/images/base-roma-mare.jpg", phLabel: "Mare", t: { it: "Il mare", en: "The Sea" }, near: { it: "Focene, Fregene, Ostia Lido", en: "Focene, Fregene, Ostia Lido" }, s: { it: "Spiagge, stabilimenti, passeggiate sul lungomare e tramonti spettacolari.", en: "Beaches, beach clubs, seafront walks and stunning sunsets." }, time: { it: "5–20 min", en: "5–20 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica" }, near: { it: "4,3 km", en: "4.3 km" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more." }, time: { it: "~10 min", en: "~10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/porto.jpg", phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, near: { it: "~10 min", en: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare." }, time: { it: "10 min", en: "10 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma" }, near: { it: "7 km", en: "7 km" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions." }, time: { it: "~15 min", en: "~15 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
-    { img: "/images/luoghi/negozi.jpg", phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services" }, near: { it: "~5 min", en: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need." }, time: { it: "5 min", en: "5 min" }, by: { it: "in auto", en: "by car" }, Icon: Car },
+    { img: "/images/luoghi/esp-roma-card.jpg", phLabel: "Roma", t: { it: "Roma", en: "Rome", es: "Roma" }, near: { it: "~30 km", en: "~30 km", es: "~30 km" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi, Trastevere e molto altro. Senza auto!", en: "Colosseum, Vatican, Trevi Fountain, Trastevere and more. No car needed!", es: "Coliseo, Vaticano, Fontana di Trevi, Trastevere y mucho más. ¡Sin coche!" }, time: { it: "32 min", en: "32 min", es: "32 min" }, by: { it: "in treno", en: "by train", es: "en tren" }, Icon: Train },
+    { img: "/images/base-roma-mare.jpg", phLabel: "Mare", t: { it: "Il mare", en: "The Sea", es: "El mar" }, near: { it: "Focene, Fregene, Ostia Lido", en: "Focene, Fregene, Ostia Lido", es: "Focene, Fregene, Ostia Lido" }, s: { it: "Spiagge, stabilimenti, passeggiate sul lungomare e tramonti spettacolari.", en: "Beaches, beach clubs, seafront walks and stunning sunsets.", es: "Playas, chiringuitos, paseos marítimos y atardeceres espectaculares." }, time: { it: "5–20 min", en: "5–20 min", es: "5–20 min" }, by: { it: "in auto", en: "by car", es: "en coche" }, Icon: Car },
+    { img: "/images/luoghi/ostia.jpg", phLabel: "Ostia Antica", t: { it: "Ostia Antica", en: "Ostia Antica", es: "Ostia Antica" }, near: { it: "4,3 km", en: "4.3 km", es: "4,3 km" }, s: { it: "Uno dei siti romani meglio conservati d'Italia. Teatro, terme, mosaici e altro.", en: "One of Italy's best preserved Roman sites. Theatre, baths, mosaics and more.", es: "Uno de los sitios romanos mejor conservados de Italia. Teatro, termas, mosaicos y más." }, time: { it: "~10 min", en: "~10 min", es: "~10 min" }, by: { it: "in auto", en: "by car", es: "en coche" }, Icon: Car },
+    { img: "/images/luoghi/porto.jpg", phLabel: "Porto di Fiumicino", t: { it: "Porto di Fiumicino", en: "Fiumicino Port", es: "Puerto de Fiumicino" }, near: { it: "~10 min", en: "~10 min", es: "~10 min" }, s: { it: "Il porto-canale con ottimi ristoranti di pesce, il faro e il lungomare.", en: "The canal-port with amazing seafood restaurants, lighthouse and lungomare.", es: "El puerto-canal con excelentes restaurantes de pescado, el faro y el paseo marítimo." }, time: { it: "10 min", en: "10 min", es: "10 min" }, by: { it: "in auto", en: "by car", es: "en coche" }, Icon: Car },
+    { img: "/images/luoghi/fiera.jpg", phLabel: "Fiera di Roma", t: { it: "Fiera di Roma", en: "Fiera di Roma", es: "Fiera di Roma" }, near: { it: "7 km", en: "7 km", es: "7 km" }, s: { it: "Centro espositivo per fiere, eventi, esami e concorsi.", en: "Exhibition centre for fairs, events, exams and competitions.", es: "Recinto ferial para ferias, eventos, exámenes y oposiciones." }, time: { it: "~15 min", en: "~15 min", es: "~15 min" }, by: { it: "in auto", en: "by car", es: "en coche" }, Icon: Car },
+    { img: "/images/luoghi/negozi.jpg", phLabel: "Negozi e servizi", t: { it: "Negozi e servizi", en: "Shops & services", es: "Tiendas y servicios" }, near: { it: "~5 min", en: "~5 min", es: "~5 min" }, s: { it: "Supermercati, ristoranti, farmacie e tutto ciò che serve.", en: "Supermarkets, restaurants, pharmacies and everything you need.", es: "Supermercados, restaurantes, farmacias y todo lo que necesitas." }, time: { it: "5 min", en: "5 min", es: "5 min" }, by: { it: "in auto", en: "by car", es: "en coche" }, Icon: Car },
   ];
 
   type Step = { time: string; a: B; sub?: B };
   const ideas: { n: string; img: string | null; phLabel: string; t: B; sub: B; steps: Step[]; tip: B }[] = [
     {
-      n: "01", img: "/images/luoghi/pantheon.jpg", phLabel: "Roma", t: { it: "Una giornata a Roma", en: "A day in Rome" }, sub: { it: "Storia, arte e cultura", en: "History, art & culture" },
+      n: "01", img: "/images/luoghi/pantheon.jpg", phLabel: "Roma", t: { it: "Una giornata a Roma", en: "A day in Rome", es: "Un día en Roma" }, sub: { it: "Storia, arte e cultura", en: "History, art & culture", es: "Historia, arte y cultura" },
       steps: [
-        { time: "09:00", a: { it: "Treno per Roma Termini (Leonardo Express — 32 min)", en: "Train to Roma Termini (Leonardo Express — 32 min)" } },
-        { time: "09:30", a: { it: "Colosseo e Foro Romano", en: "Colosseum & Roman Forum" } },
-        { time: "12:00", a: { it: "Pantheon e Piazza Navona", en: "Pantheon & Piazza Navona" } },
-        { time: "14:00", a: { it: "Pranzo a Trastevere", en: "Lunch in Trastevere" } },
-        { time: "16:00", a: { it: "Fontana di Trevi", en: "Trevi Fountain" } },
-        { time: "17:00", a: { it: "Basilica di San Pietro e Vaticano", en: "St. Peter's Basilica & Vatican" } },
-        { time: "19:30", a: { it: "Treno di rientro a Fiumicino", en: "Train back to Fiumicino" } },
+        { time: "09:00", a: { it: "Treno per Roma Termini (Leonardo Express — 32 min)", en: "Train to Roma Termini (Leonardo Express — 32 min)", es: "Tren a Roma Termini (Leonardo Express — 32 min)" } },
+        { time: "09:30", a: { it: "Colosseo e Foro Romano", en: "Colosseum & Roman Forum", es: "Coliseo y Foro Romano" } },
+        { time: "12:00", a: { it: "Pantheon e Piazza Navona", en: "Pantheon & Piazza Navona", es: "Panteón y Piazza Navona" } },
+        { time: "14:00", a: { it: "Pranzo a Trastevere", en: "Lunch in Trastevere", es: "Almuerzo en Trastevere" } },
+        { time: "16:00", a: { it: "Fontana di Trevi", en: "Trevi Fountain", es: "Fontana di Trevi" } },
+        { time: "17:00", a: { it: "Basilica di San Pietro e Vaticano", en: "St. Peter's Basilica & Vatican", es: "Basílica de San Pedro y Vaticano" } },
+        { time: "19:30", a: { it: "Treno di rientro a Fiumicino", en: "Train back to Fiumicino", es: "Tren de regreso a Fiumicino" } },
       ],
-      tip: { it: "Compra i biglietti del treno online e parti presto per goderti ogni momento.", en: "Buy train tickets online and start early to enjoy every moment." },
+      tip: { it: "Compra i biglietti del treno online e parti presto per goderti ogni momento.", en: "Buy train tickets online and start early to enjoy every moment.", es: "Compra los billetes de tren online y sal temprano para disfrutar de cada momento." },
     },
     {
-      n: "02", img: "/images/base-roma-mare.jpg", phLabel: "Mare", t: { it: "Pomeriggio in spiaggia", en: "Beach afternoon" }, sub: { it: "Sole, mare e relax", en: "Sun, sea & relax" },
+      n: "02", img: "/images/base-roma-mare.jpg", phLabel: "Mare", t: { it: "Pomeriggio in spiaggia", en: "Beach afternoon", es: "Tarde en la playa" }, sub: { it: "Sole, mare e relax", en: "Sun, sea & relax", es: "Sol, mar y relax" },
       steps: [
-        { time: "10:00", a: { it: "Spiaggia di Fregene o Focene", en: "Fregene or Focene beach" }, sub: { it: "Relax in riva al mare o in uno stabilimento", en: "Relax by the sea or in a beach club" } },
-        { time: "13:00", a: { it: "Pranzo con vista mare", en: "Lunch with sea view" } },
-        { time: "16:30", a: { it: "Passeggiata sul lungomare o spiaggia", en: "Seafront walk or beach time" } },
-        { time: "19:30", a: { it: "Aperitivo al tramonto", en: "Aperitivo at sunset" } },
+        { time: "10:00", a: { it: "Spiaggia di Fregene o Focene", en: "Fregene or Focene beach", es: "Playa de Fregene o Focene" }, sub: { it: "Relax in riva al mare o in uno stabilimento", en: "Relax by the sea or in a beach club", es: "Relax a orillas del mar o en un chiringuito" } },
+        { time: "13:00", a: { it: "Pranzo con vista mare", en: "Lunch with sea view", es: "Almuerzo con vistas al mar" } },
+        { time: "16:30", a: { it: "Passeggiata sul lungomare o spiaggia", en: "Seafront walk or beach time", es: "Paseo marítimo o tiempo de playa" } },
+        { time: "19:30", a: { it: "Aperitivo al tramonto", en: "Aperitivo at sunset", es: "Aperitivo al atardecer" } },
       ],
-      tip: { it: "Fregene è perfetta per i tramonti e l'aperitivo in riva al mare.", en: "Fregene is perfect for sunsets and seaside aperitivo." },
+      tip: { it: "Fregene è perfetta per i tramonti e l'aperitivo in riva al mare.", en: "Fregene is perfect for sunsets and seaside aperitivo.", es: "Fregene es perfecta para los atardeceres y el aperitivo a orillas del mar." },
     },
     {
-      n: "03", img: "/images/luoghi/ostia-antica.jpg", phLabel: "Ostia Antica", t: { it: "Mezza giornata a Ostia Antica", en: "Half day in Ostia Antica" }, sub: { it: "Indietro nel tempo", en: "Step back in time" },
+      n: "03", img: "/images/luoghi/ostia-antica.jpg", phLabel: "Ostia Antica", t: { it: "Mezza giornata a Ostia Antica", en: "Half day in Ostia Antica", es: "Media jornada en Ostia Antica" }, sub: { it: "Indietro nel tempo", en: "Step back in time", es: "Un viaje en el tiempo" },
       steps: [
-        { time: "10:00", a: { it: "Arrivo e inizio della visita", en: "Arrive & start your visit" }, sub: { it: "Esplora la città antica: teatro, terme, mosaici", en: "Explore the ancient city: theatre, baths, mosaics" } },
-        { time: "12:30", a: { it: "Pausa al caffè dentro il parco", en: "Break at the café inside the park" } },
-        { time: "13:30", a: { it: "Visita al museo o al litorale", en: "Explore the museum or the seafront" } },
-        { time: "14:30", a: { it: "Rientro a casa o tempo in spiaggia", en: "Back home or beach time" } },
+        { time: "10:00", a: { it: "Arrivo e inizio della visita", en: "Arrive & start your visit", es: "Llegada e inicio de la visita" }, sub: { it: "Esplora la città antica: teatro, terme, mosaici", en: "Explore the ancient city: theatre, baths, mosaics", es: "Explora la ciudad antigua: teatro, termas, mosaicos" } },
+        { time: "12:30", a: { it: "Pausa al caffè dentro il parco", en: "Break at the café inside the park", es: "Pausa en la cafetería dentro del parque" } },
+        { time: "13:30", a: { it: "Visita al museo o al litorale", en: "Explore the museum or the seafront", es: "Visita al museo o al litoral" } },
+        { time: "14:30", a: { it: "Rientro a casa o tempo in spiaggia", en: "Back home or beach time", es: "Regreso a casa o tiempo de playa" } },
       ],
-      tip: { it: "Indossa scarpe comode e porta acqua, soprattutto in estate.", en: "Wear comfortable shoes and bring water, especially in summer." },
+      tip: { it: "Indossa scarpe comode e porta acqua, soprattutto in estate.", en: "Wear comfortable shoes and bring water, especially in summer.", es: "Lleva calzado cómodo y agua, sobre todo en verano." },
     },
     {
-      n: "04", img: "/images/luoghi/ristorante-pesce.jpg", phLabel: "Porto di Fiumicino", t: { it: "Serata di pesce al porto", en: "Seafood evening at the port" }, sub: { it: "Buon cibo e atmosfera locale", en: "Good food & local vibe" },
+      n: "04", img: "/images/luoghi/ristorante-pesce.jpg", phLabel: "Porto di Fiumicino", t: { it: "Serata di pesce al porto", en: "Seafood evening at the port", es: "Velada de pescado en el puerto" }, sub: { it: "Buon cibo e atmosfera locale", en: "Good food & local vibe", es: "Buena comida y ambiente local" },
       steps: [
-        { time: "19:00", a: { it: "Passeggiata al porto-canale di Fiumicino", en: "Fiumicino canal-port stroll" } },
-        { time: "19:30", a: { it: "Cena con pesce fresco e vino locale", en: "Dinner with fresh fish and local wine" } },
-        { time: "21:30", a: { it: "Passeggiata al molo e al faro", en: "Walk along the pier and lighthouse" } },
+        { time: "19:00", a: { it: "Passeggiata al porto-canale di Fiumicino", en: "Fiumicino canal-port stroll", es: "Paseo por el puerto-canal de Fiumicino" } },
+        { time: "19:30", a: { it: "Cena con pesce fresco e vino locale", en: "Dinner with fresh fish and local wine", es: "Cena con pescado fresco y vino local" } },
+        { time: "21:30", a: { it: "Passeggiata al molo e al faro", en: "Walk along the pier and lighthouse", es: "Paseo por el muelle y el faro" } },
       ],
-      tip: { it: "Prova gli spaghetti alle vongole e un vino bianco locale.", en: "Try the spaghetti alle vongole and a local white wine." },
+      tip: { it: "Prova gli spaghetti alle vongole e un vino bianco locale.", en: "Try the spaghetti alle vongole and a local white wine.", es: "Prueba los spaghetti alle vongole y un vino blanco local." },
     },
   ];
 
   const nearby: { Icon: typeof Plane; t: B; v: B }[] = [
-    { Icon: Plane, t: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)" }, v: { it: "5 km", en: "5 km" } },
-    { Icon: Plane, t: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport" }, v: { it: "31 km", en: "31 km" } },
-    { Icon: Footprints, t: { it: "Bus pubblico (FCO e Ostia)", en: "Public bus (FCO & Ostia)" }, v: { it: "500 m a piedi", en: "500 m walk" } },
-    { Icon: Train, t: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train" }, v: { it: "5 km", en: "5 km" } },
-    { Icon: Waves, t: { it: "Spiaggia Lungomare della Salute", en: "Lungomare della Salute beach" }, v: { it: "3,9 km", en: "3.9 km" } },
-    { Icon: Waves, t: { it: "Spiaggia di Focene", en: "Focene beach" }, v: { it: "4,7 km", en: "4.7 km" } },
-    { Icon: Umbrella, t: { it: "Spiaggia di Ostia Lido", en: "Ostia Lido beach" }, v: { it: "4,7 km", en: "4.7 km" } },
-    { Icon: Umbrella, t: { it: "Spiaggia di Castel Fusano", en: "Castel Fusano beach" }, v: { it: "7 km", en: "7 km" } },
-    { Icon: Landmark, t: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins" }, v: { it: "4,3 km", en: "4.3 km" } },
-    { Icon: Leaf, t: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods" }, v: { it: "11 km", en: "11 km" } },
-    { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma" }, v: { it: "7 km", en: "7 km" } },
-    { Icon: Building2, t: { it: "Fiamme Gialle · Ostia (Guardia di Finanza)", en: "Fiamme Gialle · Ostia (Guardia di Finanza)" }, v: { it: "~20 min", en: "~20 min" } },
-    { Icon: ShoppingCart, t: { it: "Ristoranti (It Italian, Luana)", en: "Restaurants (It Italian, Luana)" }, v: { it: "700 m", en: "700 m" } },
+    { Icon: Plane, t: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)", es: "Aeropuerto de Roma Fiumicino (FCO)" }, v: { it: "5 km", en: "5 km", es: "5 km" } },
+    { Icon: Plane, t: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport", es: "Aeropuerto de Roma Ciampino" }, v: { it: "31 km", en: "31 km", es: "31 km" } },
+    { Icon: Footprints, t: { it: "Bus pubblico (FCO e Ostia)", en: "Public bus (FCO & Ostia)", es: "Autobús público (FCO y Ostia)" }, v: { it: "500 m a piedi", en: "500 m walk", es: "500 m a pie" } },
+    { Icon: Train, t: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train", es: "Tren Lido Nord / Ostia Nord" }, v: { it: "5 km", en: "5 km", es: "5 km" } },
+    { Icon: Waves, t: { it: "Spiaggia Lungomare della Salute", en: "Lungomare della Salute beach", es: "Playa Lungomare della Salute" }, v: { it: "3,9 km", en: "3.9 km", es: "3,9 km" } },
+    { Icon: Waves, t: { it: "Spiaggia di Focene", en: "Focene beach", es: "Playa de Focene" }, v: { it: "4,7 km", en: "4.7 km", es: "4,7 km" } },
+    { Icon: Umbrella, t: { it: "Spiaggia di Ostia Lido", en: "Ostia Lido beach", es: "Playa de Ostia Lido" }, v: { it: "4,7 km", en: "4.7 km", es: "4,7 km" } },
+    { Icon: Umbrella, t: { it: "Spiaggia di Castel Fusano", en: "Castel Fusano beach", es: "Playa de Castel Fusano" }, v: { it: "7 km", en: "7 km", es: "7 km" } },
+    { Icon: Landmark, t: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins", es: "Ostia Antica (excavaciones)" }, v: { it: "4,3 km", en: "4.3 km", es: "4,3 km" } },
+    { Icon: Leaf, t: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods", es: "Bosque Macchia Grande di Focene" }, v: { it: "11 km", en: "11 km", es: "11 km" } },
+    { Icon: Building2, t: { it: "Fiera di Roma", en: "Fiera di Roma", es: "Fiera di Roma" }, v: { it: "7 km", en: "7 km", es: "7 km" } },
+    { Icon: Building2, t: { it: "Fiamme Gialle · Ostia (Guardia di Finanza)", en: "Fiamme Gialle · Ostia (Guardia di Finanza)", es: "Fiamme Gialle · Ostia (Guardia di Finanza)" }, v: { it: "~20 min", en: "~20 min", es: "~20 min" } },
+    { Icon: ShoppingCart, t: { it: "Ristoranti (It Italian, Luana)", en: "Restaurants (It Italian, Luana)", es: "Restaurantes (It Italian, Luana)" }, v: { it: "700 m", en: "700 m", es: "700 m" } },
   ];
 
   const nearbyBar: { Icon: typeof Leaf; t: B }[] = [
-    { Icon: Leaf, t: { it: "Zona residenziale tranquilla", en: "Quiet residential area" } },
-    { Icon: Car, t: { it: "Parcheggio gratuito alla casa", en: "Free parking at the house" } },
-    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)" } },
+    { Icon: Leaf, t: { it: "Zona residenziale tranquilla", en: "Quiet residential area", es: "Zona residencial tranquila" } },
+    { Icon: Car, t: { it: "Parcheggio gratuito alla casa", en: "Free parking at the house", es: "Aparcamiento gratuito en la casa" } },
+    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)", es: "Traslado al aeropuerto bajo petición (de pago)" } },
   ];
 
   const practical: { Icon: typeof Bus; t: B; s: B }[] = [
-    { Icon: Bus, t: { it: "Spostarsi", en: "Getting around" }, s: { it: "Treni, bus e collegamenti facili.", en: "Trains, buses and easy connections." } },
-    { Icon: Train, t: { it: "Auto non necessaria", en: "No car needed" }, s: { it: "Roma si raggiunge facilmente in treno.", en: "Rome is easy to reach by train." } },
-    { Icon: MessageCircle, t: { it: "Supporto locale", en: "Local support" }, s: { it: "Fabio ti aiuta con consigli e prenotazioni.", en: "Fabio is here to help with tips & bookings." } },
-    { Icon: Leaf, t: { it: "Soggiorno comodo", en: "Comfortable stay" }, s: { it: "Torna a casa e rilassati nel nostro giardino.", en: "Come back home and relax in our garden." } },
-    { Icon: Tag, t: { it: "Prenotazione diretta", en: "Direct booking" }, s: { it: "Miglior prezzo garantito. Nessun pagamento online.", en: "Best price guaranteed. No online payment." } },
+    { Icon: Bus, t: { it: "Spostarsi", en: "Getting around", es: "Cómo moverse" }, s: { it: "Treni, bus e collegamenti facili.", en: "Trains, buses and easy connections.", es: "Trenes, autobuses y conexiones fáciles." } },
+    { Icon: Train, t: { it: "Auto non necessaria", en: "No car needed", es: "Coche no necesario" }, s: { it: "Roma si raggiunge facilmente in treno.", en: "Rome is easy to reach by train.", es: "A Roma se llega fácilmente en tren." } },
+    { Icon: MessageCircle, t: { it: "Supporto locale", en: "Local support", es: "Asistencia local" }, s: { it: "Fabio ti aiuta con consigli e prenotazioni.", en: "Fabio is here to help with tips & bookings.", es: "Fabio te ayuda con consejos y reservas." } },
+    { Icon: Leaf, t: { it: "Soggiorno comodo", en: "Comfortable stay", es: "Estancia cómoda" }, s: { it: "Torna a casa e rilassati nel nostro giardino.", en: "Come back home and relax in our garden.", es: "Vuelve a casa y relájate en nuestro jardín." } },
+    { Icon: Tag, t: { it: "Prenotazione diretta", en: "Direct booking", es: "Reserva directa" }, s: { it: "Miglior prezzo garantito. Nessun pagamento online.", en: "Best price guaranteed. No online payment.", es: "Mejor precio garantizado. Sin pago online." } },
   ];
 
   return (
@@ -148,15 +148,16 @@ export default function Experiences() {
       <section className="bg-paper">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 md:grid-cols-2 md:gap-12">
           <div className="order-2 md:order-1">
-            <p className={eyebrow}>{tr(lang, { it: "Esplora i dintorni", en: "Explore more" })}</p>
+            <p className={eyebrow}>{tr(lang, { it: "Esplora i dintorni", en: "Explore more", es: "Explora los alrededores" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-deep-brown md:text-5xl">
-              {tr(lang, { it: "Tanto da vedere, vicino a casa", en: "So much to see, so close to home" })}
+              {tr(lang, { it: "Tanto da vedere, vicino a casa", en: "So much to see, so close to home", es: "Tanto por ver, cerca de casa" })}
             </h1>
             <Wave className="mt-3 h-2 w-20 text-terracotta" />
             <p className="mt-5 max-w-md text-sm leading-relaxed text-warm-gray">
               {tr(lang, {
                 it: "Dalle meraviglie senza tempo di Roma alle spiagge dorate, dai siti archeologici al pesce fresco: tutto è a portata di mano. Fabio e la sua famiglia sono qui con consigli locali per rendere il tuo soggiorno indimenticabile.",
                 en: "From Rome's timeless wonders to golden beaches, ancient ruins and delicious seafood — everything is within easy reach. Fabio and his family are here with local tips to make your stay unforgettable.",
+                es: "Desde las maravillas eternas de Roma hasta las playas doradas, desde los sitios arqueológicos hasta el pescado fresco: todo está a tu alcance. Fabio y su familia están aquí con consejos locales para hacer de tu estancia algo inolvidable.",
               })}
             </p>
             <div className="mt-7 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
@@ -174,22 +175,22 @@ export default function Experiences() {
             {/* foto principale con cornice bianca */}
             <div className="relative -rotate-1 rounded-[2rem] bg-white p-3 shadow-card lg:mr-10">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.6rem]">
-                <Image src="/images/luoghi/esp-roma.jpg" alt={tr(lang, { it: "Panorama di Roma", en: "Rome skyline" })} fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
+                <Image src="/images/luoghi/esp-roma.jpg" alt={tr(lang, { it: "Panorama di Roma", en: "Rome skyline", es: "Panorámica de Roma" })} fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
               </div>
             </div>
             {/* cluster di polaroid sovrapposte */}
             <div className="absolute -right-3 top-4 hidden w-36 lg:block xl:w-44">
               <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-vaticano.jpg" alt={tr(lang, { it: "Piazza San Pietro", en: "St. Peter's Square" })} fill sizes="130px" className="object-cover" /></div>
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-vaticano.jpg" alt={tr(lang, { it: "Piazza San Pietro", en: "St. Peter's Square", es: "Plaza de San Pedro" })} fill sizes="130px" className="object-cover" /></div>
               </div>
               <div className="-mt-3 ml-4 -rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-trevi.jpg" alt={tr(lang, { it: "Fontana di Trevi", en: "Trevi Fountain" })} fill sizes="130px" className="object-cover" /></div>
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-trevi.jpg" alt={tr(lang, { it: "Fontana di Trevi", en: "Trevi Fountain", es: "Fontana di Trevi" })} fill sizes="130px" className="object-cover" /></div>
               </div>
               <div className="-mt-3 ml-1 rotate-2 rounded-xl bg-white p-1.5 shadow-xl">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-villa-borghese.jpg" alt={tr(lang, { it: "Giardini di Villa Borghese", en: "Villa Borghese gardens" })} fill sizes="130px" className="object-cover" /></div>
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-villa-borghese.jpg" alt={tr(lang, { it: "Giardini di Villa Borghese", en: "Villa Borghese gardens", es: "Jardines de Villa Borghese" })} fill sizes="130px" className="object-cover" /></div>
               </div>
               <div className="-mt-3 ml-3 -rotate-2 rounded-xl bg-white p-1.5 shadow-xl">
-                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-lungomare.jpg" alt={tr(lang, { it: "Lungomare e mare di Fiumicino", en: "Fiumicino seafront" })} fill sizes="130px" className="object-cover" /></div>
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-lungomare.jpg" alt={tr(lang, { it: "Lungomare e mare di Fiumicino", en: "Fiumicino seafront", es: "Paseo marítimo de Fiumicino" })} fill sizes="130px" className="object-cover" /></div>
               </div>
             </div>
           </div>
@@ -201,7 +202,7 @@ export default function Experiences() {
         <div className="absolute inset-0 bg-paper/30" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House" })}</h2>
+            <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House", es: "Las mejores experiencias cerca de MiriAle Holiday House" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
           <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6`}>
@@ -228,9 +229,9 @@ export default function Experiences() {
       <section className="bg-paper py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Idee per la giornata, pronte all'uso", en: "Ready-made day ideas" })}</h2>
+            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Idee per la giornata, pronte all'uso", en: "Ready-made day ideas", es: "Ideas para el día, listas para usar" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
-            <p className="mt-3 text-sm text-warm-gray">{tr(lang, { it: "Itinerari facili per ispirare il tuo soggiorno — suggeriti da Fabio", en: "Easy itineraries to inspire your stay — suggested by Fabio" })}</p>
+            <p className="mt-3 text-sm text-warm-gray">{tr(lang, { it: "Itinerari facili per ispirare il tuo soggiorno — suggeriti da Fabio", en: "Easy itineraries to inspire your stay — suggested by Fabio", es: "Itinerarios fáciles para inspirar tu estancia — sugeridos por Fabio" })}</p>
           </Reveal>
           <div className={`mt-8 ${cardRail} md:grid-cols-2 xl:grid-cols-4`}>
             {ideas.map((d) => (
@@ -255,7 +256,7 @@ export default function Experiences() {
                     ))}
                   </ul>
                   <div className="mt-4 rounded-xl bg-cream p-3">
-                    <p className="flex items-center gap-1.5 text-xs font-semibold text-deep-brown"><Lightbulb className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Il consiglio di Fabio", en: "Fabio's tip" })}</p>
+                    <p className="flex items-center gap-1.5 text-xs font-semibold text-deep-brown"><Lightbulb className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Il consiglio di Fabio", en: "Fabio's tip", es: "El consejo de Fabio" })}</p>
                     <p className="mt-1 text-xs leading-relaxed text-warm-gray">{t(d.tip)}</p>
                   </div>
                 </div>
@@ -266,11 +267,11 @@ export default function Experiences() {
           {/* custom plan bar */}
           <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-between gap-4 rounded-2xl border border-line bg-cream px-6 py-5 text-center sm:flex-row sm:text-left">
             <div>
-              <p className="font-semibold text-deep-brown">{tr(lang, { it: "Vuoi un piano su misura?", en: "Need a custom plan?" })}</p>
-              <p className="text-sm text-warm-gray">{tr(lang, { it: "Fabio è felice di aiutarti a organizzare la giornata perfetta.", en: "Fabio is happy to help you plan the perfect day." })}</p>
+              <p className="font-semibold text-deep-brown">{tr(lang, { it: "Vuoi un piano su misura?", en: "Need a custom plan?", es: "¿Quieres un plan a medida?" })}</p>
+              <p className="text-sm text-warm-gray">{tr(lang, { it: "Fabio è felice di aiutarti a organizzare la giornata perfetta.", en: "Fabio is happy to help you plan the perfect day.", es: "Fabio estará encantado de ayudarte a organizar el día perfecto." })}</p>
             </div>
             <a href={waLink()} target="_blank" rel="noopener noreferrer" className="inline-flex flex-shrink-0 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-              <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi a Fabio su WhatsApp", en: "Chat with Fabio on WhatsApp" })}
+              <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi a Fabio su WhatsApp", en: "Chat with Fabio on WhatsApp", es: "Escribe a Fabio por WhatsApp" })}
             </a>
           </div>
         </div>
@@ -280,7 +281,7 @@ export default function Experiences() {
       <section className="bg-cream py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Tutto nei dintorni — in sintesi", en: "All nearby – at a glance" })}</h2>
+            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Tutto nei dintorni — in sintesi", en: "All nearby – at a glance", es: "Todo en los alrededores — de un vistazo" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
           <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
@@ -299,7 +300,7 @@ export default function Experiences() {
               <span key={b.t.en} className="flex items-center gap-2"><b.Icon className="h-4 w-4 text-terracotta" /> {t(b.t)}</span>
             ))}
           </div>
-          <p className="mt-3 text-center"><a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-terracotta hover:underline">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}</a></p>
+          <p className="mt-3 text-center"><a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-terracotta hover:underline">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →", es: "Abrir en Google Maps →" })}</a></p>
         </div>
       </section>
 
@@ -307,7 +308,7 @@ export default function Experiences() {
       <section className="bg-paper py-12 md:py-14">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Info pratiche per il tuo soggiorno", en: "Practical info for your stay" })}</h2>
+            <h2 className="font-serif text-2xl font-bold text-deep-brown md:text-3xl">{tr(lang, { it: "Info pratiche per il tuo soggiorno", en: "Practical info for your stay", es: "Información práctica para tu estancia" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
