@@ -63,6 +63,7 @@ export function buildMetadata(opts: {
       languages: {
         "it-IT": url,
         en: url,
+        es: url,
         "x-default": url,
       },
     },
@@ -211,7 +212,7 @@ export function lodgingBusinessNode(opts?: { withReviews?: boolean }): Json {
     checkoutTime: "11:00",
     numberOfRooms: 4,
     currenciesAccepted: "EUR",
-    availableLanguage: ["it", "en"],
+    availableLanguage: ["it", "en", "es"],
     amenityFeature: BASE_AMENITIES,
     aggregateRating,
     parentOrganization: { "@id": `${SITE_URL}/#organization` },

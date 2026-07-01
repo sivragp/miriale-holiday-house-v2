@@ -119,149 +119,149 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
   /* ---- contenuti ---- */
   const heroBullets: B[] = [
-    { it: "Gestione familiare · ti accoglie Fabio", en: "Family-run · hosted by Fabio" },
-    { it: "10 min dall'aeroporto FCO · pochi minuti dal mare", en: "10 min to FCO Airport · minutes from the sea" },
-    { it: "32 min in treno per Roma", en: "32 min by train to Rome" },
-    { it: "Prenotazione diretta · paghi al check-in", en: "Direct booking · pay at check-in" },
+    { it: "Gestione familiare · ti accoglie Fabio", en: "Family-run · hosted by Fabio", es: "Gestión familiar · te recibe Fabio" },
+    { it: "10 min dall'aeroporto FCO · pochi minuti dal mare", en: "10 min to FCO Airport · minutes from the sea", es: "10 min del aeropuerto FCO · a pocos minutos del mar" },
+    { it: "32 min in treno per Roma", en: "32 min by train to Rome", es: "32 min en tren a Roma" },
+    { it: "Prenotazione diretta · paghi al check-in", en: "Direct booking · pay at check-in", es: "Reserva directa · pagas en el check-in" },
   ];
   const specs: { Icon: typeof HomeIcon; a: string; b: B }[] = [
-    { Icon: HomeIcon, a: apt.mq, b: { it: "Dimensione", en: "Apartment size" } },
-    { Icon: BedDouble, a: String(apt.camere), b: { it: "Camere matrimoniali", en: "Double bedrooms" } },
-    { Icon: ShowerHead, a: String(apt.bagni), b: { it: "Bagno con doccia", en: "Bathroom with shower" } },
-    { Icon: Users, a: `${lang === "it" ? "Fino a" : "Up to"} ${apt.ospiti}`, b: { it: "Ospiti", en: "Guests" } },
+    { Icon: HomeIcon, a: apt.mq, b: { it: "Dimensione", en: "Apartment size", es: "Superficie" } },
+    { Icon: BedDouble, a: String(apt.camere), b: { it: "Camere matrimoniali", en: "Double bedrooms", es: "Habitaciones dobles" } },
+    { Icon: ShowerHead, a: String(apt.bagni), b: { it: "Bagno con doccia", en: "Bathroom with shower", es: "Baño con ducha" } },
+    { Icon: Users, a: `${lang === "it" ? "Fino a" : "Up to"} ${apt.ospiti}`, b: { it: "Ospiti", en: "Guests", es: "Huéspedes" } },
     isCasa
-      ? { Icon: HomeIcon, a: "2", b: { it: "Appartamenti indipendenti", en: "Independent apartments" } }
-      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Accesso comodo", en: "Easy access" } },
+      ? { Icon: HomeIcon, a: "2", b: { it: "Appartamenti indipendenti", en: "Independent apartments", es: "Apartamentos independientes" } }
+      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Accesso comodo", en: "Easy access", es: "Acceso cómodo" } },
   ];
   const hostBullets: { Icon: typeof UserCheck; t: B }[] = [
-    { Icon: HomeIcon, t: { it: "Ospitalità familiare", en: "Family-run hospitality" } },
-    { Icon: UserCheck, t: { it: "Accoglienza di persona", en: "In-person welcome" } },
-    { Icon: Luggage, t: { it: "Aiuto coi bagagli", en: "Luggage help" } },
-    { Icon: Coffee, t: { it: "Caffè al mattino", en: "Morning coffee" } },
-    { Icon: MapPin, t: { it: "Consigli e suggerimenti locali", en: "Local tips & recommendations" } },
-    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)" } },
+    { Icon: HomeIcon, t: { it: "Ospitalità familiare", en: "Family-run hospitality", es: "Hospitalidad familiar" } },
+    { Icon: UserCheck, t: { it: "Accoglienza di persona", en: "In-person welcome", es: "Recibimiento en persona" } },
+    { Icon: Luggage, t: { it: "Aiuto coi bagagli", en: "Luggage help", es: "Ayuda con el equipaje" } },
+    { Icon: Coffee, t: { it: "Caffè al mattino", en: "Morning coffee", es: "Café por la mañana" } },
+    { Icon: MapPin, t: { it: "Consigli e suggerimenti locali", en: "Local tips & recommendations", es: "Consejos y recomendaciones locales" } },
+    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)", es: "Traslado al aeropuerto bajo petición (de pago)" } },
   ];
   const aboutFeatures: { Icon: typeof DoorOpen; t: B; s: B }[] = isCasa
     ? [
-        { Icon: HomeIcon, t: { it: "2 appartamenti", en: "2 apartments" }, s: { it: "indipendenti, con ingresso proprio", en: "independent, with own entrance" } },
-        { Icon: BedDouble, t: { it: "4 camere", en: "4 double" }, s: { it: "matrimoniali", en: "bedrooms" } },
-        { Icon: ShowerHead, t: { it: "2 bagni", en: "2 bathrooms" }, s: { it: "con doccia", en: "with shower" } },
-        { Icon: CookingPot, t: { it: "2 cucine", en: "2 kitchens" }, s: { it: "attrezzate", en: "fully equipped" } },
-        { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden" }, s: { it: "condiviso, con terrazza colazione", en: "shared, with breakfast terrace" } },
+        { Icon: HomeIcon, t: { it: "2 appartamenti", en: "2 apartments", es: "2 apartamentos" }, s: { it: "indipendenti, con ingresso proprio", en: "independent, with own entrance", es: "independientes, con entrada propia" } },
+        { Icon: BedDouble, t: { it: "4 camere", en: "4 double", es: "4 habitaciones" }, s: { it: "matrimoniali", en: "bedrooms", es: "dobles" } },
+        { Icon: ShowerHead, t: { it: "2 bagni", en: "2 bathrooms", es: "2 baños" }, s: { it: "con doccia", en: "with shower", es: "con ducha" } },
+        { Icon: CookingPot, t: { it: "2 cucine", en: "2 kitchens", es: "2 cocinas" }, s: { it: "attrezzate", en: "fully equipped", es: "totalmente equipadas" } },
+        { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden", es: "Jardín privado" }, s: { it: "condiviso, con terrazza colazione", en: "shared, with breakfast terrace", es: "compartido, con terraza para el desayuno" } },
       ]
     : [
-        { Icon: DoorOpen, t: { it: "Piano terra", en: "Ground floor" }, s: { it: "accesso comodo, niente scale", en: "Easy access · no stairs" } },
-        { Icon: CookingPot, t: { it: "Cucina in legno", en: "Warm wooden" }, s: { it: "e zona living", en: "kitchen & living room" } },
-        { Icon: ShowerHead, t: { it: "Bagno", en: "Bathroom" }, s: { it: "con doccia", en: "with shower" } },
-        { Icon: Car, t: { it: "Parcheggio privato", en: "Private free" }, s: { it: "gratuito", en: "parking" } },
-        { Icon: Leaf, t: { it: "Accesso al giardino", en: "Access to shared" }, s: { it: "privato condiviso con terrazza colazione", en: "private garden with breakfast terrace" } },
+        { Icon: DoorOpen, t: { it: "Piano terra", en: "Ground floor", es: "Planta baja" }, s: { it: "accesso comodo, niente scale", en: "Easy access · no stairs", es: "acceso cómodo, sin escaleras" } },
+        { Icon: CookingPot, t: { it: "Cucina in legno", en: "Warm wooden", es: "Cocina de madera" }, s: { it: "e zona living", en: "kitchen & living room", es: "y zona de estar" } },
+        { Icon: ShowerHead, t: { it: "Bagno", en: "Bathroom", es: "Baño" }, s: { it: "con doccia", en: "with shower", es: "con ducha" } },
+        { Icon: Car, t: { it: "Parcheggio privato", en: "Private free", es: "Aparcamiento privado" }, s: { it: "gratuito", en: "parking", es: "gratuito" } },
+        { Icon: Leaf, t: { it: "Accesso al giardino", en: "Access to shared", es: "Acceso al jardín" }, s: { it: "privato condiviso con terrazza colazione", en: "private garden with breakfast terrace", es: "privado compartido con terraza para el desayuno" } },
       ];
   const amenities: { Icon: typeof Wifi; t: B }[] = [
-    { Icon: Wifi, t: { it: "Wi-Fi gratuito", en: "Free Wi-Fi" } },
-    { Icon: Wind, t: { it: "Aria condizionata", en: "Air conditioning" } },
-    { Icon: Thermometer, t: { it: "Riscaldamento", en: "Heating" } },
-    { Icon: Utensils, t: { it: "Cucina attrezzata", en: "Fully equipped kitchen" } },
-    { Icon: CookingPot, t: { it: "Forno", en: "Oven" } },
-    { Icon: Flame, t: { it: "Piano cottura", en: "Hob" } },
-    { Icon: Refrigerator, t: { it: "Frigorifero", en: "Fridge" } },
-    { Icon: Microwave, t: { it: "Microonde", en: "Microwave" } },
-    { Icon: CupSoda, t: { it: "Bollitore", en: "Kettle" } },
-    { Icon: Coffee, t: { it: "Moka", en: "Moka coffee pot" } },
-    { Icon: WashingMachine, t: { it: "Lavatrice", en: "Washing machine" } },
-    { Icon: Tv, t: { it: "TV", en: "TV" } },
-    { Icon: Fan, t: { it: "Phon", en: "Hairdryer" } },
-    { Icon: Bath, t: { it: "Biancheria inclusa", en: "Towels & linen included" } },
-    { Icon: Sun, t: { it: "Balcone", en: "Balcony" } },
-    { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden" } },
-    { Icon: Plane, t: { it: "Navetta aeroporto (a pagamento)", en: "Airport shuttle (paid)" } },
-    { Icon: Car, t: { it: "Parcheggio privato gratuito", en: "Private free parking" } },
+    { Icon: Wifi, t: { it: "Wi-Fi gratuito", en: "Free Wi-Fi", es: "Wi-Fi gratuito" } },
+    { Icon: Wind, t: { it: "Aria condizionata", en: "Air conditioning", es: "Aire acondicionado" } },
+    { Icon: Thermometer, t: { it: "Riscaldamento", en: "Heating", es: "Calefacción" } },
+    { Icon: Utensils, t: { it: "Cucina attrezzata", en: "Fully equipped kitchen", es: "Cocina totalmente equipada" } },
+    { Icon: CookingPot, t: { it: "Forno", en: "Oven", es: "Horno" } },
+    { Icon: Flame, t: { it: "Piano cottura", en: "Hob", es: "Placa de cocina" } },
+    { Icon: Refrigerator, t: { it: "Frigorifero", en: "Fridge", es: "Nevera" } },
+    { Icon: Microwave, t: { it: "Microonde", en: "Microwave", es: "Microondas" } },
+    { Icon: CupSoda, t: { it: "Bollitore", en: "Kettle", es: "Hervidor" } },
+    { Icon: Coffee, t: { it: "Moka", en: "Moka coffee pot", es: "Cafetera moka" } },
+    { Icon: WashingMachine, t: { it: "Lavatrice", en: "Washing machine", es: "Lavadora" } },
+    { Icon: Tv, t: { it: "TV", en: "TV", es: "TV" } },
+    { Icon: Fan, t: { it: "Phon", en: "Hairdryer", es: "Secador de pelo" } },
+    { Icon: Bath, t: { it: "Biancheria inclusa", en: "Towels & linen included", es: "Toallas y ropa de cama incluidas" } },
+    { Icon: Sun, t: { it: "Balcone", en: "Balcony", es: "Balcón" } },
+    { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden", es: "Jardín privado" } },
+    { Icon: Plane, t: { it: "Navetta aeroporto (a pagamento)", en: "Airport shuttle (paid)", es: "Lanzadera al aeropuerto (de pago)" } },
+    { Icon: Car, t: { it: "Parcheggio privato gratuito", en: "Private free parking", es: "Aparcamiento privado gratuito" } },
   ];
   const praised: { t: B; v: string }[] = [
-    { t: { it: "Personale", en: "Staff" }, v: "9.4" },
-    { t: { it: "Pulizia", en: "Cleanliness" }, v: "9.3" },
-    { t: { it: "Comfort", en: "Comfort" }, v: "8.7" },
-    { t: { it: "Servizi", en: "Facilities" }, v: "8.7" },
-    { t: { it: "Qualità-prezzo", en: "Value" }, v: "8.7" },
-    { t: { it: "Posizione", en: "Location" }, v: "8.5" },
+    { t: { it: "Personale", en: "Staff", es: "Personal" }, v: "9.4" },
+    { t: { it: "Pulizia", en: "Cleanliness", es: "Limpieza" }, v: "9.3" },
+    { t: { it: "Comfort", en: "Comfort", es: "Confort" }, v: "8.7" },
+    { t: { it: "Servizi", en: "Facilities", es: "Servicios" }, v: "8.7" },
+    { t: { it: "Qualità-prezzo", en: "Value", es: "Relación calidad-precio" }, v: "8.7" },
+    { t: { it: "Posizione", en: "Location", es: "Ubicación" }, v: "8.5" },
   ];
   const hostBullets2: { Icon: typeof UserCheck; t: B }[] = [
-    { Icon: UserCheck, t: { it: "Accoglienza e aiuto coi bagagli", en: "Personal welcome and luggage help" } },
-    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)" } },
-    { Icon: MapPin, t: { it: "Consigli su ristoranti, spiagge e Roma", en: "Local tips for restaurants, beaches & Rome" } },
-    { Icon: MessageCircle, t: { it: "Comunicazione rapida su WhatsApp", en: "Quick communication on WhatsApp" } },
+    { Icon: UserCheck, t: { it: "Accoglienza e aiuto coi bagagli", en: "Personal welcome and luggage help", es: "Recibimiento personal y ayuda con el equipaje" } },
+    { Icon: Plane, t: { it: "Transfer aeroporto su richiesta (a pagamento)", en: "Airport transfer on request (paid)", es: "Traslado al aeropuerto bajo petición (de pago)" } },
+    { Icon: MapPin, t: { it: "Consigli su ristoranti, spiagge e Roma", en: "Local tips for restaurants, beaches & Rome", es: "Consejos sobre restaurantes, playas y Roma" } },
+    { Icon: MessageCircle, t: { it: "Comunicazione rapida su WhatsApp", en: "Quick communication on WhatsApp", es: "Comunicación rápida por WhatsApp" } },
   ];
   // Distanze REALI dall'annuncio Booking ("Dintorni della struttura").
   const localPoints: { Icon: typeof Plane; t: B; rows: { p: B; d: B }[] }[] = [
-    { Icon: Plane, t: { it: "Aeroporti", en: "Airports" }, rows: [
-      { p: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)" }, d: { it: "5 km", en: "5 km" } },
-      { p: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport" }, d: { it: "31 km", en: "31 km" } },
+    { Icon: Plane, t: { it: "Aeroporti", en: "Airports", es: "Aeropuertos" }, rows: [
+      { p: { it: "Aeroporto di Roma Fiumicino (FCO)", en: "Rome Fiumicino Airport (FCO)", es: "Aeropuerto de Roma Fiumicino (FCO)" }, d: { it: "5 km", en: "5 km", es: "5 km" } },
+      { p: { it: "Aeroporto di Roma Ciampino", en: "Rome Ciampino Airport", es: "Aeropuerto de Roma Ciampino" }, d: { it: "31 km", en: "31 km", es: "31 km" } },
     ] },
-    { Icon: Train, t: { it: "Mezzi pubblici", en: "Public transport" }, rows: [
-      { p: { it: "Bus pubblico (FCO e Ostia)", en: "Public bus (FCO & Ostia)" }, d: { it: "500 m a piedi", en: "500 m walk" } },
-      { p: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train" }, d: { it: "5 km", en: "5 km" } },
+    { Icon: Train, t: { it: "Mezzi pubblici", en: "Public transport", es: "Transporte público" }, rows: [
+      { p: { it: "Bus pubblico (FCO e Ostia)", en: "Public bus (FCO & Ostia)", es: "Autobús público (FCO y Ostia)" }, d: { it: "500 m a piedi", en: "500 m walk", es: "500 m a pie" } },
+      { p: { it: "Treno Lido Nord / Ostia Nord", en: "Lido Nord / Ostia Nord train", es: "Tren Lido Nord / Ostia Nord" }, d: { it: "5 km", en: "5 km", es: "5 km" } },
     ] },
-    { Icon: Fish, t: { it: "Ristoranti vicini", en: "Nearby restaurants" }, rows: [
-      { p: { it: "It Italian Restaurant", en: "It Italian Restaurant" }, d: { it: "700 m", en: "700 m" } },
-      { p: { it: "Ristorante Luana", en: "Luana restaurant" }, d: { it: "700 m", en: "700 m" } },
-      { p: { it: "Ristorante Docking 9", en: "Docking 9 restaurant" }, d: { it: "1,8 km", en: "1.8 km" } },
+    { Icon: Fish, t: { it: "Ristoranti vicini", en: "Nearby restaurants", es: "Restaurantes cercanos" }, rows: [
+      { p: { it: "It Italian Restaurant", en: "It Italian Restaurant", es: "It Italian Restaurant" }, d: { it: "700 m", en: "700 m", es: "700 m" } },
+      { p: { it: "Ristorante Luana", en: "Luana restaurant", es: "Restaurante Luana" }, d: { it: "700 m", en: "700 m", es: "700 m" } },
+      { p: { it: "Ristorante Docking 9", en: "Docking 9 restaurant", es: "Restaurante Docking 9" }, d: { it: "1,8 km", en: "1.8 km", es: "1,8 km" } },
     ] },
-    { Icon: Waves, t: { it: "Spiagge", en: "Beaches" }, rows: [
-      { p: { it: "Lungomare della Salute", en: "Lungomare della Salute" }, d: { it: "3,9 km", en: "3.9 km" } },
-      { p: { it: "Focene", en: "Focene" }, d: { it: "4,7 km", en: "4.7 km" } },
-      { p: { it: "Ostia Lido", en: "Ostia Lido" }, d: { it: "4,7 km", en: "4.7 km" } },
-      { p: { it: "Castel Fusano", en: "Castel Fusano" }, d: { it: "7 km", en: "7 km" } },
+    { Icon: Waves, t: { it: "Spiagge", en: "Beaches", es: "Playas" }, rows: [
+      { p: { it: "Lungomare della Salute", en: "Lungomare della Salute", es: "Lungomare della Salute" }, d: { it: "3,9 km", en: "3.9 km", es: "3,9 km" } },
+      { p: { it: "Focene", en: "Focene", es: "Focene" }, d: { it: "4,7 km", en: "4.7 km", es: "4,7 km" } },
+      { p: { it: "Ostia Lido", en: "Ostia Lido", es: "Ostia Lido" }, d: { it: "4,7 km", en: "4.7 km", es: "4,7 km" } },
+      { p: { it: "Castel Fusano", en: "Castel Fusano", es: "Castel Fusano" }, d: { it: "7 km", en: "7 km", es: "7 km" } },
     ] },
-    { Icon: Landmark, t: { it: "Cultura e natura", en: "Culture & nature" }, rows: [
-      { p: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins" }, d: { it: "4,3 km", en: "4.3 km" } },
-      { p: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods" }, d: { it: "11 km", en: "11 km" } },
+    { Icon: Landmark, t: { it: "Cultura e natura", en: "Culture & nature", es: "Cultura y naturaleza" }, rows: [
+      { p: { it: "Ostia Antica (scavi)", en: "Ostia Antica ruins", es: "Ostia Antica (excavaciones)" }, d: { it: "4,3 km", en: "4.3 km", es: "4,3 km" } },
+      { p: { it: "Bosco Macchia Grande di Focene", en: "Macchia Grande di Focene woods", es: "Bosque Macchia Grande di Focene" }, d: { it: "11 km", en: "11 km", es: "11 km" } },
     ] },
-    { Icon: Building2, t: { it: "Fiere ed eventi", en: "Fairs & events" }, rows: [
-      { p: { it: "Fiera di Roma", en: "Fiera di Roma" }, d: { it: "7 km", en: "7 km" } },
-      { p: { it: "PalaLottomatica", en: "PalaLottomatica" }, d: { it: "22 km", en: "22 km" } },
+    { Icon: Building2, t: { it: "Fiere ed eventi", en: "Fairs & events", es: "Ferias y eventos" }, rows: [
+      { p: { it: "Fiera di Roma", en: "Fiera di Roma", es: "Fiera di Roma" }, d: { it: "7 km", en: "7 km", es: "7 km" } },
+      { p: { it: "PalaLottomatica", en: "PalaLottomatica", es: "PalaLottomatica" }, d: { it: "22 km", en: "22 km", es: "22 km" } },
     ] },
   ];
   const whoFor: { Icon: typeof Users; img: string; t: B; s: B }[] = isCasa
     ? [
-        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie numerose", en: "Large families" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 10 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 10 guests." } },
-        { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Gruppi di amici", en: "Groups of friends" }, s: { it: "Tutta la casa per voi, vicino al mare e a Roma.", en: "The whole house to yourselves, close to the sea and Rome." } },
-        { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Due famiglie insieme", en: "Two families together" }, s: { it: "Due appartamenti indipendenti, un solo giardino in comune.", en: "Two independent apartments, one shared garden." } },
-        { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Occasioni speciali", en: "Special occasions" }, s: { it: "Reunion e ritrovi a due passi dall'aeroporto.", en: "Reunions and gatherings a step from the airport." } },
+        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie numerose", en: "Large families", es: "Familias numerosas" }, s: { it: "4 camere e 2 bagni: spazio per tutti, fino a 10 ospiti.", en: "4 bedrooms and 2 bathrooms: room for everyone, up to 10 guests.", es: "4 habitaciones y 2 baños: espacio para todos, hasta 10 huéspedes." } },
+        { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Gruppi di amici", en: "Groups of friends", es: "Grupos de amigos" }, s: { it: "Tutta la casa per voi, vicino al mare e a Roma.", en: "The whole house to yourselves, close to the sea and Rome.", es: "La casa entera para vosotros, cerca del mar y de Roma." } },
+        { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Due famiglie insieme", en: "Two families together", es: "Dos familias juntas" }, s: { it: "Due appartamenti indipendenti, un solo giardino in comune.", en: "Two independent apartments, one shared garden.", es: "Dos apartamentos independientes, un solo jardín compartido." } },
+        { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Occasioni speciali", en: "Special occasions", es: "Ocasiones especiales" }, s: { it: "Reunion e ritrovi a due passi dall'aeroporto.", en: "Reunions and gatherings a step from the airport.", es: "Reuniones y encuentros a dos pasos del aeropuerto." } },
       ]
     : [
-        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie", en: "Families" }, s: { it: "Spaziosa e comoda per una vacanza in famiglia.", en: "Spacious and comfortable for a relaxing family holiday." } },
-        { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Coppie", en: "Couples" }, s: { it: "Un rifugio accogliente vicino al mare e alla magia di Roma.", en: "A cosy retreat close to the sea and the magic of Rome." } },
-        { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Amici", en: "Friends" }, s: { it: "Ottimo spazio per esplorare, rilassarsi e stare insieme.", en: "Great space to explore, relax and enjoy time together." } },
-        { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Scali aeroporto", en: "Airport stopovers" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight." } },
+        { Icon: Users, img: "/images/luoghi/famiglia.jpg", t: { it: "Famiglie", en: "Families", es: "Familias" }, s: { it: "Spaziosa e comoda per una vacanza in famiglia.", en: "Spacious and comfortable for a relaxing family holiday.", es: "Espacioso y cómodo para unas vacaciones en familia." } },
+        { Icon: Heart, img: "/images/luoghi/coppia.jpg", t: { it: "Coppie", en: "Couples", es: "Parejas" }, s: { it: "Un rifugio accogliente vicino al mare e alla magia di Roma.", en: "A cosy retreat close to the sea and the magic of Rome.", es: "Un refugio acogedor cerca del mar y de la magia de Roma." } },
+        { Icon: Sparkles, img: "/images/luoghi/amici.jpg", t: { it: "Amici", en: "Friends", es: "Amigos" }, s: { it: "Ottimo spazio per esplorare, rilassarsi e stare insieme.", en: "Great space to explore, relax and enjoy time together.", es: "Un espacio ideal para explorar, relajarse y disfrutar juntos." } },
+        { Icon: Plane, img: "/images/luoghi/scali.jpg", t: { it: "Scali aeroporto", en: "Airport stopovers", es: "Escalas en el aeropuerto" }, s: { it: "Ideale per soggiorni brevi prima o dopo il volo.", en: "Ideal for short stays before or after your flight.", es: "Ideal para estancias cortas antes o después del vuelo." } },
       ];
   const rules: { Icon: typeof Clock; t: B; s: B }[] = [
-    { Icon: Clock, t: { it: "Check-in", en: "Check-in" }, s: { it: "dalle 15:00 a mezzanotte", en: "from 15:00 to midnight" } },
-    { Icon: LogOut, t: { it: "Check-out", en: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00" } },
-    { Icon: CigaretteOff, t: { it: "Non fumatori", en: "Non-smoking" }, s: { it: "all'interno", en: "inside" } },
-    { Icon: PawPrint, t: { it: "Niente animali", en: "No pets" }, s: { it: "", en: "" } },
-    { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties" }, s: { it: "o eventi", en: "or events" } },
-    { Icon: Users, t: { it: "Bambini", en: "Children" }, s: { it: "di tutte le età", en: "all ages welcome" } },
-    { Icon: MoonStar, t: { it: "Silenzio", en: "Quiet time" }, s: { it: "23:00 – 07:00", en: "23:00 – 07:00" } },
+    { Icon: Clock, t: { it: "Check-in", en: "Check-in", es: "Check-in" }, s: { it: "dalle 15:00 a mezzanotte", en: "from 15:00 to midnight", es: "de 15:00 a medianoche" } },
+    { Icon: LogOut, t: { it: "Check-out", en: "Check-out", es: "Check-out" }, s: { it: "entro le 11:00", en: "by 11:00", es: "antes de las 11:00" } },
+    { Icon: CigaretteOff, t: { it: "Non fumatori", en: "Non-smoking", es: "No fumadores" }, s: { it: "all'interno", en: "inside", es: "en el interior" } },
+    { Icon: PawPrint, t: { it: "Niente animali", en: "No pets", es: "No se admiten mascotas" }, s: { it: "", en: "", es: "" } },
+    { Icon: PartyPopper, t: { it: "Niente feste", en: "No parties", es: "No se permiten fiestas" }, s: { it: "o eventi", en: "or events", es: "ni eventos" } },
+    { Icon: Users, t: { it: "Bambini", en: "Children", es: "Niños" }, s: { it: "di tutte le età", en: "all ages welcome", es: "de todas las edades" } },
+    { Icon: MoonStar, t: { it: "Silenzio", en: "Quiet time", es: "Horas de silencio" }, s: { it: "23:00 – 07:00", en: "23:00 – 07:00", es: "23:00 – 07:00" } },
   ];
 
   // "Cosa amerai" — punti forti curati per appartamento
   const highlightsBySlug: Record<string, { Icon: typeof HomeIcon; t: B; s: B }[]> = {
     miri: [
-      { Icon: CookingPot, t: { it: "Una vera cucina in legno", en: "A real wooden kitchen" }, s: { it: "Forno, piano cottura, frigo e tutto per cucinare in autonomia, con tavolo da pranzo.", en: "Oven, hob, fridge and everything to cook on your own, with a dining table." } },
-      { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms" }, s: { it: "Spazio comodo fino a 6 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 6 guests, with quality linens and wardrobes." } },
-      { Icon: DoorOpen, t: { it: "Piano terra, senza scale", en: "Ground floor, no stairs" }, s: { it: "Ingresso comodo con bagagli, passeggini o per chi preferisce evitare le scale.", en: "Easy entrance with luggage, strollers or for anyone avoiding stairs." } },
-      { Icon: Leaf, t: { it: "Giardino e parcheggio", en: "Garden & parking" }, s: { it: "Accesso al giardino privato condiviso con terrazza colazione e parcheggio gratuito.", en: "Access to the shared private garden with breakfast terrace and free parking." } },
+      { Icon: CookingPot, t: { it: "Una vera cucina in legno", en: "A real wooden kitchen", es: "Una auténtica cocina de madera" }, s: { it: "Forno, piano cottura, frigo e tutto per cucinare in autonomia, con tavolo da pranzo.", en: "Oven, hob, fridge and everything to cook on your own, with a dining table.", es: "Horno, placa, nevera y todo lo necesario para cocinar por tu cuenta, con mesa de comedor." } },
+      { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms", es: "Dos habitaciones dobles" }, s: { it: "Spazio comodo fino a 6 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 6 guests, with quality linens and wardrobes.", es: "Espacio cómodo para hasta 6 huéspedes, con ropa de cama de calidad y armarios." } },
+      { Icon: DoorOpen, t: { it: "Piano terra, senza scale", en: "Ground floor, no stairs", es: "Planta baja, sin escaleras" }, s: { it: "Ingresso comodo con bagagli, passeggini o per chi preferisce evitare le scale.", en: "Easy entrance with luggage, strollers or for anyone avoiding stairs.", es: "Entrada cómoda con equipaje, cochecitos o para quien prefiere evitar las escaleras." } },
+      { Icon: Leaf, t: { it: "Giardino e parcheggio", en: "Garden & parking", es: "Jardín y aparcamiento" }, s: { it: "Accesso al giardino privato condiviso con terrazza colazione e parcheggio gratuito.", en: "Access to the shared private garden with breakfast terrace and free parking.", es: "Acceso al jardín privado compartido con terraza para el desayuno y aparcamiento gratuito." } },
     ],
     ale: [
-      { Icon: Sun, t: { it: "Mansarda luminosa", en: "Bright attic" }, s: { it: "Soffitti spioventi e lucernari che riempiono gli ambienti di luce naturale.", en: "Sloped ceilings and skylights that fill the rooms with natural light." } },
-      { Icon: ShowerHead, t: { it: "Bagno moderno in marmo", en: "Modern marble bathroom" }, s: { it: "Doccia e finiture eleganti per un soggiorno curato nei dettagli.", en: "Shower and elegant finishes for a stay with attention to detail." } },
-      { Icon: CookingPot, t: { it: "Cucina attrezzata", en: "Equipped kitchen" }, s: { it: "Angolo cottura completo con tavolo da pranzo: cucini quando vuoi.", en: "Fully equipped kitchen with dining table: cook whenever you like." } },
-      { Icon: Heart, t: { it: "Raccolta e tranquilla", en: "Cosy and quiet" }, s: { it: "Perfetta per coppie e piccole famiglie, vicino al mare e a Roma.", en: "Perfect for couples and small families, close to the sea and Rome." } },
+      { Icon: Sun, t: { it: "Mansarda luminosa", en: "Bright attic", es: "Buhardilla luminosa" }, s: { it: "Soffitti spioventi e lucernari che riempiono gli ambienti di luce naturale.", en: "Sloped ceilings and skylights that fill the rooms with natural light.", es: "Techos inclinados y tragaluces que llenan los ambientes de luz natural." } },
+      { Icon: ShowerHead, t: { it: "Bagno moderno in marmo", en: "Modern marble bathroom", es: "Baño moderno en mármol" }, s: { it: "Doccia e finiture eleganti per un soggiorno curato nei dettagli.", en: "Shower and elegant finishes for a stay with attention to detail.", es: "Ducha y acabados elegantes para una estancia cuidada en los detalles." } },
+      { Icon: CookingPot, t: { it: "Cucina attrezzata", en: "Equipped kitchen", es: "Cocina equipada" }, s: { it: "Angolo cottura completo con tavolo da pranzo: cucini quando vuoi.", en: "Fully equipped kitchen with dining table: cook whenever you like.", es: "Rincón de cocina completo con mesa de comedor: cocina cuando quieras." } },
+      { Icon: Heart, t: { it: "Raccolta e tranquilla", en: "Cosy and quiet", es: "Recogida y tranquila" }, s: { it: "Perfetta per coppie e piccole famiglie, vicino al mare e a Roma.", en: "Perfect for couples and small families, close to the sea and Rome.", es: "Perfecta para parejas y familias pequeñas, cerca del mar y de Roma." } },
     ],
     casa: [
-      { Icon: HomeIcon, t: { it: "Due appartamenti, una casa", en: "Two apartments, one house" }, s: { it: "Miri e Ale insieme: indipendenti ma uniti dallo stesso giardino.", en: "Miri and Ale together: independent but joined by the same garden." } },
-      { Icon: BedDouble, t: { it: "4 camere, 2 bagni", en: "4 bedrooms, 2 bathrooms" }, s: { it: "Spazio e privacy fino a 10 ospiti, ideale per gruppi e famiglie numerose.", en: "Space and privacy for up to 10 guests, ideal for groups and large families." } },
-      { Icon: CookingPot, t: { it: "Due cucine indipendenti", en: "Two independent kitchens" }, s: { it: "Una per appartamento: organizzazione facile anche in tanti.", en: "One per apartment: easy organisation even in large groups." } },
-      { Icon: Leaf, t: { it: "Giardino privato condiviso", en: "Shared private garden" }, s: { it: "Terrazza per la colazione, sedute all'aperto e parcheggio gratuito.", en: "Breakfast terrace, outdoor seating and free parking." } },
+      { Icon: HomeIcon, t: { it: "Due appartamenti, una casa", en: "Two apartments, one house", es: "Dos apartamentos, una casa" }, s: { it: "Miri e Ale insieme: indipendenti ma uniti dallo stesso giardino.", en: "Miri and Ale together: independent but joined by the same garden.", es: "Miri y Ale juntos: independientes pero unidos por el mismo jardín." } },
+      { Icon: BedDouble, t: { it: "4 camere, 2 bagni", en: "4 bedrooms, 2 bathrooms", es: "4 habitaciones, 2 baños" }, s: { it: "Spazio e privacy fino a 10 ospiti, ideale per gruppi e famiglie numerose.", en: "Space and privacy for up to 10 guests, ideal for groups and large families.", es: "Espacio y privacidad para hasta 10 huéspedes, ideal para grupos y familias numerosas." } },
+      { Icon: CookingPot, t: { it: "Due cucine indipendenti", en: "Two independent kitchens", es: "Dos cocinas independientes" }, s: { it: "Una per appartamento: organizzazione facile anche in tanti.", en: "One per apartment: easy organisation even in large groups.", es: "Una por apartamento: organización fácil incluso siendo muchos." } },
+      { Icon: Leaf, t: { it: "Giardino privato condiviso", en: "Shared private garden", es: "Jardín privado compartido" }, s: { it: "Terrazza per la colazione, sedute all'aperto e parcheggio gratuito.", en: "Breakfast terrace, outdoor seating and free parking.", es: "Terraza para el desayuno, asientos al aire libre y aparcamiento gratuito." } },
     ],
   };
   const highlights = highlightsBySlug[apt.slug] ?? highlightsBySlug.miri;
@@ -269,33 +269,33 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
   // dotazioni (con icone) per ogni stanza, in ordine con apt.stanze
   const dotazioniBySlug: Record<string, Dotaz[][]> = {
     miri: [
-      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "tv", t: { it: "TV", en: "TV" } }],
-      [{ icon: "bed", t: { it: "Due letti singoli", en: "Two single beds" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }],
-      [{ icon: "shower", t: { it: "Doccia", en: "Shower" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer" } }],
-      [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "sofa", t: { it: "Divano e TV", en: "Sofa & TV" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table" } }],
-      [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking" } }],
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed", es: "Cama de matrimonio" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe", es: "Armario" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning", es: "Aire acondicionado" } }, { icon: "tv", t: { it: "TV", en: "TV", es: "TV" } }],
+      [{ icon: "bed", t: { it: "Due letti singoli", en: "Two single beds", es: "Dos camas individuales" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe", es: "Armario" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning", es: "Aire acondicionado" } }],
+      [{ icon: "shower", t: { it: "Doccia", en: "Shower", es: "Ducha" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC", es: "Lavabo y WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer", es: "Secador de pelo" } }],
+      [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen", es: "Cocina equipada" } }, { icon: "sofa", t: { it: "Divano e TV", en: "Sofa & TV", es: "Sofá y TV" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table", es: "Mesa de comedor" } }],
+      [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden", es: "Jardín compartido" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace", es: "Terraza para el desayuno" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking", es: "Aparcamiento" } }],
     ],
     ale: [
-      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "skylight", t: { it: "Mansardata", en: "Attic" } }],
-      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning" } }, { icon: "skylight", t: { it: "Lucernario", en: "Skylight" } }],
-      [{ icon: "shower", t: { it: "Doccia in marmo", en: "Marble shower" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer" } }],
-      [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "fridge", t: { it: "Frigorifero", en: "Fridge" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table" } }],
-      [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking" } }],
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed", es: "Cama de matrimonio" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe", es: "Armario" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning", es: "Aire acondicionado" } }, { icon: "skylight", t: { it: "Mansardata", en: "Attic", es: "Abuhardillada" } }],
+      [{ icon: "bed", t: { it: "Letto matrimoniale", en: "Double bed", es: "Cama de matrimonio" } }, { icon: "wardrobe", t: { it: "Armadio", en: "Wardrobe", es: "Armario" } }, { icon: "ac", t: { it: "Aria condizionata", en: "Air conditioning", es: "Aire acondicionado" } }, { icon: "skylight", t: { it: "Lucernario", en: "Skylight", es: "Tragaluz" } }],
+      [{ icon: "shower", t: { it: "Doccia in marmo", en: "Marble shower", es: "Ducha de mármol" } }, { icon: "sink", t: { it: "Lavabo e WC", en: "Sink & WC", es: "Lavabo y WC" } }, { icon: "hairdryer", t: { it: "Phon", en: "Hairdryer", es: "Secador de pelo" } }],
+      [{ icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen", es: "Cocina equipada" } }, { icon: "fridge", t: { it: "Frigorifero", en: "Fridge", es: "Nevera" } }, { icon: "table", t: { it: "Tavolo da pranzo", en: "Dining table", es: "Mesa de comedor" } }],
+      [{ icon: "garden", t: { it: "Giardino condiviso", en: "Shared garden", es: "Jardín compartido" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace", es: "Terraza para el desayuno" } }, { icon: "parking", t: { it: "Parcheggio", en: "Parking", es: "Aparcamiento" } }],
     ],
     casa: [
-      [{ icon: "bed", t: { it: "2 matrimoniali", en: "2 double beds" } }, { icon: "kitchen", t: { it: "Cucina in legno", en: "Wooden kitchen" } }, { icon: "shower", t: { it: "Bagno con doccia", en: "Bathroom w/ shower" } }],
-      [{ icon: "bed", t: { it: "2 matrimoniali", en: "2 double beds" } }, { icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen" } }, { icon: "shower", t: { it: "Bagno in marmo", en: "Marble bathroom" } }],
-      [{ icon: "garden", t: { it: "Giardino privato", en: "Private garden" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace" } }, { icon: "parking", t: { it: "Parcheggio gratuito", en: "Free parking" } }],
+      [{ icon: "bed", t: { it: "2 matrimoniali", en: "2 double beds", es: "2 camas de matrimonio" } }, { icon: "kitchen", t: { it: "Cucina in legno", en: "Wooden kitchen", es: "Cocina de madera" } }, { icon: "shower", t: { it: "Bagno con doccia", en: "Bathroom w/ shower", es: "Baño con ducha" } }],
+      [{ icon: "bed", t: { it: "2 matrimoniali", en: "2 double beds", es: "2 camas de matrimonio" } }, { icon: "kitchen", t: { it: "Cucina attrezzata", en: "Equipped kitchen", es: "Cocina equipada" } }, { icon: "shower", t: { it: "Bagno in marmo", en: "Marble bathroom", es: "Baño de mármol" } }],
+      [{ icon: "garden", t: { it: "Giardino privato", en: "Private garden", es: "Jardín privado" } }, { icon: "table", t: { it: "Terrazza colazione", en: "Breakfast terrace", es: "Terraza para el desayuno" } }, { icon: "parking", t: { it: "Parcheggio gratuito", en: "Free parking", es: "Aparcamiento gratuito" } }],
     ],
   };
   const roomDotazioni = dotazioniBySlug[apt.slug] ?? dotazioniBySlug.miri;
 
   // "Esplora la zona" — città e luoghi vicini con cosa vedere
   const exploreCities: { img: string; t: B; time: B; s: B }[] = [
-    { img: "/images/luoghi/roma.jpg", t: { it: "Roma", en: "Rome" }, time: { it: "~32 min in treno", en: "~32 min by train" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi e Trastevere: la Città Eterna in giornata, senza auto.", en: "Colosseum, Vatican, Trevi Fountain and Trastevere: the Eternal City in a day, no car needed." } },
-    { img: "/images/luoghi/ostia.jpg", t: { it: "Ostia Antica", en: "Ostia Antica" }, time: { it: "~4 km in auto", en: "~4 km by car" }, s: { it: "Uno dei siti archeologici meglio conservati: teatro romano, terme e mosaici.", en: "One of the best preserved archaeological sites: Roman theatre, baths and mosaics." } },
-    { img: "/images/luoghi/beach.jpg", t: { it: "Spiagge e lungomare", en: "Beaches & seafront" }, time: { it: "~10 min in auto", en: "~10 min by car" }, s: { it: "Focene, Fregene e Ostia: stabilimenti, passeggiate e tramonti sul mare.", en: "Focene, Fregene and Ostia: beach clubs, walks and sunsets by the sea." } },
-    { img: "/images/luoghi/pesce.jpg", t: { it: "Porto di Fiumicino", en: "Fiumicino Port" }, time: { it: "~8 min in auto", en: "~8 min by car" }, s: { it: "Ristoranti di pesce, il faro e la passeggiata lungo il porto-canale.", en: "Seafood restaurants, the lighthouse and a walk along the canal-port." } },
+    { img: "/images/luoghi/roma.jpg", t: { it: "Roma", en: "Rome", es: "Roma" }, time: { it: "~32 min in treno", en: "~32 min by train", es: "~32 min en tren" }, s: { it: "Colosseo, Vaticano, Fontana di Trevi e Trastevere: la Città Eterna in giornata, senza auto.", en: "Colosseum, Vatican, Trevi Fountain and Trastevere: the Eternal City in a day, no car needed.", es: "Coliseo, Vaticano, Fontana di Trevi y Trastevere: la Ciudad Eterna en un día, sin coche." } },
+    { img: "/images/luoghi/ostia.jpg", t: { it: "Ostia Antica", en: "Ostia Antica", es: "Ostia Antica" }, time: { it: "~4 km in auto", en: "~4 km by car", es: "~4 km en coche" }, s: { it: "Uno dei siti archeologici meglio conservati: teatro romano, terme e mosaici.", en: "One of the best preserved archaeological sites: Roman theatre, baths and mosaics.", es: "Uno de los sitios arqueológicos mejor conservados: teatro romano, termas y mosaicos." } },
+    { img: "/images/luoghi/beach.jpg", t: { it: "Spiagge e lungomare", en: "Beaches & seafront", es: "Playas y paseo marítimo" }, time: { it: "~10 min in auto", en: "~10 min by car", es: "~10 min en coche" }, s: { it: "Focene, Fregene e Ostia: stabilimenti, passeggiate e tramonti sul mare.", en: "Focene, Fregene and Ostia: beach clubs, walks and sunsets by the sea.", es: "Focene, Fregene y Ostia: chiringuitos, paseos y atardeceres junto al mar." } },
+    { img: "/images/luoghi/pesce.jpg", t: { it: "Porto di Fiumicino", en: "Fiumicino Port", es: "Puerto de Fiumicino" }, time: { it: "~8 min in auto", en: "~8 min by car", es: "~8 min en coche" }, s: { it: "Ristoranti di pesce, il faro e la passeggiata lungo il porto-canale.", en: "Seafood restaurants, the lighthouse and a walk along the canal-port.", es: "Restaurantes de pescado, el faro y el paseo a lo largo del puerto-canal." } },
   ];
 
   const eyebrow = "font-script text-2xl leading-none text-terracotta";
@@ -310,9 +310,9 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         <div className="mx-auto grid max-w-7xl items-stretch gap-8 px-6 py-10 md:grid-cols-2 md:gap-10">
           {/* sinistra: testo + foto in fondo */}
           <div className="order-2 flex flex-col md:order-1">
-            <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House" })}</p>
+            <p className={eyebrow}>{tr(lang, { it: "Benvenuti a MiriAle Holiday House", en: "Welcome to MiriAle Holiday House", es: "Bienvenidos a MiriAle Holiday House" })}</p>
             <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-deep-brown md:text-5xl">
-              {apt.titolo ? t(apt.titolo) : tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment` })}
+              {apt.titolo ? t(apt.titolo) : tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} Apartment`, es: `Apartamento ${apt.nome}` })}
             </h1>
             <p className="mt-3 text-lg text-warm-gray">{t(apt.tagline)}</p>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-warm-gray line-clamp-3">{t(apt.descrizione)}</p>
@@ -345,7 +345,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
               <Image src={apt.gallery[7]?.src ?? apt.gallery[3].src} alt={apt.gallery[7]?.alt ?? "Giardino"} fill sizes="(max-width:768px) 100vw, 45vw" className="object-cover transition duration-500 group-hover:scale-105" />
               <span className="absolute inset-0 bg-deep-brown/0 transition group-hover:bg-deep-brown/15" />
               <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-paper/95 px-4 py-2 text-xs font-semibold text-deep-brown shadow-sm">
-                <ImageIcon className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Vedi tutto", en: "View all" })}
+                <ImageIcon className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Vedi tutto", en: "View all", es: "Ver todo" })}
               </span>
             </button>
           </div>
@@ -376,32 +376,32 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         <div className="relative z-10 mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[1.4fr_1fr]">
           {/* booking */}
           <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm">
-            <h3 className="font-serif text-lg font-semibold text-deep-brown">{tr(lang, { it: "Verifica disponibilità e scrivi a Fabio", en: "Check availability & message Fabio" })}</h3>
+            <h3 className="font-serif text-lg font-semibold text-deep-brown">{tr(lang, { it: "Verifica disponibilità e scrivi a Fabio", en: "Check availability & message Fabio", es: "Comprueba la disponibilidad y escribe a Fabio" })}</h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <label className="block"><span className="text-xs font-medium text-warm-gray">Check-in</span><input type="date" value={ci} onChange={(e) => setCi(e.target.value)} className={campo} /></label>
               <label className="block"><span className="text-xs font-medium text-warm-gray">Check-out</span><input type="date" value={co} min={ci || undefined} onChange={(e) => setCo(e.target.value)} className={campo} /></label>
-              <label className="block"><span className="text-xs font-medium text-warm-gray">{tr(lang, { it: "Ospiti", en: "Guests" })}</span>
-                <select value={g} onChange={(e) => setG(Number(e.target.value))} className={campo}>{Array.from({ length: apt.ospiti }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? tr(lang, { it: "ospite", en: "guest" }) : tr(lang, { it: "ospiti", en: "guests" })}</option>)}</select>
+              <label className="block"><span className="text-xs font-medium text-warm-gray">{tr(lang, { it: "Ospiti", en: "Guests", es: "Huéspedes" })}</span>
+                <select value={g} onChange={(e) => setG(Number(e.target.value))} className={campo}>{Array.from({ length: apt.ospiti }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? tr(lang, { it: "ospite", en: "guest", es: "huésped" }) : tr(lang, { it: "ospiti", en: "guests", es: "huéspedes" })}</option>)}</select>
               </label>
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
               <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: "#25d366" }}>
-                <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Message on WhatsApp" })}
+                <I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivi su WhatsApp", en: "Message on WhatsApp", es: "Escribe por WhatsApp" })}
               </a>
-              <span className="text-xs text-warm-gray">{tr(lang, { it: "Risposta rapida da Fabio", en: "Quick reply from Fabio" })}</span>
+              <span className="text-xs text-warm-gray">{tr(lang, { it: "Risposta rapida da Fabio", en: "Quick reply from Fabio", es: "Respuesta rápida de Fabio" })}</span>
             </div>
             <p className="mt-3 text-center text-xs text-warm-gray">
               <ShieldCheck className="mr-1 inline h-3.5 w-3.5 text-terracotta" />
-              {tr(lang, { it: "Prenotazione diretta · nessun pagamento online · paghi al check-in", en: "Direct booking · no online payment · pay at check-in" })}
+              {tr(lang, { it: "Prenotazione diretta · nessun pagamento online · paghi al check-in", en: "Direct booking · no online payment · pay at check-in", es: "Reserva directa · sin pago online · pagas en el check-in" })}
             </p>
           </div>
 
           {/* host */}
           <div className="rounded-2xl border border-line bg-paper p-6 shadow-sm">
             <div className="flex items-center gap-4">
-              <Ph label={tr(lang, { it: "Foto Fabio", en: "Fabio photo" })} className="h-16 w-16 flex-shrink-0 rounded-full" />
+              <Ph label={tr(lang, { it: "Foto Fabio", en: "Fabio photo", es: "Foto de Fabio" })} className="h-16 w-16 flex-shrink-0 rounded-full" />
               <div>
-                <p className="font-script text-xl leading-none text-terracotta">{tr(lang, { it: "Ti ospita", en: "Hosted by" })}</p>
+                <p className="font-script text-xl leading-none text-terracotta">{tr(lang, { it: "Ti ospita", en: "Hosted by", es: "Te recibe" })}</p>
                 <p className="mt-0.5 font-serif text-xl font-semibold text-deep-brown">Fabio</p>
               </div>
             </div>
@@ -410,7 +410,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
                 <li key={b.t.en} className="flex items-center gap-2 text-sm text-deep-brown"><b.Icon className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(b.t)}</li>
               ))}
             </ul>
-            <p className="mt-4 flex items-center gap-2 border-t border-line-soft pt-3 text-xs text-warm-gray"><Users className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish" })}</p>
+            <p className="mt-4 flex items-center gap-2 border-t border-line-soft pt-3 text-xs text-warm-gray"><Users className="h-4 w-4 text-terracotta" /> {tr(lang, { it: "Parliamo italiano, inglese e spagnolo", en: "We speak Italian, English and Spanish", es: "Hablamos italiano, inglés y español" })}</p>
           </div>
         </div>
       </section>
@@ -419,8 +419,8 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="paper" id="about">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-12">
           <div>
-            <p className={eyebrow}>{isCasa ? tr(lang, { it: "La casa intera", en: "About the whole house" }) : tr(lang, { it: `L'appartamento ${apt.nome}`, en: `About ${apt.nome} Apartment` })}</p>
-            <h2 className={h2}>{tr(lang, { it: "Luminoso, accogliente e confortevole", en: "Bright, warm and comfortable" })}</h2>
+            <p className={eyebrow}>{isCasa ? tr(lang, { it: "La casa intera", en: "About the whole house", es: "La casa entera" }) : tr(lang, { it: `L'appartamento ${apt.nome}`, en: `About ${apt.nome} Apartment`, es: `El apartamento ${apt.nome}` })}</p>
+            <h2 className={h2}>{tr(lang, { it: "Luminoso, accogliente e confortevole", en: "Bright, warm and comfortable", es: "Luminoso, acogedor y confortable" })}</h2>
             <p className="mt-3 text-sm leading-relaxed text-warm-gray">{t(apt.descrizione)}</p>
           </div>
           <div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-line bg-paper sm:grid-cols-3 lg:grid-cols-5">
@@ -439,9 +439,9 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="cream">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
           <div>
-            <p className={eyebrow}>{tr(lang, { it: "Cosa amerai", en: "What you'll love" })}</p>
-            <h2 className={h2}>{tr(lang, { it: "Pensato per un soggiorno senza pensieri", en: "Designed for a carefree stay" })}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-warm-gray">{tr(lang, { it: "Pochi punti che fanno la differenza: spazi comodi, dotazioni vere e una posizione che ti fa risparmiare tempo, tra aeroporto, mare e Roma.", en: "A few things that make the difference: comfortable spaces, real amenities and a location that saves you time, between the airport, the sea and Rome." })}</p>
+            <p className={eyebrow}>{tr(lang, { it: "Cosa amerai", en: "What you'll love", es: "Lo que te encantará" })}</p>
+            <h2 className={h2}>{tr(lang, { it: "Pensato per un soggiorno senza pensieri", en: "Designed for a carefree stay", es: "Pensado para una estancia sin preocupaciones" })}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-warm-gray">{tr(lang, { it: "Pochi punti che fanno la differenza: spazi comodi, dotazioni vere e una posizione che ti fa risparmiare tempo, tra aeroporto, mare e Roma.", en: "A few things that make the difference: comfortable spaces, real amenities and a location that saves you time, between the airport, the sea and Rome.", es: "Pocos detalles que marcan la diferencia: espacios cómodos, equipamiento de verdad y una ubicación que te hace ganar tiempo, entre el aeropuerto, el mar y Roma." })}</p>
           </div>
           <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
             {highlights.map((hl) => (
@@ -459,8 +459,8 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== WHAT & LAYOUT ===================== */}
       <Section bg="paper">
-        <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout" })}</p>
-        <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail" })}</h2>
+        <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout", es: "Ambientes y distribución" })}</p>
+        <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail", es: "Cada ambiente, en detalle" })}</h2>
         <div className={`mt-6 ${cardRail} md:grid-cols-2`}>
           {apt.stanze.map((s, i) => (
             <article key={s.nome.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm sm:flex-row">
@@ -490,27 +490,27 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== AMENITIES ===================== */}
       <Section bg="cream" id="amenities">
-        <p className={eyebrow}>{tr(lang, { it: "Servizi", en: "Amenities" })}</p>
+        <p className={eyebrow}>{tr(lang, { it: "Servizi", en: "Amenities", es: "Servicios" })}</p>
         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
           {amenities.map((a) => (
             <div key={a.t.en} className="flex items-center gap-2.5 text-sm text-deep-brown"><a.Icon className="h-5 w-5 flex-shrink-0 text-terracotta" strokeWidth={1.5} /> {t(a.t)}</div>
           ))}
         </div>
-        <p className="mt-6 flex items-center gap-2 rounded-xl bg-paper px-4 py-3 text-sm text-warm-gray"><Leaf className="h-4 w-4 flex-shrink-0 text-terracotta" /> {tr(lang, { it: "Accesso al giardino privato in comune con terrazza per la colazione.", en: "Access to the shared private garden with breakfast terrace." })}</p>
+        <p className="mt-6 flex items-center gap-2 rounded-xl bg-paper px-4 py-3 text-sm text-warm-gray"><Leaf className="h-4 w-4 flex-shrink-0 text-terracotta" /> {tr(lang, { it: "Accesso al giardino privato in comune con terrazza per la colazione.", en: "Access to the shared private garden with breakfast terrace.", es: "Acceso al jardín privado compartido con terraza para el desayuno." })}</p>
       </Section>
 
       {/* ===================== REVIEWS ===================== */}
       <Section bg="paper" id="reviews">
-        <p className={eyebrow}>{tr(lang, { it: "Recensioni degli ospiti", en: "Guest reviews" })}</p>
+        <p className={eyebrow}>{tr(lang, { it: "Recensioni degli ospiti", en: "Guest reviews", es: "Reseñas de los huéspedes" })}</p>
         <div className="mt-1 grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
           <div>
-            <h2 className={h2}>{tr(lang, { it: "Amati dagli ospiti", en: "Loved by our guests" })}</h2>
+            <h2 className={h2}>{tr(lang, { it: "Amati dagli ospiti", en: "Loved by our guests", es: "Adorados por nuestros huéspedes" })}</h2>
             <div className="mt-3 flex items-center gap-2">
               <span className="font-serif text-4xl font-bold text-deep-brown">8.8<span className="text-xl font-semibold text-warm-gray">/10</span></span>
               <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
             </div>
-            <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 129 recensioni", en: "from 129 reviews" })}</p>
-            <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings" })}</p>
+            <p className="mt-1 text-sm text-warm-gray">{tr(lang, { it: "da 129 recensioni", en: "from 129 reviews", es: "de 129 reseñas" })}</p>
+            <p className="mt-5 text-sm font-semibold text-deep-brown">{tr(lang, { it: "Punteggi per categoria", en: "Category ratings", es: "Puntuaciones por categoría" })}</p>
             <ul className="mt-2 space-y-1.5">
               {praised.map((p) => (
                 <li key={p.t.en} className="flex items-center justify-between gap-3 border-b border-line-soft pb-1 text-sm">
@@ -524,9 +524,9 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             <ReviewsGridCarousel reviews={REVIEWS} perPage={4} maxPages={3} />
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <Link href="/recensioni" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-5 py-2.5 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
-                {tr(lang, { it: "Leggi tutte le 129 recensioni", en: "Read all 129 reviews" })} <ArrowRight className="h-4 w-4" />
+                {tr(lang, { it: "Leggi tutte le 129 recensioni", en: "Read all 129 reviews", es: "Lee las 129 reseñas" })} <ArrowRight className="h-4 w-4" />
               </Link>
-              <span className="text-xs text-warm-gray">{tr(lang, { it: "Recensioni reali verificate da Booking.com", en: "Genuine reviews verified by Booking.com" })}</span>
+              <span className="text-xs text-warm-gray">{tr(lang, { it: "Recensioni reali verificate da Booking.com", en: "Genuine reviews verified by Booking.com", es: "Reseñas reales verificadas por Booking.com" })}</span>
             </div>
           </div>
         </div>
@@ -536,12 +536,12 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="cream">
         <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_1.1fr_0.8fr] lg:gap-8">
           <div className="relative min-h-[260px] overflow-hidden rounded-2xl">
-            <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family" })} className="absolute inset-0" />
+            <Ph label={tr(lang, { it: "Foto della famiglia di Fabio", en: "Photo of Fabio's family", es: "Foto de la familia de Fabio" })} className="absolute inset-0" />
           </div>
           <div className="flex flex-col justify-center">
-            <p className={eyebrow}>{tr(lang, { it: "Conosci l'host", en: "Meet your host" })}</p>
-            <h2 className={h2}>{tr(lang, { it: "Ciao, sono Fabio", en: "Hi, I'm Fabio" })}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-warm-gray">{tr(lang, { it: "Vivo qui a Fiumicino con la mia famiglia e amiamo accogliere ospiti da tutto il mondo. Faremo di tutto perché il vostro soggiorno sia facile, comodo e pieno di consigli locali!", en: "I live here in Fiumicino with my family and we love welcoming guests from all over the world. We'll make sure your stay is easy, comfortable and full of local tips!" })}</p>
+            <p className={eyebrow}>{tr(lang, { it: "Conosci l'host", en: "Meet your host", es: "Conoce a tu anfitrión" })}</p>
+            <h2 className={h2}>{tr(lang, { it: "Ciao, sono Fabio", en: "Hi, I'm Fabio", es: "Hola, soy Fabio" })}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-warm-gray">{tr(lang, { it: "Vivo qui a Fiumicino con la mia famiglia e amiamo accogliere ospiti da tutto il mondo. Faremo di tutto perché il vostro soggiorno sia facile, comodo e pieno di consigli locali!", en: "I live here in Fiumicino with my family and we love welcoming guests from all over the world. We'll make sure your stay is easy, comfortable and full of local tips!", es: "Vivo aquí en Fiumicino con mi familia y nos encanta recibir huéspedes de todo el mundo. Haremos todo lo posible para que vuestra estancia sea fácil, cómoda y llena de consejos locales." })}</p>
             <ul className="mt-4 space-y-2">
               {hostBullets2.map((b, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm text-deep-brown"><b.Icon className="h-4 w-4 flex-shrink-0 text-terracotta" /> {t(b.t)}</li>
@@ -549,8 +549,8 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             </ul>
           </div>
           <div className="flex flex-col justify-center rounded-2xl border border-terracotta/20 bg-cream-2 p-6 text-center">
-            <p className="font-script text-xl leading-snug text-deep-brown">{tr(lang, { it: "“Trattiamo i nostri ospiti come vorremmo essere trattati noi.”", en: "“We treat our guests the way we'd like to be treated.”" })}</p>
-            <p className="mt-4 font-script text-lg text-terracotta">{tr(lang, { it: "A presto!", en: "See you soon!" })}</p>
+            <p className="font-script text-xl leading-snug text-deep-brown">{tr(lang, { it: "“Trattiamo i nostri ospiti come vorremmo essere trattati noi.”", en: "“We treat our guests the way we'd like to be treated.”", es: "“Tratamos a nuestros huéspedes como nos gustaría que nos trataran a nosotros.”" })}</p>
+            <p className="mt-4 font-script text-lg text-terracotta">{tr(lang, { it: "A presto!", en: "See you soon!", es: "¡Hasta pronto!" })}</p>
             <p className="mt-1 inline-flex items-center justify-center gap-1.5 font-serif text-sm font-semibold text-deep-brown">Fabio <Heart className="h-3.5 w-3.5 fill-terracotta text-terracotta" /></p>
           </div>
         </div>
@@ -558,12 +558,12 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== LOCATION ===================== */}
       <Section bg="paper" id="location">
-        <p className={eyebrow}>{tr(lang, { it: "Posizione e dintorni utili", en: "Location & local essentials" })}</p>
-        <h2 className={h2}>{tr(lang, { it: "Tutto l'essenziale a portata di mano", en: "Everything you need nearby" })}</h2>
+        <p className={eyebrow}>{tr(lang, { it: "Posizione e dintorni utili", en: "Location & local essentials", es: "Ubicación y servicios cercanos" })}</p>
+        <h2 className={h2}>{tr(lang, { it: "Tutto l'essenziale a portata di mano", en: "Everything you need nearby", es: "Todo lo esencial al alcance de la mano" })}</h2>
         <div className="mt-6 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
           <div className="flex flex-col gap-3">
             <iframe src={MAPS_EMBED} className="h-[300px] w-full rounded-2xl border-0" loading="lazy" title="Map" />
-            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-terracotta hover:underline">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →" })}</a>
+            <a href={MAPS_SHORT} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-terracotta hover:underline">{tr(lang, { it: "Apri su Google Maps →", en: "Open in Google Maps →", es: "Abrir en Google Maps →" })}</a>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {localPoints.map((c) => (
@@ -590,11 +590,11 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="cream">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className={eyebrow}>{tr(lang, { it: "Esplora la zona", en: "Explore the area" })}</p>
-            <h2 className={h2}>{tr(lang, { it: "Cosa c'è intorno a te", en: "What's around you" })}</h2>
+            <p className={eyebrow}>{tr(lang, { it: "Esplora la zona", en: "Explore the area", es: "Explora la zona" })}</p>
+            <h2 className={h2}>{tr(lang, { it: "Cosa c'è intorno a te", en: "What's around you", es: "Qué hay a tu alrededor" })}</h2>
           </div>
           <Link href="/cosa-fare-intorno" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-5 py-2.5 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
-            {tr(lang, { it: "Scopri tutte le esperienze", en: "Discover all experiences" })} <ArrowRight className="h-4 w-4" />
+            {tr(lang, { it: "Scopri tutte le esperienze", en: "Discover all experiences", es: "Descubre todas las experiencias" })} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className={`mt-6 ${cardRail} sm:grid-cols-2 lg:grid-cols-4`}>
@@ -615,7 +615,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== WHO IT'S PERFECT FOR ===================== */}
       <Section bg="paper">
-        <p className={eyebrow}>{tr(lang, { it: "Per chi è perfetto", en: "Who it's perfect for" })}</p>
+        <p className={eyebrow}>{tr(lang, { it: "Per chi è perfetto", en: "Who it's perfect for", es: "Para quién es perfecto" })}</p>
         <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {whoFor.map((w) => (
             <article key={w.t.en} className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
@@ -631,7 +631,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
 
       {/* ===================== HOUSE RULES ===================== */}
       <Section bg="cream">
-        <p className={eyebrow}>{tr(lang, { it: "Regole della casa e info pratiche", en: "House rules & practical info" })}</p>
+        <p className={eyebrow}>{tr(lang, { it: "Regole della casa e info pratiche", en: "House rules & practical info", es: "Normas de la casa e información práctica" })}</p>
         <div className="mt-6 grid grid-cols-3 gap-5 sm:grid-cols-4 lg:grid-cols-7">
           {rules.map((r) => (
             <div key={r.t.en} className="flex flex-col items-center text-center">
@@ -647,7 +647,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         images={apt.gallery}
         open={galleryOpen}
         onClose={() => setGalleryOpen(false)}
-        title={tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} apartment` })}
+        title={tr(lang, { it: `Appartamento ${apt.nome}`, en: `${apt.nome} apartment`, es: `Apartamento ${apt.nome}` })}
       />
     </main>
   );
