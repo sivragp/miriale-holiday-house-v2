@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = buildMetadata({
   title: "Casa intera a Fiumicino, fino a 10 ospiti",
   description:
-    "Prenota tutta MiriAle: i due appartamenti indipendenti Miri e Ale insieme. 130 m², 4 camere matrimoniali, 2 bagni, 2 cucine e giardino privato, fino a 10 ospiti. A 5 km dall'aeroporto di Fiumicino, vicino al mare e ai treni per Roma.",
+    "Tutta MiriAle a Fiumicino: 130 m², 4 camere, 2 bagni, 2 cucine e giardino privato, fino a 10 ospiti. A 5 km dall'aeroporto, vicino a mare e treni per Roma.",
   path: "/la-casa",
 });
 

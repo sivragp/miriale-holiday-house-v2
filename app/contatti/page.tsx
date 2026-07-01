@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = buildMetadata({
   title: "Contatti a Fiumicino",
   description:
-    "Contatta MiriAle Holiday House: scrivici su WhatsApp per prenotare in modo diretto, senza commissioni e senza pagamento online. Casa vacanze a gestione familiare a Fiumicino, a 10 minuti dall'aeroporto.",
+    "Contatta MiriAle su WhatsApp e prenota diretto, senza commissioni né pagamenti online. Casa vacanze familiare a Fiumicino, 10 min dall'aeroporto di Roma.",
   path: "/contatti",
 });
 
