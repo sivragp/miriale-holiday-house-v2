@@ -9,7 +9,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contatti — MiriAle Holiday House a Fiumicino",
+  title: "Contatti a Fiumicino",
   description:
     "Contatta MiriAle Holiday House: scrivici su WhatsApp per prenotare in modo diretto, senza commissioni e senza pagamento online. Casa vacanze a gestione familiare a Fiumicino, a 10 minuti dall'aeroporto.",
   path: "/contatti",
