@@ -62,6 +62,13 @@ function Wave({ className = "" }: { className?: string }) {
   );
 }
 
+/**
+ * Sezione "Conosci il tuo host" (Fabio e famiglia): nascosta temporaneamente
+ * in attesa della foto della famiglia da parte di Fabio. Per riattivarla,
+ * rimettere a `true`. Il markup resta intatto. — 2026-07-01
+ */
+const SHOW_HOST_SECTION = false;
+
 export default function HomeMiriale() {
   const { lang } = useLang();
   const t = (b: B) => tr(lang, b);
@@ -373,6 +380,7 @@ export default function HomeMiriale() {
       </section>
 
       {/* ===================== MEET HOST ===================== */}
+      {SHOW_HOST_SECTION && (
       <section className="bg-paper py-12 md:py-14">
         <div className="mx-auto grid max-w-7xl items-stretch gap-6 px-6 lg:grid-cols-[1fr_1fr_0.7fr] lg:gap-8">
           <div className="relative min-h-[260px] overflow-hidden rounded-2xl">
@@ -395,6 +403,7 @@ export default function HomeMiriale() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ===================== LOCATION ===================== */}
       <section id="dove-siamo" className="bg-cream py-12 md:py-14">
