@@ -32,18 +32,18 @@ const FORMSUBMIT_ENDPOINT =
 export const GMAIL_BLUE = "#1a73e8";
 
 /**
- * Logo Gmail dentro un chip bianco arrotondato: garantisce leggibilità
- * dell'icona multicolore sul fondo blu. Dimensioni proporzionabili per punto.
+ * Logo Gmail (multicolore) su sfondo trasparente, senza chip bianco.
+ * Dimensioni proporzionabili per punto tramite iconClass.
  */
 export function GmailChip({
   iconClass = "h-4 w-4",
-  chipClass = "p-0.5",
+  chipClass = "",
 }: {
   iconClass?: string;
   chipClass?: string;
 }) {
   return (
-    <span className={`grid flex-shrink-0 place-items-center rounded bg-white ${chipClass}`}>
+    <span className={`grid flex-shrink-0 place-items-center ${chipClass}`}>
       <I.gmail className={iconClass} />
     </span>
   );
