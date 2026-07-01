@@ -39,6 +39,7 @@ import {
   Wind,
 } from "lucide-react";
 import { I, MAPS_EMBED, waLink } from "@/lib/site";
+import ContactFormModal, { GmailChip, GMAIL_BLUE } from "@/components/site/ContactFormModal";
 import CardCarousel from "@/components/site/CardCarousel";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
 import Reveal from "@/components/site/Reveal";
@@ -230,6 +231,14 @@ export default function HomeMiriale() {
                 <span className="inline-flex items-center gap-2 text-sm font-semibold"><I.whatsapp className="h-4 w-4" /> {tr(lang, { it: "Scrivici su WhatsApp", en: "Chat on WhatsApp" })}</span>
                 <span className="text-[10px] text-white/90">{tr(lang, { it: "Miglior prezzo, nessuna commissione", en: "Best price, no fees" })}</span>
               </a>
+              <ContactFormModal
+                renderTrigger={(open) => (
+                  <button type="button" onClick={open} aria-haspopup="dialog" aria-label="Email" className="inline-flex flex-col items-center rounded-full px-6 py-2.5 text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: GMAIL_BLUE }}>
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold"><GmailChip /> {tr(lang, { it: "Scrivici un'email", en: "Send us an email" })}</span>
+                    <span className="text-[10px] text-white/90">{tr(lang, { it: "Ti rispondiamo presto", en: "We reply soon" })}</span>
+                  </button>
+                )}
+              />
               <Link href="#apartments" className="inline-flex items-center gap-2 rounded-full border border-terracotta px-6 py-3 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-white">
                 {tr(lang, { it: "Scopri gli appartamenti", en: "Explore the apartments" })}
               </Link>

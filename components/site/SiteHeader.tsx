@@ -6,7 +6,42 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { I, waLink } from "@/lib/site";
-import { useLang, tr } from "@/components/site/LangProvider";
+import { type Lang, useLang, tr } from "@/components/site/LangProvider";
+import ContactFormModal, { GmailChip, GMAIL_BLUE } from "@/components/site/ContactFormModal";
+
+/** Switch lingua IT/EN riusato in header (desktop) e accanto all'hamburger (mobile). */
+function LangSwitch({
+  lang,
+  setLang,
+  className = "",
+}: {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+  className?: string;
+}) {
+  return (
+    <div className={`items-center rounded-full border border-line text-xs font-semibold ${className}`}>
+      <button
+        type="button"
+        onClick={() => setLang("it")}
+        className={`rounded-full px-2.5 py-1 transition ${
+          lang === "it" ? "bg-deep-brown text-white" : "text-warm-gray hover:text-deep-brown"
+        }`}
+      >
+        IT
+      </button>
+      <button
+        type="button"
+        onClick={() => setLang("en")}
+        className={`rounded-full px-2.5 py-1 transition ${
+          lang === "en" ? "bg-deep-brown text-white" : "text-warm-gray hover:text-deep-brown"
+        }`}
+      >
+        EN
+      </button>
+    </div>
+  );
+}
 
 export default function SiteHeader() {
   const { lang, setLang } = useLang();
@@ -61,26 +96,10 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden items-center rounded-full border border-line text-xs font-semibold sm:flex">
-            <button
-              type="button"
-              onClick={() => setLang("it")}
-              className={`rounded-full px-2.5 py-1 transition ${
-                lang === "it" ? "bg-deep-brown text-white" : "text-warm-gray hover:text-deep-brown"
-              }`}
-            >
-              IT
-            </button>
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={`rounded-full px-2.5 py-1 transition ${
-                lang === "en" ? "bg-deep-brown text-white" : "text-warm-gray hover:text-deep-brown"
-              }`}
-            >
-              EN
-            </button>
-          </div>
+          {/* switch lingua desktop/tablet (≥ sm) */}
+          <LangSwitch lang={lang} setLang={setLang} className="hidden sm:flex" />
+
+          {/* header desktop: resta solo il WhatsApp (Email spostato nel menu mobile) */}
           <a
             href={waLink()}
             target="_blank"
@@ -94,6 +113,9 @@ export default function SiteHeader() {
               <span className="text-[10px] text-white/90">{tr(lang, { it: "Risposta rapida!", en: "Quick reply!" })}</span>
             </span>
           </a>
+
+          {/* switch lingua mobile (< sm): accanto all'hamburger, un solo switch visibile */}
+          <LangSwitch lang={lang} setLang={setLang} className="flex sm:hidden" />
 
           {/* hamburger (mobile/tablet) */}
           <button
@@ -197,21 +219,35 @@ export default function SiteHeader() {
                   </Link>
                 </nav>
 
-                <div className="mt-6 flex items-center justify-between">
-                  <div className="flex items-center rounded-full border border-line bg-paper/80 text-xs font-semibold">
-                    <button type="button" onClick={() => setLang("it")} className={`rounded-full px-3 py-1.5 transition ${lang === "it" ? "bg-deep-brown text-white" : "text-warm-gray"}`}>IT</button>
-                    <button type="button" onClick={() => setLang("en")} className={`rounded-full px-3 py-1.5 transition ${lang === "en" ? "bg-deep-brown text-white" : "text-warm-gray"}`}>EN</button>
-                  </div>
+                {/* WhatsApp + Email affiancati, stessa dimensione */}
+                <div className="mt-6 grid grid-cols-2 gap-3">
                   <a
                     href={waLink()}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
                     style={{ backgroundColor: "#25d366" }}
                   >
                     <I.whatsapp className="h-4 w-4" /> WhatsApp
                   </a>
+                  <ContactFormModal
+                    renderTrigger={(open) => (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setOpen(false);
+                          open();
+                        }}
+                        aria-haspopup="dialog"
+                        aria-label="Email"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+                        style={{ backgroundColor: GMAIL_BLUE }}
+                      >
+                        <GmailChip /> Email
+                      </button>
+                    )}
+                  />
                 </div>
               </div>
             </motion.div>

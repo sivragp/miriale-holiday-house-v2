@@ -39,6 +39,7 @@ import {
   waLink,
 } from "@/lib/site";
 import Reveal from "@/components/site/Reveal";
+import ContactFormModal, { GmailChip, GMAIL_BLUE } from "@/components/site/ContactFormModal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
 
@@ -148,6 +149,27 @@ export default function Contacts() {
                 </span>
                 <span aria-hidden className="text-xl">›</span>
               </a>
+              <ContactFormModal
+                renderTrigger={(open) => (
+                  <button
+                    type="button"
+                    onClick={open}
+                    aria-haspopup="dialog"
+                    aria-label="Email"
+                    className="mt-3 flex w-full items-center justify-between gap-3 rounded-2xl px-6 py-4 text-white shadow-lg transition hover:opacity-95"
+                    style={{ backgroundColor: GMAIL_BLUE }}
+                  >
+                    <span className="flex items-center gap-3">
+                      <GmailChip iconClass="h-6 w-6" chipClass="p-1" />
+                      <span className="leading-tight text-left">
+                        <span className="block text-base font-semibold">Email</span>
+                        <span className="block text-xs text-white/90">{tr(lang, { it: "Ti rispondiamo presto", en: "We reply soon" })}</span>
+                      </span>
+                    </span>
+                    <span aria-hidden className="text-xl">›</span>
+                  </button>
+                )}
+              />
               <div className="mt-3 flex items-center gap-2 rounded-xl border border-line bg-paper px-4 py-3 text-xs text-warm-gray shadow-sm">
                 <MapPin className="h-4 w-4 flex-shrink-0 text-terracotta" />
                 {tr(lang, { it: "Il modo migliore per aiutarti in fretta. Salutaci, chiedici qualsiasi cosa, siamo qui!", en: "Our best way to help you quickly. Say hello, ask anything, we're here!" })}
