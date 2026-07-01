@@ -22,10 +22,10 @@ import { REVIEWS, REVIEW_STATS } from "@/lib/reviews";
 /*  Costanti sito                                                             */
 /* -------------------------------------------------------------------------- */
 
-/** Dominio canonico = dominio live collegato su Vercel (miriale-house.com +
- *  www), verificato via API. Il vecchio mirialeholidayhouse.it NON è collegato
- *  al progetto di produzione, quindi canonical/sitemap/OG puntano qui. */
-export const SITE_URL = "https://miriale-house.com";
+/** Dominio canonico = host di produzione servito su Vercel. L'apex
+ *  miriale-house.com fa 308 → www.miriale-house.com (host che risponde 200),
+ *  quindi il canonical è www. Il vecchio mirialeholidayhouse.it non è collegato. */
+export const SITE_URL = "https://www.miriale-house.com";
 export const SITE_NAME = "MiriAle Holiday House";
 export const TEL = `+${WHATSAPP_NUMBER}`;
 
@@ -98,6 +98,14 @@ const postalAddress: Json = {
   addressRegion: "RM",
   postalCode: "00054",
   addressCountry: "IT",
+};
+
+/** Coordinate della struttura (Via Castagnevizza, Isola Sacra, Fiumicino).
+ *  Fonte: posizione fornita dal cliente + geocoding. Livello via. */
+const geoCoordinates: Json = {
+  "@type": "GeoCoordinates",
+  latitude: 41.7500253,
+  longitude: 12.2567663,
 };
 
 /** LocationFeatureSpecification: amenity confermata (value=true). */
@@ -190,6 +198,7 @@ export function lodgingBusinessNode(opts?: { withReviews?: boolean }): Json {
     email: EMAIL,
     telephone: TEL,
     address: postalAddress,
+    geo: geoCoordinates,
     image: [
       abs("/images/house/comune-28.jpg"),
       abs("/images/house/comune-21.jpg"),
