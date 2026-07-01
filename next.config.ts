@@ -10,6 +10,25 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "i.pravatar.cc" },
     ],
   },
+  // Header di sicurezza applicati a tutte le route. HSTS è già gestito da Vercel
+  // (non duplicato qui). SAMEORIGIN non blocca l'iframe della mappa (Miriale è il
+  // parent che incorpora Google, non il contrario).
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -12,7 +12,7 @@ export const metadata: Metadata = buildMetadata({
   title:
     "MiriAle Holiday House — Casa vacanze a Fiumicino, vicino a FCO, Roma e il mare",
   description:
-    "Casa vacanze a gestione familiare a Fiumicino: due appartamenti indipendenti (Miri e Ale) o la casa intera, fino a 10 ospiti. A 10 minuti dall'aeroporto di Roma Fiumicino, vicino al mare e a Roma. Prenotazione diretta su WhatsApp, nessun pagamento online.",
+    "Casa vacanze familiare a Fiumicino, 10 min dall'aeroporto di Roma: due appartamenti (Miri e Ale) o la casa intera fino a 10 ospiti. Prenoti diretto su WhatsApp.",
   path: "/",
 });
 
