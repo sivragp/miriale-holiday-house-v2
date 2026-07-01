@@ -34,7 +34,7 @@ export type Appartamento = {
 
 /* --------------------------------------------------------------------------
  *  Foto reali categorizzate per appartamento (vedi public/images/house):
- *  miri-NN (28, piano terra) · ale-NN (67, mansarda) · comune-NN (34, esterni).
+ *  miri-NN (28, primo piano) · ale-NN (67, mansarda) · comune-NN (34, esterni).
  *  Verificate col campo `associated_rooms` di Booking + categorizzazione cliente.
  * -------------------------------------------------------------------------- */
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -55,12 +55,12 @@ export const APPARTAMENTI: Appartamento[] = [
     ospiti: 6,
     camere: 2,
     bagni: 1,
-    piano: { it: "Piano terra · accesso comodo", en: "Ground floor · easy access", es: "Planta baja · acceso cómodo" },
+    piano: { it: "Primo piano · accesso con scale", en: "First floor · stair access", es: "Primera planta · acceso por escaleras" },
     tagline: { it: "Luminoso, accogliente, vivere facile a Fiumicino", en: "Bright, warm, easy living in Fiumicino", es: "Luminoso, acogedor, vivir fácil en Fiumicino" },
     descrizione: {
-      it: "Comodo appartamento al piano terra con cucina in legno calda e accogliente, due camere matrimoniali e tutto ciò che serve per un soggiorno rilassante vicino all'aeroporto, al mare e a Roma.",
-      en: "A comfortable ground-floor apartment with a warm wooden kitchen, two double bedrooms and everything you need for a relaxing stay near the airport, the sea and Rome.",
-      es: "Cómodo apartamento en planta baja con una cocina de madera cálida y acogedora, dos dormitorios de matrimonio y todo lo necesario para una estancia relajante cerca del aeropuerto, el mar y Roma.",
+      it: "Comodo appartamento al primo piano (accesso tramite scale) con cucina in legno calda e accogliente, due camere matrimoniali e tutto ciò che serve per un soggiorno rilassante vicino all'aeroporto, al mare e a Roma.",
+      en: "A comfortable first-floor apartment (reached via stairs) with a warm wooden kitchen, two double bedrooms and everything you need for a relaxing stay near the airport, the sea and Rome.",
+      es: "Cómodo apartamento en la primera planta (acceso por escaleras) con una cocina de madera cálida y acogedora, dos dormitorios de matrimonio y todo lo necesario para una estancia relajante cerca del aeropuerto, el mar y Roma.",
     },
     gallery: [
       ...ph("miri", [1, 14, 11, 10, 8, 5, 16], "Appartamento Miri"),
@@ -187,7 +187,7 @@ export const APPARTAMENTI: Appartamento[] = [
       ...ph("comune", [28], "La villa MiriAle"),
     ],
     stanze: [
-      { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²", es: "Apartamento Miri · 75 m²" }, tag: { it: "Piano terra", en: "Ground floor", es: "Planta baja" }, descr: { it: "Cucina in legno, soggiorno, 2 camere e 1 bagno. Fino a 6 ospiti.", en: "Wooden kitchen, living room, 2 bedrooms and 1 bathroom. Up to 6 guests.", es: "Cocina de madera, salón, 2 dormitorios y 1 baño. Hasta 6 huéspedes." }, imgs: ph("miri", [1, 14], "Appartamento Miri") },
+      { nome: { it: "Appartamento Miri · 75 m²", en: "Miri apartment · 75 m²", es: "Apartamento Miri · 75 m²" }, tag: { it: "Primo piano", en: "First floor", es: "Primera planta" }, descr: { it: "Cucina in legno, soggiorno, 2 camere e 1 bagno. Fino a 6 ospiti.", en: "Wooden kitchen, living room, 2 bedrooms and 1 bathroom. Up to 6 guests.", es: "Cocina de madera, salón, 2 dormitorios y 1 baño. Hasta 6 huéspedes." }, imgs: ph("miri", [1, 14], "Appartamento Miri") },
       { nome: { it: "Appartamento Ale · 55 m²", en: "Ale apartment · 55 m²", es: "Apartamento Ale · 55 m²" }, tag: { it: "Mansarda", en: "Attic", es: "Buhardilla" }, descr: { it: "Cucina attrezzata, 2 camere mansardate e 1 bagno in marmo. Fino a 4 ospiti.", en: "Equipped kitchen, 2 attic bedrooms and 1 marble bathroom. Up to 4 guests.", es: "Cocina equipada, 2 dormitorios abuhardillados y 1 baño de mármol. Hasta 4 huéspedes." }, imgs: ph("ale", [40, 1], "Appartamento Ale") },
       { nome: { it: "Giardino condiviso", en: "Shared garden", es: "Jardín compartido" }, tag: { it: "In comune", en: "Shared", es: "Compartido" }, descr: { it: "L'unico spazio in comune: giardino privato con terrazza per la colazione e parcheggio.", en: "The only shared space: private garden with breakfast terrace and parking.", es: "El único espacio compartido: jardín privado con terraza para el desayuno y aparcamiento." }, imgs: ph("comune", [21, 13, 16], "Giardino di MiriAle") },
     ],

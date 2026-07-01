@@ -52,7 +52,7 @@ import {
   Wifi,
   Wind,
 } from "lucide-react";
-import { I, MAPS_EMBED, MAPS_SHORT, cardRail, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
 import GalleryModal from "@/components/site/GalleryModal";
 import Reveal from "@/components/site/Reveal";
 import ReviewsGridCarousel from "@/components/site/ReviewsGridCarousel";
@@ -131,7 +131,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     { Icon: Users, a: `${lang === "it" ? "Fino a" : "Up to"} ${apt.ospiti}`, b: { it: "Ospiti", en: "Guests", es: "Huéspedes" } },
     isCasa
       ? { Icon: HomeIcon, a: "2", b: { it: "Appartamenti indipendenti", en: "Independent apartments", es: "Apartamentos independientes" } }
-      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Accesso comodo", en: "Easy access", es: "Acceso cómodo" } },
+      : { Icon: DoorOpen, a: t(apt.piano).split(" · ")[0], b: { it: "Piano", en: "Floor", es: "Planta" } },
   ];
   const hostBullets: { Icon: typeof UserCheck; t: B }[] = [
     { Icon: HomeIcon, t: { it: "Ospitalità familiare", en: "Family-run hospitality", es: "Hospitalidad familiar" } },
@@ -150,7 +150,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
         { Icon: Leaf, t: { it: "Giardino privato", en: "Private garden", es: "Jardín privado" }, s: { it: "condiviso, con terrazza colazione", en: "shared, with breakfast terrace", es: "compartido, con terraza para el desayuno" } },
       ]
     : [
-        { Icon: DoorOpen, t: { it: "Piano terra", en: "Ground floor", es: "Planta baja" }, s: { it: "accesso comodo, niente scale", en: "Easy access · no stairs", es: "acceso cómodo, sin escaleras" } },
+        { Icon: DoorOpen, t: apt.piano, s: { it: "ingresso indipendente", en: "independent entrance", es: "entrada independiente" } },
         { Icon: CookingPot, t: { it: "Cucina in legno", en: "Warm wooden", es: "Cocina de madera" }, s: { it: "e zona living", en: "kitchen & living room", es: "y zona de estar" } },
         { Icon: ShowerHead, t: { it: "Bagno", en: "Bathroom", es: "Baño" }, s: { it: "con doccia", en: "with shower", es: "con ducha" } },
         { Icon: Car, t: { it: "Parcheggio privato", en: "Private free", es: "Aparcamiento privado" }, s: { it: "gratuito", en: "parking", es: "gratuito" } },
@@ -248,7 +248,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
     miri: [
       { Icon: CookingPot, t: { it: "Una vera cucina in legno", en: "A real wooden kitchen", es: "Una auténtica cocina de madera" }, s: { it: "Forno, piano cottura, frigo e tutto per cucinare in autonomia, con tavolo da pranzo.", en: "Oven, hob, fridge and everything to cook on your own, with a dining table.", es: "Horno, placa, nevera y todo lo necesario para cocinar por tu cuenta, con mesa de comedor." } },
       { Icon: BedDouble, t: { it: "Due camere matrimoniali", en: "Two double bedrooms", es: "Dos habitaciones dobles" }, s: { it: "Spazio comodo fino a 6 ospiti, con biancheria di qualità e armadi.", en: "Comfortable space for up to 6 guests, with quality linens and wardrobes.", es: "Espacio cómodo para hasta 6 huéspedes, con ropa de cama de calidad y armarios." } },
-      { Icon: DoorOpen, t: { it: "Piano terra, senza scale", en: "Ground floor, no stairs", es: "Planta baja, sin escaleras" }, s: { it: "Ingresso comodo con bagagli, passeggini o per chi preferisce evitare le scale.", en: "Easy entrance with luggage, strollers or for anyone avoiding stairs.", es: "Entrada cómoda con equipaje, cochecitos o para quien prefiere evitar las escaleras." } },
+      { Icon: DoorOpen, t: { it: "Al primo piano", en: "On the first floor", es: "En la primera planta" }, s: { it: "L'appartamento si trova al primo piano, con accesso tramite scale: tienilo presente per bagagli pesanti, passeggini o problemi di mobilità.", en: "The apartment is on the first floor, reached via stairs: keep in mind for heavy luggage, strollers or mobility needs.", es: "El apartamento está en la primera planta, con acceso por escaleras: tenlo en cuenta para equipaje pesado, cochecitos o problemas de movilidad." } },
       { Icon: Leaf, t: { it: "Giardino e parcheggio", en: "Garden & parking", es: "Jardín y aparcamiento" }, s: { it: "Accesso al giardino privato condiviso con terrazza colazione e parcheggio gratuito.", en: "Access to the shared private garden with breakfast terrace and free parking.", es: "Acceso al jardín privado compartido con terraza para el desayuno y aparcamiento gratuito." } },
     ],
     ale: [
@@ -461,7 +461,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
       <Section bg="paper">
         <p className={eyebrow}>{tr(lang, { it: "Ambienti e layout", en: "What & layout", es: "Ambientes y distribución" })}</p>
         <h2 className={h2}>{tr(lang, { it: "Ogni ambiente, nel dettaglio", en: "Every room in detail", es: "Cada ambiente, en detalle" })}</h2>
-        <div className={`mt-6 ${cardRail} md:grid-cols-2`}>
+        <div className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[7%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[86%] [&>*]:shrink-0 [&>*]:snap-center sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto md:grid-cols-2">
           {apt.stanze.map((s, i) => (
             <article key={s.nome.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm sm:flex-row">
               <div className="relative aspect-[4/3] sm:aspect-auto sm:w-44 sm:flex-shrink-0">
@@ -597,7 +597,7 @@ export default function ApartmentListing({ apt }: { apt: Appartamento }) {
             {tr(lang, { it: "Scopri tutte le esperienze", en: "Discover all experiences", es: "Descubre todas las experiencias" })} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className={`mt-6 ${cardRail} sm:grid-cols-2 lg:grid-cols-4`}>
+        <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {exploreCities.map((c) => (
             <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
               <div className="relative aspect-[16/10]"><Image src={c.img} alt={t(c.t)} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover" /></div>
