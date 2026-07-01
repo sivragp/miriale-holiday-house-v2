@@ -9,7 +9,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Recensioni — MiriAle Holiday House a Fiumicino (8.8 · 129 recensioni)",
+  title: "Recensioni ospiti (8.8 · 129)",
   description:
     "Le recensioni reali degli ospiti di MiriAle Holiday House a Fiumicino: 8.8 \"Favoloso\" su 129 recensioni Booking.com. Punteggi per categoria, pareri verificati con pro e contro, filtri per tipo di viaggiatore e argomento.",
   path: "/recensioni",
