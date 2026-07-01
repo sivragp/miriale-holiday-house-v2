@@ -54,7 +54,7 @@ export default function SiteFooter() {
             {/* social: solo Instagram + WhatsApp */}
             <div className="flex flex-col gap-2 sm:items-end">
               <div className="flex items-center gap-3">
-                <a href="#" aria-label="Instagram" className="grid h-9 w-9 place-items-center rounded-full border border-cream/25 transition hover:border-cream/70"><I.instagram className="h-4 w-4" /></a>
+                <a href="https://www.instagram.com/mirialehouse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="grid h-9 w-9 place-items-center rounded-full border border-cream/25 transition hover:border-cream/70"><I.instagram className="h-4 w-4" /></a>
                 <a href={waLink()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid h-9 w-9 place-items-center rounded-full border border-cream/25 transition hover:border-cream/70"><I.whatsapp className="h-4 w-4" /></a>
               </div>
               <p className="text-[12px] leading-relaxed text-cream/65">{tr(lang, { it: "Grazie per supportare la nostra attività familiare!", en: "Thank you for supporting our family business!" })}</p>
