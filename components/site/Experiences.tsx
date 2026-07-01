@@ -21,7 +21,7 @@ import {
   Umbrella,
   Waves,
 } from "lucide-react";
-import { I, MAPS_EMBED, MAPS_SHORT, cardRail, waLink } from "@/lib/site";
+import { I, MAPS_EMBED, MAPS_SHORT, waLink } from "@/lib/site";
 import Reveal from "@/components/site/Reveal";
 import { useLang, tr } from "@/components/site/LangProvider";
 import { type B } from "@/lib/apartments";
@@ -178,6 +178,18 @@ export default function Experiences() {
                 <Image src="/images/luoghi/esp-roma.jpg" alt={tr(lang, { it: "Panorama di Roma", en: "Rome skyline", es: "Panorámica de Roma" })} fill priority sizes="(max-width:768px) 100vw, 45vw" className="object-cover" />
               </div>
             </div>
+            {/* mobile: piccole foto "a rotaia" centrate sul bordo inferiore (cluster desktop invariato) */}
+            <div className="relative z-10 -mt-12 mb-1 flex justify-center gap-4 lg:hidden">
+              <div className="w-[26%] -rotate-3 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-vaticano.jpg" alt={tr(lang, { it: "Piazza San Pietro", en: "St. Peter's Square" })} fill sizes="100px" className="object-cover" /></div>
+              </div>
+              <div className="w-[26%] rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-trevi.jpg" alt={tr(lang, { it: "Fontana di Trevi", en: "Trevi Fountain" })} fill sizes="100px" className="object-cover" /></div>
+              </div>
+              <div className="w-[26%] -rotate-2 rounded-xl bg-white p-1.5 shadow-lg">
+                <div className="relative aspect-square overflow-hidden rounded-lg"><Image src="/images/luoghi/esp-lungomare.jpg" alt={tr(lang, { it: "Lungomare e mare di Fiumicino", en: "Fiumicino seafront" })} fill sizes="100px" className="object-cover" /></div>
+              </div>
+            </div>
             {/* cluster di polaroid sovrapposte */}
             <div className="absolute -right-3 top-4 hidden w-36 lg:block xl:w-44">
               <div className="rotate-3 rounded-xl bg-white p-1.5 shadow-xl">
@@ -205,7 +217,7 @@ export default function Experiences() {
             <h2 className="font-serif text-2xl font-bold italic text-white drop-shadow md:text-3xl">{tr(lang, { it: "Le migliori esperienze vicino a MiriAle Holiday House", en: "Top experiences near MiriAle Holiday House", es: "Las mejores experiencias cerca de MiriAle Holiday House" })}</h2>
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
           </Reveal>
-          <div className={`mt-8 ${cardRail} sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6`}>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {top.map((c) => (
               <article key={c.t.en} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[4/3]">
@@ -233,7 +245,7 @@ export default function Experiences() {
             <Wave className="mx-auto mt-2 h-2 w-16 text-terracotta" />
             <p className="mt-3 text-sm text-warm-gray">{tr(lang, { it: "Itinerari facili per ispirare il tuo soggiorno — suggeriti da Fabio", en: "Easy itineraries to inspire your stay — suggested by Fabio", es: "Itinerarios fáciles para inspirar tu estancia — sugeridos por Fabio" })}</p>
           </Reveal>
-          <div className={`mt-8 ${cardRail} md:grid-cols-2 xl:grid-cols-4`}>
+          <div className="mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[7%] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>*]:w-[86%] [&>*]:shrink-0 [&>*]:snap-center sm:grid sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:[&>*]:w-auto md:grid-cols-2 xl:grid-cols-4">
             {ideas.map((d) => (
               <article key={d.n} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card">
                 <div className="relative aspect-[16/10]">
