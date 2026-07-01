@@ -234,7 +234,7 @@ export default function HomeMiriale() {
               <ContactFormModal
                 renderTrigger={(open) => (
                   <button type="button" onClick={open} aria-haspopup="dialog" aria-label="Email" className="inline-flex flex-col items-center rounded-full px-6 py-2.5 text-white shadow-sm transition hover:opacity-90" style={{ backgroundColor: GMAIL_BLUE }}>
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold"><GmailChip /> Email</span>
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold"><GmailChip /> {tr(lang, { it: "Scrivici un'email", en: "Send us an email" })}</span>
                     <span className="text-[10px] text-white/90">{tr(lang, { it: "Ti rispondiamo presto", en: "We reply soon" })}</span>
                   </button>
                 )}
