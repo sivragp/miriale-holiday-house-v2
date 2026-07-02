@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency,
       priority,
       alternates: {
-        languages: { "it-IT": url, en: url, "x-default": url },
+        languages: { "it-IT": url, "x-default": url },
       },
     };
   });

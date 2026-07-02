@@ -39,10 +39,12 @@ const abs = (path: string) =>
 /*  Metadata helper                                                           */
 /* -------------------------------------------------------------------------- */
 
-/** Costruisce i Metadata Next per una pagina: canonical + hreflang IT/EN,
- *  Open Graph completo e Twitter card. Il sito è bilingue su singola URL
- *  (toggle client-side, vedi LangProvider): IT/EN condividono lo stesso URL,
- *  quindi gli alternates hreflang puntano alla stessa risorsa. */
+/** Costruisce i Metadata Next per una pagina: canonical + hreflang, Open Graph
+ *  completo e Twitter card. L'HTML servito/indicizzabile è in italiano; EN/ES
+ *  sono solo un toggle client-side (vedi LangProvider), non pagine crawlabili
+ *  separate. Quindi dichiariamo hreflang solo it-IT + x-default: annotare en/es
+ *  su contenuto italiano sarebbe scorretto (Google le ignorerebbe). Aggiungere
+ *  en/es solo quando esisteranno URL localizzati server-side. */
 export function buildMetadata(opts: {
   title: string;
   description: string;
@@ -62,8 +64,6 @@ export function buildMetadata(opts: {
       canonical: url,
       languages: {
         "it-IT": url,
-        en: url,
-        es: url,
         "x-default": url,
       },
     },
