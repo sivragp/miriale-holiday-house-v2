@@ -86,10 +86,6 @@ export default function SiteFooter() {
         <div className="border-t border-white/10">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-[11px] text-cream/65 sm:flex-row md:px-8">
             <span>© 2026 MiriAle Holiday House · {tr(lang, { it: "Tutti i diritti riservati", en: "All rights reserved", es: "Todos los derechos reservados" })}</span>
-            <span className="text-cream/55">
-              {tr(lang, { it: "Sito realizzato da", en: "Website designed and developed by", es: "Sitio web diseñado y desarrollado por" })}{" "}
-              <a href="https://sivragp.com" target="_blank" rel="noopener noreferrer" className="font-medium text-gold transition hover:text-white">SIVRA Growth Partner</a>
-            </span>
             <span className="flex gap-5">
               <Link href="/contatti" className="transition hover:text-white">{tr(lang, { it: "Privacy Policy", en: "Privacy Policy", es: "Política de privacidad" })}</Link>
               <Link href="/contatti" className="transition hover:text-white">{tr(lang, { it: "Termini e condizioni", en: "Terms & Conditions", es: "Términos y condiciones" })}</Link>
